@@ -82,9 +82,9 @@ const plus2 = computed(() => {
   align-items: center;
   width: 100%;
   margin-bottom: 1.5rem;
+  gap: 0.5rem; /* отступы между колонками */
 }
 .time-column {
-  margin: 0.5rem 0;
   text-align: center;
 }
 .time-column h2 {
@@ -107,6 +107,7 @@ h1 {
     justify-content: space-around;
     width: 80%;
     margin-bottom: 2rem;
+    gap: 1rem; /* увеличим gap для горизонтального расположения */
   }
   .time-column h2 {
     font-size: 2rem;
