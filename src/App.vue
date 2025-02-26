@@ -42,69 +42,88 @@ const plus2 = computed(() => {
     <div class="time-row">
       <div class="time-column">
         <h2>{{ minus2 }}</h2>
-        <p>Лондон (примерно -2 ч.)</p>
+        <p>Лондон</p>
       </div>
       <div class="time-column">
         <h2>{{ minus1 }}</h2>
-        <p>Берлин (примерно -1 ч.)</p>
+        <p>Берлин</p>
       </div>
       <div class="time-column">
         <h2>{{ plus1 }}</h2>
-        <p>Дубай (примерно +1 ч.)</p>
+        <p>Дубай</p>
       </div>
       <div class="time-column">
         <h2>{{ plus2 }}</h2>
-        <p>Тбилиси (примерно +2 ч.)</p>
+        <p>Тбилиси</p>
       </div>
     </div>
 
     <!-- Основное текущее время -->
-    <h1>{{ mainTime.value.toLocaleTimeString() }}</h1>
+    <h1>{{ mainTime.toLocaleTimeString() }}</h1>
   </div>
 </template>
 
 <style>
 .clock-container {
-  /* Размещаем всё по центру, вертикально и горизонтально */
   display: flex;
-  flex-direction: column; /* Столбик: сверху колонки, снизу основное время */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
   margin: 0;
+  padding: 1rem;
 }
 
-/* Строка с 4 колонками */
+/* Базовые стили (Mobile First – для телефонов) */
 .time-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 80%;          /* Можно регулировать ширину блока */
-  margin-bottom: 2rem; /* Отступ от основного времени */
-}
-
-/* Каждая колонка */
-.time-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
-
+.time-column {
+  margin: 0.5rem 0;
+  text-align: center;
+}
 .time-column h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
 }
-
 .time-column p {
-  font-size: 1rem;
-  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0;
 }
-
-/* Основное время (внизу) */
 h1 {
-  font-size: 5rem;
+  font-size: 3rem;
   margin: 0;
 }
+
+/* Для планшетов */
+@media (min-width: 768px) {
+  .time-row {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    margin-bottom: 2rem;
+  }
+  .time-column h2 {
+    font-size: 2rem;
+  }
+  .time-column p {
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Для десктопов */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 5rem;
+  }
+}
+
 </style>
