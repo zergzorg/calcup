@@ -23,11 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: . 
+        working-directory: ./  # Указываем, что работаем из корня проекта
 
       - name: Build project
         run: npm run build
-        working-directory: .
+        working-directory: ./
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
