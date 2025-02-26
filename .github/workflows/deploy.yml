@@ -3,36 +3,40 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Указываем ветку, на которой будет происходить деплой (например, main)
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Явно указываем права на запись в репозиторий
 
     steps:
-      # Checkout репозитория
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Устанавливаем Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  #Устанавливаем нужную версию Node.js
+          node-version: '20'
+          cache: 'npm'  # Кэширование зависимостей для ускорения
 
-      # Устанавливаем зависимости
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Используем ci вместо install для более чистой установки
 
-      # Строим проект
       - name: Build project
         run: npm run build
 
-      # Деплой на GitHub Pages
+      - name: Debug output
+        run: |
+          echo "Contents of the current directory:"
+          ls -la
+          echo "Contents of the dist directory (if exists):"
+          ls -la dist || echo "dist directory not found"
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3  # Используем v3 вместо v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Используем токен для авторизации
-          publish_dir: ./dist  # Указываем папку, которую нужно развернуть (папка dist)
-          # Для деплоя в корень, а не в папку calcup
-          publish_branch: gh-pages  # Указываем ветку, куда будет публиковаться сайт (обычно это gh-pages)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
