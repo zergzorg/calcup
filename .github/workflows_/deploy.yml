@@ -8,8 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Явно указываем права на запись в репозиторий
 
     steps:
       - name: Checkout repository
@@ -19,25 +17,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'  # Кэширование зависимостей для ускорения
 
       - name: Install dependencies
-        run: npm ci  # Используем ci вместо install для более чистой установки
+        run: npm install
 
       - name: Build project
         run: npm run build
 
-      - name: Debug output
-        run: |
-          echo "Contents of the current directory:"
-          ls -la
-          echo "Contents of the dist directory (if exists):"
-          ls -la dist || echo "dist directory not found"
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3  # Используем v3 вместо v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          force_orphan: true
