@@ -1,53 +1,12 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, onMounted } from "vue";
 
-// Состояние текущего времени
-const currentTime = ref(new Date());
+// Текущая дата
+const currentDate = ref(new Date());
 
-// Выбранный часовой пояс (по умолчанию 0 - Москва)
-const selectedOffset = ref(0);
-
-// Интервал обновления времени
-let timeInterval;
-
-// Форматирование времени с ведущими нулями
-const formatTime = (date) => {
-  return date.toLocaleTimeString(undefined, {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  });
-};
-
-// Форматирование только часов и минут
-const formatTimeHM = (date) => {
-  return date.toLocaleTimeString(undefined, {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  });
-};
-
-// Получаем время с учетом выбранного смещения
-const getTimeWithOffset = (offset) => {
-  // Получаем местный часовой пояс в минутах
-  const localOffset = currentTime.value.getTimezoneOffset();
-  // Вычисляем базовое UTC время в миллисекундах
-  const utcTime = currentTime.value.getTime() + localOffset * 60 * 1000;
-  // Добавляем выбранное смещение в часах
-  return new Date(utcTime + offset * 60 * 60 * 1000);
-};
-
-// Вычисляемое время с учетом выбранного смещения
-const adjustedTime = computed(() => getTimeWithOffset(selectedOffset.value));
-
-// Форматированное время с учетом выбранного смещения
-const formattedTime = computed(() => formatTime(adjustedTime.value));
-
-// Дата сегодня
-const todayDate = computed(() => {
-  return adjustedTime.value.toLocaleDateString(undefined, {
+// Форматирование даты
+const formattedDate = computed(() => {
+  return currentDate.value.toLocaleDateString(undefined, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -55,63 +14,73 @@ const todayDate = computed(() => {
   });
 });
 
-// Города для отображения в ретро-стиле Apple
-const allCities = [
-  { name: "Cupertino", offset: -9, icon: "🍎", region: "California", color: "#ff6b6b" },
-  { name: "New York", offset: -5, icon: "🗽", region: "USA", color: "#4ecdc4" },
-  { name: "London", offset: 0, icon: "🇬🇧", region: "UK", color: "#1a535c" },
-  { name: "Tokyo", offset: 9, icon: "🇯🇵", region: "Japan", color: "#ff9f1c" },
-  { name: "Sydney", offset: 10, icon: "🌉", region: "Australia", color: "#2ec4b6" },
-  { name: "Moscow", offset: 2, icon: "🇷🇺", region: "Russia", color: "#f45b69", isMain: true },
-  { name: "Berlin", offset: 1, icon: "🇩🇪", region: "Germany", color: "#f6ae2d" },
-  { name: "Dubai", offset: 3, icon: "🇦🇪", region: "UAE", color: "#33658a" },
-  { name: "Paris", offset: 1, icon: "🇫🇷", region: "France", color: "#86bbd8" },
-  { name: "Hong Kong", offset: 8, icon: "🇭🇰", region: "China", color: "#758e4f" },
-  { name: "Barcelona", offset: 1, icon: "🇪🇸", region: "Spain", color: "#f26419" },
-  { name: "Rome", offset: 1, icon: "🇮🇹", region: "Italy", color: "#9bc53d" }
-];
+// Фейковые данные для статистики
+const productStatistics = ref([
+  { name: "iMac", salesCount: 2475, rating: 4.8, icon: "🖥️", releaseYear: 2021, color: "#ff6b6b" },
+  { name: "MacBook", salesCount: 3842, rating: 4.7, icon: "💻", releaseYear: 2022, color: "#4ecdc4" },
+  { name: "iPhone", salesCount: 8754, rating: 4.9, icon: "📱", releaseYear: 2023, color: "#1a535c" },
+  { name: "iPad", salesCount: 4231, rating: 4.6, icon: "📟", releaseYear: 2022, color: "#ff9f1c" },
+  { name: "AirPods", salesCount: 6312, rating: 4.5, icon: "🎧", releaseYear: 2021, color: "#2ec4b6" },
+  { name: "Apple Watch", salesCount: 3865, rating: 4.7, icon: "⌚", releaseYear: 2022, color: "#f45b69" },
+  { name: "Apple TV", salesCount: 1523, rating: 4.4, icon: "📺", releaseYear: 2021, color: "#f6ae2d" },
+  { name: "HomePod", salesCount: 982, rating: 4.3, icon: "🔊", releaseYear: 2023, color: "#33658a" },
+  { name: "Mac mini", salesCount: 867, rating: 4.6, icon: "🧠", releaseYear: 2022, color: "#86bbd8" },
+  { name: "Mac Pro", salesCount: 456, rating: 4.9, icon: "⚡", releaseYear: 2023, color: "#758e4f" },
+  { name: "iPod", salesCount: 345, rating: 4.1, icon: "🎵", releaseYear: 2020, color: "#f26419" },
+  { name: "Accessories", salesCount: 7245, rating: 4.5, icon: "🔌", releaseYear: 2023, color: "#9bc53d" }
+]);
 
-// Получаем время для каждого города
-const cities = computed(() => {
-  return allCities.map(city => {
-    // Вычисляем время с учетом смещения
-    const cityTime = getTimeWithOffset(city.offset);
-    return {
-      ...city,
-      time: formatTimeHM(cityTime),
-      active: city.offset === selectedOffset.value
-    };
-  });
-});
+// Фейковые новости и объявления
+const newsItems = ref([
+  {
+    title: "Новая разработка устройств",
+    content: "Наша компания анонсирует прорывную технологию, которая изменит ваше представление о вычислительных устройствах. Готовьтесь к чему-то необычному в ближайшие месяцы.",
+    date: "15 февраля 2023",
+    important: true
+  },
+  {
+    title: "Обновление программного обеспечения",
+    content: "Выпущено обновление версии 12.3, включающее улучшения безопасности и новые функции для всех пользователей.",
+    date: "3 марта 2023",
+    important: false
+  },
+  {
+    title: "Открытие нового кампуса",
+    content: "Мы открываем новый инновационный кампус в Куперино, который станет домом для более 5000 инженеров и дизайнеров.",
+    date: "21 апреля 2023",
+    important: true
+  },
+  {
+    title: "Экологическая инициатива",
+    content: "Наша компания обязуется достичь углеродной нейтральности к 2030 году во всех аспектах деятельности, включая производство.",
+    date: "5 июня 2023",
+    important: false
+  }
+]);
 
-// Функция для изменения выбранного часового пояса
-const setSelectedOffset = (offset) => {
-  selectedOffset.value = offset;
+// Фейковые образовательные ресурсы
+const resources = ref([
+  { title: "Руководство разработчика", type: "Документация", icon: "📝", downloads: 12458 },
+  { title: "Видеокурсы для начинающих", type: "Видео", icon: "🎬", downloads: 8765 },
+  { title: "Оптимизация производительности", type: "Руководство", icon: "⚡", downloads: 5432 },
+  { title: "Основы дизайна интерфейсов", type: "Книга", icon: "📚", downloads: 7654 },
+  { title: "Подкаст для разработчиков", type: "Аудио", icon: "🎙️", downloads: 3210 }
+]);
+
+// Выбранная категория для основной секции (продукты, новости или ресурсы)
+const selectedCategory = ref("products");
+
+// Функция для изменения выбранной категории
+const setSelectedCategory = (category) => {
+  selectedCategory.value = category;
 };
 
-// Вычисляем секунды для анимации
-const seconds = computed(() => adjustedTime.value.getSeconds());
-const secondsDegrees = computed(() => seconds.value * 6);
-
-// Вычисляем минуты для анимации
-const minutes = computed(() => adjustedTime.value.getMinutes());
-const minutesDegrees = computed(() => minutes.value * 6 + seconds.value * 0.1);
-
-// Вычисляем часы для анимации
-const hours = computed(() => adjustedTime.value.getHours() % 12);
-const hoursDegrees = computed(() => hours.value * 30 + minutes.value * 0.5);
-
-// Запуск интервала при монтировании компонента
+// Загрузка данных при монтировании компонента
 onMounted(() => {
-  // Обновление времени каждую секунду
-  timeInterval = setInterval(() => {
-    currentTime.value = new Date();
+  // Имитация загрузки данных с сервера
+  setTimeout(() => {
+    console.log("Данные загружены");
   }, 1000);
-});
-
-// Очистка интервала перед удалением компонента
-onBeforeUnmount(() => {
-  clearInterval(timeInterval);
 });
 </script>
 
@@ -131,55 +100,116 @@ onBeforeUnmount(() => {
 
     <header class="retro-header">
       <div class="logo-container">
-        <div class="apple-text">iWorld Clock</div>
+        <div class="apple-text">iProduct Dashboard</div>
       </div>
-      <h1 class="retro-h1">World Clock</h1>
-      <p class="tagline">Time. Different. Think.</p>
-      <p class="today-date">{{ todayDate }}</p>
+      <h1 class="retro-h1">Innovation Data</h1>
+      <p class="tagline">Information. Simplified. Visualized.</p>
+      <p class="today-date">{{ formattedDate }}</p>
     </header>
 
+    <div class="category-selector">
+      <button
+          @click="setSelectedCategory('products')"
+          :class="{ active: selectedCategory === 'products' }"
+          class="category-button"
+      >
+        Products
+      </button>
+      <button
+          @click="setSelectedCategory('news')"
+          :class="{ active: selectedCategory === 'news' }"
+          class="category-button"
+      >
+        News
+      </button>
+      <button
+          @click="setSelectedCategory('resources')"
+          :class="{ active: selectedCategory === 'resources' }"
+          class="category-button"
+      >
+        Resources
+      </button>
+    </div>
+
     <main class="retro-main">
-      <!-- Аналоговые часы в стиле Classic Mac -->
-      <div class="retro-clock-container">
-        <div class="retro-clock">
-          <div class="clock-face">
-            <div class="center-dot"></div>
-            <div class="hour-marks">
-              <div v-for="n in 12" :key="n" class="hour-mark"
-                   :style="{ transform: `rotate(${n * 30}deg) translateY(-40px)` }">{{ n }}</div>
-            </div>
-            <div class="hand hour-hand" :style="{ transform: `rotate(${hoursDegrees}deg)` }"></div>
-            <div class="hand minute-hand" :style="{ transform: `rotate(${minutesDegrees}deg)` }"></div>
-            <div class="hand second-hand" :style="{ transform: `rotate(${secondsDegrees}deg)` }"></div>
-          </div>
-          <div class="digital-display">
-            <div class="digital-time">{{ formattedTime }}</div>
-            <div class="selected-city">
-              {{ cities.find(city => city.active)?.name }}
-              <span v-if="selectedOffset > 0">UTC+{{ selectedOffset }}</span>
-              <span v-else-if="selectedOffset < 0">UTC{{ selectedOffset }}</span>
-              <span v-else>UTC</span>
+      <!-- Продукты -->
+      <div v-if="selectedCategory === 'products'" class="info-container">
+        <div class="info-header">
+          <h2 class="section-title">Our Products. Incredible Results.</h2>
+          <p class="info-description">A comprehensive overview of our product line performance. Innovation at every level.</p>
+        </div>
+
+        <div class="product-statistics">
+          <div
+              v-for="product in productStatistics"
+              :key="product.name"
+              class="aqua-card"
+              :style="{'--card-color': product.color}"
+          >
+            <div class="product-icon">{{ product.icon }}</div>
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-year">{{ product.releaseYear }}</div>
+            <div class="product-stats">
+              <div class="stat-item">
+                <span class="stat-label">Sales</span>
+                <span class="stat-value">{{ product.salesCount.toLocaleString() }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Rating</span>
+                <span class="stat-value">{{ product.rating }}/5.0</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Мировые часы в аквастиле macOS -->
-      <div class="world-clocks-container">
-        <h2 class="section-title">One World. Many Times.</h2>
-        <div class="world-clocks">
+      <!-- Новости -->
+      <div v-if="selectedCategory === 'news'" class="info-container">
+        <div class="info-header">
+          <h2 class="section-title">Latest News. Fresh Insights.</h2>
+          <p class="info-description">Stay informed with the latest announcements and developments from our company.</p>
+        </div>
+
+        <div class="news-container">
           <div
-              v-for="city in cities"
-              :key="city.name"
-              class="aqua-city-card"
-              :class="{ 'active-city': city.active }"
-              @click="setSelectedOffset(city.offset)"
-              :style="{'--city-color': city.color}"
+              v-for="(news, index) in newsItems"
+              :key="index"
+              class="news-card"
+              :class="{ 'important-news': news.important }"
           >
-            <div class="city-icon">{{ city.icon }}</div>
-            <div class="city-time">{{ city.time }}</div>
-            <div class="city-name">{{ city.name }}</div>
-            <div class="city-region">{{ city.region }}</div>
+            <div class="news-header">
+              <h3 class="news-title">{{ news.title }}</h3>
+              <span class="news-date">{{ news.date }}</span>
+            </div>
+            <p class="news-content">{{ news.content }}</p>
+            <div v-if="news.important" class="important-tag">Important</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ресурсы -->
+      <div v-if="selectedCategory === 'resources'" class="info-container">
+        <div class="info-header">
+          <h2 class="section-title">Educational Resources. Knowledge Power.</h2>
+          <p class="info-description">Expand your skills and knowledge with our comprehensive educational materials.</p>
+        </div>
+
+        <div class="resources-container">
+          <div
+              v-for="(resource, index) in resources"
+              :key="index"
+              class="resource-card"
+          >
+            <div class="resource-icon">{{ resource.icon }}</div>
+            <div class="resource-content">
+              <h3 class="resource-title">{{ resource.title }}</h3>
+              <span class="resource-type">{{ resource.type }}</span>
+              <div class="resource-downloads">
+                <span class="download-icon">⬇️</span>
+                <span class="download-count">{{ resource.downloads.toLocaleString() }}</span>
+              </div>
+            </div>
+            <button class="download-button">Download</button>
           </div>
         </div>
       </div>
@@ -196,7 +226,6 @@ onBeforeUnmount(() => {
       <p class="copyright">Copyright © 2003 Apple Computer, Inc. All rights reserved.</p>
       <p class="small-text">Design inspired by Apple's classic website. Made with ♥</p>
     </footer>
-
   </div>
 </template>
 
@@ -310,166 +339,94 @@ body {
   font-size: 0.9rem;
 }
 
+/* Селектор категорий */
+.category-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+}
+
+.category-button {
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Lucida Grande', sans-serif;
+  font-size: 0.9rem;
+  color: var(--apple-dark-gray);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.category-button:hover {
+  background: linear-gradient(to bottom, #e0e0e0, #d0d0d0);
+}
+
+.category-button.active {
+  background: linear-gradient(to bottom, var(--apple-blue-gradient-start), var(--apple-blue-gradient-end));
+  color: white;
+  border-color: var(--apple-blue);
+  box-shadow: 0 1px 3px rgba(0, 102, 204, 0.3);
+}
+
 /* Main content */
 .retro-main {
   flex: 1;
-  padding: 2rem;
+  padding: 0 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
+  width: 100%;
 }
 
-/* Аналоговые часы в скевоморфическом дизайне */
-.retro-clock-container {
-  display: flex;
-  justify-content: center;
+.info-container {
+  width: 100%;
+}
+
+.info-header {
+  text-align: center;
   margin-bottom: 2rem;
 }
 
-.retro-clock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.clock-face {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, white, #e0e0e0);
-  border: 15px solid #c0c0c0;
-  box-shadow:
-      0 0 0 5px rgba(0, 0, 0, 0.1),
-      inset 0 0 20px rgba(0, 0, 0, 0.1),
-      0 5px 15px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hour-marks {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.hour-mark {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transform-origin: center;
-  font-weight: bold;
-  font-size: 1rem;
-  color: #333;
-  font-family: "Gill Sans", Helvetica, sans-serif;
-}
-
-.center-dot {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: radial-gradient(circle at center, #666, #333);
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.hand {
-  position: absolute;
-  transform-origin: bottom center;
-  bottom: 50%;
-  border-radius: 10px;
-  z-index: 5;
-}
-
-.hour-hand {
-  width: 8px;
-  height: 25%;
-  background: linear-gradient(to right, #333 0%, #333 40%, #666 60%, #333 100%);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.minute-hand {
-  width: 6px;
-  height: 38%;
-  background: linear-gradient(to right, #555 0%, #555 40%, #888 60%, #555 100%);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.second-hand {
-  width: 2px;
-  height: 45%;
-  background-color: #cc0000;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.digital-display {
-  margin-top: 1.5rem;
-  background: linear-gradient(to bottom, #e2e2e2, #b0b0b0);
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  text-align: center;
-}
-
-.digital-time {
-  font-family: "Courier New", monospace;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--apple-dark-gray);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.selected-city {
-  font-size: 0.9rem;
-  color: var(--apple-blue);
-  margin-top: 0.2rem;
-}
-
-/* Секция с мировыми часами */
-.world-clocks-container {
-  width: 100%;
-  margin-top: 1rem;
-}
-
 .section-title {
-  text-align: center;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
   font-size: 1.8rem;
   color: var(--apple-dark-gray);
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.world-clocks {
+.info-description {
+  color: var(--apple-dark-gray);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Продукты */
+.product-statistics {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
 }
 
-/* Карточки городов в стиле aqua macOS */
-.aqua-city-card {
+.aqua-card {
   width: 160px;
-  height: 160px;
+  height: 180px;
   border-radius: 15px;
   background: linear-gradient(to bottom,
-  color-mix(in srgb, var(--city-color, #0066cc) 85%, white),
-  color-mix(in srgb, var(--city-color, #0066cc) 100%, black)
+  color-mix(in srgb, var(--card-color, #0066cc) 85%, white),
+  color-mix(in srgb, var(--card-color, #0066cc) 100%, black)
   );
   color: white;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   box-shadow:
       0 5px 15px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 var(--aqua-highlight);
@@ -481,7 +438,7 @@ body {
   overflow: hidden;
 }
 
-.aqua-city-card::after {
+.aqua-card::after {
   content: "";
   position: absolute;
   top: 0;
@@ -496,52 +453,187 @@ body {
   pointer-events: none;
 }
 
-.aqua-city-card:hover {
-  transform: translateY(-5px) scale(1.05);
+.aqua-card:hover {
+  transform: translateY(-5px);
   box-shadow:
       0 10px 20px var(--aqua-shadow),
       inset 0 1px 0 var(--aqua-highlight);
 }
 
-.active-city {
-  outline: 3px solid white;
-  box-shadow:
-      0 0 0 5px rgba(0, 102, 204, 0.5),
-      0 5px 15px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 var(--aqua-highlight);
-}
-
-.active-city:hover {
-  transform: translateY(-5px);
-  box-shadow:
-      0 0 0 5px rgba(0, 102, 204, 0.5),
-      0 10px 20px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 var(--aqua-highlight);
-}
-
-.city-icon {
+.product-icon {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-.city-time {
-  font-family: "Courier New", monospace;
-  font-size: 1.5rem;
+.product-name {
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.city-name {
-  font-weight: bold;
+  font-size: 1.1rem;
   margin-bottom: 0.2rem;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.city-region {
+.product-year {
   font-size: 0.8rem;
+  margin-bottom: 0.8rem;
   opacity: 0.8;
+}
+
+.product-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.stat-label {
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-weight: bold;
+}
+
+/* Новости */
+.news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 1px solid #ccc;
+}
+
+.important-news {
+  background: linear-gradient(to bottom, #fff8e1, #ffe0b2);
+  border: 1px solid #ffcc80;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.news-title {
+  font-size: 1.2rem;
+  color: var(--apple-dark-gray);
+  margin: 0;
+}
+
+.news-date {
+  font-size: 0.8rem;
+  color: var(--apple-medium-gray);
+}
+
+.news-content {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--apple-dark-gray);
+}
+
+.important-tag {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: #ff6b6b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.2rem 0.8rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Ресурсы */
+.resources-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.resource-card {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border: 1px solid #e0e0e0;
+}
+
+.resource-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.resource-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: var(--apple-blue);
+}
+
+.resource-content {
+  flex: 1;
+}
+
+.resource-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.2rem 0;
+  color: var(--apple-dark-gray);
+}
+
+.resource-type {
+  font-size: 0.8rem;
+  color: var(--apple-medium-gray);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.resource-downloads {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--apple-dark-gray);
+}
+
+.download-icon {
+  margin-right: 0.3rem;
+}
+
+.download-button {
+  background: linear-gradient(to bottom, var(--apple-blue-gradient-start), var(--apple-blue-gradient-end));
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.download-button:hover {
+  background: linear-gradient(to bottom, #1a75ff, #0055cc);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer */
@@ -582,33 +674,28 @@ body {
 }
 
 /* Адаптивность для планшетов */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .retro-h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
-  .clock-face {
-    width: 300px;
-    height: 300px;
+  .category-selector {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .digital-time {
-    font-size: 2.2rem;
+  .category-button {
+    width: 100%;
+    max-width: 300px;
   }
 
-  .retro-main {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  .product-statistics {
+    gap: 1rem;
   }
 
-  .retro-clock-container {
-    flex: 0 0 40%;
-    margin-right: 2rem;
-  }
-
-  .world-clocks-container {
-    flex: 0 0 50%;
+  .aqua-card {
+    width: 140px;
+    height: 160px;
   }
 }
 
@@ -618,19 +705,9 @@ body {
     font-size: 3.5rem;
   }
 
-  .clock-face {
-    width: 350px;
-    height: 350px;
-    border-width: 20px;
-  }
-
-  .digital-time {
-    font-size: 2.5rem;
-  }
-
-  .aqua-city-card {
+  .aqua-card {
     width: 180px;
-    height: 180px;
+    height: 200px;
   }
 }
 </style>
