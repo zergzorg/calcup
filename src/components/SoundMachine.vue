@@ -37,16 +37,17 @@
       <div class="knobs">
         <div class="tuning-knob">
           <!-- Sound Selection -->
-          <div 
+          <button 
             v-for="sound in sounds" 
             :key="sound.id"
             class="channel-btn"
             :class="{ active: currentSound === sound.name && isPlaying }"
             @click="selectSound(sound)"
             @mousedown.stop
+            @touchstart.stop
           >
             {{ sound.label }}
-          </div>
+          </button>
         </div>
         
         <div class="volume-knob-container">
@@ -94,7 +95,8 @@ const sounds: SoundProfile[] = [
   { id: 'white', name: 'White Noise', label: 'Static', type: 'white' },
   { id: 'pink', name: 'Rain', label: 'Rain', type: 'pink' },
   { id: 'brown', name: 'Ocean', label: 'Ocean', type: 'brown' },
-  { id: 'radio-kniga', name: 'Radio Kniga', label: 'Radio', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
+  { id: 'radio-kniga', name: 'Radio Kniga', label: 'Kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
+  { id: 'flux-chillhop', name: 'FluxFM Chillhop', label: 'Lofi', type: 'stream', url: 'https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/ '},
 ];
 
 const visualizerActive = ref(true);
