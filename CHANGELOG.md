@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.1] - 2025-12-06
+
+### Fixed / Исправлено
+
+- **Звуковая машина**: Исправлено воспроизведение фоновых звуков (Ветер, Дождь, Лес) на iPad/iOS (переход на AudioBuffer).
+  - _Sound Machine_: Fixed background sounds playback (Wind, Rain, Forest) on iPad/iOS (switched to AudioBuffer).
+- **Звуковая машина**: Индикатор загрузки для больших аудиофайлов.
+  - _Sound Machine_: Loading indicator for large audio files.
+
 ## [0.5.0] - 2025-12-06
 
 ### Added / Добавлено

@@ -41,7 +41,10 @@
             v-for="sound in sounds" 
             :key="sound.id"
             class="channel-btn"
-            :class="{ active: currentSoundId === sound.id && isPlaying }"
+            :class="{ 
+              active: currentSoundId === sound.id && isPlaying,
+              loading: currentSoundId === sound.id && isLoading
+            }"
             @click="selectSound(sound)"
             @mousedown.stop
             @touchstart.stop
@@ -84,6 +87,8 @@ const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50
 const isPlaying = ref(false);
 const currentSoundId = ref('white');
 const volume = ref(0.5);
+const isLoading = ref(false); 
+const bufferCache = new Map<string, AudioBuffer>();
 
 interface SoundProfile {
   id: string;
@@ -162,15 +167,48 @@ const initAudio = () => {
   }
 };
 
-const playSound = (sound: SoundProfile) => {
+const playSound = async (sound: SoundProfile) => {
   // Stop existing sounds first
   stopAudio(false); 
 
   initAudio();
   if (!audioCtx || !masterGain || !analyser) return;
 
-  // Handle both audio files and streams
-  if ((sound.type === 'audio' || sound.type === 'stream') && sound.url) {
+  if (audioCtx.state === 'suspended') {
+      await audioCtx.resume();
+  }
+
+  // Handle static audio files with AudioBuffer (better for iOS/looping)
+  if (sound.type === 'audio' && sound.url) {
+    try {
+      isLoading.value = true;
+      let buffer = bufferCache.get(sound.id);
+      
+      if (!buffer) {
+        const response = await fetch(sound.url);
+        const arrayBuffer = await response.arrayBuffer();
+        buffer = await audioCtx.decodeAudioData(arrayBuffer);
+        bufferCache.set(sound.id, buffer);
+      }
+      
+      // Check if user changed selection while loading
+      if (currentSoundId.value !== sound.id || !isPlaying.value) return;
+
+      sourceNode = audioCtx.createBufferSource();
+      sourceNode.buffer = buffer;
+      sourceNode.loop = !!sound.loop;
+      sourceNode.connect(masterGain);
+      sourceNode.start(0);
+      
+      startVisualizer();
+    } catch (e) {
+      console.error('Error playing audio buffer:', e);
+    } finally {
+      isLoading.value = false;
+    }
+  } 
+  // Handle streams with HTML5 Audio
+  else if (sound.type === 'stream' && sound.url) {
     if (!streamAudio) {
       streamAudio = new Audio();
       streamAudio.crossOrigin = "anonymous";
@@ -189,11 +227,7 @@ const playSound = (sound: SoundProfile) => {
       }
     }
     
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    
-    streamAudio.play().catch(e => console.error('Error playing audio/stream:', e));
+    streamAudio.play().catch(e => console.error('Error playing stream:', e));
     startVisualizer();
   }
 };
@@ -560,6 +594,21 @@ const updateVolume = () => {
 .channel-btn.active::after {
   background-color: #fff;
   box-shadow: 0 0 5px #fff, 0 0 10px #fff;
+}
+
+.channel-btn.loading {
+  cursor: wait;
+}
+
+.channel-btn.loading::after {
+  background-color: #f1c40f;
+  animation: blink-fast 0.5s infinite alternate;
+  box-shadow: 0 0 5px #f1c40f;
+}
+
+@keyframes blink-fast {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
 }
 
 
