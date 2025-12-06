@@ -1,16 +1,18 @@
 <template>
   <div class="timer-display">
-    <div class="clock-container">
-      <!-- Minutes -->
-      <div class="digit-group">
-        <FlipCard :value="minutesTens" />
-        <FlipCard :value="minutesOnes" />
-      </div>
-      <div class="separator">:</div>
-      <!-- Seconds -->
-      <div class="digit-group">
-        <FlipCard :value="secondsTens" />
-        <FlipCard :value="secondsOnes" />
+    <div class="clock-transform-wrapper">
+      <div class="clock-container">
+        <!-- Minutes -->
+        <div class="digit-group">
+          <FlipCard :value="minutesTens" />
+          <FlipCard :value="minutesOnes" />
+        </div>
+        <div class="separator">:</div>
+        <!-- Seconds -->
+        <div class="digit-group">
+          <FlipCard :value="secondsTens" />
+          <FlipCard :value="secondsOnes" />
+        </div>
       </div>
     </div>
     
@@ -42,17 +44,23 @@ const secondsOnes = computed(() => props.time[4]);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.clock-transform-wrapper {
+  /* Scale down to fit 280px container */
+  transform: scale(0.65); 
+  transform-origin: center top;
+  margin-bottom: -30px; /*Compensate for empty space after scaling */
 }
 
 .clock-container {
   display: flex;
   align-items: center;
   gap: 15px;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.3);
+  /* Removed dark background for cleaner look */
+  padding: 10px;
 }
 
 .digit-group {
@@ -63,29 +71,28 @@ const secondsOnes = computed(() => props.time[4]);
 .separator {
   font-size: 60px;
   font-weight: bold;
-  color: #ccc;
+  color: #333; /* Dark text instead of light gray */
   margin-top: -10px;
 }
 
 .timer-mode {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-top: 25px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  color: #333;
-  background-color: #ddd;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: #555;
+  background-color: rgba(0,0,0,0.05);
 }
 
 .timer-mode.work {
-  background-color: #ffcccb; /* Light red */
-  color: #8b0000;
+  color: #d32f2f;
+  background-color: rgba(211, 47, 47, 0.1);
 }
 .timer-mode.rest {
-  background-color: #ccffcc; /* Light green */
-  color: #006400;
+  color: #388e3c;
+  background-color: rgba(56, 142, 60, 0.1);
 }
 </style>

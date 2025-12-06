@@ -28,42 +28,40 @@ defineEmits<{
 .controls {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 0; /* Parent handles gap */
 }
 
 .control-button {
-  padding: 12px 24px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
   cursor: pointer;
+  flex: 1; /* Stretch to fill */
+  white-space: nowrap; /* Prevent wrap */
   
-  /* Metallic/Plastic look */
-  background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+  /* Modern Flat/Clean look */
+  background: #fff;
   box-shadow: 
-    0 4px 6px rgba(0,0,0,0.3),
-    inset 0 1px 0 rgba(255,255,255,0.8);
-  color: #333;
+    0 2px 4px rgba(0,0,0,0.05),
+    0 0 0 1px rgba(0,0,0,0.05); /* Border-like */
+  color: #555;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: all 0.1s;
 }
 
 .control-button:active {
-  transform: translateY(2px);
-  box-shadow: 
-    0 1px 2px rgba(0,0,0,0.3),
-    inset 0 1px 0 rgba(255,255,255,0.8);
-  background: linear-gradient(to bottom, #d0d0d0, #f0f0f0);
+  transform: scale(0.98);
+  background: #f5f5f5;
 }
 
 .control-button.active {
-  background: linear-gradient(to bottom, #ffd700, #ffaa00); /* Amber/Orange for active */
-  color: #5a3a00;
-  box-shadow: 
-    0 2px 4px rgba(0,0,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.4);
+  background: #333;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 </style>

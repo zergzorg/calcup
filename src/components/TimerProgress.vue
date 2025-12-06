@@ -24,21 +24,20 @@ defineProps<{
 <style scoped>
 .progress-bar-wrapper {
   width: 100%;
-  max-width: 440px;
-  padding: 5px;
-  background: #ddd;
-  border-radius: 10px; /* Outer casing */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-  margin-bottom: 20px;
+  padding: 4px;
+  background: #e5e5e5;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  margin-bottom: 0;
 }
 
 .progress-container {
   display: flex;
-  height: 12px;
-  border-radius: 6px;
+  height: 8px; /* Thinner */
+  border-radius: 4px;
   overflow: hidden;
   width: 100%;
-  background-color: #bbb;
+  background-color: #d0d0d0;
 }
 
 .segment {

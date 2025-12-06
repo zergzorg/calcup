@@ -6,12 +6,6 @@
     @touchstart="onTouchStart"
   >
     <div class="device-body">
-      <!-- Screw detail -->
-      <div class="screw top-left"></div>
-      <div class="screw top-right"></div>
-      <div class="screw bottom-left"></div>
-      <div class="screw bottom-right"></div>
-
       <!-- Основное табло таймера (LED/Flip) -->
       <div class="screen-frame">
         <TimerDisplay :time="formatTime" :mode="currentMode" />
@@ -87,72 +81,45 @@ const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 1
 
 <style scoped>
 .timer-widget {
-  /* Physical dimensions of the "device" */
-  width: 400px;
-  background-color: #e0e0e0;
-  border-radius: 20px;
-  padding: 20px;
-  position: absolute; /* Changed to absolute for dragging */
+  /* Compact Design */
+  width: 280px;
+  background-color: #f5f5f7; /* Very light gray, almost white */
+  border-radius: 16px;
+  padding: 16px;
+  position: absolute;
   z-index: 100;
   cursor: grab;
   
-  /* 3D Device Look */
+  /* Modern Clean Look */
   box-shadow: 
-    10px 10px 30px rgba(0,0,0,0.4), /* Drop shadow on desk */
-    inset 2px 2px 5px rgba(255,255,255,0.7), /* Highlight edge */
-    inset -2px -2px 5px rgba(0,0,0,0.2); /* Shaded edge */
+    0 10px 25px rgba(0,0,0,0.1),
+    0 4px 6px rgba(0,0,0,0.05),
+    inset 0 0 0 1px rgba(255,255,255,0.5); /* Subtle highlight */
     
   transition: transform 0.05s ease-out, box-shadow 0.2s;
   user-select: none;
+  backdrop-filter: blur(10px);
 }
 
 .timer-widget:active {
   cursor: grabbing;
   box-shadow: 
-    15px 15px 40px rgba(0,0,0,0.5),
-    inset 2px 2px 5px rgba(255,255,255,0.7),
-    inset -2px -2px 5px rgba(0,0,0,0.2);
+    0 15px 35px rgba(0,0,0,0.15),
+    0 6px 10px rgba(0,0,0,0.08);
+  transform: scale(1.02);
 }
 
 .device-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 12px; /* Reduced from 16px for tighter layout */
   position: relative;
 }
 
-/* Decorative Screws */
-.screw {
-  width: 10px;
-  height: 10px;
-  background: #bdc3c7;
-  border-radius: 50%;
-  position: absolute;
-  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
-}
-.screw::after { /* The slot */
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 2px;
-  background: #95a5a6;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.top-left { top: -10px; left: -10px; }
-.top-right { top: -10px; right: -10px; }
-.bottom-left { bottom: -10px; left: -10px; }
-.bottom-right { bottom: -10px; right: -10px; }
-
 .screen-frame {
-  background: #2c2c2c;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-  border: 1px solid #444;
+  /* Removed heavy borders and dark backgrounds for a lighter look, 
+     but TimerDisplay might still have its own dark BG. We'll adjust that next if needed. */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -169,13 +136,10 @@ const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 1
 }
 
 .sessions-plate {
-  font-family: monospace;
-  background: #333;
-  color: #f1c40f;
-  padding: 2px 8px;
-  border-radius: 2px;
-  font-size: 12px;
-  border: 1px solid #555;
-  box-shadow: 1px 1px 0 rgba(255,255,255,0.1);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 </style>
