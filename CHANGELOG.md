@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.3] - 2025-12-06
+
+### Fixed / Исправлено
+
+- **Звуковая машина**: Исправлено воспроизведение фоновых звуков на iPad (переход на HTMLAudioElement вместо AudioBuffer).
+  - _Sound Machine_: Fixed background sounds playback on iPad (switched to HTMLAudioElement instead of AudioBuffer).
+- **Радио**: Заменён нерабочий Lofi стрим на Zeno FM.
+  - _Radio_: Replaced broken Lofi stream with Zeno FM.
+
 ## [0.5.2] - 2025-12-06
 
 ### Added / Добавлено

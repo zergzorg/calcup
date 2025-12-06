@@ -87,8 +87,7 @@ const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50
 const isPlaying = ref(false);
 const currentSoundId = ref('white');
 const volume = ref(0.5);
-const isLoading = ref(false); 
-const bufferCache = new Map<string, AudioBuffer>();
+const isLoading = ref(false);
 
 interface SoundProfile {
   id: string;
@@ -106,7 +105,7 @@ const sounds: SoundProfile[] = [
   { id: 'brown', name: 'Ocean', labelKey: 'sounds.brown_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/ocean.mp3', loop: true },
   { id: 'forest', name: 'Forest', labelKey: 'sounds.forest', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/birds.mp3', loop: true },
   { id: 'radio-kniga', name: 'Radio Kniga', labelKey: 'sounds.radio_kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
-  { id: 'lofi-girl', name: 'Lofi Girl', labelKey: 'sounds.lofi', type: 'stream', url: 'https://play.streamafrica.net/lofiradio' },
+  { id: 'lofi-girl', name: 'Lofi Girl', labelKey: 'sounds.lofi', type: 'stream', url: 'https://stream.zeno.fm/0r0xa792kwzuv' },
 ];
 
 const currentSoundLabel = computed(() => {
@@ -122,9 +121,8 @@ const minutesDisplay = ref('00');
 let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
 let analyser: AnalyserNode | null = null;
-let sourceNode: AudioBufferSourceNode | null = null;
-let streamAudio: HTMLAudioElement | null = null;
-let streamSource: MediaElementAudioSourceNode | null = null;
+let currentAudio: HTMLAudioElement | null = null;
+let audioSource: MediaElementAudioSourceNode | null = null;
 let animationId: number | null = null;
 let clockInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -168,83 +166,64 @@ const initAudio = () => {
 };
 
 const playSound = async (sound: SoundProfile) => {
-  // Stop existing sounds first
+  // Останавливаем существующее воспроизведение
   stopAudio(false); 
 
   initAudio();
   if (!audioCtx || !masterGain || !analyser) return;
 
   if (audioCtx.state === 'suspended') {
-      await audioCtx.resume();
+    await audioCtx.resume();
   }
 
-  // Handle static audio files with AudioBuffer (better for iOS/looping)
-  if (sound.type === 'audio' && sound.url) {
-    try {
-      isLoading.value = true;
-      let buffer = bufferCache.get(sound.id);
-      
-      if (!buffer) {
-        const response = await fetch(sound.url);
-        const arrayBuffer = await response.arrayBuffer();
-        buffer = await audioCtx.decodeAudioData(arrayBuffer);
-        bufferCache.set(sound.id, buffer);
-      }
-      
-      // Check if user changed selection while loading
-      if (currentSoundId.value !== sound.id || !isPlaying.value) return;
+  // Для iOS используем HTMLAudioElement для всех типов звуков
+  // Это решает проблему с потерей контекста пользовательского взаимодействия
+  if (!sound.url) return;
 
-      sourceNode = audioCtx.createBufferSource();
-      sourceNode.buffer = buffer;
-      sourceNode.loop = !!sound.loop;
-      sourceNode.connect(masterGain);
-      sourceNode.start(0);
-      
-      startVisualizer();
-    } catch (e) {
-      console.error('Error playing audio buffer:', e);
-    } finally {
-      isLoading.value = false;
-    }
-  } 
-  // Handle streams with HTML5 Audio
-  else if (sound.type === 'stream' && sound.url) {
-    if (!streamAudio) {
-      streamAudio = new Audio();
-      streamAudio.crossOrigin = "anonymous";
-    }
-    
-    streamAudio.src = sound.url;
-    streamAudio.loop = !!sound.loop;
-    
-    // Create MediaElementSource only once per element
-    if (!streamSource && streamAudio) {
-      try {
-        streamSource = audioCtx.createMediaElementSource(streamAudio);
-        streamSource.connect(masterGain);
-      } catch (e) {
-        console.warn('CORS or routing error with stream:', e);
-      }
-    }
-    
-    streamAudio.play().catch(e => console.error('Error playing stream:', e));
+  isLoading.value = true;
+
+  // Создаём новый Audio элемент для каждого звука
+  currentAudio = new Audio();
+  currentAudio.crossOrigin = 'anonymous';
+  currentAudio.src = sound.url;
+  currentAudio.loop = !!sound.loop;
+  currentAudio.volume = volume.value;
+
+  // Подключаем к Web Audio API для визуализатора
+  try {
+    audioSource = audioCtx.createMediaElementSource(currentAudio);
+    audioSource.connect(masterGain);
+  } catch (e) {
+    // Если CORS не позволяет — воспроизводим без визуализатора
+    console.warn('CORS error, playing without visualizer:', e);
+    currentAudio.volume = volume.value;
+  }
+
+  currentAudio.oncanplaythrough = () => {
+    isLoading.value = false;
+  };
+
+  currentAudio.onerror = () => {
+    isLoading.value = false;
+    console.error('Error loading audio:', sound.url);
+  };
+
+  try {
+    await currentAudio.play();
     startVisualizer();
+  } catch (e) {
+    console.error('Error playing audio:', e);
+    isLoading.value = false;
   }
 };
 
 const stopAudio = (fullReset = true) => {
-  if (sourceNode) {
-    sourceNode.stop();
-    sourceNode.disconnect();
-    sourceNode = null;
-  }
-  
-  if (streamAudio) {
-    streamAudio.pause();
-    // Don't clear src immediately to avoid re-buffering lag if just toggling text, 
-    // but here we are stopping.
+  if (currentAudio) {
+    currentAudio.pause();
     if (fullReset) {
-      // streamAudio.src = ''; 
+      currentAudio.src = '';
+      currentAudio = null;
+      audioSource = null;
     }
   }
   
@@ -253,7 +232,7 @@ const stopAudio = (fullReset = true) => {
     animationId = null;
   }
   
-  // Clear canvas
+  // Очищаем canvas
   if (canvasRef.value) {
     const ctx = canvasRef.value.getContext('2d');
     if (ctx) ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
@@ -338,8 +317,11 @@ const selectSound = (sound: SoundProfile) => {
 };
 
 const updateVolume = () => {
-  if (streamAudio) {
-    streamAudio.volume = volume.value;
+  if (currentAudio) {
+    currentAudio.volume = volume.value;
+  }
+  if (masterGain) {
+    masterGain.gain.value = volume.value;
   }
 };
 
