@@ -1,5 +1,41 @@
-# Vue 3 + TypeScript + Vite
+# RetroFocus
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+RetroFocus - это стильный веб-инструмент для повышения продуктивности, выполненный в эстетике ретро. Объединяет в себе всё необходимое для глубокой концентрации и комфортной работы.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Функционал
+
+- **Flip Clock Timer**: Реалистичный таймер в стиле перекидных часов. Поддерживает режимы Pomodoro, короткий и длинный перерыв.
+- **Task Planner**: Удобный список задач для трекинга целей на день.
+- **Sound Machine**: Генератор фоновых звуков (дождь, кафе, белый шум) с регулировкой громкости и микшированием для создания идеальной атмосферы.
+- **Ретро Дизайн**: Приятный тактильный интерфейс с анимациями и звуковыми эффектами.
+
+## Запуск проекта
+
+### Установка зависимостей
+
+```bash
+npm install
+```
+
+### Запуск в режиме разработки
+
+```bash
+npm run dev
+```
+
+### Сборка для продакшена
+
+```bash
+npm run build
+```
+
+## Технологии
+
+- Vue 3
+- TypeScript
+- Vite
+- SCSS
+
+## Лицензия
+
+MIT
