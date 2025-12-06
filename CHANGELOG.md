@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.6.0] - 2025-12-06
+
+### Changed / Изменено
+
+- **Планировщик**: Полный редизайн в скевоморфном стиле кожаного ежедневника.
+  - _Task Planner_: Complete redesign in skeuomorphic leather journal style.
+- **Планировщик**: Чекбоксы вынесены за красную линейку (как в настоящем блокноте).
+  - _Task Planner_: Checkboxes moved outside the red margin (like a real notebook).
+- **Планировщик**: Помидоры Pomodoro теперь эмодзи 🍅 для оценки сложности задачи.
+  - _Task Planner_: Pomodoro tomatoes are now 🍅 emojis for task complexity estimation.
+- **Планировщик**: Длинные названия задач переносятся на несколько строк.
+  - _Task Planner_: Long task names now wrap to multiple lines.
+
+### Fixed / Исправлено
+
+- **Планировщик**: Исправлен overflow — элементы больше не выходят за границы виджета.
+  - _Task Planner_: Fixed overflow — elements no longer escape widget bounds.
+
 ## [0.5.5] - 2025-12-06
 
 ### Added / Добавлено

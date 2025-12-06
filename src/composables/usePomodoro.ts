@@ -1,4 +1,5 @@
 import { ref, computed, onUnmounted, watch } from 'vue';
+import { useTaskPomodoro } from './useTaskPomodoro';
 
 export type TimerMode = 'WORK' | 'REST';
 
@@ -216,10 +217,13 @@ export function usePomodoro() {
     window.addEventListener('beforeunload', saveState);
   }
 
+  const { onWorkSessionComplete: notifyTaskComplete } = useTaskPomodoro();
+
   const switchMode = () => {
     if (currentMode.value === 'WORK') {
       currentMode.value = 'REST';
       playBreakStartSound(); // Начало перерыва - мягкий звук
+      notifyTaskComplete(); // Уведомляем планировщик о завершении сессии
     } else {
       currentMode.value = 'WORK';
       completedSessions.value++;

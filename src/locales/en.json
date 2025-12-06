@@ -18,6 +18,8 @@
     "title": "Task Planner",
     "new_task_placeholder": "New task...",
     "add": "Add",
+    "start": "Start working",
+    "stop": "Stop",
     "no_tasks": "No tasks yet"
   },
   "sounds": {
