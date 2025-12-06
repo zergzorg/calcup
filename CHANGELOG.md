@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2] - 2025-12-06
+
+### Added / Добавлено
+
+- **Виджет Помодоро**: Добавлены звуковые уведомления при переключении режимов (начало/конец перерыва).
+  - _Pomodoro Widget_: Added sound notifications when switching modes (break start/end).
+
 ## [0.5.1] - 2025-12-06
 
 ### Fixed / Исправлено

@@ -2,6 +2,74 @@ import { ref, computed, onUnmounted, watch } from 'vue';
 
 export type TimerMode = 'WORK' | 'REST';
 
+// Звуковые уведомления через Web Audio API
+let audioContext: AudioContext | null = null;
+
+const getAudioContext = (): AudioContext => {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+  }
+  return audioContext;
+};
+
+// Мягкий звук для начала перерыва (расслабляющий)
+const playBreakStartSound = () => {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // Два мягких тона (аккорд)
+    [523.25, 659.25].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.15, now + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start(now + i * 0.15);
+      osc.stop(now + 1.5);
+    });
+  } catch (e) {
+    console.warn('Не удалось воспроизвести звук', e);
+  }
+};
+
+// Энергичный звук для окончания перерыва (пробуждающий)
+const playBreakEndSound = () => {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // Три восходящих тона
+    [440, 554.37, 659.25].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+      
+      gain.gain.setValueAtTime(0, now + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.2, now + i * 0.12 + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.12 + 0.4);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start(now + i * 0.12);
+      osc.stop(now + i * 0.12 + 0.5);
+    });
+  } catch (e) {
+    console.warn('Не удалось воспроизвести звук', e);
+  }
+};
+
 const STORAGE_KEY = 'POMODORO_STATE';
 
 interface PomodoroState {
@@ -151,9 +219,11 @@ export function usePomodoro() {
   const switchMode = () => {
     if (currentMode.value === 'WORK') {
       currentMode.value = 'REST';
+      playBreakStartSound(); // Начало перерыва - мягкий звук
     } else {
       currentMode.value = 'WORK';
       completedSessions.value++;
+      playBreakEndSound(); // Конец перерыва - энергичный звук
     }
     setupTimer(true); // Force reset on mode switch
     saveState();
