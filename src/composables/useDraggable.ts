@@ -40,8 +40,9 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     // Only drag with left mouse button
     if (e.button !== 0) return;
     
-    // Don't drag if clicking interactive elements (inputs, buttons)
-    if ((e.target as HTMLElement).tagName.match(/INPUT|BUTTON|TEXTAREA|SELECT|LABEL/)) return;
+    // Don't drag if clicking interactive elements (inputs, buttons, etc)
+    const target = e.target as HTMLElement;
+    if (target.closest('input, button, textarea, select, label')) return;
 
     e.preventDefault(); // Prevent text selection
     isDragging.value = true;
@@ -80,7 +81,8 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   // Touch Support
   const onTouchStart = (e: TouchEvent) => {
     // Check if touching interactive elements
-    if ((e.target as HTMLElement).tagName.match(/INPUT|BUTTON|TEXTAREA|SELECT|LABEL/)) return;
+    const target = e.target as HTMLElement;
+    if (target.closest('input, button, textarea, select, label')) return;
     
     // Prevent default to stop scrolling/zooming while dragging
     if (e.cancelable) e.preventDefault();

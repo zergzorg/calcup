@@ -1,6 +1,7 @@
 <template>
   <DesktopLayout @clearAll="handleClearAll" @contextmenu.prevent>
     <TimerWidget v-if="isWidgetVisible('timer')" />
+    <DateTimerWidget v-if="isWidgetVisible('dateTimer')" />
     <TaskPlanner v-if="isWidgetVisible('tasks')" />
     <SoundMachine v-if="isWidgetVisible('sound')" />
   </DesktopLayout>
@@ -9,6 +10,7 @@
 <script setup lang="ts">
 import DesktopLayout from './components/DesktopLayout.vue';
 import TimerWidget from './components/TimerWidget.vue';
+import DateTimerWidget from './components/DateTimerWidget.vue';
 import TaskPlanner from './components/TaskPlanner.vue';
 import SoundMachine from './components/SoundMachine.vue';
 import { useSeo } from './composables/useSeo';

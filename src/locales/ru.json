@@ -33,5 +33,10 @@
   "settings": {
     "title": "Настройки",
     "widgets": "Виджеты"
+  },
+  "dateTimer": {
+    "title": "Обратный Отсчет",
+    "target": "ЦЕЛЬ",
+    "change": "ИЗМЕНИТЬ"
   }
 }

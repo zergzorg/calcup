@@ -33,5 +33,10 @@
   "settings": {
     "title": "Settings",
     "widgets": "Widgets"
+  },
+  "dateTimer": {
+    "title": "Date Countdown",
+    "target": "TARGET",
+    "change": "CHANGE DATE"
   }
 }

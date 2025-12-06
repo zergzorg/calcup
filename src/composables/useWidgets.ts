@@ -13,6 +13,7 @@ const initialWidgets: Widget[] = [
   { id: 'timer', name: 'timer.title', visible: true, componentName: 'TimerWidget' },
   { id: 'tasks', name: 'tasks.title', visible: true, componentName: 'TaskPlanner' },
   { id: 'sound', name: 'sounds.title', visible: true, componentName: 'SoundMachine' },
+  { id: 'dateTimer', name: 'dateTimer.title', visible: true, componentName: 'DateTimerWidget' },
 ];
 
 const widgets = ref<Widget[]>([]);
