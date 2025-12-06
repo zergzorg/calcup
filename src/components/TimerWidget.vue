@@ -3,6 +3,7 @@
     class="timer-widget" 
     :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
     @mousedown="onMouseDown"
+    @touchstart="onTouchStart"
   >
     <div class="device-body">
       <!-- Screw detail -->
@@ -81,7 +82,7 @@ const {
   completedSessions
 } = usePomodoro();
 
-const { position, onMouseDown } = useDraggable('timer_pos', 400, 100);
+const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 100);
 </script>
 
 <style scoped>

@@ -1,4 +1,5 @@
 import { ref, onMounted } from 'vue';
+import { useScale } from './useScale';
 
 interface Position {
   x: number;
@@ -8,6 +9,7 @@ interface Position {
 export function useDraggable(storageKey: string, initialX: number, initialY: number) {
   const position = ref<Position>({ x: initialX, y: initialY });
   const isDragging = ref(false);
+  const { scale } = useScale();
   
   let startX = 0;
   let startY = 0;
@@ -58,8 +60,9 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   const onMouseMove = (e: MouseEvent) => {
     if (!isDragging.value) return;
     
-    const dx = e.clientX - initialMouseX;
-    const dy = e.clientY - initialMouseY;
+    // Divide by scale to ensure 1:1 movement relative to the scaled surface
+    const dx = (e.clientX - initialMouseX) / scale.value;
+    const dy = (e.clientY - initialMouseY) / scale.value;
     
     position.value = {
       x: startX + dx,
@@ -74,6 +77,45 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     window.removeEventListener('mouseup', onMouseUp);
   };
 
+  // Touch Support
+  const onTouchStart = (e: TouchEvent) => {
+    // Check if touching interactive elements
+    if ((e.target as HTMLElement).tagName.match(/INPUT|BUTTON|TEXTAREA|SELECT|LABEL/)) return;
+    
+    // Prevent default to stop scrolling/zooming while dragging
+    if (e.cancelable) e.preventDefault();
+    
+    isDragging.value = true;
+    
+    startX = position.value.x;
+    startY = position.value.y;
+    initialMouseX = e.touches[0].clientX;
+    initialMouseY = e.touches[0].clientY;
+    
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+  };
+
+  const onTouchMove = (e: TouchEvent) => {
+    if (!isDragging.value) return;
+    if (e.cancelable) e.preventDefault(); // valid for touchmove to prevent scroll
+
+    const dx = (e.touches[0].clientX - initialMouseX) / scale.value;
+    const dy = (e.touches[0].clientY - initialMouseY) / scale.value;
+
+    position.value = {
+      x: startX + dx,
+      y: startY + dy
+    };
+  };
+
+  const onTouchEnd = () => {
+    isDragging.value = false;
+    savePosition();
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchEnd);
+  };
+
   onMounted(() => {
     loadPosition();
   });
@@ -81,6 +123,7 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   return {
     position,
     isDragging,
-    onMouseDown
+    onMouseDown,
+    onTouchStart
   };
 }

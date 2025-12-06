@@ -3,6 +3,7 @@
     class="notepad"
     :style="{ transform: `translate(${position.x}px, ${position.y}px) rotate(-2deg)` }"
     @mousedown="onMouseDown"
+    @touchstart="onTouchStart"
   >
     <div class="paper">
       <div class="header">
@@ -69,7 +70,7 @@ interface Task {
 }
 
 const tasks = usePersistence<Task[]>('pomodoro_tasks', []);
-const { position, onMouseDown } = useDraggable('planner_pos', 850, 50);
+const { position, onMouseDown, onTouchStart } = useDraggable('planner_pos', 850, 50);
 
 const addTask = () => {
   tasks.value.push({

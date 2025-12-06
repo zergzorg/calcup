@@ -1,6 +1,6 @@
 <template>
   <div class="desktop-layout">
-    <div class="desk-surface">
+    <div class="desk-surface" :style="{ transform: `scale(${scale})`, transformOrigin: 'top left', width: `${100/scale}%`, height: `${100/scale}%` }">
       <!-- Slot for desktop items (Timer, Notepad, Radio) -->
       <slot></slot>
     </div>
@@ -15,14 +15,18 @@
 </template>
 
 <script setup lang="ts">
+import { useScale } from '../composables/useScale';
+
 defineEmits(['clearAll']);
+
+const { scale } = useScale();
 </script>
 
 <style scoped>
 .desktop-layout {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* Changed from hidden to auto if we want scrolling, but design calls for fit */
   position: relative;
   /* Dark Wooden Desk Texture */
   background-color: #3e2723;
@@ -39,6 +43,7 @@ defineEmits(['clearAll']);
   width: 100%;
   height: 100%;
   position: relative;
+  transition: transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
   /* Flex removed to allow absolute positioning of draggable items */
 }
 

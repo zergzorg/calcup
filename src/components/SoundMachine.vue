@@ -3,6 +3,7 @@
     class="sound-machine"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
     @mousedown="onMouseDown"
+    @touchstart="onTouchStart"
   >
     <div class="grill">
       <div class="hidden-display">
@@ -75,7 +76,7 @@
 import { ref, onUnmounted, onMounted } from 'vue';
 import { useDraggable } from '../composables/useDraggable';
 
-const { position, onMouseDown } = useDraggable('radio_pos', 50, 50);
+const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50);
 
 const isPlaying = ref(false);
 const currentSound = ref('White Noise');
