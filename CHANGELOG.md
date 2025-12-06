@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.4] - 2025-12-06
+
+### Fixed / Исправлено
+
+- **Яндекс.Метрика**: ID счётчика теперь захардкожен в коде для корректной работы на GitHub Pages (без .env файла).
+  - _Yandex Metrika_: Counter ID is now hardcoded for proper GitHub Pages deployment (no .env file needed).
+
 ## [0.5.3] - 2025-12-06
 
 ### Fixed / Исправлено
