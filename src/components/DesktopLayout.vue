@@ -5,10 +5,16 @@
       <slot></slot>
     </div>
     
-    <!-- Global Controls (e.g., Clear Data) -->
+    <!-- Language Switcher and Settings (Top Right) -->
+    <div class="lang-container">
+      <SettingsMenu />
+      <LanguageSwitcher />
+    </div>
+
+    <!-- Global Controls (Bottom Right) -->
     <div class="desk-controls">
-      <button @click="$emit('clearAll')" class="clear-btn" title="Очистить все данные">
-        🗑️ Reset Desk
+      <button @click="$emit('clearAll')" class="clear-btn" :title="t('title')">
+        🗑️ {{ t('reset') }}
       </button>
     </div>
   </div>
@@ -16,10 +22,14 @@
 
 <script setup lang="ts">
 import { useScale } from '../composables/useScale';
+import LanguageSwitcher from './LanguageSwitcher.vue';
+import SettingsMenu from './SettingsMenu.vue';
+import { useI18n } from 'vue-i18n';
 
 defineEmits(['clearAll']);
 
 const { scale } = useScale();
+const { t } = useI18n();
 </script>
 
 <style scoped>
@@ -47,12 +57,25 @@ const { scale } = useScale();
   /* Flex removed to allow absolute positioning of draggable items */
 }
 
+.lang-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .desk-controls {
   position: absolute;
   bottom: 20px;
   right: 20px;
   opacity: 0.5;
   transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .desk-controls:hover {

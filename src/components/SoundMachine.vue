@@ -18,7 +18,7 @@
         <canvas ref="canvasRef" class="visualizer" v-show="visualizerActive"></canvas>
         <div class="station-info" v-if="!visualizerActive">
           <div class="station-indicator" v-if="isPlaying">
-            ON AIR: {{ currentSound }}
+            ON AIR: {{ currentSoundLabel }}
           </div>
           <div class="station-indicator off" v-else>OFF</div>
         </div>
@@ -41,12 +41,12 @@
             v-for="sound in sounds" 
             :key="sound.id"
             class="channel-btn"
-            :class="{ active: currentSound === sound.name && isPlaying }"
+            :class="{ active: currentSoundId === sound.id && isPlaying }"
             @click="selectSound(sound)"
             @mousedown.stop
             @touchstart.stop
           >
-            {{ sound.label }}
+            {{ t(sound.labelKey) }}
           </button>
         </div>
         
@@ -74,30 +74,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, onMounted } from 'vue';
+import { ref, onUnmounted, onMounted, computed } from 'vue';
 import { useDraggable } from '../composables/useDraggable';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50);
 
 const isPlaying = ref(false);
-const currentSound = ref('White Noise');
+const currentSoundId = ref('white');
 const volume = ref(0.5);
 
 interface SoundProfile {
   id: string;
-  name: string;
-  label: string;
+  name: string; // Keep for internal/debug if needed, or remove. keeping for now but unused in display
+  labelKey: string;
   type: 'white' | 'pink' | 'brown' | 'stream';
   url?: string;
 }
 
 const sounds: SoundProfile[] = [
-  { id: 'white', name: 'White Noise', label: 'Static', type: 'white' },
-  { id: 'pink', name: 'Rain', label: 'Rain', type: 'pink' },
-  { id: 'brown', name: 'Ocean', label: 'Ocean', type: 'brown' },
-  { id: 'radio-kniga', name: 'Radio Kniga', label: 'Kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
-  { id: 'flux-chillhop', name: 'FluxFM Chillhop', label: 'Lofi', type: 'stream', url: 'https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/ '},
+  { id: 'white', name: 'White Noise', labelKey: 'sounds.white_noise', type: 'white' },
+  { id: 'pink', name: 'Rain', labelKey: 'sounds.rain', type: 'pink' },
+  { id: 'brown', name: 'Ocean', labelKey: 'sounds.brown_noise', type: 'brown' },
+  { id: 'radio-kniga', name: 'Radio Kniga', labelKey: 'sounds.radio_kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
+  { id: 'flux-chillhop', name: 'FluxFM Chillhop', labelKey: 'sounds.lofi', type: 'stream', url: 'https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/ '},
 ];
+
+const currentSoundLabel = computed(() => {
+  const sound = sounds.find(s => s.id === currentSoundId.value);
+  return sound ? t(sound.labelKey) : '';
+});
 
 const visualizerActive = ref(true);
 const canvasRef = ref<HTMLCanvasElement | null>(null);
@@ -323,7 +330,7 @@ const toggleVisualizer = () => {
 const togglePower = () => {
   isPlaying.value = !isPlaying.value;
   if (isPlaying.value) {
-    const sound = sounds.find(s => s.name === currentSound.value) || sounds[0];
+    const sound = sounds.find(s => s.id === currentSoundId.value) || sounds[0];
     playSound(sound);
     // Start clock if not running (though we play it always now for effect?)
     // Let's just have the clock start when mounted, independent of power?
@@ -336,12 +343,12 @@ const togglePower = () => {
 
 const selectSound = (sound: SoundProfile) => {
   // Toggle off if clicking the same active sound
-  if (currentSound.value === sound.name && isPlaying.value) {
+  if (currentSoundId.value === sound.id && isPlaying.value) {
     togglePower();
     return;
   }
 
-  currentSound.value = sound.name;
+  currentSoundId.value = sound.id;
   isPlaying.value = true;
   playSound(sound);
 };

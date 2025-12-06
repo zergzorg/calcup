@@ -7,8 +7,8 @@
   >
     <div class="paper">
       <div class="header">
-        <h2>To-Do List</h2>
-        <div class="date">{{ new Date().toLocaleDateString('ru-RU') }}</div>
+        <h2>{{ t('tasks.title') }}</h2>
+        <div class="date">{{ new Date().toLocaleDateString(locale) }}</div>
       </div>
       
       <div class="lines">
@@ -28,7 +28,7 @@
             type="text" 
             v-model="task.text" 
             class="task-input" 
-            placeholder="Write a task..."
+            :placeholder="t('tasks.new_task_placeholder')"
             @mousedown.stop
           />
           
@@ -51,7 +51,7 @@
         <!-- Empty line for new task -->
         <div class="line-item new-task" @click="addTask">
           <span class="plus">+</span>
-          <span class="placeholder">New Task</span>
+          <span class="placeholder">{{ t('tasks.add') }}</span>
         </div>
       </div>
     </div>
@@ -61,6 +61,9 @@
 <script setup lang="ts">
 import { usePersistence } from '../composables/usePersistence';
 import { useDraggable } from '../composables/useDraggable';
+import { useI18n } from 'vue-i18n';
+
+const { t, locale } = useI18n();
 
 interface Task {
   id: string;

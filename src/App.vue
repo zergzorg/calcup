@@ -1,8 +1,8 @@
 <template>
   <DesktopLayout @clearAll="handleClearAll" @contextmenu.prevent>
-    <TimerWidget />
-    <TaskPlanner />
-    <SoundMachine />
+    <TimerWidget v-if="isWidgetVisible('timer')" />
+    <TaskPlanner v-if="isWidgetVisible('tasks')" />
+    <SoundMachine v-if="isWidgetVisible('sound')" />
   </DesktopLayout>
 </template>
 
@@ -11,9 +11,20 @@ import DesktopLayout from './components/DesktopLayout.vue';
 import TimerWidget from './components/TimerWidget.vue';
 import TaskPlanner from './components/TaskPlanner.vue';
 import SoundMachine from './components/SoundMachine.vue';
+import { useSeo } from './composables/useSeo';
+import { useI18n } from 'vue-i18n';
+import { useWidgets } from './composables/useWidgets';
+
+useSeo();
+const { t } = useI18n();
+const { widgets } = useWidgets();
+
+const isWidgetVisible = (id: string) => {
+  return widgets.value.find(w => w.id === id)?.visible ?? true;
+};
 
 const handleClearAll = () => {
-  if (confirm('Вы уверены, что хотите сбросить все данные и настройки?')) {
+  if (confirm(t('confirm_reset'))) {
     // Logic to clear cookies will be added later
     document.cookie.split(";").forEach((c) => {
       document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");

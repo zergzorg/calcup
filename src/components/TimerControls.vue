@@ -1,14 +1,18 @@
 <template>
   <div class="controls">
     <button class="control-button" @click="$emit('toggle')" :class="{ active: isActive }">
-      {{ isActive ? 'Pause' : 'Start' }}
+      {{ isActive ? t('timer.pause') : t('timer.start') }}
     </button>
-    <button class="control-button" @click="$emit('reset')">Reset</button>
-    <button class="control-button" @click="$emit('skip')">Skip</button>
+    <button class="control-button" @click="$emit('reset')">{{ t('timer.reset') }}</button>
+    <button class="control-button" @click="$emit('skip')">{{ t('timer.skip') }}</button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 defineProps<{
   isActive: boolean;
 }>();

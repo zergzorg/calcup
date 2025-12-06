@@ -14,7 +14,7 @@
       </div>
     </div>
     
-    <div class="timer-mode" :class="mode.toLowerCase()">{{ mode }}</div>
+    <div class="timer-mode" :class="mode.toLowerCase()">{{ t('timer.' + mode.toLowerCase()) }}</div>
   </div>
 </template>
 
@@ -22,6 +22,9 @@
 import { computed } from 'vue';
 import type { TimerMode } from '../composables/usePomodoro';
 import FlipCard from './FlipCard.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps<{
   time: string; // Format "MM:SS"

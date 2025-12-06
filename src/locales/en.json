@@ -1,0 +1,37 @@
+{
+  "title": "Calcup - Retro Desk",
+  "reset": "Reset Desk",
+  "confirm_reset": "Are you sure you want to reset all data and settings?",
+  "timer": {
+    "title": "Pomodoro Timer",
+    "start": "START",
+    "pause": "PAUSE",
+    "reset": "RESET",
+    "skip": "SKIP",
+    "work": "WORK",
+    "rest": "REST",
+    "pomodoro": "POMODORO",
+    "short_break": "SHORT BREAK",
+    "long_break": "LONG BREAK"
+  },
+  "tasks": {
+    "title": "Task Planner",
+    "new_task_placeholder": "New task...",
+    "add": "Add",
+    "no_tasks": "No tasks yet"
+  },
+  "sounds": {
+    "title": "Sound Machine",
+    "lofi": "Lofi Radio",
+    "radio_kniga": "Radio Kniga",
+    "rain": "Rain",
+    "white_noise": "Static",
+    "brown_noise": "Ocean",
+    "keyboard": "Keyboard",
+    "fire": "Fire"
+  },
+  "settings": {
+    "title": "Settings",
+    "widgets": "Widgets"
+  }
+}

@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+import i18n from './i18n'
 
 
 if (import.meta.env.PROD && import.meta.env.VITE_YANDEX_METRIKA_ID) {
@@ -14,4 +15,4 @@ if (import.meta.env.PROD && import.meta.env.VITE_YANDEX_METRIKA_ID) {
   (window as any).ym(parseInt(import.meta.env.VITE_YANDEX_METRIKA_ID), 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 }
 
-createApp(App).mount('#app')
+createApp(App).use(i18n).mount('#app')
