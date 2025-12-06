@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0] - 2025-12-06
+
+### Added / Добавлено
+
+- **Кастомизация фона**: Добавлена возможность менять цвет и паттерн фона стола через настройки.
+  - _Background Customization_: Added ability to change desk background color and pattern via settings.
+- **Палитра**: Добавлены новые цвета (пастельные и темные профессиональные темы) и паттерны (клетка, линейка).
+  - _Palette_: Added new colors (pastel and dark professional themes) and patterns (grid, notebook lines).
+- **Пользовательский цвет**: Добавлен выбор произвольного цвета (Color Picker).
+  - _Custom Color_: Added custom color picker.
+
 ## [0.4.0] - 2025-12-06
 
 ### Added / Добавлено

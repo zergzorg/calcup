@@ -33,6 +33,7 @@
   },
   "settings": {
     "title": "Settings",
+    "background": "Background & Style",
     "widgets": "Widgets"
   },
   "dateTimer": {

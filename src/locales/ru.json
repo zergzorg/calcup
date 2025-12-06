@@ -33,6 +33,7 @@
   },
   "settings": {
     "title": "Настройки",
+    "background": "Фон и Стиль",
     "widgets": "Виджеты"
   },
   "dateTimer": {

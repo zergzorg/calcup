@@ -1,5 +1,5 @@
 <template>
-  <div class="desktop-layout">
+  <div class="desktop-layout" :style="currentStyle">
     <div class="desk-surface" :style="{ transform: `scale(${scale})`, transformOrigin: 'top left', width: `${100/scale}%`, height: `${100/scale}%` }">
       <!-- Slot for desktop items (Timer, Notepad, Radio) -->
       <slot></slot>
@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { useScale } from '../composables/useScale';
+import { useDesktopSettings } from '../composables/useDesktopSettings';
 import LanguageSwitcher from './LanguageSwitcher.vue';
 import SettingsMenu from './SettingsMenu.vue';
 import { useI18n } from 'vue-i18n';
@@ -29,6 +30,7 @@ import { useI18n } from 'vue-i18n';
 defineEmits(['clearAll']);
 
 const { scale } = useScale();
+const { currentStyle } = useDesktopSettings();
 const { t } = useI18n();
 </script>
 
@@ -38,15 +40,9 @@ const { t } = useI18n();
   height: 100vh;
   overflow: hidden; /* Changed from hidden to auto if we want scrolling, but design calls for fit */
   position: relative;
-  /* Dark Wooden Desk Texture */
-  background-color: #3e2723;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  box-shadow: inset 0 0 150px rgba(0,0,0,0.7);
+  /* Dynamic Background */
+  transition: all 0.5s ease;
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.3);
 }
 
 .desk-surface {

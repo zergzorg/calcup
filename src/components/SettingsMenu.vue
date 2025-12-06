@@ -5,6 +5,43 @@
     </button>
 
     <div v-if="isOpen" class="settings-panel" @click.stop>
+      <h3>{{ t('settings.background') || 'Background' }}</h3>
+      
+      <!-- Color Picker -->
+      <div class="color-grid">
+        <button 
+          v-for="color in COLORS" 
+          :key="color.id"
+          class="color-option"
+          :class="{ active: settings.backgroundColor === color.value }"
+          :style="{ backgroundColor: color.value }"
+          :title="color.name"
+          @click="updateSetting('backgroundColor', color.value)"
+        ></button>
+        
+        <!-- Custom Color Picker -->
+        <div class="color-option custom-color-wrapper" :class="{ active: !COLORS.find(c => c.value === settings.backgroundColor) }">
+          <input 
+            type="color" 
+            :value="settings.backgroundColor"
+            @input="(e) => updateSetting('backgroundColor', (e.target as HTMLInputElement).value)"
+            class="custom-color-input"
+            title="Custom Color"
+          />
+          <div class="plus-icon">+</div>
+        </div>
+      </div>
+
+      <!-- Pattern Picker -->
+      <select 
+        :value="settings.pattern" 
+        @change="(e) => updateSetting('pattern', (e.target as HTMLSelectElement).value)"
+      >
+        <option v-for="pattern in PATTERNS" :key="pattern.id" :value="pattern.id">
+          {{ pattern.name }}
+        </option>
+      </select>
+
       <h3>{{ t('settings.widgets') }}</h3>
       <ul class="widget-list">
         <li v-for="widget in widgets" :key="widget.id" class="widget-item">
@@ -25,9 +62,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useWidgets } from '../composables/useWidgets';
+import { useDesktopSettings } from '../composables/useDesktopSettings';
 import { useI18n } from 'vue-i18n';
 
 const { widgets, toggleWidget } = useWidgets();
+const { settings, updateSetting, COLORS, PATTERNS } = useDesktopSettings();
 const { t } = useI18n();
 const isOpen = ref(false);
 
@@ -78,21 +117,68 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 16px;
-  min-width: 200px;
+  min-width: 250px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   z-index: 2000;
   color: #fff;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 h3 {
-  margin: 0 0 12px 0;
-  font-size: 16px;
+  margin: 16px 0 12px 0;
+  font-size: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 8px;
   color: #888;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+h3:first-child {
+  margin-top: 0;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.color-option {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .widget-list {
@@ -124,5 +210,41 @@ input[type="checkbox"] {
   width: 16px;
   height: 16px;
   cursor: pointer;
+}
+
+.custom-color-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg at 50% 50%, #FF0000 0deg, #00FFFF 112.5deg, #0000FF 228.75deg, #FF0000 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Robust clipping for WebKit */
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+
+.custom-color-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-appearance: none;
+}
+
+.plus-icon {
+  pointer-events: none;
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  font-weight: bold;
+  z-index: 1;
 }
 </style>
