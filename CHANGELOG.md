@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.0] - 2025-12-06
+
+### Changed / Изменено
+
+- **Иконка**: Полный редизайн фавиконки (public/calcup.svg) в ретро-стиле (скевоморфизм).
+  - _Icon_: Complete redesign of favicon (public/calcup.svg) in retro style (skeuomorphism).
+- **Иконка**: Исправлен layout кнопок в иконке, чтобы они не выходили за границы корпуса.
+  - _Icon_: Fixed button layout in icon to prevent overflow beyond the chassis.
+
 ## [0.6.0] - 2025-12-06
 
 ### Changed / Изменено
