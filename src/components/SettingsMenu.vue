@@ -15,7 +15,7 @@
           class="color-option"
           :class="{ active: settings.backgroundColor === color.value }"
           :style="{ backgroundColor: color.value }"
-          :title="color.name"
+          :title="t(color.i18nKey)"
           @click="updateSetting('backgroundColor', color.value)"
         ></button>
         
@@ -38,7 +38,7 @@
         @change="(e) => updateSetting('pattern', (e.target as HTMLSelectElement).value)"
       >
         <option v-for="pattern in PATTERNS" :key="pattern.id" :value="pattern.id">
-          {{ pattern.name }}
+          {{ t(pattern.i18nKey) }}
         </option>
       </select>
 

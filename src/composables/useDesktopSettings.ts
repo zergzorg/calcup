@@ -7,17 +7,17 @@ export interface DesktopSettings {
 
 const STORAGE_KEY = 'calcup_desktop_settings';
 
-// Pastel & Professional Colors
+// Rich, Professional Colors (replacing light pastels)
 export const COLORS = [
-  { id: '#3e2723', name: 'Original Wood', value: '#3e2723' },
-  { id: '#F7F2E8', name: 'Paper White', value: '#F7F2E8' },
-  { id: '#D8E2DC', name: 'Sage Green', value: '#D8E2DC' },
-  { id: '#EAE4E9', name: 'Dusty Pink', value: '#EAE4E9' },
+  { id: 'wood', i18nKey: 'settings.colors.wood', value: '#3e2723' },
+  { id: 'terracotta', i18nKey: 'settings.colors.terracotta', value: '#A0522D' },
+  { id: 'slate', i18nKey: 'settings.colors.slate', value: '#4A5568' },
+  { id: 'wine', i18nKey: 'settings.colors.wine', value: '#722F37' },
   
-  // New Professional/Dark Colors
-  { id: '#2B4257', name: 'Blueprint Blue', value: '#2B4257' },
-  { id: '#2F3E32', name: 'Cutting Mat Green', value: '#2F3E32' },
-  { id: '#18181b', name: 'Midnight', value: '#18181b' },
+  // Professional/Dark Colors
+  { id: 'blueprint', i18nKey: 'settings.colors.blueprint', value: '#2B4257' },
+  { id: 'cuttingMat', i18nKey: 'settings.colors.cuttingMat', value: '#2F3E32' },
+  { id: 'midnight', i18nKey: 'settings.colors.midnight', value: '#18181b' },
 ];
 
 // Patterns
@@ -25,13 +25,13 @@ export const COLORS = [
 export const PATTERNS = [
   { 
     id: 'none', 
-    name: 'Solid', 
+    i18nKey: 'settings.patterns.none', 
     value: 'none',
     size: 'auto'
   },
   { 
     id: 'wood', 
-    name: 'Classic Wood', 
+    i18nKey: 'settings.patterns.wood', 
     value: `linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -40,25 +40,25 @@ export const PATTERNS = [
   },
   { 
     id: 'grid', 
-    name: 'Subtle Grid', 
+    i18nKey: 'settings.patterns.grid', 
     value: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
     size: '20px 20px'
   },
   { 
     id: 'lined', 
-    name: 'Notebook Lines', 
+    i18nKey: 'settings.patterns.lined', 
     value: `repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 255, 255, 0.1) 20px)`,
     size: 'auto'
   },
   { 
     id: 'dots', 
-    name: 'Polka Dots', 
+    i18nKey: 'settings.patterns.dots', 
     value: `radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)`,
     size: '20px 20px'
   },
   { 
     id: 'stripes', 
-    name: 'Stripes', 
+    i18nKey: 'settings.patterns.stripes', 
     value: `repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 10px, transparent 10px, transparent 20px)`,
     size: 'auto'
   }

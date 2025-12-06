@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.5] - 2025-12-06
+
+### Added / Добавлено
+
+- **Локализация**: Добавлены переводы для настроек фона (цвета и паттерны) на русский и английский.
+  - _Localization_: Added translations for background settings (colors and patterns) in Russian and English.
+
+### Changed / Изменено
+
+- **Цвета фона**: Заменены светлые пастельные цвета на более насыщенные: Терракота, Шиферный, Бордовый.
+  - _Background Colors_: Replaced light pastel colors with richer alternatives: Terracotta, Slate, Wine.
+
 ## [0.5.4] - 2025-12-06
 
 ### Fixed / Исправлено

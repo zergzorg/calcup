@@ -34,7 +34,24 @@
   "settings": {
     "title": "Настройки",
     "background": "Фон и Стиль",
-    "widgets": "Виджеты"
+    "widgets": "Виджеты",
+    "colors": {
+      "wood": "Тёмное дерево",
+      "terracotta": "Терракота",
+      "slate": "Шиферный",
+      "wine": "Бордовый",
+      "blueprint": "Чертёжный",
+      "cuttingMat": "Зелёный мат",
+      "midnight": "Полночь"
+    },
+    "patterns": {
+      "none": "Без паттерна",
+      "wood": "Деревянные планки",
+      "grid": "Клетка",
+      "lined": "Линейка",
+      "dots": "Точки",
+      "stripes": "Диагональ"
+    }
   },
   "dateTimer": {
     "title": "Обратный Отсчет",
