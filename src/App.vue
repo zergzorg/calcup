@@ -1,5 +1,5 @@
 <template>
-  <DesktopLayout @clearAll="handleClearAll">
+  <DesktopLayout @clearAll="handleClearAll" @contextmenu.prevent>
     <TimerWidget />
     <TaskPlanner />
     <SoundMachine />
