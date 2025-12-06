@@ -24,28 +24,42 @@ defineEmits<{
 .controls {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .control-button {
-  padding: 14px 30px;
-  border: 2px solid #0f0;
-  border-radius: 8px;
-  background: #000;
-  color: #0f0;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  text-shadow:
-      0 0 6px #0f0;
-  transition: all 0.2s;
+  
+  /* Metallic/Plastic look */
+  background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.1s;
 }
-.control-button:hover {
-  background: #222;
+
+.control-button:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  background: linear-gradient(to bottom, #d0d0d0, #f0f0f0);
 }
+
 .control-button.active {
-  background: #0f0;
-  color: #000;
-  text-shadow: none;
+  background: linear-gradient(to bottom, #ffd700, #ffaa00); /* Amber/Orange for active */
+  color: #5a3a00;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.4);
 }
 </style>

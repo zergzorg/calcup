@@ -69,19 +69,27 @@ const {
   align-items: center;
   max-width: 520px;
   margin: 40px auto;
-  padding: 30px;
-  border: 2px solid #222;
-  border-radius: 16px;
-  background: #111;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2) inset;
-  font-family: 'Digital-7 Mono', monospace; /* или любой другой, подходящий под LED-стиль */
-  color: #0f0; /* Ярко-зелёный */
+  padding: 40px;
+  border-radius: 20px;
+  
+  /* Modern "Analog" Look - Light Theme */
+  background-color: #e0e0e0;
+  box-shadow: 
+    20px 20px 60px #bebebe, 
+    -20px -20px 60px #ffffff;
+  
+  font-family: 'Helvetica Neue', Helvetica, monospace; 
+  color: #333;
 }
 
 /* Счётчик сессий */
 .sessions {
   text-align: center;
-  font-size: 15px;
-  color: #7f7;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 </style>

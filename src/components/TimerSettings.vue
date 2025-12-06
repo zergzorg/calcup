@@ -3,18 +3,18 @@
     <div class="setting">
       <label>Work</label>
       <div class="time-input">
-        <button @click="$emit('decrementWork')" :disabled="isActive">-</button>
-        <span>{{ workMinutes }}m</span>
-        <button @click="$emit('incrementWork')" :disabled="isActive">+</button>
+        <button class="adjust-btn" @click="$emit('decrementWork')" :disabled="isActive">-</button>
+        <span class="value-display">{{ workMinutes }}m</span>
+        <button class="adjust-btn" @click="$emit('incrementWork')" :disabled="isActive">+</button>
       </div>
     </div>
 
     <div class="setting">
       <label>Break</label>
       <div class="time-input">
-        <button @click="$emit('decrementRest')" :disabled="isActive">-</button>
-        <span>{{ restMinutes }}m</span>
-        <button @click="$emit('incrementRest')" :disabled="isActive">+</button>
+        <button class="adjust-btn" @click="$emit('decrementRest')" :disabled="isActive">-</button>
+        <span class="value-display">{{ restMinutes }}m</span>
+        <button class="adjust-btn" @click="$emit('incrementRest')" :disabled="isActive">+</button>
       </div>
     </div>
   </div>
@@ -41,17 +41,24 @@ defineEmits<{
   justify-content: space-around;
   width: 100%;
   margin-bottom: 40px;
+  padding: 0 20px;
 }
 
 .setting {
   text-align: center;
+  background: rgba(0,0,0,0.05); /* Light gray background for grouping */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 .setting label {
   display: block;
   font-size: 14px;
   margin-bottom: 10px;
-  color: #7f7;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .time-input {
@@ -61,33 +68,43 @@ defineEmits<{
   gap: 10px;
 }
 
-.time-input button {
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  border: 2px solid #0f0;
-  background: #000;
-  color: #0f0;
+.adjust-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
   font-size: 18px;
+  line-height: 1;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.1s;
-  text-shadow:
-      0 0 6px #0f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.1s;
 }
 
-.time-input button:hover:not(:disabled) {
-  background: #222;
+.adjust-btn:hover:not(:disabled) {
+  background: #f0f0f0;
+  transform: scale(1.1);
 }
 
-.time-input button:disabled {
-  opacity: 0.4;
+.adjust-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.adjust-btn:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-.time-input span {
-  font-size: 18px;
-  font-weight: 600;
-  min-width: 40px;
+.value-display {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  min-width: 45px;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  letter-spacing: -1px;
 }
 </style>
