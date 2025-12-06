@@ -1,10 +1,19 @@
-# Changelog / История изменений
+# Changelog
 
-All notable changes to this project will be documented in this file. / Все заметные изменения этого проекта будут задокументированы в этом файле.
+## [0.4.0] - 2025-12-06
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Added / Добавлено
 
-## [Unreleased]
+- **Звуковая машина**: Добавлен новый звуковой режим "Лес".
+  - _Sound Machine_: Added a new "Forest" sound environment.
+- **Звуковая машина**: Сгенерированный шум заменен реалистичными аудио-лупами для Дождя и Океана.
+  - _Sound Machine_: Replaced generated noise with realistic looping audio files for Rain and Ocean.
+- **Звуковая машина**: Добавен звук "Ветер" (вместо статического шума).
+  - _Sound Machine_: Added "Wind" sound (replacing Static).
+- **Радио**: "Chill Radio" обновлено на поток "Lofi Girl" для соблюдения авторских прав.
+  - _Radio_: Updated "Chill Radio" to use "Lofi Girl" stream for copyright safety.
+- **Локализация**: Добавлены переводы на русский и английский для нового звука "Лес".
+  - _Localization_: Added Russian and English translations for the new Forest sound.
 
 ## [0.3.2] - 2025-12-06
 

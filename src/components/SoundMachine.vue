@@ -89,16 +89,19 @@ interface SoundProfile {
   id: string;
   name: string; // Keep for internal/debug if needed, or remove. keeping for now but unused in display
   labelKey: string;
-  type: 'white' | 'pink' | 'brown' | 'stream';
+  loader?: boolean; // If true, show loader while buffering
+  type: 'audio' | 'stream';
   url?: string;
+  loop?: boolean;
 }
 
 const sounds: SoundProfile[] = [
-  { id: 'white', name: 'White Noise', labelKey: 'sounds.white_noise', type: 'white' },
-  { id: 'pink', name: 'Rain', labelKey: 'sounds.rain', type: 'pink' },
-  { id: 'brown', name: 'Ocean', labelKey: 'sounds.brown_noise', type: 'brown' },
+  { id: 'white', name: 'Wind', labelKey: 'sounds.white_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/wind.mp3', loop: true },
+  { id: 'pink', name: 'Rain', labelKey: 'sounds.rain', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/rain.mp3', loop: true },
+  { id: 'brown', name: 'Ocean', labelKey: 'sounds.brown_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/ocean.mp3', loop: true },
+  { id: 'forest', name: 'Forest', labelKey: 'sounds.forest', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/birds.mp3', loop: true },
   { id: 'radio-kniga', name: 'Radio Kniga', labelKey: 'sounds.radio_kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
-  { id: 'flux-chillhop', name: 'FluxFM Chillhop', labelKey: 'sounds.lofi', type: 'stream', url: 'https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/ '},
+  { id: 'lofi-girl', name: 'Lofi Girl', labelKey: 'sounds.lofi', type: 'stream', url: 'https://play.streamafrica.net/lofiradio' },
 ];
 
 const currentSoundLabel = computed(() => {
@@ -159,43 +162,6 @@ const initAudio = () => {
   }
 };
 
-const createNoiseBuffer = (type: 'white' | 'pink' | 'brown') => {
-  if (!audioCtx) return null;
-  const bufferSize = 2 * audioCtx.sampleRate;
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-  const output = buffer.getChannelData(0);
-
-  if (type === 'white') {
-    for (let i = 0; i < bufferSize; i++) {
-      output[i] = Math.random() * 2 - 1;
-    }
-  } else if (type === 'pink') {
-    let b0, b1, b2, b3, b4, b5, b6;
-    b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
-    for (let i = 0; i < bufferSize; i++) {
-      const white = Math.random() * 2 - 1;
-      b0 = 0.99886 * b0 + white * 0.0555179;
-      b1 = 0.99332 * b1 + white * 0.0750759;
-      b2 = 0.96900 * b2 + white * 0.1538520;
-      b3 = 0.86650 * b3 + white * 0.3104856;
-      b4 = 0.55000 * b4 + white * 0.5329522;
-      b5 = -0.7616 * b5 - white * 0.0168980;
-      output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-      output[i] *= 0.11; // (roughly) compensate for gain
-      b6 = white * 0.115926;
-    }
-  } else if (type === 'brown') {
-    let lastOut = 0;
-    for (let i = 0; i < bufferSize; i++) {
-      const white = Math.random() * 2 - 1;
-      output[i] = (lastOut + (0.02 * white)) / 1.02;
-      lastOut = output[i];
-      output[i] *= 3.5; // (roughly) compensate for gain
-    }
-  }
-  return buffer;
-};
-
 const playSound = (sound: SoundProfile) => {
   // Stop existing sounds first
   stopAudio(false); 
@@ -203,14 +169,15 @@ const playSound = (sound: SoundProfile) => {
   initAudio();
   if (!audioCtx || !masterGain || !analyser) return;
 
-  if (sound.type === 'stream' && sound.url) {
+  // Handle both audio files and streams
+  if ((sound.type === 'audio' || sound.type === 'stream') && sound.url) {
     if (!streamAudio) {
       streamAudio = new Audio();
       streamAudio.crossOrigin = "anonymous";
-      streamAudio.src = sound.url;
-    } else {
-      streamAudio.src = sound.url;
     }
+    
+    streamAudio.src = sound.url;
+    streamAudio.loop = !!sound.loop;
     
     // Create MediaElementSource only once per element
     if (!streamSource && streamAudio) {
@@ -222,28 +189,11 @@ const playSound = (sound: SoundProfile) => {
       }
     }
     
-    // Resume context if suspended (browser autoplay policy)
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
-
-    streamAudio.play().catch(e => console.error('Error playing stream:', e));
-    startVisualizer();
-    return;
-  }
-
-  // Handle noise generation
-  const buffer = createNoiseBuffer(sound.type as 'white' | 'pink' | 'brown');
-  if (buffer) {
-    sourceNode = audioCtx.createBufferSource();
-    sourceNode.buffer = buffer;
-    sourceNode.loop = true;
-    sourceNode.connect(masterGain);
-    sourceNode.start();
     
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
+    streamAudio.play().catch(e => console.error('Error playing audio/stream:', e));
     startVisualizer();
   }
 };

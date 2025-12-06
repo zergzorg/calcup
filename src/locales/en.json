@@ -28,7 +28,8 @@
     "white_noise": "Static",
     "brown_noise": "Ocean",
     "keyboard": "Keyboard",
-    "fire": "Fire"
+    "fire": "Fire",
+    "forest": "Forest"
   },
   "settings": {
     "title": "Settings",

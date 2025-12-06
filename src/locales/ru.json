@@ -22,13 +22,14 @@
   },
   "sounds": {
     "title": "Звуковая Машина",
-    "lofi": "Лоу-фай Радио",
+    "lofi": "Чилл Радио",
     "radio_kniga": "Радио Книга",
     "rain": "Дождь",
     "white_noise": "Шум",
     "brown_noise": "Океан",
     "keyboard": "Клавиатура",
-    "fire": "Огонь"
+    "fire": "Огонь",
+    "forest": "Лес"
   },
   "settings": {
     "title": "Настройки",
