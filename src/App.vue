@@ -22,26 +22,33 @@ const { t } = useI18n();
 const { widgets } = useWidgets();
 
 const isWidgetVisible = (id: string) => {
-  return widgets.value.find(w => w.id === id)?.visible ?? true;
+  return widgets.value.find((w) => w.id === id)?.visible ?? true;
+};
+
+const clearAllCookies = () => {
+  document.cookie.split(';').forEach((c) => {
+    const name = c.replace(/^ +/, '').replace(/=.*/, '');
+    document.cookie = `${name}=;expires=${new Date(0).toUTCString()};path=/`;
+  });
 };
 
 const handleClearAll = () => {
-  if (confirm(t('confirm_reset'))) {
-    // Logic to clear cookies will be added later
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
-    location.reload();
+  if (!confirm(t('confirm_reset'))) return;
+  try {
+    localStorage.clear();
+  } catch (e) {
+    console.warn('Failed to clear localStorage', e);
   }
+  clearAllCookies();
+  location.reload();
 };
 </script>
 
 <style>
-/* Global Reset */
 body {
   margin: 0;
   padding: 0;
-  background: #1e1e1e; /* Fallback */
+  background: #1e1e1e;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="notepad"
     :style="{ transform: `translate(${position.x}px, ${position.y}px) rotate(-2deg)` }"
     @mousedown="onMouseDown"
@@ -10,58 +10,73 @@
         <h2>{{ t('tasks.title') }}</h2>
         <div class="date">{{ new Date().toLocaleDateString(locale) }}</div>
       </div>
-      
+
       <div class="lines">
-        <div 
-          v-for="task in tasks" 
-          :key="task.id" 
+        <div
+          v-for="task in tasks"
+          :key="task.id"
           class="line-item"
-          :class="{ completed: task.completed }"
+          :class="{ completed: task.completed, active: activeTaskId === task.id }"
         >
-          <!-- Чекбокс за линейкой -->
           <div class="checkbox-area">
-            <input 
-              type="checkbox" 
-              v-model="task.completed" 
+            <input
+              type="checkbox"
+              v-model="task.completed"
               class="checkbox"
               @mousedown.stop
             />
           </div>
-          
-          <!-- Основной контент -->
+
           <div class="task-content">
-            <textarea 
-              v-model="task.text" 
-              class="task-input" 
-              :placeholder="t('tasks.new_task_placeholder')"
-              @mousedown.stop
-              rows="1"
-              @input="autoResize($event)"
-            ></textarea>
-            
-            <!-- Помидоры оценки -->
-            <div class="tomatoes" v-if="!task.completed">
-              <span 
-                v-for="i in 5" 
-                :key="i" 
-                class="tomato"
-                :class="{ filled: i <= task.estimate }"
-                @click="task.estimate = i"
+            <div class="task-row">
+              <textarea
+                v-model="task.text"
+                class="task-input"
+                :placeholder="t('tasks.new_task_placeholder')"
                 @mousedown.stop
-                :title="`${i} ${i === 1 ? 'помидор' : 'помидоров'}`"
-              >🍅</span>
+                rows="1"
+                @input="autoResize($event)"
+              ></textarea>
+
+              <button
+                v-if="!task.completed"
+                class="play-btn"
+                :class="{ on: activeTaskId === task.id }"
+                :title="activeTaskId === task.id ? t('tasks.stop') : t('tasks.start')"
+                @click="toggleActiveTask(task.id)"
+                @mousedown.stop
+              >
+                {{ activeTaskId === task.id ? '◼' : '▶' }}
+              </button>
             </div>
-            
-            <!-- Показать оценку для завершённых -->
+
+            <div class="tomatoes" v-if="!task.completed">
+              <span
+                v-for="i in Math.max(task.estimate, task.spent)"
+                :key="i"
+                class="tomato"
+                :class="{ filled: i <= task.spent, ghost: i > task.estimate }"
+                @click="setEstimate(task, i)"
+                @mousedown.stop
+                :title="`${task.spent}/${task.estimate} 🍅`"
+              >🍅</span>
+              <span
+                v-if="task.estimate < 5"
+                class="tomato add"
+                @click="setEstimate(task, task.estimate + 1)"
+                @mousedown.stop
+                title="+1"
+              >+</span>
+            </div>
+
             <span v-if="task.completed && task.estimate" class="completed-badge">
-              {{ task.estimate }} 🍅
+              {{ task.spent }}/{{ task.estimate }} 🍅
             </span>
           </div>
-          
+
           <button @click="removeTask(task.id)" class="delete-btn" @mousedown.stop>×</button>
         </div>
-        
-        <!-- Добавить задачу -->
+
         <div class="line-item new-task" @click="addTask">
           <div class="checkbox-area">
             <span class="plus">+</span>
@@ -77,35 +92,23 @@
 
 <script setup lang="ts">
 import { useDraggable } from '../composables/useDraggable';
-import { usePersistence } from '../composables/usePersistence';
+import { useTaskPomodoro, type Task } from '../composables/useTaskPomodoro';
 import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
 const { position, onMouseDown, onTouchStart } = useDraggable('planner_pos', 850, 50);
+const {
+  tasks,
+  activeTaskId,
+  addTask,
+  removeTask,
+  toggleActiveTask,
+} = useTaskPomodoro();
 
-interface Task {
-  id: string;
-  text: string;
-  completed: boolean;
-  estimate: number;
-}
-
-const tasks = usePersistence<Task[]>('planner_tasks', []);
-
-const addTask = () => {
-  tasks.value.push({
-    id: Date.now().toString(),
-    text: '',
-    completed: false,
-    estimate: 1
-  });
+const setEstimate = (task: Task, value: number) => {
+  task.estimate = Math.max(1, Math.min(value, 9));
 };
 
-const removeTask = (id: string) => {
-  tasks.value = tasks.value.filter((task: Task) => task.id !== id);
-};
-
-// Автоматическое изменение высоты textarea
 const autoResize = (event: Event) => {
   const textarea = event.target as HTMLTextAreaElement;
   textarea.style.height = 'auto';
@@ -114,7 +117,7 @@ const autoResize = (event: Event) => {
 </script>
 
 <style scoped>
-/* === КОЖАНЫЙ ЕЖЕДНЕВНИК === */
+/* Leather journal */
 .notepad {
   width: 340px;
   font-family: 'Georgia', 'Times New Roman', serif;
@@ -123,31 +126,24 @@ const autoResize = (event: Event) => {
   cursor: grab;
   user-select: none;
   transition: transform 0.05s ease-out;
-  
-  /* Кожаная обложка */
-  background: 
-    /* Текстура кожи */
+
+  background:
     url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
     linear-gradient(145deg, #5a3d2b, #4a3020);
   padding: 12px;
   border-radius: 4px;
-  
-  /* Объёмная тень */
-  box-shadow: 
+
+  box-shadow:
     0 15px 35px rgba(0, 0, 0, 0.4),
     0 5px 15px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* Эффект прошивки */
 .notepad::before {
   content: '';
   position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
+  inset: 8px;
   border: 2px dashed rgba(0, 0, 0, 0.3);
   border-radius: 2px;
   pointer-events: none;
@@ -156,39 +152,34 @@ const autoResize = (event: Event) => {
 .notepad:active {
   cursor: grabbing;
   z-index: 150;
-  box-shadow: 
+  box-shadow:
     0 20px 45px rgba(0, 0, 0, 0.5),
     0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* === БУМАГА === */
 .paper {
   background-color: #faf8f0;
-  background-image: 
-    /* Красная вертикальная линия слева */
-    linear-gradient(90deg, 
-      transparent 38px, 
-      #e8b4b4 38px, 
-      #e8b4b4 40px, 
+  background-image:
+    linear-gradient(90deg,
+      transparent 38px,
+      #e8b4b4 38px,
+      #e8b4b4 40px,
       transparent 40px),
-    /* Горизонтальные линии */
     linear-gradient(#d4d0c8 1px, transparent 1px);
   background-size: 100% 100%, 100% 28px;
   background-position: 0 0, 0 0;
-  
+
   padding: 20px 16px 20px 48px;
   min-height: 380px;
   border-radius: 2px;
   position: relative;
-  overflow: hidden; /* FIX: помидоры не выходят за границу */
-  
-  /* Эффект бумаги */
-  box-shadow: 
+  overflow: hidden;
+
+  box-shadow:
     inset 0 0 30px rgba(0, 0, 0, 0.05),
     inset -2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
-/* Загнутый уголок */
 .paper::after {
   content: '';
   position: absolute;
@@ -196,28 +187,25 @@ const autoResize = (event: Event) => {
   right: 0;
   width: 30px;
   height: 30px;
-  background: 
-    linear-gradient(135deg, 
-      #faf8f0 50%, 
+  background:
+    linear-gradient(135deg,
+      #faf8f0 50%,
       transparent 50%),
-    linear-gradient(135deg, 
-      transparent 50%, 
+    linear-gradient(135deg,
+      transparent 50%,
       #d4c9a8 50%);
   box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* === ЗАГОЛОВОК === */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 16px;
   padding-bottom: 8px;
-  border-bottom: none;
   position: relative;
 }
 
-/* Эффект маркера под заголовком */
 .header::after {
   content: '';
   position: absolute;
@@ -225,8 +213,8 @@ const autoResize = (event: Event) => {
   left: 0;
   right: 0;
   height: 8px;
-  background: linear-gradient(90deg, 
-    rgba(255, 230, 150, 0.6) 0%, 
+  background: linear-gradient(90deg,
+    rgba(255, 230, 150, 0.6) 0%,
     rgba(255, 230, 150, 0.3) 80%,
     transparent 100%);
   border-radius: 2px;
@@ -250,11 +238,10 @@ h2 {
   z-index: 1;
 }
 
-/* === СПИСОК ЗАДАЧ === */
 .lines {
   display: flex;
   flex-direction: column;
-  margin-left: -32px; /* Сдвигаем влево чтобы чекбоксы были за красной линией */
+  margin-left: -32px;
 }
 
 .line-item {
@@ -263,22 +250,27 @@ h2 {
   min-height: 28px;
   padding: 2px 0;
   transition: all 0.2s;
+  position: relative;
 }
 
 .line-item:hover {
   background: rgba(255, 248, 220, 0.3);
 }
 
-/* === ЗОНА ЧЕКБОКСА (за линейкой) === */
+.line-item.active {
+  background: rgba(255, 230, 150, 0.45);
+  box-shadow: inset 3px 0 0 #d4843a;
+}
+
 .checkbox-area {
   width: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  padding-top: 4px;
 }
 
-/* === КАСТОМНЫЙ ЧЕКБОКС === */
 .checkbox {
   -webkit-appearance: none;
   appearance: none;
@@ -301,7 +293,6 @@ h2 {
   border-color: #4a8a4a;
 }
 
-/* Галочка */
 .checkbox:checked::after {
   content: '✓';
   position: absolute;
@@ -313,7 +304,6 @@ h2 {
   font-weight: bold;
 }
 
-/* === КОНТЕНТ ЗАДАЧИ === */
 .task-content {
   flex: 1;
   display: flex;
@@ -322,9 +312,14 @@ h2 {
   min-width: 0;
 }
 
-/* === ПОЛЕ ВВОДА (textarea) === */
+.task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
 .task-input {
-  width: 100%;
+  flex: 1;
   background: transparent;
   border: none;
   font-family: 'Georgia', serif;
@@ -348,25 +343,63 @@ h2 {
   color: #a89880;
 }
 
-/* === ПОМИДОРЫ ОЦЕНКИ === */
+.play-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #8b7355;
+  font-size: 11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.line-item:hover .play-btn,
+.play-btn.on {
+  opacity: 1;
+}
+
+.play-btn:hover {
+  background: rgba(212, 132, 58, 0.15);
+  border-color: #d4843a;
+  color: #d4843a;
+}
+
+.play-btn.on {
+  background: #d4843a;
+  border-color: #b06a28;
+  color: #fff;
+  font-size: 9px;
+  box-shadow: 0 0 8px rgba(212, 132, 58, 0.4);
+}
+
 .tomatoes {
   display: flex;
+  align-items: center;
   gap: 2px;
   padding-left: 4px;
+  flex-wrap: wrap;
 }
 
 .tomato {
   font-size: 12px;
   cursor: pointer;
-  transition: all 0.15s;
-  opacity: 0.3;
+  transition: transform 0.15s, opacity 0.15s, filter 0.15s;
+  opacity: 0.35;
   filter: grayscale(100%);
+  user-select: none;
 }
 
 .tomato:hover {
   transform: scale(1.2);
-  opacity: 0.6;
-  filter: grayscale(50%);
+  opacity: 0.7;
+  filter: grayscale(40%);
 }
 
 .tomato.filled {
@@ -374,14 +407,36 @@ h2 {
   filter: none;
 }
 
-/* === БЕЙДЖ ДЛЯ ЗАВЕРШЁННЫХ === */
+.tomato.ghost {
+  opacity: 0.18;
+}
+
+.tomato.add {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: bold;
+  color: #8b7355;
+  background: rgba(139, 115, 85, 0.1);
+  filter: none;
+  opacity: 0.5;
+}
+
+.tomato.add:hover {
+  background: rgba(139, 115, 85, 0.25);
+  opacity: 1;
+}
+
 .completed-badge {
   font-size: 11px;
   color: #8b7355;
   padding-left: 4px;
 }
 
-/* === КНОПКА УДАЛЕНИЯ === */
 .delete-btn {
   background: transparent;
   border: none;
@@ -409,7 +464,6 @@ h2 {
   opacity: 1;
 }
 
-/* === ДОБАВИТЬ ЗАДАЧУ === */
 .new-task {
   color: #8b7355;
   cursor: pointer;

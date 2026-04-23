@@ -64,52 +64,42 @@ const onAnimationEnd = () => {
   width: 100%;
   height: 50%;
   overflow: hidden;
-  background-color: #333;
+  background-color: #3a3a3a;
   color: #f5f5f5;
   text-align: center;
   box-sizing: border-box;
 }
 
-/* TOP HALVES */
 .top, .top-flip {
   top: 0;
-  line-height: 100px; /* double the height of the half to center vertical text */
+  line-height: 100px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: #3a3a3a;
-  border-bottom: 1px solid rgba(0,0,0,0.1); /* Slight separator */
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-/* BOTTOM HALVES */
 .bottom, .bottom-flip {
   bottom: 0;
   line-height: 0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: #3a3a3a;
-  /* border-top: 1px solid rgba(0,0,0,0.1); */ /* Optional separator line */
 }
 
-/* Base layers (Static) */
-.top {
-  z-index: 1; /* New number sits behind until revealed? No, New sits HERE. 
-                 Wait, if Top-Flip (Old) is on top, it covers this. */
-}
+.top,
 .bottom {
-  z-index: 1; /* Old number sits here. */
+  z-index: 1;
 }
 
-/* Animating layers */
 .top-flip {
-  z-index: 2; /* Sits on top of Static Top */
+  z-index: 2;
   transform-origin: bottom;
   backface-visibility: hidden;
 }
 
 .bottom-flip {
-  z-index: 2; /* Sits on top of Static Bottom */
+  z-index: 2;
   transform-origin: top;
-  transform: rotateX(90deg); /* Starts hidden */
+  transform: rotateX(90deg);
   backface-visibility: hidden;
 }
 
@@ -119,20 +109,12 @@ const onAnimationEnd = () => {
 }
 
 .bottom-flip.flipping {
-  animation: flip-bottom 0.6s ease-out 0.6s; /* Wait for top to finish? No, they meet in middle */
-  /* Re-timing: Total 0.6s. Top 0-0.3s. Bottom 0.3s-0.6s. */
-  animation: flip-bottom 0.6s ease-out; 
+  animation: flip-bottom 0.6s ease-out;
 }
-
-/* 
-   We want the 'top-flip' to go 0 -> -90 in first half.
-   We want 'bottom-flip' to go 90 -> 0 in second half.
-*/
 
 @keyframes flip-top {
   0% { transform: rotateX(0deg); }
-  50%, 100% { transform: rotateX(-90deg); opacity: 1; } 
-  /* At 50% it's flat (-90), we can probably hide it or keep it there. */
+  50%, 100% { transform: rotateX(-90deg); opacity: 1; }
 }
 
 @keyframes flip-bottom {
@@ -140,10 +122,7 @@ const onAnimationEnd = () => {
   100% { transform: rotateX(0deg); }
 }
 
-/* SHADOWS for realism */
-/* Shadow on Static Top (revealed as Top Flip falls) - maybe not needed if bg is dark */
-
-/* Shadow on Top Flip as it falls down (gets darker) */
+/* Shadow on Top Flip as it falls down */
 .top-flip::after {
   content: "";
   position: absolute;

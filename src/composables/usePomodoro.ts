@@ -1,77 +1,14 @@
 import { ref, computed, onUnmounted, watch } from 'vue';
 import { useTaskPomodoro } from './useTaskPomodoro';
+import { playBreakStartSound, playBreakEndSound } from './usePomodoroSounds';
 
 export type TimerMode = 'WORK' | 'REST';
 
-// Звуковые уведомления через Web Audio API
-let audioContext: AudioContext | null = null;
-
-const getAudioContext = (): AudioContext => {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-  }
-  return audioContext;
-};
-
-// Мягкий звук для начала перерыва (расслабляющий)
-const playBreakStartSound = () => {
-  try {
-    const ctx = getAudioContext();
-    const now = ctx.currentTime;
-    
-    // Два мягких тона (аккорд)
-    [523.25, 659.25].forEach((freq, i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, now);
-      
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.15, now + 0.1);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start(now + i * 0.15);
-      osc.stop(now + 1.5);
-    });
-  } catch (e) {
-    console.warn('Не удалось воспроизвести звук', e);
-  }
-};
-
-// Энергичный звук для окончания перерыва (пробуждающий)
-const playBreakEndSound = () => {
-  try {
-    const ctx = getAudioContext();
-    const now = ctx.currentTime;
-    
-    // Три восходящих тона
-    [440, 554.37, 659.25].forEach((freq, i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, now);
-      
-      gain.gain.setValueAtTime(0, now + i * 0.12);
-      gain.gain.linearRampToValueAtTime(0.2, now + i * 0.12 + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.12 + 0.4);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start(now + i * 0.12);
-      osc.stop(now + i * 0.12 + 0.5);
-    });
-  } catch (e) {
-    console.warn('Не удалось воспроизвести звук', e);
-  }
-};
-
 const STORAGE_KEY = 'POMODORO_STATE';
+const WORK_BOUNDS = { min: 1, max: 60 };
+const REST_BOUNDS = { min: 1, max: 30 };
+const DEFAULT_WORK = 25;
+const DEFAULT_REST = 5;
 
 interface PomodoroState {
   workMinutes: number;
@@ -83,250 +20,187 @@ interface PomodoroState {
   lastUpdated: number;
 }
 
-export function usePomodoro() {
-  // Load state from local storage
-  const loadState = (): PomodoroState | null => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
-    } catch (e) {
-      console.warn('Failed to load pomodoro state', e);
-    }
+const loadState = (): PomodoroState | null => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? (JSON.parse(stored) as PomodoroState) : null;
+  } catch (e) {
+    console.warn('Failed to load pomodoro state', e);
     return null;
-  };
+  }
+};
 
-  const savedState = loadState();
+export function usePomodoro() {
+  const saved = loadState();
 
-  // Determine initial values
-  const initialWork = savedState?.workMinutes ?? 25;
-  const initialRest = savedState?.restMinutes ?? 5;
-  const initialMode = savedState?.mode ?? 'WORK';
-  const initialSessions = savedState?.completedSessions ?? 0;
-  
-  // Calculate elapsed time if it was active
-  let initialSeconds = 0;
-  let initialActive = false;
-  
-  if (savedState) {
-    initialSeconds = savedState.currentSeconds;
-    initialActive = savedState.isActive;
-    
-    if (initialActive && savedState.lastUpdated) {
-      const elapsed = Math.floor((Date.now() - savedState.lastUpdated) / 1000);
+  const workMinutes = ref(saved?.workMinutes ?? DEFAULT_WORK);
+  const restMinutes = ref(saved?.restMinutes ?? DEFAULT_REST);
+  const currentMode = ref<TimerMode>(saved?.mode ?? 'WORK');
+  const completedSessions = ref(saved?.completedSessions ?? 0);
+
+  const modeDuration = (mode: TimerMode = currentMode.value) =>
+    (mode === 'WORK' ? workMinutes.value : restMinutes.value) * 60;
+
+  const totalSeconds = ref(modeDuration());
+
+  // Restore in-flight session, accounting for elapsed wall-clock time
+  let restoredSeconds = totalSeconds.value;
+  let restoredActive = false;
+  if (saved) {
+    restoredSeconds = saved.currentSeconds;
+    restoredActive = saved.isActive;
+    if (restoredActive && saved.lastUpdated) {
+      const elapsed = Math.floor((Date.now() - saved.lastUpdated) / 1000);
       if (elapsed > 0) {
-        initialSeconds = Math.max(0, initialSeconds - elapsed);
-        // If time ran out while closed, we could handle it here (e.g. switch mode),
-        // but for simplicity, let's just let it be 0 and let the user see it finished.
-        if (initialSeconds === 0) {
-           initialActive = false; // It finished in background
-        }
+        restoredSeconds = Math.max(0, restoredSeconds - elapsed);
+        if (restoredSeconds === 0) restoredActive = false;
       }
     }
   }
 
-  const workMinutes = ref(initialWork);
-  const restMinutes = ref(initialRest);
-  const currentSeconds = ref(initialSeconds);
-  const totalSeconds = ref(0); // Will be set by setupTimer
-  const isActive = ref(initialActive);
-  const isPaused = ref(savedState ? !initialActive : false); // If it was active, it's not paused. If not, it might be.
-  const currentMode = ref<TimerMode>(initialMode);
-  const completedSessions = ref(initialSessions);
-  
+  const currentSeconds = ref(restoredSeconds);
+  const isActive = ref(restoredActive);
+  const isPaused = ref(saved ? !restoredActive && restoredSeconds < totalSeconds.value : false);
+
   let timerInterval: number | null = null;
 
   const saveState = () => {
-      try {
-        const state: PomodoroState = {
-          workMinutes: workMinutes.value,
-          restMinutes: restMinutes.value,
-          completedSessions: completedSessions.value,
-          mode: currentMode.value,
-          currentSeconds: currentSeconds.value,
-          isActive: isActive.value,
-          lastUpdated: Date.now()
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (e) {
-        console.warn('Failed to save pomodoro state', e);
-      }
-  };
-
-  const setupTimer = (forceReset = false) => {
-    if (currentMode.value === 'WORK') {
-      totalSeconds.value = workMinutes.value * 60;
-    } else {
-      totalSeconds.value = restMinutes.value * 60;
-    }
-    
-    // Only reset currentSeconds if specifically requested OR if we are invalid (e.g. settings changed significantly),
-    // OR if we are initializing and don't have a saved running state.
-    // However, for this function, if we call it during init, we want to respect the restored value.
-    if (forceReset) {
-       currentSeconds.value = totalSeconds.value;
-    } else if (currentSeconds.value === 0 && !isActive.value && !isPaused.value) {
-       // If 0 and not active/paused, likely a fresh start or finished state we want to reset?
-       // Actually, let's simpler: if we just loaded state, we might have set currentSeconds.
-       // We should only overwrite if our logic demands it.
-       // Let's rely on the caller to pass forceReset=true when needed.
-       // But wait, initially `totalSeconds` is 0.
-       // If we just loaded `savedState`, `currentSeconds` is set.
-       // If `savedState` was null, `currentSeconds` is 0.
-       if (!savedState && currentSeconds.value === 0) {
-          currentSeconds.value = totalSeconds.value;
-       }
+    try {
+      const state: PomodoroState = {
+        workMinutes: workMinutes.value,
+        restMinutes: restMinutes.value,
+        completedSessions: completedSessions.value,
+        mode: currentMode.value,
+        currentSeconds: currentSeconds.value,
+        isActive: isActive.value,
+        lastUpdated: Date.now(),
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn('Failed to save pomodoro state', e);
     }
   };
 
-  // Initialize
-  setupTimer(false);
-  
-  // If we restored an active state, start the timer immediately
-  if (isActive.value && currentSeconds.value > 0) {
-     // Need to defer slightly or just call startTimer logic directly (minus the state toggle)
-     // Extract interval logic
-     timerInterval = setInterval(() => {
-       if (currentSeconds.value > 0) {
-         currentSeconds.value--;
-       } else {
-         switchMode();
-       }
-     }, 1000) as unknown as number;
-  }
+  const resetCurrentSession = () => {
+    totalSeconds.value = modeDuration();
+    currentSeconds.value = totalSeconds.value;
+  };
 
-  // Persist state changes
-  watch(
-    [workMinutes, restMinutes, completedSessions, currentMode, isActive],
-    saveState,
-    { deep: true }
-  );
-  
-  const formatTime = computed(() => {
-    const minutes = Math.floor(currentSeconds.value / 60).toString().padStart(2, '0');
-    const seconds = (currentSeconds.value % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
-  });
-
-  const progress = computed(() => {
-    if (totalSeconds.value === 0) return 0;
-    return (1 - (currentSeconds.value / totalSeconds.value)) * 100;
-  });
-  
-  // Save on page unload to capture exact second
-  if (typeof window !== 'undefined') {
-    window.addEventListener('beforeunload', saveState);
-  }
+  const stopInterval = () => {
+    if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  };
 
   const { onWorkSessionComplete: notifyTaskComplete } = useTaskPomodoro();
 
   const switchMode = () => {
     if (currentMode.value === 'WORK') {
       currentMode.value = 'REST';
-      playBreakStartSound(); // Начало перерыва - мягкий звук
-      notifyTaskComplete(); // Уведомляем планировщик о завершении сессии
+      playBreakStartSound();
+      notifyTaskComplete();
     } else {
       currentMode.value = 'WORK';
       completedSessions.value++;
-      playBreakEndSound(); // Конец перерыва - энергичный звук
+      playBreakEndSound();
     }
-    setupTimer(true); // Force reset on mode switch
+    resetCurrentSession();
     saveState();
+  };
+
+  const tick = () => {
+    if (currentSeconds.value > 0) {
+      currentSeconds.value--;
+    } else {
+      switchMode();
+    }
+  };
+
+  const startInterval = () => {
+    stopInterval();
+    timerInterval = window.setInterval(tick, 1000);
   };
 
   const startTimer = () => {
-    if (isPaused.value) {
-      isPaused.value = false;
-    }
-    
+    isPaused.value = false;
     isActive.value = true;
     saveState();
-    
-    if (timerInterval) clearInterval(timerInterval);
-    
-    timerInterval = setInterval(() => {
-      // We don't save inside the interval to avoid thrashing disk IO, 
-      // relying on beforeunload and other triggers
-      if (currentSeconds.value > 0) {
-        currentSeconds.value--;
-      } else {
-        switchMode();
-      }
-    }, 1000) as unknown as number;
+    startInterval();
   };
 
   const pauseTimer = () => {
-    if (timerInterval) clearInterval(timerInterval);
+    stopInterval();
     isActive.value = false;
     isPaused.value = true;
     saveState();
   };
 
   const toggleTimer = () => {
-    if (isActive.value) {
-      pauseTimer();
-    } else {
-      startTimer();
-    }
+    if (isActive.value) pauseTimer();
+    else startTimer();
   };
 
   const resetTimer = () => {
-    if (timerInterval) clearInterval(timerInterval);
+    stopInterval();
     isActive.value = false;
     isPaused.value = false;
     currentMode.value = 'WORK';
     completedSessions.value = 0;
-    setupTimer(true); // Force reset
+    resetCurrentSession();
     saveState();
   };
 
   const skipToNext = () => {
+    const wasActive = isActive.value;
     switchMode();
-    // switchMode calls setupTimer(true) and saveState()
-    if (isActive.value) { // If it was active, keep it active
-      // Logic inside switchMode doesn't stop timer, but our timer wrapper needs restart
-      if (timerInterval) clearInterval(timerInterval);
-      startTimer();
+    if (wasActive) startInterval();
+  };
+
+  const adjust = (target: TimerMode, delta: number) => {
+    const ref$ = target === 'WORK' ? workMinutes : restMinutes;
+    const bounds = target === 'WORK' ? WORK_BOUNDS : REST_BOUNDS;
+    const next = ref$.value + delta;
+    if (next < bounds.min || next > bounds.max) return;
+    ref$.value = next;
+    if (!isActive.value && currentMode.value === target) {
+      resetCurrentSession();
     }
   };
 
-  const incrementWork = () => {
-    if (workMinutes.value < 60) {
-      workMinutes.value++;
-      if (!isActive.value && currentMode.value === 'WORK') {
-        setupTimer(true);
-      }
-    }
-  };
+  const incrementWork = () => adjust('WORK', +1);
+  const decrementWork = () => adjust('WORK', -1);
+  const incrementRest = () => adjust('REST', +1);
+  const decrementRest = () => adjust('REST', -1);
 
-  const decrementWork = () => {
-    if (workMinutes.value > 1) {
-      workMinutes.value--;
-      if (!isActive.value && currentMode.value === 'WORK') {
-        setupTimer(true);
-      }
-    }
-  };
+  // Resume the running interval if state was restored mid-session
+  if (isActive.value && currentSeconds.value > 0) {
+    startInterval();
+  }
 
-  const incrementRest = () => {
-    if (restMinutes.value < 30) {
-      restMinutes.value++;
-      if (!isActive.value && currentMode.value === 'REST') {
-        setupTimer(true);
-      }
-    }
-  };
+  watch(
+    [workMinutes, restMinutes, completedSessions, currentMode, isActive],
+    saveState,
+    { deep: true }
+  );
 
-  const decrementRest = () => {
-    if (restMinutes.value > 1) {
-      restMinutes.value--;
-      if (!isActive.value && currentMode.value === 'REST') {
-        setupTimer(true);
-      }
-    }
-  };
+  const formatTime = computed(() => {
+    const mm = Math.floor(currentSeconds.value / 60).toString().padStart(2, '0');
+    const ss = (currentSeconds.value % 60).toString().padStart(2, '0');
+    return `${mm}:${ss}`;
+  });
+
+  const progress = computed(() => {
+    if (totalSeconds.value === 0) return 0;
+    return (1 - currentSeconds.value / totalSeconds.value) * 100;
+  });
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('beforeunload', saveState);
+  }
 
   onUnmounted(() => {
-    if (timerInterval) clearInterval(timerInterval);
+    stopInterval();
     window.removeEventListener('beforeunload', saveState);
   });
 
@@ -334,7 +208,7 @@ export function usePomodoro() {
     workMinutes,
     restMinutes,
     currentSeconds,
-    totalSeconds, // Exposed if needed for external calculations
+    totalSeconds,
     isActive,
     isPaused,
     currentMode,
@@ -347,6 +221,6 @@ export function usePomodoro() {
     incrementWork,
     decrementWork,
     incrementRest,
-    decrementRest
+    decrementRest,
   };
 }

@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onUnmounted } from 'vue';
 import { useWidgets } from '../composables/useWidgets';
 import { useDesktopSettings } from '../composables/useDesktopSettings';
 import { useI18n } from 'vue-i18n';
@@ -78,8 +78,12 @@ const closeMenu = () => {
   isOpen.value = false;
 };
 
-onMounted(() => {
-  document.addEventListener('click', closeMenu);
+watch(isOpen, (open) => {
+  if (open) {
+    document.addEventListener('click', closeMenu);
+  } else {
+    document.removeEventListener('click', closeMenu);
+  }
 });
 
 onUnmounted(() => {

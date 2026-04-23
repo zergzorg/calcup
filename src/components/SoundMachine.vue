@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="sound-machine"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
     @mousedown="onMouseDown"
@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="controls">
       <div class="display-panel">
         <canvas ref="canvasRef" class="visualizer" v-show="visualizerActive"></canvas>
@@ -22,8 +22,8 @@
           </div>
           <div class="station-indicator off" v-else>OFF</div>
         </div>
-        <button 
-          class="viz-toggle" 
+        <button
+          class="viz-toggle"
           @click="toggleVisualizer"
           :class="{ active: visualizerActive }"
           title="Toggle Visualizer"
@@ -33,15 +33,14 @@
           </div>
         </button>
       </div>
-      
+
       <div class="knobs">
         <div class="tuning-knob">
-          <!-- Sound Selection -->
-          <button 
-            v-for="sound in sounds" 
+          <button
+            v-for="sound in sounds"
             :key="sound.id"
             class="channel-btn"
-            :class="{ 
+            :class="{
               active: currentSoundId === sound.id && isPlaying,
               loading: currentSoundId === sound.id && isLoading
             }"
@@ -52,22 +51,22 @@
             {{ t(sound.labelKey) }}
           </button>
         </div>
-        
+
         <div class="volume-knob-container">
           <div class="fader-scale"></div>
-          <input 
-            type="range" 
-            min="0" 
-            max="1" 
-            step="0.01" 
-            v-model="volume" 
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            v-model.number="volume"
             @input="updateVolume"
             class="volume-slider"
             @mousedown.stop
           />
           <span class="label">VOL</span>
         </div>
-        
+
         <button class="power-btn" :class="{ on: isPlaying }" @click="togglePower" @mousedown.stop>
           <div class="icon">⏻</div>
         </button>
@@ -77,126 +76,143 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, onMounted, computed } from 'vue';
+import { ref, onUnmounted, computed } from 'vue';
 import { useDraggable } from '../composables/useDraggable';
+import { useNow } from '../composables/useNow';
+import { getAudioContext, resumeAudioContext } from '../composables/useAudioContext';
 import { useI18n } from 'vue-i18n';
+
+interface SoundProfile {
+  id: string;
+  labelKey: string;
+  type: 'audio' | 'stream';
+  url: string;
+  loop?: boolean;
+}
+
+const sounds: SoundProfile[] = [
+  { id: 'white', labelKey: 'sounds.white_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/wind.mp3', loop: true },
+  { id: 'pink', labelKey: 'sounds.rain', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/rain.mp3', loop: true },
+  { id: 'brown', labelKey: 'sounds.brown_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/ocean.mp3', loop: true },
+  { id: 'forest', labelKey: 'sounds.forest', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/birds.mp3', loop: true },
+  { id: 'radio-kniga', labelKey: 'sounds.radio_kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
+  { id: 'lofi-girl', labelKey: 'sounds.lofi', type: 'stream', url: 'https://stream.zeno.fm/0r0xa792kwzuv' },
+];
 
 const { t } = useI18n();
 const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50);
+const { now } = useNow();
 
 const isPlaying = ref(false);
 const currentSoundId = ref('white');
 const volume = ref(0.5);
 const isLoading = ref(false);
-
-interface SoundProfile {
-  id: string;
-  name: string; // Keep for internal/debug if needed, or remove. keeping for now but unused in display
-  labelKey: string;
-  loader?: boolean; // If true, show loader while buffering
-  type: 'audio' | 'stream';
-  url?: string;
-  loop?: boolean;
-}
-
-const sounds: SoundProfile[] = [
-  { id: 'white', name: 'Wind', labelKey: 'sounds.white_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/wind.mp3', loop: true },
-  { id: 'pink', name: 'Rain', labelKey: 'sounds.rain', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/rain.mp3', loop: true },
-  { id: 'brown', name: 'Ocean', labelKey: 'sounds.brown_noise', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/ocean.mp3', loop: true },
-  { id: 'forest', name: 'Forest', labelKey: 'sounds.forest', type: 'audio', url: 'https://raw.githubusercontent.com/bradtraversy/ambient-sound-mixer/master/audio/birds.mp3', loop: true },
-  { id: 'radio-kniga', name: 'Radio Kniga', labelKey: 'sounds.radio_kniga', type: 'stream', url: 'http://bookradio.hostingradio.ru:8069/fm' },
-  { id: 'lofi-girl', name: 'Lofi Girl', labelKey: 'sounds.lofi', type: 'stream', url: 'https://stream.zeno.fm/0r0xa792kwzuv' },
-];
+const visualizerActive = ref(true);
+const canvasRef = ref<HTMLCanvasElement | null>(null);
 
 const currentSoundLabel = computed(() => {
-  const sound = sounds.find(s => s.id === currentSoundId.value);
+  const sound = sounds.find((s) => s.id === currentSoundId.value);
   return sound ? t(sound.labelKey) : '';
 });
 
-const visualizerActive = ref(true);
-const canvasRef = ref<HTMLCanvasElement | null>(null);
-const hoursDisplay = ref('00');
-const minutesDisplay = ref('00');
+const hoursDisplay = computed(() => String(now.value.getHours()).padStart(2, '0'));
+const minutesDisplay = computed(() => String(now.value.getMinutes()).padStart(2, '0'));
 
-let audioCtx: AudioContext | null = null;
 let masterGain: GainNode | null = null;
 let analyser: AnalyserNode | null = null;
 let currentAudio: HTMLAudioElement | null = null;
 let audioSource: MediaElementAudioSourceNode | null = null;
 let animationId: number | null = null;
-let clockInterval: ReturnType<typeof setInterval> | null = null;
 
-const updateTime = () => {
-  const now = new Date();
-  hoursDisplay.value = String(now.getHours()).padStart(2, '0');
-  minutesDisplay.value = String(now.getMinutes()).padStart(2, '0');
+const initAudioGraph = () => {
+  if (masterGain && analyser) return;
+  const ctx = getAudioContext();
+
+  masterGain = ctx.createGain();
+  analyser = ctx.createAnalyser();
+  analyser.fftSize = 256;
+  analyser.smoothingTimeConstant = 0.5;
+
+  masterGain.connect(analyser);
+  analyser.connect(ctx.destination);
+  masterGain.gain.value = volume.value;
 };
 
-onMounted(() => {
-  updateTime();
-  clockInterval = setInterval(updateTime, 1000);
-});
+const stopAudio = (fullReset = true) => {
+  if (currentAudio) {
+    currentAudio.pause();
+    if (fullReset) {
+      currentAudio.src = '';
+      currentAudio = null;
+      audioSource = null;
+    }
+  }
 
-onUnmounted(() => {
-  stopAudio();
-  if (audioCtx) {
-    audioCtx.close();
+  if (animationId !== null) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
   }
-  if (clockInterval) {
-    clearInterval(clockInterval);
-  }
-});
 
-const initAudio = () => {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    masterGain = audioCtx.createGain();
-    analyser = audioCtx.createAnalyser();
-    
-    // Configure analyser
-    analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.5;
-    
-    // Routing: MasterGain -> Analyser -> Destination
-    masterGain.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    
-    masterGain.gain.value = volume.value;
+  if (canvasRef.value) {
+    const ctx2d = canvasRef.value.getContext('2d');
+    if (ctx2d) ctx2d.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
   }
+};
+
+const startVisualizer = () => {
+  if (!visualizerActive.value || !analyser || !canvasRef.value) return;
+  const ctx2d = canvasRef.value.getContext('2d');
+  if (!ctx2d) return;
+
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+
+  const draw = () => {
+    animationId = requestAnimationFrame(draw);
+    if (!visualizerActive.value || !analyser || !canvasRef.value) return;
+
+    analyser.getByteFrequencyData(dataArray);
+    const width = canvasRef.value.width;
+    const height = canvasRef.value.height;
+
+    ctx2d.fillStyle = '#000';
+    ctx2d.fillRect(0, 0, width, height);
+
+    const barWidth = (width / bufferLength) * 2.5;
+    let x = 0;
+    for (let i = 0; i < bufferLength; i++) {
+      const barHeight = dataArray[i] / 2;
+      const r = barHeight + 25 * (i / bufferLength);
+      const g = 250 * (i / bufferLength);
+      const b = 50;
+      ctx2d.fillStyle = `rgb(${r},${g},${b})`;
+      ctx2d.fillRect(x, height - barHeight, barWidth, barHeight);
+      x += barWidth + 1;
+    }
+  };
+
+  draw();
 };
 
 const playSound = async (sound: SoundProfile) => {
-  // Останавливаем существующее воспроизведение
-  stopAudio(false); 
-
-  initAudio();
-  if (!audioCtx || !masterGain || !analyser) return;
-
-  if (audioCtx.state === 'suspended') {
-    await audioCtx.resume();
-  }
-
-  // Для iOS используем HTMLAudioElement для всех типов звуков
-  // Это решает проблему с потерей контекста пользовательского взаимодействия
-  if (!sound.url) return;
+  stopAudio(false);
+  initAudioGraph();
+  await resumeAudioContext();
 
   isLoading.value = true;
 
-  // Создаём новый Audio элемент для каждого звука
   currentAudio = new Audio();
   currentAudio.crossOrigin = 'anonymous';
   currentAudio.src = sound.url;
   currentAudio.loop = !!sound.loop;
   currentAudio.volume = volume.value;
 
-  // Подключаем к Web Audio API для визуализатора
   try {
-    audioSource = audioCtx.createMediaElementSource(currentAudio);
-    audioSource.connect(masterGain);
+    audioSource = getAudioContext().createMediaElementSource(currentAudio);
+    if (masterGain) audioSource.connect(masterGain);
   } catch (e) {
-    // Если CORS не позволяет — воспроизводим без визуализатора
+    // CORS-restricted streams: fall back to direct playback (no visualizer)
     console.warn('CORS error, playing without visualizer:', e);
-    currentAudio.volume = volume.value;
   }
 
   currentAudio.oncanplaythrough = () => {
@@ -217,71 +233,6 @@ const playSound = async (sound: SoundProfile) => {
   }
 };
 
-const stopAudio = (fullReset = true) => {
-  if (currentAudio) {
-    currentAudio.pause();
-    if (fullReset) {
-      currentAudio.src = '';
-      currentAudio = null;
-      audioSource = null;
-    }
-  }
-  
-  if (animationId) {
-    cancelAnimationFrame(animationId);
-    animationId = null;
-  }
-  
-  // Очищаем canvas
-  if (canvasRef.value) {
-    const ctx = canvasRef.value.getContext('2d');
-    if (ctx) ctx.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height);
-  }
-};
-
-const startVisualizer = () => {
-  if (!visualizerActive.value || !analyser || !canvasRef.value) return;
-  
-  const ctx = canvasRef.value.getContext('2d');
-  if (!ctx) return;
-  
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
-  
-  const draw = () => {
-    animationId = requestAnimationFrame(draw);
-    
-    if (!visualizerActive.value) return;
-
-    analyser!.getByteFrequencyData(dataArray);
-    
-    const width = canvasRef.value!.width;
-    const height = canvasRef.value!.height;
-    
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, width, height);
-    
-    const barWidth = (width / bufferLength) * 2.5;
-    let barHeight;
-    let x = 0;
-    
-    for (let i = 0; i < bufferLength; i++) {
-      barHeight = dataArray[i] / 2;
-      
-      const r = barHeight + 25 * (i/bufferLength);
-      const g = 250 * (i/bufferLength);
-      const b = 50;
-      
-      ctx.fillStyle = `rgb(${r},${g},${b})`;
-      ctx.fillRect(x, height - barHeight, barWidth, barHeight);
-      
-      x += barWidth + 1;
-    }
-  };
-  
-  draw();
-};
-
 const toggleVisualizer = () => {
   visualizerActive.value = !visualizerActive.value;
   if (visualizerActive.value && isPlaying.value) {
@@ -289,43 +240,34 @@ const toggleVisualizer = () => {
   }
 };
 
-
 const togglePower = () => {
   isPlaying.value = !isPlaying.value;
   if (isPlaying.value) {
-    const sound = sounds.find(s => s.id === currentSoundId.value) || sounds[0];
+    const sound = sounds.find((s) => s.id === currentSoundId.value) ?? sounds[0];
     playSound(sound);
-    // Start clock if not running (though we play it always now for effect?)
-    // Let's just have the clock start when mounted, independent of power?
-    // User asked for it 'in the grill', implying it might be there always or only when on.
-    // Usually these retro things are "on" if plugged in. Let's start it on mount.
   } else {
     stopAudio();
   }
 };
 
 const selectSound = (sound: SoundProfile) => {
-  // Toggle off if clicking the same active sound
   if (currentSoundId.value === sound.id && isPlaying.value) {
     togglePower();
     return;
   }
-
   currentSoundId.value = sound.id;
   isPlaying.value = true;
   playSound(sound);
 };
 
 const updateVolume = () => {
-  if (currentAudio) {
-    currentAudio.volume = volume.value;
-  }
-  if (masterGain) {
-    masterGain.gain.value = volume.value;
-  }
+  if (currentAudio) currentAudio.volume = volume.value;
+  if (masterGain) masterGain.gain.value = volume.value;
 };
 
-
+onUnmounted(() => {
+  stopAudio();
+});
 </script>
 
 <style scoped>
@@ -334,14 +276,12 @@ const updateVolume = () => {
   background-color: #2c3e50;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 
+  box-shadow:
     10px 10px 20px rgba(0,0,0,0.4),
     inset 0 0 20px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* Position it on the desk */
-  align-self: flex-start; /* Removed as now we use absolute */
   position: absolute;
   cursor: grab;
   z-index: 10;
@@ -357,7 +297,7 @@ const updateVolume = () => {
 
 .grill {
   height: 60px;
-  background-color: #000; /* Deep black interior */
+  background-color: #000;
   border-radius: 4px;
   box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8);
   position: relative;
@@ -367,15 +307,11 @@ const updateVolume = () => {
   justify-content: center;
 }
 
-/* The mesh texture overlay */
 .grill::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
+  inset: 0;
+  background:
     radial-gradient(circle, transparent 60%, #34495e 61%) 0 0,
     radial-gradient(circle, transparent 60%, #34495e 61%) 4px 4px;
   background-size: 8px 8px;
@@ -386,7 +322,7 @@ const updateVolume = () => {
 
 .hidden-display {
   position: relative;
-  z-index: 1; /* Behind the mesh (z-index 2) */
+  z-index: 1;
   font-family: 'Courier New', monospace;
   display: flex;
   flex-direction: column;
@@ -399,10 +335,10 @@ const updateVolume = () => {
 }
 
 .time-readout {
-  color: #ffaa00; /* Brighter amber */
+  color: #ffaa00;
   font-size: 52px;
   font-weight: bold;
-  text-shadow: 
+  text-shadow:
     0 0 15px rgba(255, 170, 0, 1),
     0 0 30px rgba(255, 170, 0, 0.7);
   letter-spacing: 4px;
@@ -465,10 +401,7 @@ const updateVolume = () => {
   transition: opacity 0.2s;
 }
 
-.viz-toggle:hover {
-  opacity: 1;
-}
-
+.viz-toggle:hover,
 .viz-toggle.active {
   opacity: 1;
 }
@@ -527,7 +460,7 @@ const updateVolume = () => {
   transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
   text-transform: uppercase;
   font-weight: 600;
-  box-shadow: 
+  box-shadow:
     0 4px 6px rgba(0,0,0,0.3),
     inset 0 1px 0 rgba(255,255,255,0.1);
   position: relative;
@@ -542,7 +475,7 @@ const updateVolume = () => {
 
 .channel-btn:active {
   transform: translateY(1px);
-  box-shadow: 
+  box-shadow:
     0 1px 2px rgba(0,0,0,0.3),
     inset 0 1px 4px rgba(0,0,0,0.4);
 }
@@ -551,7 +484,7 @@ const updateVolume = () => {
   background: #e67e22;
   color: #fff;
   border-color: #d35400;
-  box-shadow: 
+  box-shadow:
     inset 0 2px 4px rgba(0,0,0,0.3),
     0 0 10px rgba(230, 126, 34, 0.6),
     0 0 20px rgba(230, 126, 34, 0.4);
@@ -559,7 +492,6 @@ const updateVolume = () => {
   transform: translateY(1px);
 }
 
-/* Add a small LED indicator */
 .channel-btn::after {
   content: '';
   position: absolute;
@@ -593,8 +525,6 @@ const updateVolume = () => {
   to { opacity: 1; }
 }
 
-
-
 .volume-knob-container {
   display: flex;
   flex-direction: column;
@@ -608,113 +538,39 @@ const updateVolume = () => {
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 100px; /* Height of the fader path on screen */
-  height: 50px; /* Width of the fader touch area */
+  width: 100px;
+  height: 50px;
   background: transparent;
   transform: rotate(-90deg);
   transform-origin: center;
   position: absolute;
-  top: 55px; /* Adjust to center vertically in container */
+  top: 55px;
   cursor: pointer;
   z-index: 10;
 }
 
-/* Track (The Slot) - WebKit */
-.volume-slider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12px;
-  background: #000;
-  border-radius: 6px;
-  box-shadow: 
-    inset 0 2px 5px rgba(0,0,0,0.9),
-    0 1px 0 rgba(255,255,255,0.1);
-  border: 1px solid #111;
-}
-
-/* Track (The Slot) - Firefox */
+.volume-slider::-webkit-slider-runnable-track,
 .volume-slider::-moz-range-track {
   width: 100%;
   height: 12px;
   background: #000;
   border-radius: 6px;
-  box-shadow: 
+  box-shadow:
     inset 0 2px 5px rgba(0,0,0,0.9),
     0 1px 0 rgba(255,255,255,0.1);
   border: 1px solid #111;
 }
 
-/* Track (The Slot) - Firefox */
-.volume-slider::-moz-range-track {
-  width: 100%;
-  height: 12px;
-  background: #000;
-  border-radius: 6px;
-  box-shadow: 
-    inset 0 2px 5px rgba(0,0,0,0.9),
-    0 1px 0 rgba(255,255,255,0.1);
-  border: 1px solid #111;
-}
-
-/* Thumb (The Photorealistic Fader Cap) - WebKit */
+/* Photorealistic fader cap — WebKit */
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   border: none;
-  height: 40px; 
-  width: 50px;
-  border-radius: 1px; /* Slight roundness for realism, but small */
-  box-sizing: border-box;
-  
-  background: 
-    repeating-linear-gradient(
-      to right,
-      transparent 0%,
-      transparent 45%,
-      rgba(0,0,0,0.4) 48%,
-      rgba(0,0,0,0.4) 52%,
-      rgba(255,255,255,0.3) 53%,
-      transparent 55%,
-      transparent 100%
-    ),
-    linear-gradient(
-      to right,
-      #555 0%,
-      #ecf0f1 10%,
-      #bdc3c7 20%,
-      #95a5a6 40%,
-      #7f8c8d 60%,
-      #bdc3c7 80%,
-      #ecf0f1 90%,
-      #555 100%
-    ),
-    linear-gradient(
-      to bottom,
-      #7f8c8d 0%,
-      #f1f2f6 50%,
-      #7f8c8d 100%
-    );
-    
-  background-blend-mode: multiply, normal, normal;
-  
-  box-shadow: 
-    -5px 0 10px rgba(0,0,0,0.6),
-    inset 1px 0 1px rgba(255,255,255,0.4),
-    inset -1px 0 1px rgba(0,0,0,0.2);
-    
-  margin-top: -16px; /* Center it */
-  position: relative;
-  z-index: 100;
-}
-
-/* Thumb (The Photorealistic Fader Cap) - Firefox */
-.volume-slider::-moz-range-thumb {
-  border: none;
-  height: 40px; 
+  height: 40px;
   width: 50px;
   border-radius: 1px;
   box-sizing: border-box;
-  
-  background: 
+  background:
     repeating-linear-gradient(
       to right,
       transparent 0%,
@@ -727,42 +583,28 @@ const updateVolume = () => {
     ),
     linear-gradient(
       to right,
-      #555 0%,
-      #ecf0f1 10%,
-      #bdc3c7 20%,
-      #95a5a6 40%,
-      #7f8c8d 60%,
-      #bdc3c7 80%,
-      #ecf0f1 90%,
-      #555 100%
+      #555 0%, #ecf0f1 10%, #bdc3c7 20%, #95a5a6 40%,
+      #7f8c8d 60%, #bdc3c7 80%, #ecf0f1 90%, #555 100%
     ),
-    linear-gradient(
-      to bottom,
-      #7f8c8d 0%,
-      #f1f2f6 50%,
-      #7f8c8d 100%
-    );
-    
+    linear-gradient(to bottom, #7f8c8d 0%, #f1f2f6 50%, #7f8c8d 100%);
   background-blend-mode: multiply, normal, normal;
-  
-  box-shadow: 
+  box-shadow:
     -5px 0 10px rgba(0,0,0,0.6),
     inset 1px 0 1px rgba(255,255,255,0.4),
     inset -1px 0 1px rgba(0,0,0,0.2);
-    
+  margin-top: -16px;
   position: relative;
   z-index: 100;
 }
 
-/* Thumb (The Photorealistic Fader Cap) - Firefox */
+/* Photorealistic fader cap — Firefox */
 .volume-slider::-moz-range-thumb {
   border: none;
-  height: 40px; 
+  height: 40px;
   width: 50px;
   border-radius: 1px;
   box-sizing: border-box;
-  
-  background: 
+  background:
     repeating-linear-gradient(
       to right,
       transparent 0%,
@@ -775,40 +617,25 @@ const updateVolume = () => {
     ),
     linear-gradient(
       to right,
-      #555 0%,
-      #ecf0f1 10%,
-      #bdc3c7 20%,
-      #95a5a6 40%,
-      #7f8c8d 60%,
-      #bdc3c7 80%,
-      #ecf0f1 90%,
-      #555 100%
+      #555 0%, #ecf0f1 10%, #bdc3c7 20%, #95a5a6 40%,
+      #7f8c8d 60%, #bdc3c7 80%, #ecf0f1 90%, #555 100%
     ),
-    linear-gradient(
-      to bottom,
-      #7f8c8d 0%,
-      #f1f2f6 50%,
-      #7f8c8d 100%
-    );
-    
+    linear-gradient(to bottom, #7f8c8d 0%, #f1f2f6 50%, #7f8c8d 100%);
   background-blend-mode: multiply, normal, normal;
-  
-  box-shadow: 
+  box-shadow:
     -5px 0 10px rgba(0,0,0,0.6),
     inset 1px 0 1px rgba(255,255,255,0.4),
     inset -1px 0 1px rgba(0,0,0,0.2);
-    
   position: relative;
   z-index: 100;
 }
 
-/* Fader Scale Marks */
 .fader-scale {
   position: absolute;
-  top: 30px; /* Aligned with visual top of rotated slider (55 + 25 - 50 = 30) */
+  top: 30px;
   height: 100px;
   width: 40px;
-  background: 
+  background:
     repeating-linear-gradient(
       to bottom,
       #555,
@@ -816,7 +643,7 @@ const updateVolume = () => {
       transparent 1px,
       transparent 10px
     );
-  background-size: 8px 100%; /* Only on one side */
+  background-size: 8px 100%;
   background-repeat: no-repeat;
   background-position: left center;
   opacity: 0.6;
@@ -830,7 +657,7 @@ const updateVolume = () => {
   right: 0;
   height: 100%;
   width: 8px;
-  background: 
+  background:
     repeating-linear-gradient(
       to bottom,
       #555,
@@ -854,7 +681,7 @@ const updateVolume = () => {
   border-radius: 50%;
   border: none;
   background: #c0392b;
-  box-shadow: 
+  box-shadow:
     0 4px 8px rgba(0,0,0,0.4),
     inset 0 2px 5px rgba(255,255,255,0.2),
     inset 0 -2px 5px rgba(0,0,0,0.2);
@@ -882,14 +709,14 @@ const updateVolume = () => {
 
 .power-btn:active {
   transform: scale(0.95);
-  box-shadow: 
+  box-shadow:
     0 2px 4px rgba(0,0,0,0.4),
     inset 0 3px 6px rgba(0,0,0,0.4);
 }
 
 .power-btn.on {
   background: #27ae60;
-  box-shadow: 
+  box-shadow:
     inset 0 2px 5px rgba(255,255,255,0.4),
     0 0 15px rgba(39, 174, 96, 0.8),
     0 0 30px rgba(39, 174, 96, 0.4);
