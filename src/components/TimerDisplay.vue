@@ -1,98 +1,122 @@
 <template>
-  <div class="timer-display">
-    <div class="clock-transform-wrapper">
-      <div class="clock-container">
-        <!-- Minutes -->
-        <div class="digit-group">
-          <FlipCard :value="minutesTens" />
-          <FlipCard :value="minutesOnes" />
-        </div>
-        <div class="separator">:</div>
-        <!-- Seconds -->
-        <div class="digit-group">
-          <FlipCard :value="secondsTens" />
-          <FlipCard :value="secondsOnes" />
-        </div>
-      </div>
+  <div class="display">
+    <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+      <circle class="ring-track" cx="100" cy="100" :r="RADIUS" />
+      <circle
+        class="ring-progress"
+        cx="100"
+        cy="100"
+        :r="RADIUS"
+        :stroke-dasharray="circumference"
+        :stroke-dashoffset="dashOffset"
+        transform="rotate(-90 100 100)"
+      />
+    </svg>
+
+    <div class="center">
+      <div class="time">{{ time }}</div>
+      <div class="mode-label">{{ modeLabel }}</div>
     </div>
-    
-    <div class="timer-mode" :class="mode.toLowerCase()">{{ t('timer.' + mode.toLowerCase()) }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { TimerMode } from '../composables/usePomodoro';
-import FlipCard from './FlipCard.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
 const props = defineProps<{
-  time: string; // Format "MM:SS"
+  time: string;
   mode: TimerMode;
+  progress: number;
 }>();
 
-const minutesTens = computed(() => props.time[0]);
-const minutesOnes = computed(() => props.time[1]);
-const secondsTens = computed(() => props.time[3]);
-const secondsOnes = computed(() => props.time[4]);
+const RADIUS = 92;
+const circumference = 2 * Math.PI * RADIUS;
+const dashOffset = computed(
+  () => circumference - (Math.min(100, Math.max(0, props.progress)) / 100) * circumference
+);
+
+const modeLabel = computed(() => {
+  switch (props.mode) {
+    case 'WORK':
+      return t('timer.focus');
+    case 'REST':
+      return t('timer.short_break');
+    case 'LONG_REST':
+      return t('timer.long_break');
+  }
+});
 </script>
 
 <style scoped>
-.timer-display {
+.display {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px auto 8px;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring-track,
+.ring-progress {
+  fill: none;
+  stroke-width: 6;
+}
+
+.ring-track {
+  stroke: rgba(0, 0, 0, 0.06);
+}
+
+.ring-progress {
+  stroke: var(--accent, #e85d4d);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.95s linear, stroke 0.6s ease;
+  filter: drop-shadow(0 1px 2px var(--accent-soft, rgba(232, 93, 77, 0.25)));
+}
+
+.center {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
+  gap: 6px;
 }
 
-.clock-transform-wrapper {
-  /* Scale down to fit 280px container */
-  transform: scale(0.65); 
-  transform-origin: center top;
-  margin-bottom: -30px; /*Compensate for empty space after scaling */
+.time {
+  font-family: 'SF Pro Display', 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 56px;
+  font-weight: 200;
+  letter-spacing: -1.5px;
+  color: #1a1a1a;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }
 
-.clock-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  /* Removed dark background for cleaner look */
-  padding: 10px;
-}
-
-.digit-group {
-  display: flex;
-  gap: 4px;
-}
-
-.separator {
-  font-size: 60px;
-  font-weight: bold;
-  color: #333; /* Dark text instead of light gray */
-  margin-top: -10px;
-}
-
-.timer-mode {
-  font-size: 12px;
-  font-weight: 700;
+.mode-label {
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: 10px;
-  padding: 4px 12px;
-  border-radius: 12px;
-  color: #555;
-  background-color: rgba(0,0,0,0.05);
-}
-
-.timer-mode.work {
-  color: #d32f2f;
-  background-color: rgba(211, 47, 47, 0.1);
-}
-.timer-mode.rest {
-  color: #388e3c;
-  background-color: rgba(56, 142, 60, 0.1);
+  letter-spacing: 2.4px;
+  color: var(--accent-deep, #c0392b);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft, rgba(232, 93, 77, 0.12));
+  transition: color 0.6s ease, background-color 0.6s ease;
 }
 </style>

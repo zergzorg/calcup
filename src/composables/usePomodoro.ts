@@ -2,17 +2,21 @@ import { ref, computed, onUnmounted, watch } from 'vue';
 import { useTaskPomodoro } from './useTaskPomodoro';
 import { playBreakStartSound, playBreakEndSound } from './usePomodoroSounds';
 
-export type TimerMode = 'WORK' | 'REST';
+export type TimerMode = 'WORK' | 'REST' | 'LONG_REST';
 
 const STORAGE_KEY = 'POMODORO_STATE';
 const WORK_BOUNDS = { min: 1, max: 60 };
 const REST_BOUNDS = { min: 1, max: 30 };
+const LONG_REST_BOUNDS = { min: 5, max: 60 };
 const DEFAULT_WORK = 25;
 const DEFAULT_REST = 5;
+const DEFAULT_LONG_REST = 15;
+const SESSIONS_PER_CYCLE = 4;
 
 interface PomodoroState {
   workMinutes: number;
   restMinutes: number;
+  longRestMinutes: number;
   completedSessions: number;
   mode: TimerMode;
   currentSeconds: number;
@@ -35,15 +39,25 @@ export function usePomodoro() {
 
   const workMinutes = ref(saved?.workMinutes ?? DEFAULT_WORK);
   const restMinutes = ref(saved?.restMinutes ?? DEFAULT_REST);
+  const longRestMinutes = ref(saved?.longRestMinutes ?? DEFAULT_LONG_REST);
   const currentMode = ref<TimerMode>(saved?.mode ?? 'WORK');
   const completedSessions = ref(saved?.completedSessions ?? 0);
+  const sessionsPerCycle = ref(SESSIONS_PER_CYCLE);
 
-  const modeDuration = (mode: TimerMode = currentMode.value) =>
-    (mode === 'WORK' ? workMinutes.value : restMinutes.value) * 60;
+  const modeDuration = (mode: TimerMode = currentMode.value): number => {
+    switch (mode) {
+      case 'WORK':
+        return workMinutes.value * 60;
+      case 'REST':
+        return restMinutes.value * 60;
+      case 'LONG_REST':
+        return longRestMinutes.value * 60;
+    }
+  };
 
   const totalSeconds = ref(modeDuration());
 
-  // Restore in-flight session, accounting for elapsed wall-clock time
+  // Restore an in-flight session, accounting for elapsed wall-clock time.
   let restoredSeconds = totalSeconds.value;
   let restoredActive = false;
   if (saved) {
@@ -69,6 +83,7 @@ export function usePomodoro() {
       const state: PomodoroState = {
         workMinutes: workMinutes.value,
         restMinutes: restMinutes.value,
+        longRestMinutes: longRestMinutes.value,
         completedSessions: completedSessions.value,
         mode: currentMode.value,
         currentSeconds: currentSeconds.value,
@@ -97,12 +112,13 @@ export function usePomodoro() {
 
   const switchMode = () => {
     if (currentMode.value === 'WORK') {
-      currentMode.value = 'REST';
+      completedSessions.value++;
+      const goLong = completedSessions.value % sessionsPerCycle.value === 0;
+      currentMode.value = goLong ? 'LONG_REST' : 'REST';
       playBreakStartSound();
       notifyTaskComplete();
     } else {
       currentMode.value = 'WORK';
-      completedSessions.value++;
       playBreakEndSound();
     }
     resetCurrentSession();
@@ -158,8 +174,12 @@ export function usePomodoro() {
   };
 
   const adjust = (target: TimerMode, delta: number) => {
-    const ref$ = target === 'WORK' ? workMinutes : restMinutes;
-    const bounds = target === 'WORK' ? WORK_BOUNDS : REST_BOUNDS;
+    const refMap = {
+      WORK: { ref: workMinutes, bounds: WORK_BOUNDS },
+      REST: { ref: restMinutes, bounds: REST_BOUNDS },
+      LONG_REST: { ref: longRestMinutes, bounds: LONG_REST_BOUNDS },
+    };
+    const { ref: ref$, bounds } = refMap[target];
     const next = ref$.value + delta;
     if (next < bounds.min || next > bounds.max) return;
     ref$.value = next;
@@ -172,14 +192,15 @@ export function usePomodoro() {
   const decrementWork = () => adjust('WORK', -1);
   const incrementRest = () => adjust('REST', +1);
   const decrementRest = () => adjust('REST', -1);
+  const incrementLongRest = () => adjust('LONG_REST', +1);
+  const decrementLongRest = () => adjust('LONG_REST', -1);
 
-  // Resume the running interval if state was restored mid-session
   if (isActive.value && currentSeconds.value > 0) {
     startInterval();
   }
 
   watch(
-    [workMinutes, restMinutes, completedSessions, currentMode, isActive],
+    [workMinutes, restMinutes, longRestMinutes, completedSessions, currentMode, isActive],
     saveState,
     { deep: true }
   );
@@ -195,6 +216,14 @@ export function usePomodoro() {
     return (1 - currentSeconds.value / totalSeconds.value) * 100;
   });
 
+  // 1-indexed position in the current cycle
+  const cycleSession = computed(() => {
+    const inCycle = completedSessions.value % sessionsPerCycle.value;
+    if (currentMode.value === 'WORK') return inCycle + 1;
+    // During REST/LONG_REST, show the just-completed session
+    return inCycle === 0 ? sessionsPerCycle.value : inCycle;
+  });
+
   if (typeof window !== 'undefined') {
     window.addEventListener('beforeunload', saveState);
   }
@@ -207,12 +236,15 @@ export function usePomodoro() {
   return {
     workMinutes,
     restMinutes,
+    longRestMinutes,
+    sessionsPerCycle,
     currentSeconds,
     totalSeconds,
     isActive,
     isPaused,
     currentMode,
     completedSessions,
+    cycleSession,
     formatTime,
     progress,
     toggleTimer,
@@ -222,5 +254,7 @@ export function usePomodoro() {
     decrementWork,
     incrementRest,
     decrementRest,
+    incrementLongRest,
+    decrementLongRest,
   };
 }

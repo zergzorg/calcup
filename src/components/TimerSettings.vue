@@ -1,130 +1,172 @@
 <template>
   <div class="settings">
-    <div class="setting">
-      <label>Work</label>
-      <div class="time-input">
-        <button class="adjust-btn" @click="$emit('decrementWork')" :disabled="isActive">-</button>
-        <span class="value-display">{{ workMinutes }}m</span>
-        <button class="adjust-btn" @click="$emit('incrementWork')" :disabled="isActive">+</button>
-      </div>
-    </div>
-
-    <div class="setting">
-      <label>Break</label>
-      <div class="time-input">
-        <button class="adjust-btn" @click="$emit('decrementRest')" :disabled="isActive">-</button>
-        <span class="value-display">{{ restMinutes }}m</span>
-        <button class="adjust-btn" @click="$emit('incrementRest')" :disabled="isActive">+</button>
+    <div class="row" v-for="row in rows" :key="row.target">
+      <span class="label" :class="{ current: row.isCurrent }">
+        <span class="swatch" :style="{ background: row.color }"></span>
+        {{ row.label }}
+      </span>
+      <div class="stepper">
+        <button
+          class="step-btn"
+          :disabled="isActive"
+          :aria-label="`-1 ${row.label}`"
+          @click="$emit('adjust', { target: row.target, delta: -1 })"
+        >−</button>
+        <span class="value">{{ row.value }}<span class="unit">m</span></span>
+        <button
+          class="step-btn"
+          :disabled="isActive"
+          :aria-label="`+1 ${row.label}`"
+          @click="$emit('adjust', { target: row.target, delta: +1 })"
+        >+</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import type { TimerMode } from '../composables/usePomodoro';
+
+const { t } = useI18n();
+
+const props = defineProps<{
   workMinutes: number;
   restMinutes: number;
+  longRestMinutes: number;
   isActive: boolean;
+  currentMode: TimerMode;
 }>();
 
 defineEmits<{
-  (e: 'incrementWork'): void;
-  (e: 'decrementWork'): void;
-  (e: 'incrementRest'): void;
-  (e: 'decrementRest'): void;
+  (e: 'adjust', payload: { target: TimerMode; delta: 1 | -1 }): void;
 }>();
+
+const rows = computed(() => [
+  {
+    target: 'WORK' as TimerMode,
+    label: t('timer.focus'),
+    value: props.workMinutes,
+    color: '#e85d4d',
+    isCurrent: props.currentMode === 'WORK',
+  },
+  {
+    target: 'REST' as TimerMode,
+    label: t('timer.short_break'),
+    value: props.restMinutes,
+    color: '#5fad9c',
+    isCurrent: props.currentMode === 'REST',
+  },
+  {
+    target: 'LONG_REST' as TimerMode,
+    label: t('timer.long_break'),
+    value: props.longRestMinutes,
+    color: '#6b8cae',
+    isCurrent: props.currentMode === 'LONG_REST',
+  },
+]);
 </script>
 
 <style scoped>
 .settings {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.025);
+  border-radius: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
-  width: 100%;
-  padding: 0; /* Remove horizontal padding as parent handles it */
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
 }
 
-.setting {
-  text-align: center;
-  background: #fff;
-  padding: 10px;
-  border-radius: 12px;
-  box-shadow: 
-    0 2px 5px rgba(0,0,0,0.05),
-    inset 0 0 0 1px rgba(0,0,0,0.03);
-  flex: 1; /* Distribute space equally */
-  min-width: 0; /* Allow shrinking */
-}
-
-.setting label {
-  display: block;
-  font-size: 10px;
-  margin-bottom: 8px;
-  color: #999;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.time-input {
-  display: flex;
+.label {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+  white-space: nowrap;
 }
 
-/* Base button reset */
-.adjust-btn {
+.label.current {
+  color: #1a1a1a;
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.step-btn {
   -webkit-appearance: none;
   appearance: none;
-  outline: none;
   border: none;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
-  
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  
-  background: #f0f0f0;
-  box-shadow: 
-    0 2px 4px rgba(0,0,0,0.1),
-    inset 0 1px 0 rgba(255,255,255,1);
-    
-  color: #555;
-  font-size: 16px; 
-  font-weight: 600;
-  font-family: Arial, sans-serif;
-  
-  transition: all 0.1s ease;
+  padding: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.adjust-btn:hover:not(:disabled) {
-  background: #e9e9e9;
-  transform: translateY(-1px);
+.step-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
 }
 
-.adjust-btn:active:not(:disabled) {
-  transform: translateY(1px);
-  background: #dcdcdc;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+.step-btn:active:not(:disabled) {
+  background: rgba(0, 0, 0, 0.08);
 }
 
-.adjust-btn:disabled {
-  opacity: 0.5;
+.step-btn:disabled {
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
-.value-display {
-  font-size: 16px;
-  font-weight: 700;
-  color: #333;
+.value {
   min-width: 40px;
-  font-family: 'Inter', sans-serif;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.unit {
+  font-weight: 400;
+  color: #888;
+  font-size: 11px;
+  margin-left: 1px;
 }
 </style>

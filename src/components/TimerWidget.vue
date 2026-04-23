@@ -1,64 +1,72 @@
 <template>
-  <div 
-    class="timer-widget" 
+  <div
+    class="pomodoro"
+    :class="`mode-${currentMode.toLowerCase()}`"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
-    <div class="device-body">
-      <!-- Основное табло таймера (LED/Flip) -->
-      <div class="screen-frame">
-        <TimerDisplay :time="formatTime" :mode="currentMode" />
-      </div>
+    <header class="header">
+      <span class="brand">{{ t('timer.title') }}</span>
+      <SessionDots
+        :total="sessionsPerCycle"
+        :current="cycleSession"
+        :mode="currentMode"
+      />
+    </header>
 
-      <!-- Блок кнопок управления -->
-      <div class="controls-area">
-        <TimerControls
-          :isActive="isActive"
-          @toggle="toggleTimer"
-          @reset="resetTimer"
-          @skip="skipToNext"
-        />
-      </div>
+    <TimerDisplay
+      :time="formatTime"
+      :mode="currentMode"
+      :progress="progress"
+    />
 
-      <!-- Блок настроек (Work / Break) -->
-      <div class="settings-area">
+    <TimerControls
+      :is-active="isActive"
+      @toggle="toggleTimer"
+      @reset="resetTimer"
+      @skip="skipToNext"
+    />
+
+    <button
+      class="adjust-toggle"
+      :class="{ open: settingsOpen }"
+      :aria-expanded="settingsOpen"
+      @click="settingsOpen = !settingsOpen"
+      @mousedown.stop
+    >
+      <span>{{ t('timer.adjust') }}</span>
+      <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 10l5 5 5-5z" />
+      </svg>
+    </button>
+
+    <transition name="adjust">
+      <div v-show="settingsOpen" class="adjust-panel">
         <TimerSettings
-          :workMinutes="workMinutes"
-          :restMinutes="restMinutes"
-          :isActive="isActive"
-          @incrementWork="incrementWork"
-          @decrementWork="decrementWork"
-          @incrementRest="incrementRest"
-          @decrementRest="decrementRest"
+          :work-minutes="workMinutes"
+          :rest-minutes="restMinutes"
+          :long-rest-minutes="longRestMinutes"
+          :is-active="isActive"
+          :current-mode="currentMode"
+          @adjust="onAdjust"
         />
       </div>
-
-      <!-- Прогресс-бар -->
-      <div class="progress-area">
-        <TimerProgress
-          :mode="currentMode"
-          :workProgress="progress"
-          :restProgress="progress"
-        />
-      </div>
-
-      <!-- Счетчик сессий -->
-      <div class="sessions-plate">
-        <span>SESS: {{ completedSessions + 1 }}</span>
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { usePomodoro } from '../composables/usePomodoro';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { usePomodoro, type TimerMode } from '../composables/usePomodoro';
 import { useDraggable } from '../composables/useDraggable';
 import TimerDisplay from './TimerDisplay.vue';
 import TimerControls from './TimerControls.vue';
 import TimerSettings from './TimerSettings.vue';
-import TimerProgress from './TimerProgress.vue';
+import SessionDots from './SessionDots.vue';
 
+const { t } = useI18n();
 const {
   formatTime,
   currentMode,
@@ -68,78 +76,155 @@ const {
   skipToNext,
   workMinutes,
   restMinutes,
+  longRestMinutes,
+  sessionsPerCycle,
+  cycleSession,
   incrementWork,
   decrementWork,
   incrementRest,
   decrementRest,
+  incrementLongRest,
+  decrementLongRest,
   progress,
-  completedSessions
 } = usePomodoro();
 
 const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 100);
+
+const settingsOpen = ref(false);
+
+const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
+  if (target === 'WORK') {
+    delta > 0 ? incrementWork() : decrementWork();
+  } else if (target === 'REST') {
+    delta > 0 ? incrementRest() : decrementRest();
+  } else {
+    delta > 0 ? incrementLongRest() : decrementLongRest();
+  }
+};
 </script>
 
 <style scoped>
-.timer-widget {
-  /* Compact Design */
-  width: 280px;
-  background-color: #f5f5f7; /* Very light gray, almost white */
-  border-radius: 16px;
-  padding: 16px;
+.pomodoro {
+  --accent: #e85d4d;
+  --accent-soft: rgba(232, 93, 77, 0.14);
+  --accent-deep: #c0392b;
+
+  width: 320px;
+  background: #fafaf6;
+  border-radius: 20px;
+  padding: 22px 22px 18px;
   position: absolute;
   z-index: 100;
   cursor: grab;
-  
-  /* Modern Clean Look */
-  box-shadow: 
-    0 10px 25px rgba(0,0,0,0.1),
-    0 4px 6px rgba(0,0,0,0.05),
-    inset 0 0 0 1px rgba(255,255,255,0.5); /* Subtle highlight */
-    
-  transition: transform 0.05s ease-out, box-shadow 0.2s;
-  user-select: none;
-  backdrop-filter: blur(10px);
-}
 
-.timer-widget:active {
-  cursor: grabbing;
-  box-shadow: 
-    0 15px 35px rgba(0,0,0,0.15),
-    0 6px 10px rgba(0,0,0,0.08);
-  transform: scale(1.02);
-}
-
-.device-body {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 12px 28px rgba(0, 0, 0, 0.18),
+    0 4px 8px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.05s ease-out,
+    box-shadow 0.25s ease;
+
+  user-select: none;
+}
+
+.pomodoro.mode-rest {
+  --accent: #5fad9c;
+  --accent-soft: rgba(95, 173, 156, 0.16);
+  --accent-deep: #3a8e7c;
+}
+
+.pomodoro.mode-long_rest {
+  --accent: #6b8cae;
+  --accent-soft: rgba(107, 140, 174, 0.16);
+  --accent-deep: #4a6f93;
+}
+
+.pomodoro:active {
+  cursor: grabbing;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 18px 36px rgba(0, 0, 0, 0.22),
+    0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
   align-items: center;
-  gap: 12px; /* Reduced from 16px for tighter layout */
-  position: relative;
+  justify-content: space-between;
+  padding: 0 2px;
 }
 
-.screen-frame {
-  /* Removed heavy borders and dark backgrounds for a lighter look, 
-     but TimerDisplay might still have its own dark BG. We'll adjust that next if needed. */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.controls-area, .settings-area {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.progress-area {
-  width: 100%;
-}
-
-.sessions-plate {
-  font-family: 'Inter', sans-serif;
+.brand {
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
   font-size: 11px;
-  color: #888;
   font-weight: 600;
-  letter-spacing: 1px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: #999;
+}
+
+.adjust-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 6px auto 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #999;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.adjust-toggle:hover {
+  color: #555;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.adjust-toggle .chevron {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.adjust-toggle.open .chevron {
+  transform: rotate(180deg);
+}
+
+.adjust-panel {
+  overflow: hidden;
+}
+
+.adjust-enter-active,
+.adjust-leave-active {
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.3s ease;
+}
+
+.adjust-enter-from,
+.adjust-leave-to {
+  max-height: 0;
+  opacity: 0;
+  margin-top: -8px;
+}
+
+.adjust-enter-to,
+.adjust-leave-from {
+  max-height: 240px;
+  opacity: 1;
+  margin-top: 0;
 }
 </style>
