@@ -6,6 +6,7 @@
     </div>
 
     <div v-if="showPaymentHelp" class="credit-help-popover" role="dialog">
+      <button class="credit-help-popover-close" type="button" :aria-label="t('credit.form.close')" @click="showPaymentHelp = false">×</button>
       <strong>{{ t('credit.form.paymentTypeHelpTitle') }}</strong>
       <p>{{ t('credit.form.annuityHelp') }}</p>
       <p>{{ t('credit.form.differentiatedHelp') }}</p>

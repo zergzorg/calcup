@@ -142,7 +142,8 @@
       "differentiated": "Differentiated",
       "paymentTypeHelpTitle": "How payment types differ",
       "annuityHelp": "Annuity: the payment is usually the same each month; early payments contain more interest and less principal.",
-      "differentiatedHelp": "Differentiated: principal is repaid in equal parts, so the first payment is higher and later payments gradually decrease."
+      "differentiatedHelp": "Differentiated: principal is repaid in equal parts, so the first payment is higher and later payments gradually decrease.",
+      "close": "Close"
     },
     "results": {
       "eyebrow": "Summary",
