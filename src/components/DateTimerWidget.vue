@@ -2,7 +2,9 @@
   <div
     class="date-countdown"
     :class="{ expired: isExpired }"
-    :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
+    :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
+    @mousedown.capture="activateWidget"
+    @touchstart.capture="activateWidget"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
@@ -84,7 +86,7 @@ const {
   inputValue,
   progress,
 } = useDateCalculator();
-const { position, onMouseDown, onTouchStart } = useDraggable('date_timer_pos', 450, 450);
+const { position, zIndex, activateWidget, onMouseDown, onTouchStart } = useDraggable('date_timer_pos', 450, 450);
 
 const dateInput = ref<HTMLInputElement | null>(null);
 const presets = [

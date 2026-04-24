@@ -1,7 +1,9 @@
 <template>
   <div
     class="sound-machine"
-    :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
+    :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
+    @mousedown.capture="activateWidget"
+    @touchstart.capture="activateWidget"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
@@ -100,7 +102,7 @@ const sounds: SoundProfile[] = [
 ];
 
 const { t } = useI18n();
-const { position, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50);
+const { position, zIndex, activateWidget, onMouseDown, onTouchStart } = useDraggable('radio_pos', 50, 50);
 const { now } = useNow();
 
 const isPlaying = ref(false);

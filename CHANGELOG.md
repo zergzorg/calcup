@@ -10,11 +10,15 @@
   - _Task Tracking_: Added focus time, break time, daily completed focus session count, and recent work/break segment tracking.
 - **Обратный отсчёт**: Добавлены быстрые пресеты цели `+7`, `+30`, `+90 дней`, прогресс-линия и понятные статусы цели.
   - _Date Countdown_: Added `+7`, `+30`, `+90 days` presets, progress line, and clearer target statuses.
+- **Змейка**: Добавлен новый виджет классической игры Snake с управлением с клавиатуры, экранными кнопками и локальным топ-10 рекордов.
+  - _Snake_: Added a new classic Snake game widget with keyboard controls, on-screen buttons, and a local top-10 leaderboard.
 
 ### Changed / Изменено
 
 - **Настройки**: Обновлён дизайн панели настроек: стеклянная панель, компактные цветовые строки, кастомные чекбоксы, улучшенная кнопка-шестерёнка.
   - _Settings_: Refreshed settings panel design with a glass surface, compact labeled color rows, custom checkboxes, and improved gear button sizing.
+- **Слои виджетов**: Активный или перетаскиваемый виджет теперь поднимается поверх остальных и остаётся сверху до выбора другого виджета.
+  - _Widget Layers_: The active or dragged widget now moves above the others and stays on top until another widget is selected.
 - **Палитра и паттерны**: Заменены цвета фона на более современные приглушённые тона и обновлены паттерны рабочего стола.
   - _Palette and Patterns_: Replaced background colors with modern muted tones and refreshed desktop patterns.
 - **Планировщик**: Переработан дизайн в более рабочую панель с прогрессом задач, статистикой дня и компактной историей отрезков.

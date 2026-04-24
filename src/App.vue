@@ -4,6 +4,7 @@
     <DateTimerWidget v-if="isWidgetVisible('dateTimer')" />
     <TaskPlanner v-if="isWidgetVisible('tasks')" />
     <SoundMachine v-if="isWidgetVisible('sound')" />
+    <SnakeGame v-if="isWidgetVisible('snake')" />
   </DesktopLayout>
 </template>
 
@@ -13,6 +14,7 @@ import TimerWidget from './components/TimerWidget.vue';
 import DateTimerWidget from './components/DateTimerWidget.vue';
 import TaskPlanner from './components/TaskPlanner.vue';
 import SoundMachine from './components/SoundMachine.vue';
+import SnakeGame from './components/SnakeGame.vue';
 import { useSeo } from './composables/useSeo';
 import { useI18n } from 'vue-i18n';
 import { useWidgets } from './composables/useWidgets';

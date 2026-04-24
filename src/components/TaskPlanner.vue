@@ -1,7 +1,9 @@
 <template>
   <div
     class="planner"
-    :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
+    :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
+    @mousedown.capture="activateWidget"
+    @touchstart.capture="activateWidget"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
@@ -130,7 +132,7 @@ import type { TimerMode } from '../composables/usePomodoro';
 import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
-const { position, onMouseDown, onTouchStart } = useDraggable('planner_pos', 850, 50);
+const { position, zIndex, activateWidget, onMouseDown, onTouchStart } = useDraggable('planner_pos', 850, 50);
 const {
   tasks,
   segments,

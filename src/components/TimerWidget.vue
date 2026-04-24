@@ -2,7 +2,9 @@
   <div
     class="pomodoro"
     :class="`mode-${currentMode.toLowerCase()}`"
-    :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
+    :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
+    @mousedown.capture="activateWidget"
+    @touchstart.capture="activateWidget"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
@@ -99,7 +101,7 @@ const {
 } = usePomodoro();
 const { activeTask, lastFocusTask } = useTaskPomodoro();
 
-const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 100);
+const { position, zIndex, activateWidget, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 100);
 
 const settingsOpen = ref(false);
 const timerTask = computed(() => currentMode.value === 'WORK' ? activeTask.value : lastFocusTask.value);

@@ -6,9 +6,13 @@ interface Position {
   y: number;
 }
 
+let topLayer = 200;
+let initialLayer = 100;
+
 export function useDraggable(storageKey: string, initialX: number, initialY: number) {
   const position = ref<Position>({ x: initialX, y: initialY });
   const isDragging = ref(false);
+  const zIndex = ref(initialLayer--);
   const { scale } = useScale();
   
   let startX = 0;
@@ -36,7 +40,13 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     }
   };
 
+  const activateWidget = () => {
+    zIndex.value = ++topLayer;
+  };
+
   const onMouseDown = (e: MouseEvent) => {
+    activateWidget();
+
     // Only drag with left mouse button
     if (e.button !== 0) return;
     
@@ -55,7 +65,6 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
     
-    // Bring to front (z-index) logic could be added here
   };
 
   const onMouseMove = (e: MouseEvent) => {
@@ -80,6 +89,8 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
 
   // Touch Support
   const onTouchStart = (e: TouchEvent) => {
+    activateWidget();
+
     // Check if touching interactive elements
     const target = e.target as HTMLElement;
     if (target.closest('input, button, textarea, select, label')) return;
@@ -125,6 +136,8 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   return {
     position,
     isDragging,
+    zIndex,
+    activateWidget,
     onMouseDown,
     onTouchStart
   };

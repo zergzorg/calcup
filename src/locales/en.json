@@ -98,5 +98,28 @@
       "month": "+30 days",
       "quarter": "+90 days"
     }
+  },
+  "snake": {
+    "title": "Snake",
+    "board": "Snake game board",
+    "ready": "Ready to play",
+    "running": "Playing",
+    "paused": "Paused",
+    "gameover": "Game over",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "play_again": "Again",
+    "reset": "Reset",
+    "score": "Score",
+    "player": "Player",
+    "player_placeholder": "Name",
+    "records": "Top 10 scores",
+    "clear_records": "Clear",
+    "no_records": "No records yet",
+    "up": "Up",
+    "down": "Down",
+    "left": "Left",
+    "right": "Right"
   }
 }
