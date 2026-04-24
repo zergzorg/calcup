@@ -21,6 +21,15 @@
       :progress="progress"
     />
 
+    <div
+      class="task-context"
+      :class="{ empty: !timerTask }"
+      @mousedown.stop
+    >
+      <span class="task-context-label">{{ contextLabel }}</span>
+      <span class="task-context-text">{{ timerTask?.text || t('timer.no_task') }}</span>
+    </div>
+
     <TimerControls
       :is-active="isActive"
       @toggle="toggleTimer"
@@ -57,9 +66,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { usePomodoro, type TimerMode } from '../composables/usePomodoro';
+import { useTaskPomodoro } from '../composables/useTaskPomodoro';
 import { useDraggable } from '../composables/useDraggable';
 import TimerDisplay from './TimerDisplay.vue';
 import TimerControls from './TimerControls.vue';
@@ -87,10 +97,13 @@ const {
   decrementLongRest,
   progress,
 } = usePomodoro();
+const { activeTask, lastFocusTask } = useTaskPomodoro();
 
 const { position, onMouseDown, onTouchStart } = useDraggable('timer_pos', 400, 100);
 
 const settingsOpen = ref(false);
+const timerTask = computed(() => currentMode.value === 'WORK' ? activeTask.value : lastFocusTask.value);
+const contextLabel = computed(() => currentMode.value === 'WORK' ? t('timer.current_task') : t('timer.break_after'));
 
 const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
   if (target === 'WORK') {
@@ -167,6 +180,41 @@ const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
   text-transform: uppercase;
   letter-spacing: 1.6px;
   color: #999;
+}
+
+.task-context {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 50px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.045), rgba(0, 0, 0, 0.025));
+  border: 1px solid rgba(0, 0, 0, 0.055);
+}
+
+.task-context.empty {
+  opacity: 0.62;
+}
+
+.task-context-label {
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--accent-deep, #c0392b);
+}
+
+.task-context-text {
+  overflow: hidden;
+  color: #24201d;
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .adjust-toggle {

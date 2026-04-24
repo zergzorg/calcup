@@ -1,246 +1,356 @@
 <template>
-  <div 
-    class="timer-widget date-timer-widget" 
+  <div
+    class="date-countdown"
+    :class="{ expired: isExpired }"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)` }"
     @mousedown="onMouseDown"
     @touchstart="onTouchStart"
   >
-    <div class="device-body">
-      <!-- Screw details -->
-      <div class="screw top-left"></div>
-      <div class="screw top-right"></div>
-      <div class="screw bottom-left"></div>
-      <div class="screw bottom-right"></div>
-
-      <!-- Main Display -->
-      <div class="screen-frame">
-        <div class="clock-display">
-          <!-- Days -->
-          <div class="digit-group" title="Days">
-            <FlipCard :value="formattedTime.days[0]" />
-            <FlipCard :value="formattedTime.days[1]" />
-            <FlipCard :value="formattedTime.days[2]" />
-          </div>
-          <div class="separator">:</div>
-          <!-- Hours -->
-          <div class="digit-group" title="Hours">
-            <FlipCard :value="formattedTime.hours[0]" />
-            <FlipCard :value="formattedTime.hours[1]" />
-          </div>
-          <div class="separator">:</div>
-          <!-- Minutes -->
-          <div class="digit-group" title="Minutes">
-            <FlipCard :value="formattedTime.minutes[0]" />
-            <FlipCard :value="formattedTime.minutes[1]" />
-          </div>
-          <div class="separator">:</div>
-          <!-- Seconds -->
-          <div class="digit-group" title="Seconds">
-            <FlipCard :value="formattedTime.seconds[0]" />
-            <FlipCard :value="formattedTime.seconds[1]" />
-          </div>
+    <div class="countdown-shell">
+      <header class="countdown-header">
+        <div>
+          <p class="eyebrow">{{ t('dateTimer.title') }}</p>
+          <h2>{{ statusLabel }}</h2>
         </div>
-      </div>
 
-      <!-- Target Info & Controls -->
-      <div class="info-area">
-        <div class="target-label">
-          {{ t('dateTimer.target') }}: 
-          <span class="target-date-text">{{ targetDate.toLocaleDateString() }} {{ targetDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }}</span>
-        </div>
-        
         <button class="change-btn" @click="openPicker" @mousedown.stop>
           {{ t('dateTimer.change') }}
         </button>
-        <input 
+      </header>
+
+      <div class="target-card" @mousedown.stop>
+        <span>{{ t('dateTimer.target') }}</span>
+        <strong>{{ formattedTarget }}</strong>
+        <input
           ref="dateInput"
-          type="datetime-local" 
-          class="hidden-input"
+          type="datetime-local"
+          class="date-input"
+          :value="inputValue"
+          :min="minInputValue"
           @change="onDateChange"
           @input="onDateChange"
           @click.stop
         />
+      </div>
+
+      <div class="time-grid" aria-live="polite">
+        <div class="time-cell days">
+          <strong>{{ timeRemaining.days }}</strong>
+          <span>{{ t('dateTimer.units.days') }}</span>
+        </div>
+        <div class="time-cell">
+          <strong>{{ twoDigits(timeRemaining.hours) }}</strong>
+          <span>{{ t('dateTimer.units.hours') }}</span>
+        </div>
+        <div class="time-cell">
+          <strong>{{ twoDigits(timeRemaining.minutes) }}</strong>
+          <span>{{ t('dateTimer.units.minutes') }}</span>
+        </div>
+        <div class="time-cell">
+          <strong>{{ twoDigits(timeRemaining.seconds) }}</strong>
+          <span>{{ t('dateTimer.units.seconds') }}</span>
+        </div>
+      </div>
+
+      <div class="progress-block" @mousedown.stop>
+        <div class="progress-track">
+          <span :style="{ width: `${progress}%` }"></span>
+        </div>
+        <span>{{ helperText }}</span>
+      </div>
+
+      <div class="preset-row" @mousedown.stop>
+        <button v-for="preset in presets" :key="preset.key" @click="applyPreset(preset.days)">
+          {{ t(preset.label) }}
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useDateCalculator } from '../composables/useDateCalculator';
-
 import { useDraggable } from '../composables/useDraggable';
-import FlipCard from './FlipCard.vue';
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
-const { targetDate, setTargetDate, formattedTime } = useDateCalculator();
+const { t, locale } = useI18n();
+const {
+  targetDate,
+  setTargetDate,
+  setTargetFromLocalValue,
+  timeRemaining,
+  isExpired,
+  inputValue,
+  progress,
+} = useDateCalculator();
 const { position, onMouseDown, onTouchStart } = useDraggable('date_timer_pos', 450, 450);
 
 const dateInput = ref<HTMLInputElement | null>(null);
+const presets = [
+  { key: 'week', label: 'dateTimer.presets.week', days: 7 },
+  { key: 'month', label: 'dateTimer.presets.month', days: 30 },
+  { key: 'quarter', label: 'dateTimer.presets.quarter', days: 90 },
+];
+
+const toDatetimeLocal = (date: Date): string => {
+  const pad = (value: number) => value.toString().padStart(2, '0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+};
+
+const minInputValue = computed(() => toDatetimeLocal(new Date()));
+const formattedTarget = computed(() => {
+  return new Intl.DateTimeFormat(locale.value, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(targetDate.value);
+});
+const statusLabel = computed(() => isExpired.value ? t('dateTimer.expired') : t('dateTimer.remaining'));
+const helperText = computed(() => {
+  if (isExpired.value) return t('dateTimer.expired_hint');
+  if (timeRemaining.value.days === 0) return t('dateTimer.today_hint');
+  return t('dateTimer.helper');
+});
+
+const twoDigits = (value: number) => value.toString().padStart(2, '0');
 
 const openPicker = () => {
-  try {
-    dateInput.value?.showPicker();
-  } catch (e) {
-    // Fallback
-    dateInput.value?.click(); 
+  const input = dateInput.value;
+  if (!input) return;
+  input.focus();
+
+  if (typeof input.showPicker === 'function') {
+    input.showPicker();
   }
 };
 
-const onDateChange = (e: Event) => {
-  const input = e.target as HTMLInputElement;
-  if (input.value) {
-    const newDate = new Date(input.value);
-    setTargetDate(newDate);
-  }
+const onDateChange = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  setTargetFromLocalValue(input.value);
+};
+
+const applyPreset = (days: number) => {
+  const next = new Date();
+  next.setDate(next.getDate() + days);
+  next.setSeconds(0, 0);
+  setTargetDate(next);
 };
 </script>
 
 <style scoped>
-.timer-widget {
-  width: 420px; /* Reduced from 580px */
-  background-color: #e0e0e0;
-  border-radius: 20px;
-  padding: 20px;
+.date-countdown {
+  width: 430px;
   position: absolute;
   z-index: 100;
   cursor: grab;
-  box-shadow: 
-    10px 10px 30px rgba(0,0,0,0.4),
-    inset 2px 2px 5px rgba(255,255,255,0.7),
-    inset -2px -2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.05s ease-out, box-shadow 0.2s;
   user-select: none;
+  transition: transform 0.05s ease-out;
 }
 
-.timer-widget:active {
+.date-countdown:active {
   cursor: grabbing;
-  box-shadow: 
-    15px 15px 40px rgba(0,0,0,0.5),
-    inset 2px 2px 5px rgba(255,255,255,0.7),
-    inset -2px -2px 5px rgba(0,0,0,0.2);
+  z-index: 150;
 }
 
-.device-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  position: relative;
-}
-
-.screw {
-  width: 10px;
-  height: 10px;
-  background: #bdc3c7;
-  border-radius: 50%;
-  position: absolute;
-  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
-}
-.screw::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%; height: 2px;
-  background: #95a5a6;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-.top-left { top: -10px; left: -10px; }
-.top-right { top: -10px; right: -10px; }
-.bottom-left { bottom: -10px; left: -10px; }
-.bottom-right { bottom: -10px; right: -10px; }
-
-.screen-frame {
-  background: #2c2c2c;
-  padding: 0; /* Reduced padding */
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-  border: 1px solid #444;
-  width: 100%;
-  height: 120px; /* Fixed height for consistency */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.clock-display {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background-color: #222;
-  padding: 10px;
-  border-radius: 12px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
-  transform: scale(0.55); /* Smaller scale to fit */
-  transform-origin: center;
-}
-
-.digit-group {
-  display: flex;
-  gap: 4px;
-}
-
-.separator {
-  font-size: 40px;
-  font-weight: bold;
-  color: #ccc;
-  margin-top: -10px;
-}
-
-.info-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  background: #d0d0d0;
-  padding: 10px;
+.countdown-shell {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
-  border: 1px solid #ccc;
-  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
+  background: linear-gradient(145deg, rgba(31, 35, 41, 0.98), rgba(15, 18, 23, 0.96));
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.34),
+    0 8px 18px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.target-label {
-  font-size: 14px;
-  color: #555;
-  font-weight: 500;
+.countdown-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-.target-date-text {
-  color: #333;
-  font-weight: bold;
+.eyebrow {
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.48);
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: #f7f0e6;
+  font-family: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  font-size: 25px;
+  font-weight: 760;
+  line-height: 1.05;
+}
+
+.change-btn,
+.preset-row button {
+  font-family: 'SF Pro Text', 'Inter', system-ui, sans-serif;
 }
 
 .change-btn {
-  background: #333;
-  color: #f1c40f;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7d46b;
   font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  transition: background 0.2s;
-  position: relative;
-  overflow: hidden;
+  font-weight: 800;
 }
 
 .change-btn:hover {
-  background: #444;
+  background: rgba(255, 255, 255, 0.13);
 }
 
-.hidden-input {
+.target-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.target-card span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.target-card strong {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15px;
+  font-weight: 720;
+}
+
+.date-input {
   position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 0;
+  inset: 0;
   opacity: 0;
-  padding: 0;
-  margin: 0;
-  border: none;
-  visibility: hidden;
+  cursor: pointer;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: 1.45fr repeat(3, 1fr);
+  gap: 8px;
+}
+
+.time-cell {
+  min-width: 0;
+  padding: 14px 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.045)),
+    repeating-linear-gradient(0deg, transparent 0 17px, rgba(255, 255, 255, 0.025) 18px);
+}
+
+.time-cell strong {
+  display: block;
+  color: #f8f5ee;
+  font-family: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  font-size: 34px;
+  font-weight: 760;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.time-cell.days strong {
+  font-size: 38px;
+}
+
+.time-cell span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.progress-block {
+  margin-top: 14px;
+}
+
+.progress-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f7d46b, #f28f61);
+  transition: width 0.4s ease;
+}
+
+.progress-block > span {
+  display: block;
+  margin-top: 7px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.preset-row button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.preset-row button:hover {
+  background: rgba(255, 255, 255, 0.11);
+  color: #fff;
+}
+
+.date-countdown.expired .progress-track span {
+  width: 100% !important;
+  background: linear-gradient(90deg, #7ddc91, #5fb6d9);
+}
+
+@media (max-width: 720px) {
+  .date-countdown {
+    width: 390px;
+  }
+
+  .time-cell strong {
+    font-size: 28px;
+  }
+
+  .time-cell.days strong {
+    font-size: 32px;
+  }
 }
 </style>

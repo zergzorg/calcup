@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.8.0] - 2026-04-24
+
+### Added / Добавлено
+
+- **Планировщик + Помодоро**: Добавлена связка задач с таймером: запуск задачи стартует WORK-таймер, а таймер показывает текущую задачу и задачу, после которой идёт пауза.
+  - _Task Planner + Pomodoro_: Added task-to-timer integration: starting a task starts the WORK timer, and the timer shows the current task plus the task associated with the break.
+- **Трекинг задач**: Добавлен учёт фокус-времени, пауз, количества завершённых фокус-сессий за день и последних рабочих/перерывных отрезков.
+  - _Task Tracking_: Added focus time, break time, daily completed focus session count, and recent work/break segment tracking.
+- **Обратный отсчёт**: Добавлены быстрые пресеты цели `+7`, `+30`, `+90 дней`, прогресс-линия и понятные статусы цели.
+  - _Date Countdown_: Added `+7`, `+30`, `+90 days` presets, progress line, and clearer target statuses.
+
+### Changed / Изменено
+
+- **Настройки**: Обновлён дизайн панели настроек: стеклянная панель, компактные цветовые строки, кастомные чекбоксы, улучшенная кнопка-шестерёнка.
+  - _Settings_: Refreshed settings panel design with a glass surface, compact labeled color rows, custom checkboxes, and improved gear button sizing.
+- **Палитра и паттерны**: Заменены цвета фона на более современные приглушённые тона и обновлены паттерны рабочего стола.
+  - _Palette and Patterns_: Replaced background colors with modern muted tones and refreshed desktop patterns.
+- **Планировщик**: Переработан дизайн в более рабочую панель с прогрессом задач, статистикой дня и компактной историей отрезков.
+  - _Task Planner_: Redesigned as a more functional work panel with task progress, daily stats, and compact segment history.
+- **Обратный отсчёт**: Старое сжатое flip-табло заменено на читаемую сетку `дни / часы / минуты / секунды` с карточкой цели.
+  - _Date Countdown_: Replaced the compressed flip display with a readable `days / hours / minutes / seconds` grid and target card.
+
+### Fixed / Исправлено
+
+- **Трекинг времени**: Фокус и паузы теперь пишутся каждую секунду активного таймера, а не только при переключении режима.
+  - _Time Tracking_: Focus and break time are now recorded every second while the timer is active, not only on mode switches.
+- **Обратный отсчёт**: Исправлена работа `datetime-local`: поле получает корректное локальное значение, не ломается на устаревших сохранённых датах и стабильнее открывает выбор даты.
+  - _Date Countdown_: Fixed `datetime-local` behavior: it now receives a valid local value, avoids stale expired saved dates, and opens the date picker more reliably.
+- **Git hygiene**: `.DS_Store` и другой локальный хлам вынесены в `.gitignore`; уже попавшие `.DS_Store` удалены из индекса.
+  - _Git Hygiene_: Added `.DS_Store` and other local junk to `.gitignore`; previously tracked `.DS_Store` files were removed from the index.
+
 ## [0.7.0] - 2025-12-06
 
 ### Changed / Изменено

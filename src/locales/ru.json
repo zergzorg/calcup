@@ -15,7 +15,10 @@
     "short_break": "Короткий перерыв",
     "long_break": "Длинный перерыв",
     "adjust": "Настроить длительность",
-    "session_of": "Сессия {current} из {total}"
+    "session_of": "Сессия {current} из {total}",
+    "current_task": "Текущая задача",
+    "break_after": "Пауза после",
+    "no_task": "Задача не выбрана"
   },
   "tasks": {
     "title": "Планировщик",
@@ -23,7 +26,22 @@
     "add": "Добавить",
     "start": "Начать работу",
     "stop": "Остановить",
-    "no_tasks": "Нет задач"
+    "delete": "Удалить задачу",
+    "no_tasks": "Нет задач",
+    "no_active": "Выберите задачу для следующего фокус-отрезка",
+    "focus_time": "Фокус",
+    "break_time": "Паузы",
+    "sessions_short": "сесс.",
+    "timeline": "Последние отрезки",
+    "untitled": "Без названия",
+    "segment_focus": "Фокус",
+    "segment_break": "Пауза",
+    "segment_long_break": "Длинная",
+    "stats": {
+      "focus": "Фокус",
+      "breaks": "Паузы",
+      "sessions": "Сессии"
+    }
   },
   "sounds": {
     "title": "Звуковая Машина",
@@ -63,6 +81,22 @@
   "dateTimer": {
     "title": "Обратный Отсчет",
     "target": "ЦЕЛЬ",
-    "change": "ИЗМЕНИТЬ"
+    "change": "Изменить",
+    "remaining": "До цели",
+    "expired": "Время вышло",
+    "helper": "Отсчёт обновляется каждую секунду",
+    "today_hint": "Финиш сегодня, секунды уже имеют значение",
+    "expired_hint": "Выберите новую дату, чтобы запустить отсчёт заново",
+    "units": {
+      "days": "Дни",
+      "hours": "Часы",
+      "minutes": "Мин",
+      "seconds": "Сек"
+    },
+    "presets": {
+      "week": "+7 дней",
+      "month": "+30 дней",
+      "quarter": "+90 дней"
+    }
   }
 }

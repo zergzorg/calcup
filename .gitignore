@@ -1,9 +1,29 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Build output
 dist/
-.DS_Store
+coverage/
+.vite/
+
+# Local environment
 .env
 .env.local
 .env.*.local
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# OS junk
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Editor and IDE state
+.idea/
+.vscode/
+*.swp
+*.swo

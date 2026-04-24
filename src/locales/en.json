@@ -15,7 +15,10 @@
     "short_break": "Short Break",
     "long_break": "Long Break",
     "adjust": "Adjust durations",
-    "session_of": "Session {current} of {total}"
+    "session_of": "Session {current} of {total}",
+    "current_task": "Current task",
+    "break_after": "Break after",
+    "no_task": "No task selected"
   },
   "tasks": {
     "title": "Task Planner",
@@ -23,7 +26,22 @@
     "add": "Add",
     "start": "Start working",
     "stop": "Stop",
-    "no_tasks": "No tasks yet"
+    "delete": "Delete task",
+    "no_tasks": "No tasks yet",
+    "no_active": "Choose a task for the next focus block",
+    "focus_time": "Focus",
+    "break_time": "Breaks",
+    "sessions_short": "sessions",
+    "timeline": "Recent blocks",
+    "untitled": "Untitled",
+    "segment_focus": "Focus",
+    "segment_break": "Break",
+    "segment_long_break": "Long",
+    "stats": {
+      "focus": "Focus",
+      "breaks": "Breaks",
+      "sessions": "Sessions"
+    }
   },
   "sounds": {
     "title": "Sound Machine",
@@ -63,6 +81,22 @@
   "dateTimer": {
     "title": "Date Countdown",
     "target": "TARGET",
-    "change": "CHANGE DATE"
+    "change": "Change",
+    "remaining": "Time left",
+    "expired": "Time is up",
+    "helper": "Countdown updates every second",
+    "today_hint": "Target is today, seconds matter now",
+    "expired_hint": "Choose a new date to restart the countdown",
+    "units": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Min",
+      "seconds": "Sec"
+    },
+    "presets": {
+      "week": "+7 days",
+      "month": "+30 days",
+      "quarter": "+90 days"
+    }
   }
 }

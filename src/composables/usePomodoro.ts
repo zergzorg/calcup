@@ -108,15 +108,21 @@ export function usePomodoro() {
     }
   };
 
-  const { onWorkSessionComplete: notifyTaskComplete } = useTaskPomodoro();
+  const { addLiveTimerSecond, recordTimerSegment, timerStartSignal } = useTaskPomodoro();
 
   const switchMode = () => {
+    const previousMode = currentMode.value;
+    const plannedSeconds = totalSeconds.value;
+    const actualSeconds = Math.max(0, plannedSeconds - currentSeconds.value);
+    const completed = actualSeconds >= Math.max(plannedSeconds - 1, plannedSeconds * 0.95);
+
+    recordTimerSegment(previousMode, plannedSeconds, actualSeconds, completed);
+
     if (currentMode.value === 'WORK') {
-      completedSessions.value++;
+      if (completed) completedSessions.value++;
       const goLong = completedSessions.value % sessionsPerCycle.value === 0;
       currentMode.value = goLong ? 'LONG_REST' : 'REST';
       playBreakStartSound();
-      notifyTaskComplete();
     } else {
       currentMode.value = 'WORK';
       playBreakEndSound();
@@ -127,6 +133,7 @@ export function usePomodoro() {
 
   const tick = () => {
     if (currentSeconds.value > 0) {
+      addLiveTimerSecond(currentMode.value);
       currentSeconds.value--;
     } else {
       switchMode();
@@ -156,6 +163,17 @@ export function usePomodoro() {
     if (isActive.value) pauseTimer();
     else startTimer();
   };
+
+  watch(timerStartSignal, () => {
+    if (isActive.value) return;
+
+    if (currentMode.value !== 'WORK') {
+      currentMode.value = 'WORK';
+      resetCurrentSession();
+    }
+
+    startTimer();
+  });
 
   const resetTimer = () => {
     stopInterval();
