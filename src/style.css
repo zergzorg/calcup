@@ -29,6 +29,11 @@ body[data-layout="mobile"] {
   overflow-y: auto;
 }
 
+body[data-layout="site"] {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 #app {
   /* Remove all constraints */
   width: 100%;

@@ -55,3 +55,5 @@ export const routes = [
   ...calculatorRoutes,
   notFoundRoute,
 ]
+
+export const scrollBehavior = () => ({ top: 0 })

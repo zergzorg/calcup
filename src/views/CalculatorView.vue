@@ -1,11 +1,10 @@
 <template>
-  <component :is="asyncComponent" v-if="asyncComponent" :key="calc?.id" />
-  <div v-else-if="calc?.status === 'soon'" class="soon-stub">
-    <RouterLink :to="'/' + calc.categorySlug">← {{ calc.categorySlug }}</RouterLink>
-    <h1>{{ calc.title.ru }}</h1>
-    <p>Этот калькулятор находится в разработке. Скоро здесь появится инструмент.</p>
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <AppBreadcrumb class="mb-6" />
+    <component :is="asyncComponent" v-if="asyncComponent" :key="calc?.id" />
+    <SoonPlaceholder v-else-if="calc?.status === 'soon'" :calc="calc" />
+    <NotFoundView v-else />
   </div>
-  <NotFoundView v-else />
 </template>
 
 <script setup lang="ts">
@@ -14,13 +13,15 @@ import type { Component } from 'vue'
 import { useRoute } from 'vue-router'
 import { CALCULATORS } from '../data/calculators'
 import NotFoundView from './NotFoundView.vue'
+import AppBreadcrumb from '../components/layout/AppBreadcrumb.vue'
+import SoonPlaceholder from '../components/ui/SoonPlaceholder.vue'
 
 const route = useRoute()
 
 const calc = computed(() =>
   CALCULATORS.find(
-    c => c.categorySlug === route.meta.categorySlug && c.slug === route.meta.toolSlug
-  )
+    c => c.categorySlug === route.meta.categorySlug && c.slug === route.meta.toolSlug,
+  ),
 )
 
 const asyncComponent = shallowRef<Component | null>(null)
@@ -36,13 +37,6 @@ watch(
         })
       : null
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
-
-<style scoped>
-.soon-stub {
-  padding: 2rem;
-  font-family: system-ui, sans-serif;
-}
-</style>

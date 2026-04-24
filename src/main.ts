@@ -3,12 +3,12 @@ import './style.css'
 import App from './App.vue'
 import i18n from './i18n'
 import PrimeVue from 'primevue/config'
-import { routes } from './router'
+import { routes, scrollBehavior } from './router'
 import { validateRegistry } from './data/registry-guards'
 
 export const createApp = ViteSSG(
   App,
-  { routes },
+  { routes, scrollBehavior },
   ({ app, isClient }) => {
     app.use(i18n)
     app.use(PrimeVue, { unstyled: true })
