@@ -21,6 +21,8 @@
   - _Settings_: Refreshed settings panel design with a glass surface, compact labeled color rows, custom checkboxes, and improved gear button sizing.
 - **Слои виджетов**: Активный или перетаскиваемый виджет теперь поднимается поверх остальных и остаётся сверху до выбора другого виджета.
   - _Widget Layers_: The active or dragged widget now moves above the others and stays on top until another widget is selected.
+- **Фон по умолчанию**: Новые рабочие столы теперь открываются с цветом `Чертёжный` и паттерном `Инженерная сетка`.
+  - _Default Background_: New desks now start with the `Blueprint` color and `Engineering Grid` pattern.
 - **Палитра и паттерны**: Заменены цвета фона на более современные приглушённые тона и обновлены паттерны рабочего стола.
   - _Palette and Patterns_: Replaced background colors with modern muted tones and refreshed desktop patterns.
 - **Планировщик**: Переработан дизайн в более рабочую панель с прогрессом задач, статистикой дня и компактной историей отрезков.

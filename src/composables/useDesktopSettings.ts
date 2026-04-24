@@ -65,8 +65,8 @@ export const PATTERNS = [
 ] as const;
 
 const defaultSettings: DesktopSettings = {
-  backgroundColor: '#35231e',
-  pattern: 'wood',
+  backgroundColor: '#213f59',
+  pattern: 'grid',
 };
 
 const loadSettings = (): DesktopSettings => {
