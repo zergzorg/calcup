@@ -2,26 +2,56 @@ import { watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 type LocaleSeo = {
+  title: string;
   description: string;
   keywords: string;
   ogLocale: string;
   ogLocaleAlternate: string;
+  applicationCategory: string;
+  featureList: string[];
 };
 
 const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://calcup.ru').replace(/\/+$/, '');
 
 const SEO_BY_LOCALE: Record<'ru' | 'en', LocaleSeo> = {
   ru: {
+    title: 'Calcup — Помодоро-таймер, задачи и звуки для фокуса',
     description: 'Calcup - ретро рабочий стол для продуктивности: Pomodoro-таймер, планировщик задач, фоновые звуки и обратный отсчет.',
     keywords: 'calcup, pomodoro таймер, помодоро, таймер продуктивности, планировщик задач, фокус, фоновые звуки, обратный отсчет',
     ogLocale: 'ru_RU',
     ogLocaleAlternate: 'en_US',
+    applicationCategory: 'ProductivityApplication',
+    featureList: ['Pomodoro timer', 'Task planner', 'Ambient focus sounds', 'Date countdown'],
   },
   en: {
+    title: 'Calcup — Free Retro Pomodoro Timer, Tasks and Focus Sounds',
     description: 'Calcup is a retro productivity desk with a Pomodoro timer, task planner, ambient focus sounds, and countdown.',
     keywords: 'calcup, pomodoro timer, productivity timer, task planner, focus tool, ambient sounds, countdown',
     ogLocale: 'en_US',
     ogLocaleAlternate: 'ru_RU',
+    applicationCategory: 'ProductivityApplication',
+    featureList: ['Pomodoro timer', 'Task planner', 'Ambient focus sounds', 'Date countdown'],
+  },
+};
+
+const CREDIT_SEO_BY_LOCALE: Record<'ru' | 'en', LocaleSeo> = {
+  ru: {
+    title: 'Кредитный калькулятор онлайн с графиком платежей — Calcup',
+    description: 'Кредитный калькулятор Calcup считает ежемесячный платеж, переплату, график платежей и досрочное погашение кредита. Расчет можно распечатать или сохранить в PDF.',
+    keywords: 'кредитный калькулятор, кредитный калькулятор онлайн, расчет кредита, график платежей, досрочное погашение кредита, аннуитетный платеж',
+    ogLocale: 'ru_RU',
+    ogLocaleAlternate: 'en_US',
+    applicationCategory: 'FinanceApplication',
+    featureList: ['Loan payment calculation', 'Payment schedule', 'Early repayment scenarios', 'Printable A4 report'],
+  },
+  en: {
+    title: 'Loan Calculator with Payment Schedule — Calcup',
+    description: 'Calcup loan calculator estimates monthly payments, total interest, payment schedule, and early repayment scenarios with a printable report.',
+    keywords: 'loan calculator, payment schedule, early repayment calculator, annuity payment, credit calculator',
+    ogLocale: 'en_US',
+    ogLocaleAlternate: 'ru_RU',
+    applicationCategory: 'FinanceApplication',
+    featureList: ['Loan payment calculation', 'Payment schedule', 'Early repayment scenarios', 'Printable A4 report'],
   },
 };
 
@@ -78,9 +108,10 @@ export function useSeo() {
 
   watchEffect(() => {
     const localeCode = String(locale.value).startsWith('ru') ? 'ru' : 'en';
-    const seo = SEO_BY_LOCALE[localeCode];
-    const title = t('title');
-    const canonicalUrl = `${SITE_URL}/`;
+    const isCreditCalculatorPage = window.location.pathname.replace(/\/+$/, '') === '/credit-calc';
+    const seo = isCreditCalculatorPage ? CREDIT_SEO_BY_LOCALE[localeCode] : SEO_BY_LOCALE[localeCode];
+    const title = isCreditCalculatorPage ? seo.title : t('title');
+    const canonicalUrl = isCreditCalculatorPage ? `${SITE_URL}/credit-calc/` : `${SITE_URL}/`;
 
     document.title = title;
     document.documentElement.lang = localeCode;
@@ -120,7 +151,7 @@ export function useSeo() {
       name: 'Calcup',
       alternateName: 'Calcup Retro Desk',
       url: canonicalUrl,
-      applicationCategory: 'ProductivityApplication',
+      applicationCategory: seo.applicationCategory,
       operatingSystem: 'Web',
       inLanguage: ['ru', 'en'],
       description: seo.description,
@@ -130,12 +161,7 @@ export function useSeo() {
         price: '0',
         priceCurrency: 'USD',
       },
-      featureList: [
-        'Pomodoro timer',
-        'Task planner',
-        'Ambient focus sounds',
-        'Date countdown',
-      ],
+      featureList: seo.featureList,
     });
   });
 }

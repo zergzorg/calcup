@@ -122,5 +122,73 @@
     "down": "Down",
     "left": "Left",
     "right": "Right"
+  },
+  "credit": {
+    "navLink": "Loan calculator",
+    "backHome": "← Back to desk",
+    "eyebrow": "Financial estimate",
+    "title": "Loan Calculator",
+    "intro": "Estimate an annuity payment, total interest, early repayments, and a full payment schedule. Results are approximate and intended for preliminary comparison.",
+    "form": {
+      "eyebrow": "Terms",
+      "title": "Loan parameters",
+      "amount": "Loan amount",
+      "annualRate": "Annual rate, %",
+      "termMonths": "Term, months",
+      "issueDate": "Issue date",
+      "firstPaymentDate": "First payment",
+      "paymentType": "Payment type",
+      "annuity": "Annuity"
+    },
+    "results": {
+      "eyebrow": "Summary",
+      "title": "Calculation result",
+      "fixErrors": "Fix loan parameter errors to see a valid calculation.",
+      "monthlyPayment": "Monthly payment",
+      "overpayment": "Overpayment",
+      "totalPayment": "Total paid",
+      "payoffDate": "Payoff date",
+      "interestSavings": "Interest savings",
+      "paymentCount": "Payments"
+    },
+    "early": {
+      "eyebrow": "Scenarios",
+      "title": "Early repayments",
+      "date": "Date",
+      "amount": "Amount",
+      "strategy": "Strategy",
+      "frequency": "Frequency",
+      "reduceTerm": "Reduce term",
+      "reducePayment": "Reduce payment",
+      "reduceTermShort": "Term",
+      "reducePaymentShort": "Payment",
+      "once": "One-time",
+      "monthly": "Monthly",
+      "add": "Add",
+      "remove": "Remove early repayment",
+      "empty": "No early repayments added."
+    },
+    "schedule": {
+      "eyebrow": "Details",
+      "title": "Payment schedule",
+      "expand": "Show all",
+      "collapse": "Collapse",
+      "number": "#",
+      "date": "Date",
+      "payment": "Payment",
+      "interest": "Interest",
+      "principal": "Principal",
+      "early": "Early",
+      "balance": "Balance"
+    },
+    "print": {
+      "print": "Print / save PDF",
+      "document": "Printable report",
+      "disclaimer": "This calculation is informational. Confirm actual loan terms, fees, and early repayment rules with your bank or loan agreement."
+    },
+    "note": {
+      "title": "PDF without extra dependencies",
+      "body": "The print button opens the browser system dialog. You can choose a printer or save the report as a PDF there."
+    }
   }
 }

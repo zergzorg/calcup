@@ -7,6 +7,10 @@ export default defineConfig({
   build: {
     sourcemap: false,
     rollupOptions: {
+      input: {
+        main: 'index.html',
+        creditCalc: 'credit-calc/index.html',
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {

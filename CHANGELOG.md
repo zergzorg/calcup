@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.10.0] - 2026-04-24
+
+### Added / Добавлено
+
+- **Кредитный калькулятор**: Добавлена отдельная страница `/credit-calc/` с расчетом аннуитетного кредита, графиком платежей, досрочными погашениями и печатной A4-формой.
+  - _Credit Calculator_: Added a dedicated `/credit-calc/` page with annuity loan calculation, payment schedule, early repayments, and a printable A4 report.
+- **Досрочные платежи**: Добавлены разовые и ежемесячные досрочные погашения; дата следующего платежа автоматически сдвигается на месяц после добавления.
+  - _Early Repayments_: Added one-time and monthly early repayments; the next repayment date advances by one month automatically after adding an item.
+- **Навигация**: На главном рабочем столе добавлена видимая ссылка на кредитный калькулятор.
+  - _Navigation_: Added a visible link to the loan calculator from the main desktop.
+- **SEO**: Добавлен отдельный HTML-вход, canonical, Open Graph, Twitter meta, JSON-LD и sitemap-запись для `/credit-calc/`.
+  - _SEO_: Added a dedicated HTML entry, canonical, Open Graph, Twitter meta, JSON-LD, and sitemap entry for `/credit-calc/`.
+
+### Fixed / Исправлено
+
+- **Печать**: Исправлена печатная форма кредитного калькулятора: в печать больше не попадают экранные формы, кнопки и поля ввода.
+  - _Print_: Fixed the loan calculator print layout so screen forms, buttons, and inputs no longer appear in the printed report.
+- **Регулярные досрочные платежи**: Ежемесячные досрочные платежи теперь привязаны к датам платежного графика и сразу попадают в расчет с ближайшего платежа.
+  - _Recurring Early Repayments_: Monthly early repayments now align to scheduled payment dates and enter the calculation from the nearest payment.
+
 ## [0.9.0] - 2026-04-24
 
 ### Added / Добавлено
