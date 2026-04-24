@@ -1,5 +1,6 @@
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useScale } from './useScale';
+import { useMobileLayout } from './useMobileLayout';
 
 interface Position {
   x: number;
@@ -19,14 +20,16 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   const isDragging = ref(false);
   const zIndex = ref(initialLayer--);
   const { scale } = useScale();
+  const { isMobileLayout } = useMobileLayout();
   
   let startX = 0;
   let startY = 0;
   let initialMouseX = 0;
   let initialMouseY = 0;
 
-  // Load from storage
   const loadPosition = () => {
+    if (isMobileLayout.value) return;
+
     try {
       const stored = localStorage.getItem(`draggable_${storageKey}`);
       if (stored) {
@@ -38,6 +41,8 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   };
 
   const savePosition = () => {
+    if (isMobileLayout.value) return;
+
     try {
       localStorage.setItem(`draggable_${storageKey}`, JSON.stringify(position.value));
     } catch (e) {
@@ -46,10 +51,14 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   };
 
   const activateWidget = () => {
+    if (isMobileLayout.value) return;
+
     zIndex.value = ++topLayer;
   };
 
   const onSetPosition = (event: Event) => {
+    if (isMobileLayout.value) return;
+
     const detail = (event as CustomEvent<WidgetPositionEventDetail>).detail;
     if (!detail || detail.storageKey !== storageKey) return;
 
@@ -58,6 +67,8 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   };
 
   const onMouseDown = (e: MouseEvent) => {
+    if (isMobileLayout.value) return;
+
     activateWidget();
 
     // Only drag with left mouse button
@@ -80,6 +91,11 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     
   };
 
+  const removeMouseListeners = () => {
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+  };
+
   const onMouseMove = (e: MouseEvent) => {
     if (!isDragging.value) return;
     
@@ -96,12 +112,17 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   const onMouseUp = () => {
     isDragging.value = false;
     savePosition();
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('mouseup', onMouseUp);
+    removeMouseListeners();
   };
 
-  // Touch Support
+  const removeTouchListeners = () => {
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchEnd);
+  };
+
   const onTouchStart = (e: TouchEvent) => {
+    if (isMobileLayout.value) return;
+
     activateWidget();
 
     // Check if touching interactive elements
@@ -138,8 +159,7 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
   const onTouchEnd = () => {
     isDragging.value = false;
     savePosition();
-    window.removeEventListener('touchmove', onTouchMove);
-    window.removeEventListener('touchend', onTouchEnd);
+    removeTouchListeners();
   };
 
   onMounted(() => {
@@ -147,8 +167,21 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
     window.addEventListener('calcup:set-widget-position', onSetPosition);
   });
 
+  watch(isMobileLayout, (isMobile) => {
+    if (isMobile) {
+      isDragging.value = false;
+      removeMouseListeners();
+      removeTouchListeners();
+      return;
+    }
+
+    loadPosition();
+  });
+
   onUnmounted(() => {
     window.removeEventListener('calcup:set-widget-position', onSetPosition);
+    removeMouseListeners();
+    removeTouchListeners();
   });
 
   return {
