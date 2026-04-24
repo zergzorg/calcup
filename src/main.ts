@@ -7,6 +7,14 @@ import i18n from './i18n'
 // Яндекс.Метрика - ID захардкожен для работы на GitHub Pages
 const YANDEX_METRIKA_ID = 105706802;
 
+// Google Analytics (gtag)
+if (import.meta.env.PROD) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); // Replace with real GA4 ID
+}
+
 if (import.meta.env.PROD) {
   (function(m: any, e: any, t: any, r: any, i: any, k?: any, a?: any){
     m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
