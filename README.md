@@ -6,7 +6,7 @@
 
 ## Русский
 
-Calcup — веб-рабочий стол для фокуса и личной продуктивности в ретро-эстетике. На одном экране собраны Pomodoro-таймер, планировщик задач, звуковая машина, обратный отсчёт до даты и классическая змейка.
+Calcup — веб-рабочий стол для фокуса и личной продуктивности в ретро-эстетике. На одном экране собраны Pomodoro-таймер, планировщик задач, звуковая машина, обратный отсчёт до даты и классическая змейка. Отдельная страница `/credit-calc/` содержит кредитный калькулятор с графиком платежей.
 
 ### Возможности
 
@@ -16,7 +16,15 @@ Calcup — веб-рабочий стол для фокуса и личной п
 - **Обратный отсчёт** — виджет до выбранной даты с быстрыми пресетами.
 - **Змейка** — классическая игра Snake с локальным топ-10 рекордов.
 - **Рабочий стол** — перетаскиваемые виджеты, настройка цвета и паттерна, случайная раскладка без пересечений.
+- **Кредитный калькулятор** — расчёт аннуитетного или дифференцированного платежа, переплаты, графика платежей, разовых и ежемесячных досрочных погашений.
+- **Печатная форма** — отдельный A4-отчёт по кредиту с сохранением в PDF через системный диалог печати браузера.
 - **Локализация** — русский и английский интерфейс.
+
+### Страницы
+
+- `/` — основной рабочий стол Calcup.
+- `/credit-calc/` — кредитный калькулятор.
+- `/timer-pomodoro/`, `/pomodoro-timer/`, `/task-planner/`, `/focus-sounds/` — SEO-страницы отдельных инструментов.
 
 ### Быстрый старт
 
@@ -59,7 +67,7 @@ VITE_YANDEX_METRIKA_ID=105706802
 
 ### Данные пользователя
 
-Calcup хранит пользовательские настройки локально в браузере: позиции виджетов, выбранный фон, состояние виджетов, задачи, настройки таймера и рекорды змейки. Кнопка очистки рабочего стола сбрасывает локальное состояние.
+Calcup хранит пользовательские настройки локально в браузере: позиции виджетов, выбранный фон, состояние виджетов, задачи, настройки таймера, рекорды змейки и параметры кредитного калькулятора. Кнопка очистки рабочего стола сбрасывает локальное состояние.
 
 ### Лицензия
 
@@ -69,7 +77,7 @@ MIT
 
 ## English
 
-Calcup is a web desktop for focus and personal productivity with a retro desk feel. It brings together a Pomodoro timer, task planner, sound machine, date countdown, and a classic Snake game on one draggable workspace.
+Calcup is a web desktop for focus and personal productivity with a retro desk feel. It brings together a Pomodoro timer, task planner, sound machine, date countdown, and a classic Snake game on one draggable workspace. A dedicated `/credit-calc/` page provides a loan calculator with a payment schedule.
 
 ### Features
 
@@ -79,7 +87,15 @@ Calcup is a web desktop for focus and personal productivity with a retro desk fe
 - **Date Countdown** — countdown widget for a chosen date with quick presets.
 - **Snake** — classic Snake game with a local top-10 leaderboard.
 - **Desktop Workspace** — draggable widgets, color and pattern customization, and random non-overlapping layouts.
+- **Loan Calculator** — annuity or differentiated payment, total interest, payment schedule, one-time and monthly early repayment scenarios.
+- **Printable Report** — a dedicated A4 loan report that can be saved as PDF through the browser print dialog.
 - **Localization** — Russian and English interface.
+
+### Pages
+
+- `/` — main Calcup desktop.
+- `/credit-calc/` — loan calculator.
+- `/timer-pomodoro/`, `/pomodoro-timer/`, `/task-planner/`, `/focus-sounds/` — SEO pages for individual tools.
 
 ### Quick Start
 
@@ -122,7 +138,7 @@ VITE_YANDEX_METRIKA_ID=105706802
 
 ### User Data
 
-Calcup stores user state locally in the browser: widget positions, selected desktop style, widget visibility, tasks, timer settings, and Snake scores. The reset desk button clears local state.
+Calcup stores user state locally in the browser: widget positions, selected desktop style, widget visibility, tasks, timer settings, Snake scores, and loan calculator parameters. The reset desk button clears local state.
 
 ### License
 

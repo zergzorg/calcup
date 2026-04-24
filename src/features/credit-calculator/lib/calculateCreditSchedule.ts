@@ -77,15 +77,18 @@ function buildSchedule(input: CreditInput) {
   const schedule: PaymentScheduleItem[] = [];
   let balance = roundMoney(input.amount);
   let currentPayment = calculateAnnuityPayment(balance, input.annualRate, input.termMonths);
+  let currentPrincipalPayment = roundMoney(input.amount / input.termMonths);
   let paymentDate = input.firstPaymentDate;
   let repaymentIndex = 0;
 
   for (let month = 1; month <= MAX_SCHEDULE_LENGTH && balance > MIN_BALANCE; month++) {
     const remainingMonths = Math.max(1, input.termMonths - month + 1);
     const interest = roundMoney(balance * monthlyRate);
-    const plannedPrincipal = monthlyRate === 0
-      ? roundMoney(balance / remainingMonths)
-      : roundMoney(Math.max(0, currentPayment - interest));
+    const plannedPrincipal = input.paymentType === 'differentiated'
+      ? currentPrincipalPayment
+      : monthlyRate === 0
+        ? roundMoney(balance / remainingMonths)
+        : roundMoney(Math.max(0, currentPayment - interest));
     const principal = roundMoney(Math.min(balance, plannedPrincipal));
     const payment = roundMoney(principal + interest);
 
@@ -100,7 +103,11 @@ function buildSchedule(input: CreditInput) {
 
       if (repayment.strategy === 'reduce_payment' && balance > MIN_BALANCE) {
         const monthsLeft = Math.max(1, input.termMonths - month);
-        currentPayment = calculateAnnuityPayment(balance, input.annualRate, monthsLeft);
+        if (input.paymentType === 'differentiated') {
+          currentPrincipalPayment = roundMoney(balance / monthsLeft);
+        } else {
+          currentPayment = calculateAnnuityPayment(balance, input.annualRate, monthsLeft);
+        }
       }
 
       repaymentIndex++;

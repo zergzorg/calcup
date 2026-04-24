@@ -13,7 +13,7 @@
       <div><span>{{ t('credit.form.amount') }}</span><strong>{{ money(input.amount) }}</strong></div>
       <div><span>{{ t('credit.form.annualRate') }}</span><strong>{{ input.annualRate }}%</strong></div>
       <div><span>{{ t('credit.form.termMonths') }}</span><strong>{{ input.termMonths }}</strong></div>
-      <div><span>{{ t('credit.results.monthlyPayment') }}</span><strong>{{ money(result.monthlyPayment) }}</strong></div>
+      <div><span>{{ paymentLabel }}</span><strong>{{ money(result.monthlyPayment) }}</strong></div>
       <div><span>{{ t('credit.results.overpayment') }}</span><strong>{{ money(result.overpayment) }}</strong></div>
       <div><span>{{ t('credit.results.payoffDate') }}</span><strong>{{ date(result.payoffDate) }}</strong></div>
     </div>
@@ -64,21 +64,25 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 import type { CreditCalculationResult, CreditInput, EarlyRepaymentFrequency, EarlyRepaymentStrategy } from '../types/credit';
 import { formatDisplayDate } from '../lib/date';
 import { formatMoney } from '../lib/money';
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   input: CreditInput;
   result: CreditCalculationResult;
   logoSrc?: string;
   watermark?: string;
 }>(), {
   logoSrc: '/calcup.svg',
-  watermark: 'CALCUP',
+  watermark: 'calcup.ru',
 });
 
 const { t, locale } = useI18n();
+const paymentLabel = computed(() => props.input.paymentType === 'differentiated'
+  ? t('credit.results.firstPayment')
+  : t('credit.results.monthlyPayment'));
 const money = (value: number) => formatMoney(value, locale.value);
 const date = (value: string) => formatDisplayDate(value, locale.value);
 const strategyLabel = (value: EarlyRepaymentStrategy) => value === 'reduce_term'

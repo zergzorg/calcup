@@ -1,4 +1,4 @@
-export type PaymentType = 'annuity';
+export type PaymentType = 'annuity' | 'differentiated';
 
 export type EarlyRepaymentStrategy = 'reduce_term' | 'reduce_payment';
 

@@ -11,7 +11,7 @@
 
     <div v-else class="credit-result-grid">
       <article class="credit-result-card primary">
-        <span>{{ t('credit.results.monthlyPayment') }}</span>
+        <span>{{ paymentLabel }}</span>
         <strong>{{ money(result.monthlyPayment) }}</strong>
       </article>
       <article class="credit-result-card">
@@ -40,16 +40,21 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import type { CreditCalculationResult } from '../types/credit';
+import { computed } from 'vue';
+import type { CreditCalculationResult, PaymentType } from '../types/credit';
 import { formatDisplayDate } from '../lib/date';
 import { formatMoney } from '../lib/money';
 
-defineProps<{
+const props = defineProps<{
   result: CreditCalculationResult;
   hasIssues: boolean;
+  paymentType: PaymentType;
 }>();
 
 const { t, locale } = useI18n();
+const paymentLabel = computed(() => props.paymentType === 'differentiated'
+  ? t('credit.results.firstPayment')
+  : t('credit.results.monthlyPayment'));
 const money = (value: number) => formatMoney(value, locale.value);
 const date = (value: string) => formatDisplayDate(value, locale.value);
 </script>

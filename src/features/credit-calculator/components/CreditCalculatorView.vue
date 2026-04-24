@@ -18,7 +18,7 @@
 
     <div class="credit-main-column">
       <CreditLoanForm v-model="input" :issues="issues" />
-      <CreditResults :result="result" :has-issues="issues.length > 0" />
+      <CreditResults :result="result" :has-issues="issues.length > 0" :payment-type="input.paymentType" />
       <CreditEarlyRepayments
         :repayments="input.earlyRepayments"
         :first-payment-date="input.firstPaymentDate"

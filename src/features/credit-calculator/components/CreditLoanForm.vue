@@ -5,6 +5,12 @@
       <h2>{{ t('credit.form.title') }}</h2>
     </div>
 
+    <div v-if="showPaymentHelp" class="credit-help-popover" role="dialog">
+      <strong>{{ t('credit.form.paymentTypeHelpTitle') }}</strong>
+      <p>{{ t('credit.form.annuityHelp') }}</p>
+      <p>{{ t('credit.form.differentiatedHelp') }}</p>
+    </div>
+
     <div class="credit-form-grid">
       <label class="credit-field">
         <span>{{ t('credit.form.amount') }}</span>
@@ -37,9 +43,21 @@
       </label>
 
       <label class="credit-field">
-        <span>{{ t('credit.form.paymentType') }}</span>
+        <span class="credit-field-heading">
+          {{ t('credit.form.paymentType') }}
+          <button
+            class="credit-help-button"
+            type="button"
+            :aria-label="t('credit.form.paymentTypeHelpTitle')"
+            :aria-expanded="showPaymentHelp"
+            @click="showPaymentHelp = !showPaymentHelp"
+          >
+            ?
+          </button>
+        </span>
         <select v-model="draft.paymentType" @change="emitUpdate">
           <option value="annuity">{{ t('credit.form.annuity') }}</option>
+          <option value="differentiated">{{ t('credit.form.differentiated') }}</option>
         </select>
       </label>
     </div>
@@ -47,9 +65,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import type { CreditInput, ValidationIssue } from '../types/credit';
+import type { CreditInput, PaymentType, ValidationIssue } from '../types/credit';
 
 const props = defineProps<{
   modelValue: CreditInput;
@@ -62,6 +80,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 const draft = reactive<CreditInput>({ ...props.modelValue, earlyRepayments: props.modelValue.earlyRepayments });
+const showPaymentHelp = ref(false);
 
 watch(() => props.modelValue, (next) => {
   Object.assign(draft, next);
@@ -73,6 +92,7 @@ const emitUpdate = () => {
     amount: Number(draft.amount) || 0,
     annualRate: Number(draft.annualRate) || 0,
     termMonths: Math.trunc(Number(draft.termMonths) || 0),
+    paymentType: draft.paymentType as PaymentType,
     earlyRepayments: props.modelValue.earlyRepayments,
   });
 };

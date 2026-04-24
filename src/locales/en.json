@@ -138,13 +138,18 @@
       "issueDate": "Issue date",
       "firstPaymentDate": "First payment",
       "paymentType": "Payment type",
-      "annuity": "Annuity"
+      "annuity": "Annuity",
+      "differentiated": "Differentiated",
+      "paymentTypeHelpTitle": "How payment types differ",
+      "annuityHelp": "Annuity: the payment is usually the same each month; early payments contain more interest and less principal.",
+      "differentiatedHelp": "Differentiated: principal is repaid in equal parts, so the first payment is higher and later payments gradually decrease."
     },
     "results": {
       "eyebrow": "Summary",
       "title": "Calculation result",
       "fixErrors": "Fix loan parameter errors to see a valid calculation.",
       "monthlyPayment": "Monthly payment",
+      "firstPayment": "First payment",
       "overpayment": "Overpayment",
       "totalPayment": "Total paid",
       "payoffDate": "Payoff date",

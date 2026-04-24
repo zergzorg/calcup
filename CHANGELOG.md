@@ -8,6 +8,8 @@
   - _Credit Calculator_: Added a dedicated `/credit-calc/` page with annuity loan calculation, payment schedule, early repayments, and a printable A4 report.
 - **Досрочные платежи**: Добавлены разовые и ежемесячные досрочные погашения; дата следующего платежа автоматически сдвигается на месяц после добавления.
   - _Early Repayments_: Added one-time and monthly early repayments; the next repayment date advances by one month automatically after adding an item.
+- **Тип платежа**: Добавлен дифференцированный платеж и краткая справка о различиях между аннуитетным и дифференцированным расчетом.
+  - _Payment Type_: Added differentiated payments and a short help pop-up explaining the difference between annuity and differentiated schedules.
 - **Навигация**: На главном рабочем столе добавлена видимая ссылка на кредитный калькулятор.
   - _Navigation_: Added a visible link to the loan calculator from the main desktop.
 - **SEO**: Добавлен отдельный HTML-вход, canonical, Open Graph, Twitter meta, JSON-LD и sitemap-запись для `/credit-calc/`.

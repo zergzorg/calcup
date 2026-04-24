@@ -86,6 +86,7 @@
 }
 
 .credit-panel {
+  position: relative;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: rgba(15, 20, 25, 0.66);
@@ -129,12 +130,61 @@
 }
 
 .credit-field {
+  position: relative;
   display: grid;
   gap: 7px;
   min-width: 0;
   color: rgba(255, 255, 255, 0.72);
   font-size: 13px;
   font-weight: 800;
+}
+
+.credit-field-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.credit-help-button {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  min-height: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 212, 142, 0.42);
+  border-radius: 999px;
+  background: rgba(255, 212, 142, 0.12);
+  color: #ffd48e;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.credit-help-popover {
+  position: absolute;
+  z-index: 400;
+  top: 78px;
+  right: 22px;
+  width: min(420px, calc(100% - 44px));
+  padding: 16px;
+  border: 1px solid rgba(255, 212, 142, 0.28);
+  border-radius: 8px;
+  background: rgba(13, 18, 23, 0.98);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52);
+  color: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.credit-help-popover strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.credit-help-popover p {
+  margin: 8px 0 0;
+  line-height: 1.45;
 }
 
 .credit-field input,
