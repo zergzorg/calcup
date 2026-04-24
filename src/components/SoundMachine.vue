@@ -275,10 +275,11 @@ onUnmounted(() => {
 
 <style scoped>
 .sound-machine {
-  width: 280px;
+  width: min(280px, 100%);
   background-color: #2c3e50;
   border-radius: 10px;
   padding: 15px;
+  box-sizing: border-box;
   box-shadow:
     10px 10px 20px rgba(0,0,0,0.4),
     inset 0 0 20px rgba(0,0,0,0.5);
@@ -734,5 +735,57 @@ onUnmounted(() => {
 .power-btn .icon {
   color: rgba(255,255,255,0.8);
   font-size: 18px;
+}
+
+:global([data-layout="mobile"]) .sound-machine {
+  width: min(320px, 100%);
+}
+
+:global([data-layout="mobile"]) .knobs {
+  align-items: stretch;
+  gap: 14px;
+}
+
+:global([data-layout="mobile"]) .tuning-knob {
+  flex: 1;
+  gap: 8px;
+}
+
+:global([data-layout="mobile"]) .channel-btn {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+:global([data-layout="mobile"]) .viz-toggle {
+  min-width: 44px;
+  min-height: 30px;
+  right: 0;
+}
+
+:global([data-layout="mobile"]) .volume-knob-container {
+  min-width: 58px;
+  height: 170px;
+}
+
+:global([data-layout="mobile"]) .volume-slider {
+  width: 116px;
+  height: 58px;
+}
+
+:global([data-layout="mobile"]) .volume-slider::-webkit-slider-thumb {
+  height: 44px;
+  width: 54px;
+}
+
+:global([data-layout="mobile"]) .volume-slider::-moz-range-thumb {
+  height: 44px;
+  width: 54px;
+}
+
+:global([data-layout="mobile"]) .power-btn {
+  width: 48px;
+  height: 48px;
+  align-self: center;
 }
 </style>

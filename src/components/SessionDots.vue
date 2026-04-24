@@ -34,6 +34,8 @@ const isActive = (i: number) => props.mode === 'WORK' && i === props.current;
 .dots {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 6px;
 }
 

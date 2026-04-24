@@ -125,10 +125,11 @@ const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
   --accent-soft: rgba(232, 93, 77, 0.14);
   --accent-deep: #c0392b;
 
-  width: 320px;
+  width: min(320px, 100%);
   background: #fafaf6;
   border-radius: 20px;
   padding: 22px 22px 18px;
+  box-sizing: border-box;
   position: absolute;
   z-index: 100;
   cursor: grab;
@@ -277,5 +278,20 @@ const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
   max-height: 240px;
   opacity: 1;
   margin-top: 0;
+}
+
+:global([data-layout="mobile"]) .pomodoro {
+  gap: 16px;
+  padding: 20px 18px 18px;
+}
+
+:global([data-layout="mobile"]) .task-context-text {
+  white-space: normal;
+}
+
+:global([data-layout="mobile"]) .adjust-toggle {
+  min-height: 44px;
+  width: 100%;
+  margin-top: 4px;
 }
 </style>

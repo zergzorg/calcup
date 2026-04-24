@@ -52,8 +52,9 @@ const onAnimationEnd = () => {
   font-weight: bold;
   font-size: 80px;
   color: #e0e0e0;
-  width: 70px;
-  height: 100px;
+  width: min(70px, 22vw);
+  aspect-ratio: 0.7;
+  height: auto;
   perspective: 400px;
   background-color: #333;
 }

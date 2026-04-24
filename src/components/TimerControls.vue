@@ -67,8 +67,8 @@ const primaryLabel = computed(() => (props.isActive ? t('timer.pause') : t('time
 }
 
 .icon-btn {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: transparent;
   border: none;
@@ -143,5 +143,15 @@ const primaryLabel = computed(() => (props.isActive ? t('timer.pause') : t('time
 
 .primary-btn.active {
   background: var(--accent-deep, #c0392b);
+}
+
+:global([data-layout="mobile"]) .controls {
+  gap: 10px;
+}
+
+:global([data-layout="mobile"]) .primary-btn {
+  min-width: 132px;
+  height: 48px;
+  padding: 0 18px;
 }
 </style>

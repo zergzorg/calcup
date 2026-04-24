@@ -207,12 +207,13 @@ const autoResize = (event: Event) => {
 
 <style scoped>
 .planner {
-  width: 390px;
+  width: min(390px, 100%);
   position: absolute;
   z-index: 5;
   cursor: grab;
   user-select: none;
   transition: transform 0.05s ease-out;
+  box-sizing: border-box;
 }
 
 .planner:active {
@@ -638,5 +639,51 @@ h2 {
   color: #8b7a62;
   font-weight: 750;
   font-variant-numeric: tabular-nums;
+}
+
+:global([data-layout="mobile"]) .planner-shell {
+  padding: 16px;
+}
+
+:global([data-layout="mobile"]) .add-btn,
+:global([data-layout="mobile"]) .focus-btn,
+:global([data-layout="mobile"]) .delete-btn,
+:global([data-layout="mobile"]) .new-task-card {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+:global([data-layout="mobile"]) .delete-btn {
+  opacity: 1;
+}
+
+:global([data-layout="mobile"]) .task-list {
+  max-height: none;
+}
+
+:global([data-layout="mobile"]) .task-card {
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  gap: 8px;
+}
+
+:global([data-layout="mobile"]) .task-check {
+  min-width: 32px;
+  min-height: 32px;
+  padding-top: 0;
+}
+
+:global([data-layout="mobile"]) .task-check span {
+  width: 24px;
+  height: 24px;
+}
+
+:global([data-layout="mobile"]) .estimate-row {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+:global([data-layout="mobile"]) .estimate-dot {
+  width: 28px;
+  height: 28px;
 }
 </style>

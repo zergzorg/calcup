@@ -374,10 +374,11 @@ onUnmounted(() => {
 .snake-widget {
   position: absolute;
   z-index: 110;
-  width: 404px;
+  width: min(404px, 100%);
   cursor: grab;
   user-select: none;
   transition: transform 0.05s ease-out;
+  box-sizing: border-box;
 }
 
 .snake-widget:active {
@@ -684,7 +685,7 @@ h2 {
 
 @media (max-width: 720px) {
   .snake-widget {
-    width: min(404px, calc(100vw - 28px));
+    width: min(404px, 100%);
   }
 
   .snake-toolbar {
@@ -698,5 +699,20 @@ h2 {
   .mobile-controls {
     display: grid;
   }
+}
+
+:global([data-layout="mobile"]) .snake-shell {
+  padding: 14px;
+}
+
+:global([data-layout="mobile"]) .primary-btn,
+:global([data-layout="mobile"]) .ghost-btn,
+:global([data-layout="mobile"]) .clear-records,
+:global([data-layout="mobile"]) .mobile-controls button {
+  min-height: 44px;
+}
+
+:global([data-layout="mobile"]) .clear-records {
+  padding: 0 12px;
 }
 </style>

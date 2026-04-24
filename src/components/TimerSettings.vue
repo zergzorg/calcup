@@ -169,4 +169,20 @@ const rows = computed(() => [
   font-size: 11px;
   margin-left: 1px;
 }
+
+:global([data-layout="mobile"]) .row {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+:global([data-layout="mobile"]) .stepper {
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+:global([data-layout="mobile"]) .step-btn {
+  width: 44px;
+  height: 44px;
+}
 </style>

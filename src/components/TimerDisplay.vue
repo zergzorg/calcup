@@ -54,8 +54,9 @@ const modeLabel = computed(() => {
 <style scoped>
 .display {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: min(220px, 100%);
+  aspect-ratio: 1;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,5 +119,13 @@ const modeLabel = computed(() => {
   border-radius: 999px;
   background: var(--accent-soft, rgba(232, 93, 77, 0.12));
   transition: color 0.6s ease, background-color 0.6s ease;
+}
+
+:global([data-layout="mobile"]) .display {
+  width: min(210px, 86vw);
+}
+
+:global([data-layout="mobile"]) .time {
+  font-size: 50px;
 }
 </style>

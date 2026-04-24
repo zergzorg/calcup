@@ -145,12 +145,13 @@ const applyPreset = (days: number) => {
 
 <style scoped>
 .date-countdown {
-  width: 430px;
+  width: min(430px, 100%);
   position: absolute;
   z-index: 100;
   cursor: grab;
   user-select: none;
   transition: transform 0.05s ease-out;
+  box-sizing: border-box;
 }
 
 .date-countdown:active {
@@ -345,7 +346,7 @@ h2 {
 
 @media (max-width: 720px) {
   .date-countdown {
-    width: 390px;
+    width: min(390px, 100%);
   }
 
   .time-cell strong {
@@ -355,5 +356,28 @@ h2 {
   .time-cell.days strong {
     font-size: 32px;
   }
+}
+
+:global([data-layout="mobile"]) .countdown-shell {
+  padding: 16px;
+}
+
+:global([data-layout="mobile"]) .countdown-header {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+:global([data-layout="mobile"]) .change-btn,
+:global([data-layout="mobile"]) .preset-row button {
+  min-height: 44px;
+}
+
+:global([data-layout="mobile"]) .time-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+:global([data-layout="mobile"]) .time-cell strong,
+:global([data-layout="mobile"]) .time-cell.days strong {
+  font-size: 30px;
 }
 </style>
