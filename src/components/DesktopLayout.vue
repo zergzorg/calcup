@@ -4,6 +4,10 @@
       <!-- Slot for desktop items (Timer, Notepad, Radio) -->
       <slot></slot>
     </div>
+
+    <nav v-if="!isCreditCalculatorPage" class="desk-nav" aria-label="Calcup tools">
+      <a href="/credit-calc/">{{ t('credit.navLink') }}</a>
+    </nav>
     
     <!-- Language Switcher and Settings (Top Right) -->
     <div class="lang-container">
@@ -45,6 +49,7 @@ const { isMobileLayout } = useMobileLayout();
 const { t } = useI18n();
 
 const layoutMode = computed(() => isMobileLayout.value ? 'mobile' : 'desktop');
+const isCreditCalculatorPage = computed(() => window.location.pathname.replace(/\/+$/, '') === '/credit-calc');
 const surfaceStyle = computed(() => {
   if (isMobileLayout.value) {
     return {};
@@ -129,6 +134,34 @@ watch(layoutMode, (mode) => {
   align-items: center;
 }
 
+.desk-nav {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 900;
+}
+
+.desk-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 212, 142, 0.32);
+  border-radius: 999px;
+  background: rgba(19, 23, 28, 0.58);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(1.2);
+  font-size: 15px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.desk-nav a:hover {
+  border-color: rgba(255, 212, 142, 0.68);
+  color: #fff;
+}
+
 .desktop-layout[data-layout="mobile"] .lang-container {
   position: fixed;
   top: 0;
@@ -185,6 +218,13 @@ watch(layoutMode, (mode) => {
 
 .desktop-layout[data-layout="mobile"] .desk-controls > * {
   pointer-events: auto;
+}
+
+.desktop-layout[data-layout="mobile"] .desk-nav {
+  position: fixed;
+  left: max(14px, env(safe-area-inset-left, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 1001;
 }
 
 .desk-btn,

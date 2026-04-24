@@ -1,21 +1,25 @@
 <template>
   <DesktopLayout @clearAll="handleClearAll" @shuffleWidgets="shuffleWidgets" @contextmenu.prevent>
-    <TimerWidget v-if="isWidgetVisible('timer')" />
-    <DateTimerWidget v-if="isWidgetVisible('dateTimer')" />
-    <TaskPlanner v-if="isWidgetVisible('tasks')" />
-    <SoundMachine v-if="isWidgetVisible('sound')" />
-    <SnakeGame v-if="isWidgetVisible('snake')" />
+    <CreditCalculatorView v-if="isCreditCalculatorPage" />
+    <template v-else>
+      <TimerWidget v-if="isWidgetVisible('timer')" />
+      <DateTimerWidget v-if="isWidgetVisible('dateTimer')" />
+      <TaskPlanner v-if="isWidgetVisible('tasks')" />
+      <SoundMachine v-if="isWidgetVisible('sound')" />
+      <SnakeGame v-if="isWidgetVisible('snake')" />
+    </template>
   </DesktopLayout>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted } from 'vue';
+import { computed, nextTick, onMounted } from 'vue';
 import DesktopLayout from './components/DesktopLayout.vue';
 import TimerWidget from './components/TimerWidget.vue';
 import DateTimerWidget from './components/DateTimerWidget.vue';
 import TaskPlanner from './components/TaskPlanner.vue';
 import SoundMachine from './components/SoundMachine.vue';
 import SnakeGame from './components/SnakeGame.vue';
+import CreditCalculatorView from './features/credit-calculator/components/CreditCalculatorView.vue';
 import { useSeo } from './composables/useSeo';
 import { useScale } from './composables/useScale';
 import { useI18n } from 'vue-i18n';
@@ -44,6 +48,7 @@ const { t } = useI18n();
 const { widgets } = useWidgets();
 const { scale } = useScale();
 const { isMobileLayout } = useMobileLayout();
+const isCreditCalculatorPage = computed(() => window.location.pathname.replace(/\/+$/, '') === '/credit-calc');
 
 const isWidgetVisible = (id: string) => {
   return widgets.value.find((w) => w.id === id)?.visible ?? true;
@@ -219,6 +224,7 @@ const hasSavedWidgetPosition = () => {
 onMounted(async () => {
   await nextTick();
 
+  if (isCreditCalculatorPage.value) return;
   if (isMobileLayout.value) return;
   if (localStorage.getItem(INITIAL_LAYOUT_KEY) || hasSavedWidgetPosition()) return;
 
