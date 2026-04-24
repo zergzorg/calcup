@@ -19,6 +19,8 @@
 
 ### Changed / Изменено
 
+- **Документация**: README переработан в двуязычном формате с навигацией `Русский | English` и актуальным описанием виджетов.
+  - _Documentation_: README was refreshed as a bilingual document with `Russian | English` navigation and up-to-date widget descriptions.
 - **Настройки**: Обновлён дизайн панели настроек: стеклянная панель, компактные цветовые строки, кастомные чекбоксы, улучшенная кнопка-шестерёнка.
   - _Settings_: Refreshed settings panel design with a glass surface, compact labeled color rows, custom checkboxes, and improved gear button sizing.
 - **Слои виджетов**: Активный или перетаскиваемый виджет теперь поднимается поверх остальных и остаётся сверху до выбора другого виджета.
