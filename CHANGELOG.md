@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.9.0] - 2026-04-24
+
+### Added / Добавлено
+
+- **Адаптивность**: Добавлен системный mobile-режим для экранов уже 768px: рабочая поверхность переключается в вертикальный поток с `data-layout="mobile"`.
+  - _Responsive Layout_: Added a system mobile mode for screens below 768px: the desktop surface switches to a vertical flow with `data-layout="mobile"`.
+
+### Changed / Изменено
+
+- **Mobile viewport**: На mobile отключено масштабирование desktop-поверхности, включён вертикальный скролл и добавлена поддержка `100dvh` / `viewport-fit=cover` для safe-area.
+  - _Mobile Viewport_: Disabled desktop surface scaling on mobile, enabled vertical scrolling, and added `100dvh` / `viewport-fit=cover` safe-area support.
+- **Расстановка виджетов**: Автоматическая случайная раскладка и кнопка Shuffle теперь работают только в desktop-режиме.
+  - _Widget Layout_: Automatic random placement and the Shuffle button now run only in desktop mode.
+
 ## [0.8.0] - 2026-04-24
 
 ### Added / Добавлено

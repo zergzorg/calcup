@@ -20,6 +20,7 @@ import { useSeo } from './composables/useSeo';
 import { useScale } from './composables/useScale';
 import { useI18n } from 'vue-i18n';
 import { useWidgets } from './composables/useWidgets';
+import { useMobileLayout } from './composables/useMobileLayout';
 
 interface WidgetRect {
   storageKey: string;
@@ -42,6 +43,7 @@ useSeo();
 const { t } = useI18n();
 const { widgets } = useWidgets();
 const { scale } = useScale();
+const { isMobileLayout } = useMobileLayout();
 
 const isWidgetVisible = (id: string) => {
   return widgets.value.find((w) => w.id === id)?.visible ?? true;
@@ -204,6 +206,8 @@ const applyRandomWidgetLayout = () => {
 };
 
 const shuffleWidgets = () => {
+  if (isMobileLayout.value) return;
+
   applyRandomWidgetLayout();
   localStorage.setItem(INITIAL_LAYOUT_KEY, '1');
 };
@@ -215,6 +219,7 @@ const hasSavedWidgetPosition = () => {
 onMounted(async () => {
   await nextTick();
 
+  if (isMobileLayout.value) return;
   if (localStorage.getItem(INITIAL_LAYOUT_KEY) || hasSavedWidgetPosition()) return;
 
   applyRandomWidgetLayout();
