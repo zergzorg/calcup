@@ -1,20 +1,20 @@
 <template>
   <div class="language-switcher">
-    <button 
-      class="lang-btn" 
-      :class="{ active: locale === 'ru' }" 
-      @click="switchLang('ru')"
-      title="Русский"
+    <button
+    class="lang-btn"
+    :class="{ active: locale === 'ru' }"
+    @click="switchLang('ru')"
+    title="Русский"
     >
-      🇷🇺
+    RU
     </button>
-    <button 
-      class="lang-btn" 
-      :class="{ active: locale === 'en' }" 
-      @click="switchLang('en')"
-      title="English"
+    <button
+    class="lang-btn"
+    :class="{ active: locale === 'en' }"
+    @click="switchLang('en')"
+    title="English"
     >
-      🇺🇸
+    EN
     </button>
   </div>
 </template>

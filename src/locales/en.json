@@ -31,12 +31,12 @@
     "no_active": "Choose a task for the next focus block",
     "focus_time": "Focus",
     "break_time": "Breaks",
-    "sessions_short": "sessions",
+    "sessions_short": "sess.",
     "timeline": "Recent blocks",
     "untitled": "Untitled",
     "segment_focus": "Focus",
     "segment_break": "Break",
-    "segment_long_break": "Long",
+    "segment_long_break": "Long Break",
     "stats": {
       "focus": "Focus",
       "breaks": "Breaks",
@@ -45,11 +45,11 @@
   },
   "sounds": {
     "title": "Sound Machine",
-    "lofi": "Lofi Radio",
+    "lofi": "Lo-Fi Radio",
     "radio_kniga": "Radio Kniga",
     "rain": "Rain",
     "white_noise": "Static",
-    "brown_noise": "Ocean",
+    "brown_noise": "Brown Noise",
     "keyboard": "Keyboard",
     "fire": "Fire",
     "forest": "Forest"
@@ -85,7 +85,7 @@
     "remaining": "Time left",
     "expired": "Time is up",
     "helper": "Countdown updates every second",
-    "today_hint": "Target is today, seconds matter now",
+    "today_hint": "Target is today — seconds matter now",
     "expired_hint": "Choose a new date to restart the countdown",
     "units": {
       "days": "Days",
