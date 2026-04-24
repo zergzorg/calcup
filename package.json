@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite-ssg build",
+    "build": "vue-tsc -b && vite-ssg build && cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json",

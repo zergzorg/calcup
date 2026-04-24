@@ -1,10 +1,44 @@
 # PROJECT_STATUS
 
 ## Текущая фаза
-Фаза 1 — Роутинг и инфраструктура ✅ ЗАВЕРШЕНА
+Фаза 3 — Home page + UI
 
 ## Текущий шаг
-Все quality gates пройдены. Ожидается согласование Фазы 2.
+Ожидание согласования Phase 3
+
+---
+
+## ⚠️ Производственный деплой на GitHub Pages ГОТОВ к тестированию
+
+Блокеры Фазы 2 закрыты:
+- ✅ `404.html` fallback — `cp dist/index.html dist/404.html` в postbuild скрипте
+- ✅ `noindex` для soon/workspace/not-found — через `route.meta.noindex` в useSeo
+- ✅ Параметризованный `canonical` и `sitemap.xml` из реестра
+
+---
+
+## Сделано (Фаза 2)
+
+### Новые файлы
+- `src/composables/useCalculatorRegistry.ts` — типизированный composable: `getCategoryBySlug`, `getCalculatorBySlug`, `getCalculatorsByCategory`, `getReadyCalculators`, `getPublicCalculators`, `getSitemapCalculators`, `getSitemapCategories`, `isKnownCategory`, `isKnownCalculator`
+
+### Изменённые файлы
+- `src/composables/useSeo.ts` — полностью переписан: `useHead()` из `@unhead/vue` (SSG-native), динамический title/description/canonical из реестра, `robots` из `route.meta.noindex`, JSON-LD `SoftwareApplication + BreadcrumbList` для калькуляторов, `WebSite` schema для остальных
+- `public/robots.txt` — добавлен `Disallow: /workspace`
+- `public/sitemap.xml` — перегенерирован из реестра: только `/` + `/finance/` + `/finance/credit/`
+- `package.json` — build добавлен `&& cp dist/index.html dist/404.html`
+
+### Архитектурные решения Фазы 2
+
+1. **useHead() вместо DOM-манипуляций**: vite-ssg@27 автоматически регистрирует `@unhead/vue` (`createHead` server/client в зависимости от окружения). `useHead(computed(...))` корректно рендерит мета в HTML при SSG.
+
+2. **404.html**: `cp dist/index.html dist/404.html` в конце команды build. dist/index.html — это pre-rendered home page + SPA-скрипты. При открытии несуществующего URL GitHub Pages отдаёт 404.html, Vue Router берёт управление и рендерит нужный маршрут.
+
+3. **noindex flow**: router/index.ts проставляет `meta.noindex: true` для `/workspace`, `soon`-калькуляторов, catch-all. useSeo.ts читает `route.meta.noindex` → `noindex,nofollow` в robots мета.
+
+4. **sitemap.xml**: статический файл, перегенерируется вручную при добавлении ready-калькуляторов. `useCalculatorRegistry.getSitemapCalculators()` и `.getSitemapCategories()` дают правильный набор для автоматической генерации в будущем.
+
+5. **⚠️ useDesktopSettings**: localStorage на уровне модуля — риск при добавлении /workspace в SSG. TODO: рефакторинг на lazy init при переходе к SSR/hydration workspace.
 
 ---
 
@@ -31,11 +65,10 @@
 ### Изменённые файлы
 - `package.json` — добавлены `type-check`, `test`, `build` → `vite-ssg build`
 - `src/vite-env.d.ts` — `import type {} from 'vue-router'` + `declare global { interface Window }` + `RouteMeta` augmentation
-- `src/data/types.ts` — (новый)
 - `src/main.ts` — ViteSSG, PrimeVue unstyled, i18n, registry guard в DEV
 - `src/App.vue` — тонкая обёртка с `<RouterView />`
 - `src/components/DesktopLayout.vue` — убрана `isCreditCalculatorPage` (window.location), nav всегда видна, RouterLink
-- `src/composables/useSeo.ts` — `if (typeof document === 'undefined') return` + path из window.location (SSG-safe)
+- `src/composables/useSeo.ts` — параметризован (Фаза 2 перезаписала)
 - `src/i18n.ts` — `typeof window !== 'undefined'` guard для localStorage/navigator
 - `vite.config.ts` — tailwind plugin, ssgOptions (исключает /workspace из SSG), убрана multi-entry
 - `src/style.css` — `@import "tailwindcss"` добавлен первым
@@ -61,92 +94,41 @@
 
 ---
 
-## Изменённые файлы (полный список)
-
-| Файл | Тип изменения |
-|------|---------------|
-| `package.json` | изменён (scripts + deps) |
-| `src/vite-env.d.ts` | изменён (Window, RouteMeta) |
-| `src/main.ts` | переписан (ViteSSG) |
-| `src/App.vue` | переписан (RouterView) |
-| `src/components/DesktopLayout.vue` | изменён (убрать window.location) |
-| `src/composables/useSeo.ts` | изменён (SSG guard) |
-| `src/i18n.ts` | изменён (SSG guard) |
-| `vite.config.ts` | переписан (tailwind, ssgOptions) |
-| `src/style.css` | изменён (@import tailwindcss) |
-| `src/data/types.ts` | создан |
-| `src/data/categories.ts` | создан |
-| `src/data/calculators.ts` | создан |
-| `src/data/registry-guards.ts` | создан |
-| `src/router/index.ts` | создан |
-| `src/views/WorkspaceView.vue` | создан |
-| `src/views/HomeView.vue` | создан |
-| `src/views/NotFoundView.vue` | создан |
-| `src/views/CategoryView.vue` | создан |
-| `src/views/CalculatorView.vue` | создан |
-| `src/features/credit-calculator/index.ts` | создан |
-
----
-
-## Проверки
+## Проверки (Фаза 2)
 
 | Команда | Результат |
 |---------|-----------|
 | `npm run type-check` | ✅ 0 ошибок |
-| `npm run build` | ✅ SSG: 20 страниц предрендерено |
+| `npm run build` | ✅ SSG: 20 страниц + dist/404.html |
 | `npm run test` | ✅ нет тестов (passWithNoTests) |
 
-### Ручная проверка URL (vite preview)
+### Проверка `<head>` по страницам
 
-| URL | HTTP | Статус |
-|-----|------|--------|
-| `/` | 200 | ✅ HomeView stub |
-| `/workspace` | 200 | ✅ SPA fallback (не в SSG) |
-| `/finance` | 200 | ✅ SSG CategoryView stub |
-| `/finance/credit` | 200 | ✅ SSG, CreditCalculatorView |
-| `/credit-calc` | 200 | ✅ SSG redirect → finance/credit |
+| URL | title | robots | canonical |
+|-----|-------|--------|-----------|
+| `/` | Calcup — Онлайн калькуляторы: кредит, ИМТ, проценты | index,follow | `calcup.ru/` |
+| `/finance` | Финансы — Calcup | index,follow | `calcup.ru/finance/` |
+| `/finance/credit` | Кредитный калькулятор — Calcup | index,follow | `calcup.ru/finance/credit/` |
+| `/health/bmi` (soon) | Калькулятор ИМТ — Calcup | **noindex,nofollow** | `calcup.ru/health/bmi/` |
+| catch-all (not-found) | Calcup — Онлайн калькуляторы... | **noindex,nofollow** | — |
+| `404.html` (fallback) | Calcup — Онлайн калькуляторы... | index,follow | — |
 
-### Дополнительные проверки
+### Проверка robots.txt и sitemap.xml
 
-| Проверка | Результат |
-|----------|-----------|
-| planned-калькуляторы без маршрутов | ✅ (не в CALCULATORS с planned) |
-| catch-all последним | ✅ в router/index.ts |
-| /workspace не имеет SSG HTML | ✅ нет dist/workspace.html |
-| soon-страницы — noindex | ⚠️ Фаза 2 (сейчас default из index.html) |
-| sitemap | ⚠️ Фаза 2 |
-| canonical/JSON-LD | ⚠️ Фаза 2 |
+| Файл | Статус |
+|------|--------|
+| `public/robots.txt` | ✅ `Disallow: /workspace`, sitemap: указан |
+| `public/sitemap.xml` | ✅ только `/`, `/finance/`, `/finance/credit/` |
 
 ---
 
-## Проблемы и риски
+## Остаются (известные риски)
 
-### Решённые в Фазе 1
-
-1. **vite-ssg 28.x + Node.js 22** — несовместимость через `@exodus/bytes`. Использована v27.0.1.
-2. **vue-router types** — `declare module 'vue-router'` без `import type {}` в `moduleDetection: force` замещало модуль. Исправлено добавлением `import type {} from 'vue-router'`.
-3. **useDesktopSettings** — вызов localStorage на уровне модуля. Решено исключением /workspace из SSG.
-4. **vite multi-entry** — убрана, credit-calc/index.html сохранён физически.
-
-### Остаются
-
-1. **noindex для soon/workspace** — нужна параметризация useSeo.ts (Фаза 2)
-2. **Нет 404.html fallback** — GitHub Pages не сможет подать /workspace без него. Нужно добавить после деплоя или через vite-ssg plugin (Фаза 2).
-3. **Tailwind в workspace** — `@import "tailwindcss"` добавляет preflight, может незначительно влиять на workspace. Требует визуальной проверки в браузере.
+1. **Tailwind в workspace** — `@import "tailwindcss"` добавляет preflight, может незначительно влиять на workspace. Требует визуальной проверки в браузере.
+2. **useDesktopSettings** — localStorage на уровне модуля. Если /workspace когда-либо добавят в SSG — упадёт. TODO оставлен в коде.
+3. **404.html noindex** — GitHub Pages отдаёт 404.html с кодом 404, но мета содержит index,follow (это home page content). Боты теоретически могут это индексировать, но на практике код 404 предотвращает индексацию.
 
 ---
-
-## Следующий шаг — Фаза 2 (SEO foundation)
-
-После согласования:
-1. Параметризовать `useSeo.ts` — canonical, noindex, динамический title/description из реестра
-2. robots noindex для `soon` и `/workspace`
-3. JSON-LD `SoftwareApplication + BreadcrumbList`
-4. Скрипт генерации `sitemap.xml` из ready-калькуляторов
-5. `robots.txt` — запретить /workspace
-6. Расширить i18n базовыми nav/home ключами
-7. Создать `useCalculatorRegistry.ts`
-8. Добавить `404.html` в public/ (копия index.html для GitHub Pages)
 
 ## Требуется согласование пользователя
-**Да** — переход к Фазе 2
+**Переход к Фазе 3** — согласовать содержимое и приоритеты

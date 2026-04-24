@@ -1,170 +1,159 @@
-import { watchEffect } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useHead } from '@unhead/vue'
+import { CALCULATORS } from '../data/calculators'
+import { CATEGORIES } from '../data/categories'
 
-type LocaleSeo = {
-  title: string;
-  description: string;
-  keywords: string;
-  ogLocale: string;
-  ogLocaleAlternate: string;
-  applicationCategory: string;
-  featureList: string[];
-};
+const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://calcup.ru').replace(/\/+$/, '')
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://calcup.ru').replace(/\/+$/, '');
-
-const SEO_BY_LOCALE: Record<'ru' | 'en', LocaleSeo> = {
-  ru: {
-    title: 'Calcup — Помодоро-таймер, задачи и звуки для фокуса',
-    description: 'Calcup - ретро рабочий стол для продуктивности: Pomodoro-таймер, планировщик задач, фоновые звуки и обратный отсчет.',
-    keywords: 'calcup, pomodoro таймер, помодоро, таймер продуктивности, планировщик задач, фокус, фоновые звуки, обратный отсчет',
-    ogLocale: 'ru_RU',
-    ogLocaleAlternate: 'en_US',
-    applicationCategory: 'ProductivityApplication',
-    featureList: ['Pomodoro timer', 'Task planner', 'Ambient focus sounds', 'Date countdown'],
-  },
-  en: {
-    title: 'Calcup — Free Retro Pomodoro Timer, Tasks and Focus Sounds',
-    description: 'Calcup is a retro productivity desk with a Pomodoro timer, task planner, ambient focus sounds, and countdown.',
-    keywords: 'calcup, pomodoro timer, productivity timer, task planner, focus tool, ambient sounds, countdown',
-    ogLocale: 'en_US',
-    ogLocaleAlternate: 'ru_RU',
-    applicationCategory: 'ProductivityApplication',
-    featureList: ['Pomodoro timer', 'Task planner', 'Ambient focus sounds', 'Date countdown'],
-  },
-};
-
-const CREDIT_SEO_BY_LOCALE: Record<'ru' | 'en', LocaleSeo> = {
-  ru: {
-    title: 'Кредитный калькулятор онлайн с графиком платежей — Calcup',
-    description: 'Кредитный калькулятор Calcup считает ежемесячный платеж, переплату, график платежей и досрочное погашение кредита. Расчет можно распечатать или сохранить в PDF.',
-    keywords: 'кредитный калькулятор, кредитный калькулятор онлайн, расчет кредита, график платежей, досрочное погашение кредита, аннуитетный платеж',
-    ogLocale: 'ru_RU',
-    ogLocaleAlternate: 'en_US',
-    applicationCategory: 'FinanceApplication',
-    featureList: ['Loan payment calculation', 'Payment schedule', 'Early repayment scenarios', 'Printable A4 report'],
-  },
-  en: {
-    title: 'Loan Calculator with Payment Schedule — Calcup',
-    description: 'Calcup loan calculator estimates monthly payments, total interest, payment schedule, and early repayment scenarios with a printable report.',
-    keywords: 'loan calculator, payment schedule, early repayment calculator, annuity payment, credit calculator',
-    ogLocale: 'en_US',
-    ogLocaleAlternate: 'ru_RU',
-    applicationCategory: 'FinanceApplication',
-    featureList: ['Loan payment calculation', 'Payment schedule', 'Early repayment scenarios', 'Printable A4 report'],
-  },
-};
-
-function upsertMetaByName(name: string, content: string) {
-  let tag = document.querySelector(`meta[name="${name}"]`);
-  if (!tag) {
-    tag = document.createElement('meta');
-    tag.setAttribute('name', name);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute('content', content);
+const APP_CATEGORY_BY_CATEGORY: Record<string, string> = {
+  finance: 'FinanceApplication',
+  health: 'HealthApplication',
+  math: 'UtilityApplication',
+  construction: 'UtilityApplication',
+  datetime: 'UtilityApplication',
+  transport: 'UtilityApplication',
+  convert: 'UtilityApplication',
+  everyday: 'UtilityApplication',
 }
 
-function upsertMetaByProperty(property: string, content: string) {
-  let tag = document.querySelector(`meta[property="${property}"]`);
-  if (!tag) {
-    tag = document.createElement('meta');
-    tag.setAttribute('property', property);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute('content', content);
+const DEFAULT_TITLE = {
+  ru: 'Calcup — Онлайн калькуляторы: кредит, ИМТ, проценты',
+  en: 'Calcup — Online Calculators: Loan, BMI, Percentage',
 }
 
-function upsertLink(rel: string, href: string, hreflang?: string) {
-  const selector = hreflang
-    ? `link[rel="${rel}"][hreflang="${hreflang}"]`
-    : `link[rel="${rel}"]:not([hreflang])`;
-
-  let tag = document.querySelector(selector);
-  if (!tag) {
-    tag = document.createElement('link');
-    tag.setAttribute('rel', rel);
-    if (hreflang) {
-      tag.setAttribute('hreflang', hreflang);
-    }
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute('href', href);
-}
-
-function upsertJsonLd(id: string, data: Record<string, unknown>) {
-  let tag = document.querySelector(`#${id}`);
-  if (!tag) {
-    tag = document.createElement('script');
-    tag.setAttribute('id', id);
-    tag.setAttribute('type', 'application/ld+json');
-    document.head.appendChild(tag);
-  }
-  tag.textContent = JSON.stringify(data);
+const DEFAULT_DESCRIPTION = {
+  ru: 'Бесплатные онлайн калькуляторы: кредитный, ипотечный, ИМТ, процентов и другие.',
+  en: 'Free online calculators: loan, mortgage, BMI, percentage and more.',
 }
 
 export function useSeo() {
-  const { t, locale } = useI18n();
+  const route = useRoute()
+  const { locale } = useI18n()
 
-  watchEffect(() => {
-    if (typeof document === 'undefined') return;
+  const lang = computed<'ru' | 'en'>(() =>
+    String(locale.value).startsWith('ru') ? 'ru' : 'en',
+  )
 
-    const localeCode = String(locale.value).startsWith('ru') ? 'ru' : 'en';
-    const currentPath = typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') : '';
-    const isCreditCalculatorPage = currentPath === '/credit-calc' || currentPath === '/finance/credit';
-    const seo = isCreditCalculatorPage ? CREDIT_SEO_BY_LOCALE[localeCode] : SEO_BY_LOCALE[localeCode];
-    const title = isCreditCalculatorPage ? seo.title : t('title');
-    const canonicalUrl = isCreditCalculatorPage ? `${SITE_URL}/finance/credit/` : `${SITE_URL}/`;
+  const calc = computed(() => {
+    const { categorySlug, toolSlug } = route.meta
+    if (!categorySlug || !toolSlug) return null
+    return CALCULATORS.find(c => c.categorySlug === categorySlug && c.slug === toolSlug) ?? null
+  })
 
-    document.title = title;
-    document.documentElement.lang = localeCode;
+  const category = computed(() => {
+    const { categorySlug, toolSlug } = route.meta
+    if (!categorySlug || toolSlug) return null
+    return CATEGORIES.find(c => c.slug === categorySlug) ?? null
+  })
 
-    upsertMetaByName('description', seo.description);
-    upsertMetaByName('keywords', seo.keywords);
-    upsertMetaByName('robots', 'index,follow,max-image-preview:large');
-    upsertMetaByName('application-name', 'Calcup');
-    upsertMetaByName('theme-color', '#263542');
-    upsertMetaByName('twitter:card', 'summary_large_image');
-    upsertMetaByName('twitter:title', title);
-    upsertMetaByName('twitter:description', seo.description);
-    upsertMetaByName('twitter:image', `${SITE_URL}/og-image.jpg`);
-    upsertMetaByName('twitter:url', canonicalUrl);
+  const title = computed(() => {
+    const l = lang.value
+    if (calc.value) return `${calc.value.title[l]} — Calcup`
+    if (category.value) return `${category.value.title[l]} — Calcup`
+    return DEFAULT_TITLE[l]
+  })
 
-    upsertMetaByProperty('og:type', 'website');
-    upsertMetaByProperty('og:site_name', 'Calcup');
-    upsertMetaByProperty('og:title', title);
-    upsertMetaByProperty('og:description', seo.description);
-    upsertMetaByProperty('og:url', canonicalUrl);
-    upsertMetaByProperty('og:image', `${SITE_URL}/og-image.jpg`);
-    upsertMetaByProperty('og:image:type', 'image/jpeg');
-    upsertMetaByProperty('og:image:width', '1200');
-    upsertMetaByProperty('og:image:height', '630');
-    upsertMetaByProperty('og:locale', seo.ogLocale);
-    upsertMetaByProperty('og:locale:alternate', seo.ogLocaleAlternate);
+  const description = computed(() => {
+    const l = lang.value
+    if (calc.value) return calc.value.description[l]
+    if (category.value) return category.value.description[l]
+    return DEFAULT_DESCRIPTION[l]
+  })
 
-    upsertLink('canonical', canonicalUrl);
-    upsertLink('alternate', canonicalUrl, 'ru');
-    upsertLink('alternate', canonicalUrl, 'en');
-    upsertLink('alternate', canonicalUrl, 'x-default');
-    upsertLink('manifest', `${SITE_URL}/manifest.webmanifest`);
+  const canonical = computed(() => {
+    const path = route.path.replace(/\/+$/, '')
+    return `${SITE_URL}${path}/`
+  })
 
-    upsertJsonLd('calcup-jsonld', {
+  const robots = computed(() =>
+    route.meta.noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large',
+  )
+
+  const applicationCategory = computed(
+    () => APP_CATEGORY_BY_CATEGORY[calc.value?.categorySlug ?? ''] ?? 'UtilityApplication',
+  )
+
+  const ogLocale = computed(() => (lang.value === 'ru' ? 'ru_RU' : 'en_US'))
+  const ogLocaleAlt = computed(() => (lang.value === 'ru' ? 'en_US' : 'ru_RU'))
+
+  const jsonLd = computed(() => {
+    if (!calc.value) {
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Calcup',
+        url: `${SITE_URL}/`,
+      }
+    }
+    const l = lang.value
+    const breadcrumb = {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Calcup', item: `${SITE_URL}/` },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: calc.value.title[l],
+          item: canonical.value,
+        },
+      ],
+    }
+    const app = {
       '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: 'Calcup',
-      alternateName: 'Calcup Retro Desk',
-      url: canonicalUrl,
-      applicationCategory: seo.applicationCategory,
+      '@type': 'SoftwareApplication',
+      name: calc.value.title[l],
+      url: canonical.value,
+      applicationCategory: applicationCategory.value,
       operatingSystem: 'Web',
       inLanguage: ['ru', 'en'],
-      description: seo.description,
+      description: description.value,
       image: `${SITE_URL}/og-image.jpg`,
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
-      featureList: seo.featureList,
-    });
-  });
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    }
+    return { '@context': 'https://schema.org', '@graph': [app, breadcrumb] }
+  })
+
+  useHead(
+    computed(() => ({
+      title: title.value,
+      htmlAttrs: { lang: lang.value },
+      meta: [
+        { name: 'description', content: description.value },
+        { name: 'robots', content: robots.value },
+        { name: 'application-name', content: 'Calcup' },
+        { name: 'theme-color', content: '#263542' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Calcup' },
+        { property: 'og:title', content: title.value },
+        { property: 'og:description', content: description.value },
+        { property: 'og:url', content: canonical.value },
+        { property: 'og:image', content: `${SITE_URL}/og-image.jpg` },
+        { property: 'og:image:type', content: 'image/jpeg' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:locale', content: ogLocale.value },
+        { property: 'og:locale:alternate', content: ogLocaleAlt.value },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: title.value },
+        { name: 'twitter:description', content: description.value },
+        { name: 'twitter:image', content: `${SITE_URL}/og-image.jpg` },
+        { name: 'twitter:url', content: canonical.value },
+      ],
+      link: [
+        { rel: 'canonical', href: canonical.value },
+        { rel: 'alternate', hreflang: 'ru', href: canonical.value },
+        { rel: 'alternate', hreflang: 'en', href: canonical.value },
+        { rel: 'alternate', hreflang: 'x-default', href: canonical.value },
+        { rel: 'manifest', href: `${SITE_URL}/manifest.webmanifest` },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify(jsonLd.value),
+        },
+      ],
+    })),
+  )
 }
