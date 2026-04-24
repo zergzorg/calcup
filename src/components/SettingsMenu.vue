@@ -421,4 +421,42 @@ input[type="checkbox"]:focus-visible + .checkmark {
     grid-template-columns: 1fr;
   }
 }
+
+:global([data-layout="mobile"]) .settings-menu-container {
+  position: static;
+}
+
+:global([data-layout="mobile"]) .settings-btn {
+  width: 48px;
+  height: 48px;
+}
+
+:global([data-layout="mobile"]) .settings-panel {
+  position: fixed;
+  top: auto;
+  right: max(10px, env(safe-area-inset-right, 0px));
+  bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  left: max(10px, env(safe-area-inset-left, 0px));
+  width: auto;
+  max-height: min(72dvh, 620px);
+  margin-top: 0;
+  padding: 18px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+:global([data-layout="mobile"]) .color-grid {
+  grid-template-columns: 1fr;
+}
+
+:global([data-layout="mobile"]) .color-option,
+:global([data-layout="mobile"]) select,
+:global([data-layout="mobile"]) .widget-item label {
+  min-height: 48px;
+}
+
+:global([data-layout="mobile"]) .checkmark {
+  width: 28px;
+  height: 28px;
+}
 </style>

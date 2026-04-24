@@ -102,9 +102,9 @@ watch(layoutMode, (mode) => {
   align-items: center;
   gap: 18px;
   padding:
-    calc(92px + env(safe-area-inset-top, 0px))
+    calc(88px + env(safe-area-inset-top, 0px))
     max(14px, env(safe-area-inset-right, 0px))
-    calc(96px + env(safe-area-inset-bottom, 0px))
+    calc(92px + env(safe-area-inset-bottom, 0px))
     max(14px, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
   transform: none;
@@ -131,8 +131,24 @@ watch(layoutMode, (mode) => {
 
 .desktop-layout[data-layout="mobile"] .lang-container {
   position: fixed;
-  top: calc(14px + env(safe-area-inset-top, 0px));
-  right: max(14px, env(safe-area-inset-right, 0px));
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: flex-end;
+  gap: 10px;
+  padding:
+    calc(12px + env(safe-area-inset-top, 0px))
+    max(14px, env(safe-area-inset-right, 0px))
+    10px
+    max(14px, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(13, 17, 22, 0.78), rgba(13, 17, 22, 0.18));
+  backdrop-filter: blur(18px) saturate(1.1);
+  pointer-events: none;
+}
+
+.desktop-layout[data-layout="mobile"] .lang-container > * {
+  pointer-events: auto;
 }
 
 .desk-controls {
@@ -152,9 +168,23 @@ watch(layoutMode, (mode) => {
 
 .desktop-layout[data-layout="mobile"] .desk-controls {
   position: fixed;
-  right: max(14px, env(safe-area-inset-right, 0px));
-  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: flex-end;
+  padding:
+    10px
+    max(14px, env(safe-area-inset-right, 0px))
+    calc(12px + env(safe-area-inset-bottom, 0px))
+    max(14px, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
+  background: linear-gradient(0deg, rgba(13, 17, 22, 0.74), rgba(13, 17, 22, 0));
   opacity: 1;
+  pointer-events: none;
+}
+
+.desktop-layout[data-layout="mobile"] .desk-controls > * {
+  pointer-events: auto;
 }
 
 .desk-btn,
@@ -165,6 +195,15 @@ watch(layoutMode, (mode) => {
   cursor: pointer;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
   transition: transform 0.2s;
+}
+
+.desktop-layout[data-layout="mobile"] .clear-btn {
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(12, 16, 20, 0.48);
+  backdrop-filter: blur(14px);
 }
 
 .desk-btn:hover,
