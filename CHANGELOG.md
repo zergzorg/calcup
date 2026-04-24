@@ -11,6 +11,10 @@
 
 - **Mobile viewport**: На mobile отключено масштабирование desktop-поверхности, включён вертикальный скролл и добавлена поддержка `100dvh` / `viewport-fit=cover` для safe-area.
   - _Mobile Viewport_: Disabled desktop surface scaling on mobile, enabled vertical scrolling, and added `100dvh` / `viewport-fit=cover` safe-area support.
+- **Mobile controls**: Глобальные настройки, переключатель языка и Reset перенесены в safe-area зоны; меню настроек на mobile открывается как полноширинная нижняя панель.
+  - _Mobile Controls_: Global settings, language switcher, and Reset were moved into safe-area zones; the settings menu now opens as a full-width bottom sheet on mobile.
+- **Mobile widgets**: Виджеты получили mobile-safe ширины, touch-friendly кнопки и адаптацию внутренних сеток без изменения desktop-поведения.
+  - _Mobile Widgets_: Widgets received mobile-safe widths, touch-friendly controls, and internal grid adjustments without changing desktop behavior.
 - **Расстановка виджетов**: Автоматическая случайная раскладка и кнопка Shuffle теперь работают только в desktop-режиме.
   - _Widget Layout_: Automatic random placement and the Shuffle button now run only in desktop mode.
 
