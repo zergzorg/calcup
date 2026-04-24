@@ -196,5 +196,159 @@
       "title": "PDF without extra dependencies",
       "body": "The print button opens the browser system dialog. You can choose a printer or save the report as a PDF there."
     }
+  },
+  "bmi": {
+    "eyebrow": "Health",
+    "title": "BMI Calculator",
+    "intro": "Enter height and weight to calculate body mass index and get a basic interpretation.",
+    "form": {
+      "height": "Height",
+      "weight": "Weight"
+    },
+    "units": {
+      "cm": "cm",
+      "kg": "kg"
+    },
+    "result": {
+      "label": "Your BMI",
+      "empty": "Enter height from 50 to 250 cm and weight from 10 to 400 kg."
+    },
+    "categories": {
+      "underweight": {
+        "title": "Underweight",
+        "description": "BMI is below 18.5. Consider nutrition, wellbeing, and professional advice when needed."
+      },
+      "normal": {
+        "title": "Normal weight",
+        "description": "BMI is in the 18.5-24.9 range. It is an informational marker and does not account for body composition."
+      },
+      "overweight": {
+        "title": "Overweight",
+        "description": "BMI is in the 25.0-29.9 range. The result is useful as a reference, not as a medical diagnosis."
+      },
+      "obesity": {
+        "title": "Obesity",
+        "description": "BMI is 30.0 or higher. Discuss individual health factors with a medical professional."
+      }
+    },
+    "validation": {
+      "heightCm": {
+        "required": "Enter height as a number.",
+        "range": "Height must be from 50 to 250 cm."
+      },
+      "weightKg": {
+        "required": "Enter weight as a number.",
+        "range": "Weight must be from 10 to 400 kg."
+      }
+    },
+    "disclaimer": {
+      "title": "Health disclaimer",
+      "body": "BMI is an informational metric and does not account for age, sex, pregnancy, muscle mass, or medical context. Consult a clinician for diagnosis or personal recommendations."
+    }
+  },
+  "percentage": {
+    "eyebrow": "Math",
+    "title": "Percentage Calculator",
+    "intro": "Quickly calculate a percent of a number, a share, a change, or a value after increase and discount.",
+    "modes": {
+      "label": "Percentage calculation mode",
+      "percentOf": "Find X% of a number",
+      "partOfTotal": "What percent A is of B",
+      "adjustByPercent": "Increase or decrease",
+      "percentageChange": "Percentage change"
+    },
+    "form": {
+      "percent": "Percent",
+      "base": "Number",
+      "part": "Part",
+      "total": "Total",
+      "oldValue": "Old value",
+      "newValue": "New value",
+      "direction": "Change direction",
+      "increase": "Increase",
+      "decrease": "Decrease"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid numbers.",
+      "percentOf": "{percent}% of {base}",
+      "partOfTotal": "{part} of {total}",
+      "adjustByPercent": "{direction} {base} by {percent}%",
+      "percentageChange": "Change from {oldValue} to {newValue}"
+    },
+    "validation": {
+      "percent": {
+        "required": "Enter percent as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "base": {
+        "required": "Enter a number.",
+        "range": "The value is too large to calculate."
+      },
+      "part": {
+        "required": "Enter part as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "total": {
+        "required": "Enter the total number.",
+        "range": "The value is too large to calculate.",
+        "nonZero": "Total cannot be 0."
+      },
+      "oldValue": {
+        "required": "Enter the old value.",
+        "range": "The value is too large to calculate.",
+        "nonZero": "Old value cannot be 0."
+      },
+      "newValue": {
+        "required": "Enter the new value.",
+        "range": "The value is too large to calculate."
+      }
+    }
+  },
+  "length": {
+    "eyebrow": "Converters",
+    "title": "Length Converter",
+    "intro": "Convert millimeters, meters, kilometers, inches, feet, yards, and miles through one precise scale.",
+    "form": {
+      "value": "Value",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a number that is 0 or greater.",
+      "summary": "{value} {from} to {to}"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "units": {
+      "millimeter": "Millimeter",
+      "centimeter": "Centimeter",
+      "meter": "Meter",
+      "kilometer": "Kilometer",
+      "inch": "Inch",
+      "foot": "Foot",
+      "yard": "Yard",
+      "mile": "Mile"
+    },
+    "unitShort": {
+      "millimeter": "mm",
+      "centimeter": "cm",
+      "meter": "m",
+      "kilometer": "km",
+      "inch": "in",
+      "foot": "ft",
+      "yard": "yd",
+      "mile": "mi"
+    },
+    "validation": {
+      "value": {
+        "required": "Enter value as a number.",
+        "nonNegative": "Value must be 0 or greater."
+      }
+    }
   }
 }
