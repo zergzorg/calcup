@@ -1,24 +1,28 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), tailwindcss()],
   base: '/',
+  // @ts-ignore vite-ssg extends UserConfig with ssgOptions
+  ssgOptions: {
+    // Exclude workspace from SSG — it uses browser-only APIs at module level
+    includedRoutes(paths: string[]) {
+      return paths.filter((p: string) => p !== '/workspace')
+    },
+  },
   build: {
     sourcemap: false,
     rollupOptions: {
-      input: {
-        main: 'index.html',
-        creditCalc: 'credit-calc/index.html',
-      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return 'vendor';
+            return 'vendor'
           }
-          return undefined;
+          return undefined
         },
       },
     },
   },
-});
+})

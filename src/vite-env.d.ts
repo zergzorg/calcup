@@ -10,7 +10,21 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-interface Window {
-  dataLayer?: unknown[]
-  ym?: (...args: unknown[]) => void
+// Module augmentation must import to avoid replacing the module with moduleDetection:force
+import type {} from 'vue-router'
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[]
+    ym?: (...args: unknown[]) => void
+  }
+}
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    layout?: 'site' | 'workspace'
+    categorySlug?: string
+    toolSlug?: string
+    noindex?: boolean
+  }
 }

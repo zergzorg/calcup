@@ -107,11 +107,14 @@ export function useSeo() {
   const { t, locale } = useI18n();
 
   watchEffect(() => {
+    if (typeof document === 'undefined') return;
+
     const localeCode = String(locale.value).startsWith('ru') ? 'ru' : 'en';
-    const isCreditCalculatorPage = window.location.pathname.replace(/\/+$/, '') === '/credit-calc';
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') : '';
+    const isCreditCalculatorPage = currentPath === '/credit-calc' || currentPath === '/finance/credit';
     const seo = isCreditCalculatorPage ? CREDIT_SEO_BY_LOCALE[localeCode] : SEO_BY_LOCALE[localeCode];
     const title = isCreditCalculatorPage ? seo.title : t('title');
-    const canonicalUrl = isCreditCalculatorPage ? `${SITE_URL}/credit-calc/` : `${SITE_URL}/`;
+    const canonicalUrl = isCreditCalculatorPage ? `${SITE_URL}/finance/credit/` : `${SITE_URL}/`;
 
     document.title = title;
     document.documentElement.lang = localeCode;

@@ -5,8 +5,8 @@
       <slot></slot>
     </div>
 
-    <nav v-if="!isCreditCalculatorPage" class="desk-nav" aria-label="Calcup tools">
-      <a href="/credit-calc/">{{ t('credit.navLink') }}</a>
+    <nav class="desk-nav" aria-label="Calcup tools">
+      <RouterLink to="/finance/credit">{{ t('credit.navLink') }}</RouterLink>
     </nav>
     
     <!-- Language Switcher and Settings (Top Right) -->
@@ -49,7 +49,6 @@ const { isMobileLayout } = useMobileLayout();
 const { t } = useI18n();
 
 const layoutMode = computed(() => isMobileLayout.value ? 'mobile' : 'desktop');
-const isCreditCalculatorPage = computed(() => window.location.pathname.replace(/\/+$/, '') === '/credit-calc');
 const surfaceStyle = computed(() => {
   if (isMobileLayout.value) {
     return {};
@@ -64,7 +63,9 @@ const surfaceStyle = computed(() => {
 });
 
 watch(layoutMode, (mode) => {
-  document.body.dataset.layout = mode;
+  if (typeof document !== 'undefined') {
+    document.body.dataset.layout = mode;
+  }
 }, { immediate: true });
 </script>
 
