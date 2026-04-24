@@ -72,6 +72,13 @@ const intersects = (a: WidgetRect, b: WidgetRect) => {
   );
 };
 
+const overlapsHorizontally = (a: WidgetRect, b: WidgetRect) => {
+  return !(
+    a.x + a.width + WIDGET_GAP <= b.x ||
+    b.x + b.width + WIDGET_GAP <= a.x
+  );
+};
+
 const shuffleArray = <T,>(items: T[]) => {
   return [...items].sort(() => Math.random() - 0.5);
 };
@@ -84,39 +91,81 @@ const getDeskSize = () => {
 };
 
 const findRandomPosition = (widget: WidgetRect, placed: WidgetRect[], deskWidth: number, deskHeight: number) => {
-  const maxX = Math.max(DESK_PADDING, deskWidth - widget.width - DESK_PADDING);
-  const maxY = Math.max(DESK_PADDING, deskHeight - widget.height - DESK_PADDING);
+  const maxX = Math.max(DESK_PADDING, Math.floor(deskWidth - widget.width - DESK_PADDING));
+  const maxY = Math.max(DESK_PADDING, Math.floor(deskHeight - widget.height - DESK_PADDING));
+  const randomCandidates = Array.from({ length: 180 }, () => {
+    return DESK_PADDING + Math.random() * Math.max(1, maxX - DESK_PADDING);
+  });
+  const edgeCandidates = placed.flatMap((rect) => [
+    rect.x,
+    rect.x + rect.width + WIDGET_GAP,
+    rect.x - widget.width - WIDGET_GAP,
+  ]);
+  const xCandidates = shuffleArray([...randomCandidates, ...edgeCandidates, DESK_PADDING, maxX])
+    .map((x) => Math.round(Math.min(maxX, Math.max(DESK_PADDING, x))));
+  const seenX = new Set<number>();
+  const validCandidates: WidgetRect[] = [];
 
-  for (let attempt = 0; attempt < 700; attempt += 1) {
-    const candidate = {
-      ...widget,
-      x: DESK_PADDING + Math.random() * Math.max(1, maxX - DESK_PADDING),
-      y: DESK_PADDING + Math.random() * Math.max(1, maxY - DESK_PADDING),
-    };
+  for (const x of xCandidates) {
+    if (seenX.has(x)) continue;
+    seenX.add(x);
 
-    if (!placed.some((rect) => intersects(candidate, rect))) {
-      return candidate;
+    let y = DESK_PADDING;
+    let guard = 0;
+
+    while (guard < placed.length + 1) {
+      const candidate = { ...widget, x, y };
+      const blocker = placed.find((rect) => intersects(candidate, rect));
+
+      if (!blocker) break;
+      y = blocker.y + blocker.height + WIDGET_GAP;
+      guard += 1;
+    }
+
+    const candidate = { ...widget, x, y };
+    if (candidate.y <= maxY && !placed.some((rect) => intersects(candidate, rect))) {
+      validCandidates.push(candidate);
     }
   }
 
-  const gridStep = 24;
-  const xSlots = Math.max(1, Math.floor((maxX - DESK_PADDING) / gridStep));
-  const ySlots = Math.max(1, Math.floor((maxY - DESK_PADDING) / gridStep));
-  const gridCandidates: WidgetRect[] = [];
+  if (validCandidates.length > 0) {
+    const sorted = validCandidates.sort((a, b) => a.y - b.y);
+    const relaxedTopBand = sorted.filter((candidate) => {
+      return candidate.y <= sorted[0].y + Math.max(140, deskHeight * 0.18);
+    });
 
-  for (let ySlot = 0; ySlot <= ySlots; ySlot += 1) {
-    for (let xSlot = 0; xSlot <= xSlots; xSlot += 1) {
-      gridCandidates.push({
-        ...widget,
-        x: DESK_PADDING + xSlot * gridStep,
-        y: DESK_PADDING + ySlot * gridStep,
-      });
+    return shuffleArray(relaxedTopBand)[0];
+  }
+
+  const columnCandidates = xCandidates.map((x) => {
+    const columnBottom = placed
+      .filter((rect) => overlapsHorizontally({ ...widget, x, y: DESK_PADDING }, rect))
+      .reduce((bottom, rect) => Math.max(bottom, rect.y + rect.height + WIDGET_GAP), DESK_PADDING);
+
+    return { ...widget, x, y: columnBottom };
+  }).filter((candidate) => !placed.some((rect) => intersects(candidate, rect)));
+
+  if (columnCandidates.length > 0) {
+    const sorted = columnCandidates.sort((a, b) => {
+      if (a.y !== b.y) return a.y - b.y;
+      return Math.random() - 0.5;
+    });
+
+    return sorted[0];
+  }
+
+  let fallbackY = DESK_PADDING;
+  while (placed.some((rect) => intersects({ ...widget, x: DESK_PADDING, y: fallbackY }, rect))) {
+    fallbackY += WIDGET_GAP;
+    for (const rect of placed) {
+      const candidate = { ...widget, x: DESK_PADDING, y: fallbackY };
+      if (intersects(candidate, rect)) {
+        fallbackY = rect.y + rect.height + WIDGET_GAP;
+      }
     }
   }
 
-  return shuffleArray(gridCandidates).find((candidate) => {
-    return !placed.some((rect) => intersects(candidate, rect));
-  }) ?? { ...widget, x: DESK_PADDING, y: DESK_PADDING };
+  return { ...widget, x: DESK_PADDING, y: fallbackY };
 };
 
 const setWidgetPosition = (storageKey: string, position: WidgetPosition) => {

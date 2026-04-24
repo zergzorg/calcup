@@ -30,6 +30,8 @@
 
 ### Fixed / Исправлено
 
+- **Расстановка виджетов**: Исправлены пересечения после случайной раскладки: fallback больше не принимает занятые координаты.
+  - _Widget Shuffle_: Fixed overlaps after random layout: fallback placement no longer accepts occupied coordinates.
 - **Трекинг времени**: Фокус и паузы теперь пишутся каждую секунду активного таймера, а не только при переключении режима.
   - _Time Tracking_: Focus and break time are now recorded every second while the timer is active, not only on mode switches.
 - **Обратный отсчёт**: Исправлена работа `datetime-local`: поле получает корректное локальное значение, не ломается на устаревших сохранённых датах и стабильнее открывает выбор даты.
