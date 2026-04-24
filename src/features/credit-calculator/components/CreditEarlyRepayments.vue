@@ -72,13 +72,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { EarlyRepayment, EarlyRepaymentFrequency, EarlyRepaymentStrategy } from '../types/credit';
 import { addMonths, compareIsoDates, todayIsoDate } from '../lib/date';
 
 const props = defineProps<{
   repayments: EarlyRepayment[];
+  firstPaymentDate: string;
 }>();
 
 const emit = defineEmits<{
@@ -86,12 +87,24 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
-const date = ref(addMonths(todayIsoDate(), 12));
+const date = ref(props.firstPaymentDate || addMonths(todayIsoDate(), 1));
 const amount = ref(100000);
 const strategy = ref<EarlyRepaymentStrategy>('reduce_term');
 const frequency = ref<EarlyRepaymentFrequency>('once');
 
 const sortedRepayments = computed(() => [...props.repayments].sort((left, right) => compareIsoDates(left.date, right.date)));
+
+watch(() => props.firstPaymentDate, (next) => {
+  if (!date.value || frequency.value === 'monthly') {
+    date.value = next;
+  }
+});
+
+watch(frequency, (next) => {
+  if (next === 'monthly') {
+    date.value = props.firstPaymentDate;
+  }
+});
 
 const addRepayment = () => {
   if (!date.value || amount.value <= 0) return;

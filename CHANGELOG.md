@@ -17,6 +17,8 @@
 
 - **Печать**: Исправлена печатная форма кредитного калькулятора: в печать больше не попадают экранные формы, кнопки и поля ввода.
   - _Print_: Fixed the loan calculator print layout so screen forms, buttons, and inputs no longer appear in the printed report.
+- **Регулярные досрочные платежи**: Ежемесячные досрочные платежи теперь привязаны к датам платежного графика и сразу попадают в расчет с ближайшего платежа.
+  - _Recurring Early Repayments_: Monthly early repayments now align to scheduled payment dates and enter the calculation from the nearest payment.
 
 ## [0.9.0] - 2026-04-24
 

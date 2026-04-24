@@ -13,6 +13,20 @@ function sortEarlyRepayments(items: EarlyRepayment[]) {
   });
 }
 
+function getPaymentDateOnOrAfter(input: CreditInput, targetDate: string) {
+  let paymentDate = input.firstPaymentDate;
+
+  for (let month = 0; month < input.termMonths; month++) {
+    if (compareIsoDates(paymentDate, targetDate) >= 0) {
+      return paymentDate;
+    }
+
+    paymentDate = addMonths(paymentDate, 1);
+  }
+
+  return '';
+}
+
 function expandEarlyRepayments(input: CreditInput) {
   const lastPlannedPaymentDate = addMonths(input.firstPaymentDate, Math.max(0, input.termMonths - 1));
   const expanded: EarlyRepayment[] = [];
@@ -23,9 +37,9 @@ function expandEarlyRepayments(input: CreditInput) {
       continue;
     }
 
-    let date = repayment.date;
+    let date = getPaymentDateOnOrAfter(input, repayment.date);
     let occurrence = 0;
-    while (compareIsoDates(date, lastPlannedPaymentDate) <= 0 && occurrence < input.termMonths) {
+    while (date && compareIsoDates(date, lastPlannedPaymentDate) <= 0 && occurrence < input.termMonths) {
       expanded.push({
         ...repayment,
         id: `${repayment.id}:${occurrence}`,
