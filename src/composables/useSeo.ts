@@ -93,7 +93,7 @@ export function useSeo() {
     upsertMetaByName('twitter:card', 'summary_large_image');
     upsertMetaByName('twitter:title', title);
     upsertMetaByName('twitter:description', seo.description);
-    upsertMetaByName('twitter:image', `${SITE_URL}/og-image.png`);
+    upsertMetaByName('twitter:image', `${SITE_URL}/og-image.jpg`);
     upsertMetaByName('twitter:url', canonicalUrl);
 
     upsertMetaByProperty('og:type', 'website');
@@ -101,8 +101,8 @@ export function useSeo() {
     upsertMetaByProperty('og:title', title);
     upsertMetaByProperty('og:description', seo.description);
     upsertMetaByProperty('og:url', canonicalUrl);
-    upsertMetaByProperty('og:image', `${SITE_URL}/og-image.png`);
-    upsertMetaByProperty('og:image:type', 'image/png');
+    upsertMetaByProperty('og:image', `${SITE_URL}/og-image.jpg`);
+    upsertMetaByProperty('og:image:type', 'image/jpeg');
     upsertMetaByProperty('og:image:width', '1200');
     upsertMetaByProperty('og:image:height', '630');
     upsertMetaByProperty('og:locale', seo.ogLocale);
@@ -124,7 +124,7 @@ export function useSeo() {
       operatingSystem: 'Web',
       inLanguage: ['ru', 'en'],
       description: seo.description,
-      image: `${SITE_URL}/og-image.png`,
+      image: `${SITE_URL}/og-image.jpg`,
       offers: {
         '@type': 'Offer',
         price: '0',
