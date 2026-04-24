@@ -145,11 +145,11 @@ const primaryLabel = computed(() => (props.isActive ? t('timer.pause') : t('time
   background: var(--accent-deep, #c0392b);
 }
 
-:global([data-layout="mobile"]) .controls {
+:global([data-layout="mobile"] .pomodoro .controls){
   gap: 10px;
 }
 
-:global([data-layout="mobile"]) .primary-btn {
+:global([data-layout="mobile"] .pomodoro .primary-btn){
   min-width: 132px;
   height: 48px;
   padding: 0 18px;

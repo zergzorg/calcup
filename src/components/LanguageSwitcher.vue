@@ -66,11 +66,11 @@ const switchLang = (lang: string) => {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-:global([data-layout="mobile"]) .language-switcher {
+:global([data-layout="mobile"] .language-switcher){
   gap: 4px;
 }
 
-:global([data-layout="mobile"]) .lang-btn {
+:global([data-layout="mobile"] .lang-btn){
   min-width: 44px;
   min-height: 44px;
 }

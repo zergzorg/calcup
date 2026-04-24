@@ -422,16 +422,16 @@ input[type="checkbox"]:focus-visible + .checkmark {
   }
 }
 
-:global([data-layout="mobile"]) .settings-menu-container {
+:global([data-layout="mobile"] .settings-menu-container){
   position: static;
 }
 
-:global([data-layout="mobile"]) .settings-btn {
+:global([data-layout="mobile"] .settings-menu-container .settings-btn){
   width: 48px;
   height: 48px;
 }
 
-:global([data-layout="mobile"]) .settings-panel {
+:global([data-layout="mobile"] .settings-menu-container .settings-panel){
   position: fixed;
   top: auto;
   right: max(10px, env(safe-area-inset-right, 0px));
@@ -445,17 +445,17 @@ input[type="checkbox"]:focus-visible + .checkmark {
   box-sizing: border-box;
 }
 
-:global([data-layout="mobile"]) .color-grid {
+:global([data-layout="mobile"] .settings-menu-container .color-grid){
   grid-template-columns: 1fr;
 }
 
-:global([data-layout="mobile"]) .color-option,
-:global([data-layout="mobile"]) select,
-:global([data-layout="mobile"]) .widget-item label {
+:global([data-layout="mobile"] .settings-menu-container .color-option),
+:global([data-layout="mobile"] .settings-menu-container select),
+:global([data-layout="mobile"] .settings-menu-container .widget-item label){
   min-height: 48px;
 }
 
-:global([data-layout="mobile"]) .checkmark {
+:global([data-layout="mobile"] .settings-menu-container .checkmark){
   width: 28px;
   height: 28px;
 }

@@ -701,18 +701,18 @@ h2 {
   }
 }
 
-:global([data-layout="mobile"]) .snake-shell {
+:global([data-layout="mobile"] .snake-widget .snake-shell){
   padding: 14px;
 }
 
-:global([data-layout="mobile"]) .primary-btn,
-:global([data-layout="mobile"]) .ghost-btn,
-:global([data-layout="mobile"]) .clear-records,
-:global([data-layout="mobile"]) .mobile-controls button {
+:global([data-layout="mobile"] .snake-widget .primary-btn),
+:global([data-layout="mobile"] .snake-widget .ghost-btn),
+:global([data-layout="mobile"] .snake-widget .clear-records),
+:global([data-layout="mobile"] .snake-widget .mobile-controls button){
   min-height: 44px;
 }
 
-:global([data-layout="mobile"]) .clear-records {
+:global([data-layout="mobile"] .snake-widget .clear-records){
   padding: 0 12px;
 }
 </style>

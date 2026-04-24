@@ -584,12 +584,12 @@ onUnmounted(() => {
       rgba(255,255,255,0.3) 53%,
       transparent 55%,
       transparent 100%
-    ),
+   ),
     linear-gradient(
       to right,
       #555 0%, #ecf0f1 10%, #bdc3c7 20%, #95a5a6 40%,
       #7f8c8d 60%, #bdc3c7 80%, #ecf0f1 90%, #555 100%
-    ),
+   ),
     linear-gradient(to bottom, #7f8c8d 0%, #f1f2f6 50%, #7f8c8d 100%);
   background-blend-mode: multiply, normal, normal;
   box-shadow:
@@ -618,12 +618,12 @@ onUnmounted(() => {
       rgba(255,255,255,0.3) 53%,
       transparent 55%,
       transparent 100%
-    ),
+   ),
     linear-gradient(
       to right,
       #555 0%, #ecf0f1 10%, #bdc3c7 20%, #95a5a6 40%,
       #7f8c8d 60%, #bdc3c7 80%, #ecf0f1 90%, #555 100%
-    ),
+   ),
     linear-gradient(to bottom, #7f8c8d 0%, #f1f2f6 50%, #7f8c8d 100%);
   background-blend-mode: multiply, normal, normal;
   box-shadow:
@@ -646,7 +646,7 @@ onUnmounted(() => {
       #555 1px,
       transparent 1px,
       transparent 10px
-    );
+   );
   background-size: 8px 100%;
   background-repeat: no-repeat;
   background-position: left center;
@@ -668,7 +668,7 @@ onUnmounted(() => {
       #555 1px,
       transparent 1px,
       transparent 10px
-    );
+   );
 }
 
 .label {
@@ -737,53 +737,53 @@ onUnmounted(() => {
   font-size: 18px;
 }
 
-:global([data-layout="mobile"]) .sound-machine {
+:global([data-layout="mobile"] .sound-machine){
   width: min(320px, 100%);
 }
 
-:global([data-layout="mobile"]) .knobs {
+:global([data-layout="mobile"] .sound-machine .knobs){
   align-items: stretch;
   gap: 14px;
 }
 
-:global([data-layout="mobile"]) .tuning-knob {
+:global([data-layout="mobile"] .sound-machine .tuning-knob){
   flex: 1;
   gap: 8px;
 }
 
-:global([data-layout="mobile"]) .channel-btn {
+:global([data-layout="mobile"] .sound-machine .channel-btn){
   min-height: 44px;
   padding: 8px 12px;
   font-size: 11px;
 }
 
-:global([data-layout="mobile"]) .viz-toggle {
+:global([data-layout="mobile"] .sound-machine .viz-toggle){
   min-width: 44px;
   min-height: 30px;
   right: 0;
 }
 
-:global([data-layout="mobile"]) .volume-knob-container {
+:global([data-layout="mobile"] .sound-machine .volume-knob-container){
   min-width: 58px;
   height: 170px;
 }
 
-:global([data-layout="mobile"]) .volume-slider {
+:global([data-layout="mobile"] .sound-machine .volume-slider){
   width: 116px;
   height: 58px;
 }
 
-:global([data-layout="mobile"]) .volume-slider::-webkit-slider-thumb {
+:global([data-layout="mobile"] .sound-machine .volume-slider::-webkit-slider-thumb){
   height: 44px;
   width: 54px;
 }
 
-:global([data-layout="mobile"]) .volume-slider::-moz-range-thumb {
+:global([data-layout="mobile"] .sound-machine .volume-slider::-moz-range-thumb){
   height: 44px;
   width: 54px;
 }
 
-:global([data-layout="mobile"]) .power-btn {
+:global([data-layout="mobile"] .sound-machine .power-btn){
   width: 48px;
   height: 48px;
   align-self: center;

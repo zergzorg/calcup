@@ -121,11 +121,11 @@ const modeLabel = computed(() => {
   transition: color 0.6s ease, background-color 0.6s ease;
 }
 
-:global([data-layout="mobile"]) .display {
+:global([data-layout="mobile"] .pomodoro .display){
   width: min(210px, 86vw);
 }
 
-:global([data-layout="mobile"]) .time {
+:global([data-layout="mobile"] .pomodoro .time){
   font-size: 50px;
 }
 </style>

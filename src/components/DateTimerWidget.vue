@@ -358,26 +358,26 @@ h2 {
   }
 }
 
-:global([data-layout="mobile"]) .countdown-shell {
+:global([data-layout="mobile"] .date-countdown .countdown-shell){
   padding: 16px;
 }
 
-:global([data-layout="mobile"]) .countdown-header {
+:global([data-layout="mobile"] .date-countdown .countdown-header){
   align-items: stretch;
   flex-direction: column;
 }
 
-:global([data-layout="mobile"]) .change-btn,
-:global([data-layout="mobile"]) .preset-row button {
+:global([data-layout="mobile"] .date-countdown .change-btn),
+:global([data-layout="mobile"] .date-countdown .preset-row button){
   min-height: 44px;
 }
 
-:global([data-layout="mobile"]) .time-grid {
+:global([data-layout="mobile"] .date-countdown .time-grid){
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-:global([data-layout="mobile"]) .time-cell strong,
-:global([data-layout="mobile"]) .time-cell.days strong {
+:global([data-layout="mobile"] .date-countdown .time-cell strong),
+:global([data-layout="mobile"] .date-countdown .time-cell.days strong){
   font-size: 30px;
 }
 </style>

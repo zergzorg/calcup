@@ -170,18 +170,18 @@ const rows = computed(() => [
   margin-left: 1px;
 }
 
-:global([data-layout="mobile"]) .row {
+:global([data-layout="mobile"] .pomodoro .row){
   align-items: stretch;
   flex-direction: column;
 }
 
-:global([data-layout="mobile"]) .stepper {
+:global([data-layout="mobile"] .pomodoro .stepper){
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
 }
 
-:global([data-layout="mobile"]) .step-btn {
+:global([data-layout="mobile"] .pomodoro .step-btn){
   width: 44px;
   height: 44px;
 }

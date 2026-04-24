@@ -280,16 +280,16 @@ const onAdjust = ({ target, delta }: { target: TimerMode; delta: 1 | -1 }) => {
   margin-top: 0;
 }
 
-:global([data-layout="mobile"]) .pomodoro {
+:global([data-layout="mobile"] .pomodoro){
   gap: 16px;
   padding: 20px 18px 18px;
 }
 
-:global([data-layout="mobile"]) .task-context-text {
+:global([data-layout="mobile"] .task-context-text){
   white-space: normal;
 }
 
-:global([data-layout="mobile"]) .adjust-toggle {
+:global([data-layout="mobile"] .adjust-toggle){
   min-height: 44px;
   width: 100%;
   margin-top: 4px;
