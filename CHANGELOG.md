@@ -12,6 +12,8 @@
   - _Date Countdown_: Added `+7`, `+30`, `+90 days` presets, progress line, and clearer target statuses.
 - **Змейка**: Добавлен новый виджет классической игры Snake с управлением с клавиатуры, экранными кнопками и локальным топ-10 рекордов.
   - _Snake_: Added a new classic Snake game widget with keyboard controls, on-screen buttons, and a local top-10 leaderboard.
+- **Расстановка виджетов**: Добавлена кнопка случайной раскладки виджетов на рабочем столе без пересечений.
+  - _Widget Shuffle_: Added a button to randomly arrange desktop widgets without overlaps.
 
 ### Changed / Изменено
 

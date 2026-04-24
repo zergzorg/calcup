@@ -1,9 +1,14 @@
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useScale } from './useScale';
 
 interface Position {
   x: number;
   y: number;
+}
+
+interface WidgetPositionEventDetail {
+  storageKey: string;
+  position: Position;
 }
 
 let topLayer = 200;
@@ -42,6 +47,14 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
 
   const activateWidget = () => {
     zIndex.value = ++topLayer;
+  };
+
+  const onSetPosition = (event: Event) => {
+    const detail = (event as CustomEvent<WidgetPositionEventDetail>).detail;
+    if (!detail || detail.storageKey !== storageKey) return;
+
+    position.value = detail.position;
+    savePosition();
   };
 
   const onMouseDown = (e: MouseEvent) => {
@@ -131,6 +144,11 @@ export function useDraggable(storageKey: string, initialX: number, initialY: num
 
   onMounted(() => {
     loadPosition();
+    window.addEventListener('calcup:set-widget-position', onSetPosition);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener('calcup:set-widget-position', onSetPosition);
   });
 
   return {

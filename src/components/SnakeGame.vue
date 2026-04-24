@@ -1,6 +1,7 @@
 <template>
   <div
     class="snake-widget"
+    data-widget-key="snake_pos"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
     @mousedown.capture="activateWidget"
     @touchstart.capture="activateWidget"

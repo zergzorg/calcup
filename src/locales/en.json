@@ -1,6 +1,7 @@
 {
   "title": "Calcup - Retro Desk",
   "reset": "Reset Desk",
+  "shuffle_widgets": "Shuffle",
   "confirm_reset": "Are you sure you want to reset all data and settings?",
   "timer": {
     "title": "Pomodoro",

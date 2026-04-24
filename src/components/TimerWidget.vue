@@ -1,6 +1,7 @@
 <template>
   <div
     class="pomodoro"
+    data-widget-key="timer_pos"
     :class="`mode-${currentMode.toLowerCase()}`"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
     @mousedown.capture="activateWidget"

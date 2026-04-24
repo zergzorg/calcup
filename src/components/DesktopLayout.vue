@@ -13,6 +13,9 @@
 
     <!-- Global Controls (Bottom Right) -->
     <div class="desk-controls">
+      <button @click="$emit('shuffleWidgets')" class="desk-btn" :title="t('shuffle_widgets')">
+        🔀 {{ t('shuffle_widgets') }}
+      </button>
       <button @click="$emit('clearAll')" class="clear-btn" :title="t('title')">
         🗑️ {{ t('reset') }}
       </button>
@@ -27,7 +30,7 @@ import LanguageSwitcher from './LanguageSwitcher.vue';
 import SettingsMenu from './SettingsMenu.vue';
 import { useI18n } from 'vue-i18n';
 
-defineEmits(['clearAll']);
+defineEmits(['clearAll', 'shuffleWidgets']);
 
 const { scale } = useScale();
 const { currentStyle } = useDesktopSettings();
@@ -78,6 +81,7 @@ const { t } = useI18n();
   opacity: 1;
 }
 
+.desk-btn,
 .clear-btn {
   background: transparent;
   border: none;
@@ -87,7 +91,14 @@ const { t } = useI18n();
   transition: transform 0.2s;
 }
 
+.desk-btn:hover,
 .clear-btn:hover {
   transform: scale(1.1);
+}
+
+.desk-btn {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  font-weight: 800;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div
     class="date-countdown"
+    data-widget-key="date_timer_pos"
     :class="{ expired: isExpired }"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
     @mousedown.capture="activateWidget"

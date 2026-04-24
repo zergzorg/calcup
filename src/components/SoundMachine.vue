@@ -1,6 +1,7 @@
 <template>
   <div
     class="sound-machine"
+    data-widget-key="radio_pos"
     :style="{ transform: `translate(${position.x}px, ${position.y}px)`, zIndex }"
     @mousedown.capture="activateWidget"
     @touchstart.capture="activateWidget"
