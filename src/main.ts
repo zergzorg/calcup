@@ -4,26 +4,35 @@ import App from './App.vue'
 import i18n from './i18n'
 
 
-// Яндекс.Метрика - ID захардкожен для работы на GitHub Pages
-const YANDEX_METRIKA_ID = 105706802;
+const YANDEX_METRIKA_ID = Number(import.meta.env.VITE_YANDEX_METRIKA_ID || 105706802);
+const GA_MEASUREMENT_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID || '').trim();
 
-// Google Analytics (gtag)
-if (import.meta.env.PROD) {
+if (import.meta.env.PROD && GA_MEASUREMENT_ID) {
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
+  document.head.appendChild(script);
+
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  const gtag = (...args: unknown[]) => {
+    window.dataLayer?.push(args);
+  };
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX'); // Replace with real GA4 ID
+  gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
 }
 
 if (import.meta.env.PROD) {
-  (function(m: any, e: any, t: any, r: any, i: any, k?: any, a?: any){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1 * (new Date() as any);
+  (function(m: Window & typeof globalThis, e: Document, t: 'script', r: string, i: 'ym', k?: HTMLScriptElement, a?: HTMLScriptElement){
+    const ymFn = (m[i] as ((...args: unknown[]) => void) & { a?: unknown[]; l?: number }) || function(this: unknown) {
+      (ymFn.a = ymFn.a || []).push(arguments);
+    };
+    m[i] = ymFn;
+    ymFn.l = Date.now();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=true,k.src=r,a.parentNode?.insertBefore(k,a)
   })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=' + YANDEX_METRIKA_ID, 'ym');
 
-  (window as any).ym(YANDEX_METRIKA_ID, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+  window.ym?.(YANDEX_METRIKA_ID, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 }
 
 createApp(App).use(i18n).mount('#app')

@@ -1,0 +1,20 @@
+{
+  "name": "Calcup - Retro Productivity Desk",
+  "short_name": "Calcup",
+  "description": "Retro productivity desk with Pomodoro timer, task planner, ambient focus sounds, and countdown.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#263542",
+  "theme_color": "#263542",
+  "lang": "ru",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/calcup.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

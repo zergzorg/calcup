@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="calcupLogoTitle calcupLogoDesc">
+    <title id="calcupLogoTitle">Calcup Retro Calculator</title>
+    <desc id="calcupLogoDesc">Stylized retro calculator icon with display and keypad, used as the Calcup brand mark.</desc>
     <!-- Definitions for gradients and shadows -->
     <defs>
         <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">

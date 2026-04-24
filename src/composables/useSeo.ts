@@ -1,101 +1,139 @@
 import { watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+type LocaleSeo = {
+  description: string;
+  keywords: string;
+  ogLocale: string;
+  ogLocaleAlternate: string;
+};
+
+const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://calcup.ru').replace(/\/+$/, '');
+
+const SEO_BY_LOCALE: Record<'ru' | 'en', LocaleSeo> = {
+  ru: {
+    description: 'Calcup - ретро рабочий стол для продуктивности: Pomodoro-таймер, планировщик задач, фоновые звуки и обратный отсчет.',
+    keywords: 'calcup, pomodoro таймер, помодоро, таймер продуктивности, планировщик задач, фокус, фоновые звуки, обратный отсчет',
+    ogLocale: 'ru_RU',
+    ogLocaleAlternate: 'en_US',
+  },
+  en: {
+    description: 'Calcup is a retro productivity desk with a Pomodoro timer, task planner, ambient focus sounds, and countdown.',
+    keywords: 'calcup, pomodoro timer, productivity timer, task planner, focus tool, ambient sounds, countdown',
+    ogLocale: 'en_US',
+    ogLocaleAlternate: 'ru_RU',
+  },
+};
+
+function upsertMetaByName(name: string, content: string) {
+  let tag = document.querySelector(`meta[name="${name}"]`);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute('name', name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
+function upsertMetaByProperty(property: string, content: string) {
+  let tag = document.querySelector(`meta[property="${property}"]`);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute('property', property);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
+function upsertLink(rel: string, href: string, hreflang?: string) {
+  const selector = hreflang
+    ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+    : `link[rel="${rel}"]:not([hreflang])`;
+
+  let tag = document.querySelector(selector);
+  if (!tag) {
+    tag = document.createElement('link');
+    tag.setAttribute('rel', rel);
+    if (hreflang) {
+      tag.setAttribute('hreflang', hreflang);
+    }
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('href', href);
+}
+
+function upsertJsonLd(id: string, data: Record<string, unknown>) {
+  let tag = document.querySelector(`#${id}`);
+  if (!tag) {
+    tag = document.createElement('script');
+    tag.setAttribute('id', id);
+    tag.setAttribute('type', 'application/ld+json');
+    document.head.appendChild(tag);
+  }
+  tag.textContent = JSON.stringify(data);
+}
+
 export function useSeo() {
-const { t, locale } = useI18n();
+  const { t, locale } = useI18n();
 
-watchEffect(() => {
-document.title = t('title');
+  watchEffect(() => {
+    const localeCode = String(locale.value).startsWith('ru') ? 'ru' : 'en';
+    const seo = SEO_BY_LOCALE[localeCode];
+    const title = t('title');
+    const canonicalUrl = `${SITE_URL}/`;
 
-let metaDescription = document.querySelector('meta[name="description"]');
-if (!metaDescription) {
-metaDescription = document.createElement('meta');
-metaDescription.setAttribute('name', 'description');
-document.head.appendChild(metaDescription);
-}
-metaDescription.setAttribute('content', `${t('title')} - Productivity tools for focus, tasks and time management`);
+    document.title = title;
+    document.documentElement.lang = localeCode;
 
-let metaKeywords = document.querySelector('meta[name="keywords"]');
-if (!metaKeywords) {
-metaKeywords = document.createElement('meta');
-metaKeywords.setAttribute('name', 'keywords');
-document.head.appendChild(metaKeywords);
-}
-metaKeywords.setAttribute('content', 'pomodoro, task planner, countdown timer, focus tool, productivity, retro desk, time management');
+    upsertMetaByName('description', seo.description);
+    upsertMetaByName('keywords', seo.keywords);
+    upsertMetaByName('robots', 'index,follow,max-image-preview:large');
+    upsertMetaByName('application-name', 'Calcup');
+    upsertMetaByName('theme-color', '#263542');
+    upsertMetaByName('twitter:card', 'summary_large_image');
+    upsertMetaByName('twitter:title', title);
+    upsertMetaByName('twitter:description', seo.description);
+    upsertMetaByName('twitter:image', `${SITE_URL}/calcup.svg`);
+    upsertMetaByName('twitter:url', canonicalUrl);
 
-document.documentElement.lang = String(locale.value);
+    upsertMetaByProperty('og:type', 'website');
+    upsertMetaByProperty('og:site_name', 'Calcup');
+    upsertMetaByProperty('og:title', title);
+    upsertMetaByProperty('og:description', seo.description);
+    upsertMetaByProperty('og:url', canonicalUrl);
+    upsertMetaByProperty('og:image', `${SITE_URL}/calcup.svg`);
+    upsertMetaByProperty('og:image:type', 'image/svg+xml');
+    upsertMetaByProperty('og:locale', seo.ogLocale);
+    upsertMetaByProperty('og:locale:alternate', seo.ogLocaleAlternate);
 
-// Open Graph / Social Meta
-let ogTitle = document.querySelector('meta[property="og:title"]');
-if (!ogTitle) {
-ogTitle = document.createElement('meta');
-ogTitle.setAttribute('property', 'og:title');
-document.head.appendChild(ogTitle);
-}
-ogTitle.setAttribute('content', t('title'));
+    upsertLink('canonical', canonicalUrl);
+    upsertLink('alternate', canonicalUrl, 'ru');
+    upsertLink('alternate', canonicalUrl, 'en');
+    upsertLink('alternate', canonicalUrl, 'x-default');
+    upsertLink('manifest', `${SITE_URL}/manifest.webmanifest`);
 
-let ogDescription = document.querySelector('meta[property="og:description"]');
-if (!ogDescription) {
-ogDescription = document.createElement('meta');
-ogDescription.setAttribute('property', 'og:description');
-document.head.appendChild(ogDescription);
-}
-ogDescription.setAttribute('content', `${t('title')} - Productivity tools for focus, tasks and time management`);
-
-let ogType = document.querySelector('meta[property="og:type"]');
-if (!ogType) {
-ogType = document.createElement('meta');
-ogType.setAttribute('property', 'og:type');
-document.head.appendChild(ogType);
-}
-ogType.setAttribute('content', 'website');
-
-let ogUrl = document.querySelector('meta[property="og:url"]');
-if (!ogUrl) {
-ogUrl = document.createElement('meta');
-ogUrl.setAttribute('property', 'og:url');
-document.head.appendChild(ogUrl);
-}
-ogUrl.setAttribute('content', 'https://calcup.ru');
-
-let ogImage = document.querySelector('meta[property="og:image"]');
-if (!ogImage) {
-ogImage = document.createElement('meta');
-ogImage.setAttribute('property', 'og:image');
-document.head.appendChild(ogImage);
-}
-ogImage.setAttribute('content', 'https://calcup.ru/calcup.svg');
-
-let twitterCard = document.querySelector('meta[name="twitter:card"]');
-if (!twitterCard) {
-twitterCard = document.createElement('meta');
-twitterCard.setAttribute('name', 'twitter:card');
-document.head.appendChild(twitterCard);
-}
-twitterCard.setAttribute('content', 'summary_large_image');
-
-let twitterTitle = document.querySelector('meta[name="twitter:title"]');
-if (!twitterTitle) {
-twitterTitle = document.createElement('meta');
-twitterTitle.setAttribute('name', 'twitter:title');
-document.head.appendChild(twitterTitle);
-}
-twitterTitle.setAttribute('content', t('title'));
-
-let twitterDescription = document.querySelector('meta[name="twitter:description"]');
-if (!twitterDescription) {
-twitterDescription = document.createElement('meta');
-twitterDescription.setAttribute('name', 'twitter:description');
-document.head.appendChild(twitterDescription);
-}
-twitterDescription.setAttribute('content', `${t('title')} - Productivity tools for focus, tasks and time management`);
-
-let twitterImage = document.querySelector('meta[name="twitter:image"]');
-if (!twitterImage) {
-twitterImage = document.createElement('meta');
-twitterImage.setAttribute('name', 'twitter:image');
-document.head.appendChild(twitterImage);
-}
-twitterImage.setAttribute('content', 'https://calcup.ru/calcup.svg');
-});
+    upsertJsonLd('calcup-jsonld', {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Calcup',
+      alternateName: 'Calcup Retro Desk',
+      url: canonicalUrl,
+      applicationCategory: 'ProductivityApplication',
+      operatingSystem: 'Web',
+      inLanguage: ['ru', 'en'],
+      description: seo.description,
+      image: `${SITE_URL}/calcup.svg`,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      featureList: [
+        'Pomodoro timer',
+        'Task planner',
+        'Ambient focus sounds',
+        'Date countdown',
+      ],
+    });
+  });
 }
