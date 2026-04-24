@@ -13,7 +13,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Таймер Помодоро онлайн - Calcup</title>
-    <meta name="description" content="Бесплатный таймер Помодоро онлайн в Calcup: рабочие сессии, короткие и длинные перерывы, планировщик задач и фоновые звуки для фокуса." />
+    <meta name="description" content="Бесплатный таймер Помодоро онлайн в Calcup: рабочие сессии, короткие и длинные перерывы, планировщик задач и фоновые звуки для фокуса. Без регистрации." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://calcup.ru/timer-pomodoro/" />
     <link rel="alternate" hreflang="ru" href="https://calcup.ru/timer-pomodoro/" />
@@ -24,10 +24,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Calcup" />
     <meta property="og:title" content="Таймер Помодоро онлайн - Calcup" />
-    <meta property="og:description" content="Рабочие сессии, перерывы, задачи и фоновые звуки в одном ретро-интерфейсе." />
+    <meta property="og:description" content="Рабочие сессии, перерывы, задачи и фоновые звуки в одном ретро-интерфейсе. Без регистрации." />
     <meta property="og:url" content="https://calcup.ru/timer-pomodoro/" />
     <meta property="og:image" content="https://calcup.ru/calcup.svg" />
+    <meta property="og:image:alt" content="Calcup — ретро рабочий стол для продуктивности" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content="Calcup — ретро рабочий стол для продуктивности" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -41,6 +43,66 @@
           "name": "Calcup",
           "url": "https://calcup.ru/"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Calcup",
+            "item": "https://calcup.ru/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Таймер Помодоро",
+            "item": "https://calcup.ru/timer-pomodoro/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Что такое метод Помодоро?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Метод Помодоро — это техника управления временем: 25-минутный фокус-блок, затем 5-минутный перерыв. После четырёх таких блоков — длинный перерыв 15–30 минут. В Calcup длительность каждого блока можно настроить под свой темп."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Нужна ли регистрация для использования таймера?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Calcup работает полностью в браузере без регистрации. Все данные хранятся локально на вашем устройстве."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли видеть задачу рядом с таймером?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Планировщик задач Calcup интегрирован с Помодоро-таймером: активная задача отображается прямо на экране таймера. Выберите задачу в списке — и она появится над счётчиком."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как настроить длительность рабочих и перерывных сессий?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "В таймере есть кнопка «Настроить длительность». Нажмите её, чтобы увеличить или уменьшить время фокус-блока, короткого и длинного перерыва по отдельности."
+            }
+          }
+        ]
       }
     </script>
     <style>
@@ -109,6 +171,37 @@
       section {
         margin-top: 48px;
       }
+      .faq details {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px 0;
+      }
+      .faq details:first-of-type {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .faq summary {
+        cursor: pointer;
+        font: 600 17px/1.5 system-ui, sans-serif;
+        color: #f5efe4;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after {
+        content: '+';
+        flex-shrink: 0;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 1;
+        color: #ffd08a;
+      }
+      .faq details[open] summary::after { content: '−'; }
+      .faq details p {
+        margin: 10px 0 4px;
+        padding-right: 32px;
+      }
     </style>
   </head>
   <body>
@@ -138,6 +231,25 @@
           Используйте <a href="/task-planner/">планировщик задач</a> и
           <a href="/focus-sounds/">звуки для фокуса</a>, чтобы собрать рабочую среду без лишних вкладок.
         </p>
+      </section>
+      <section class="faq">
+        <h2>Вопросы о таймере Помодоро</h2>
+        <details>
+          <summary>Что такое метод Помодоро?</summary>
+          <p>Метод Помодоро — это техника управления временем: 25-минутный фокус-блок, затем 5-минутный перерыв. После четырёх таких блоков следует длинный перерыв 15–30 минут. В Calcup длительность каждого блока можно настроить под свой темп.</p>
+        </details>
+        <details>
+          <summary>Нужна ли регистрация для использования таймера?</summary>
+          <p>Нет. Calcup работает полностью в браузере без регистрации. Все данные — задачи, настройки таймера, история сессий — хранятся локально на вашем устройстве.</p>
+        </details>
+        <details>
+          <summary>Можно ли видеть задачу рядом с таймером?</summary>
+          <p>Да. Планировщик задач Calcup интегрирован с Помодоро-таймером: активная задача отображается прямо над счётчиком. Выберите нужную задачу — и она появится в таймере автоматически.</p>
+        </details>
+        <details>
+          <summary>Как настроить длительность рабочих и перерывных сессий?</summary>
+          <p>В таймере есть кнопка «Настроить длительность». Нажмите её, чтобы увеличить или уменьшить время фокус-блока, короткого и длинного перерыва по отдельности.</p>
+        </details>
       </section>
     </main>
   </body>

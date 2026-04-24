@@ -12,35 +12,97 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Планировщик задач онлайн - Calcup</title>
-    <meta name="description" content="Онлайн планировщик задач Calcup помогает выбрать следующую задачу, запускать фокус-сессии и видеть прогресс рабочего дня рядом с Pomodoro-таймером." />
+    <title>Планировщик задач онлайн бесплатно - Calcup</title>
+    <meta name="description" content="Онлайн планировщик задач Calcup: выбирайте следующую задачу, запускайте фокус-сессии по методу Помодоро и отслеживайте прогресс рабочего дня. Без регистрации." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://calcup.ru/task-planner/" />
     <link rel="alternate" hreflang="ru" href="https://calcup.ru/task-planner/" />
-    <link rel="alternate" hreflang="en" href="https://calcup.ru/task-planner/" />
+    <link rel="alternate" hreflang="en" href="https://calcup.ru/" />
     <link rel="alternate" hreflang="x-default" href="https://calcup.ru/task-planner/" />
     <link rel="icon" type="image/svg+xml" href="/calcup.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Calcup" />
     <meta property="og:title" content="Планировщик задач онлайн - Calcup" />
-    <meta property="og:description" content="Задачи, Pomodoro-сессии и прогресс дня в одном ретро-интерфейсе." />
+    <meta property="og:description" content="Задачи, Pomodoro-сессии и прогресс дня в одном ретро-интерфейсе. Без регистрации." />
     <meta property="og:url" content="https://calcup.ru/task-planner/" />
     <meta property="og:image" content="https://calcup.ru/calcup.svg" />
+    <meta property="og:image:alt" content="Calcup — ретро рабочий стол для продуктивности" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content="Calcup — ретро рабочий стол для продуктивности" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Планировщик задач онлайн",
         "url": "https://calcup.ru/task-planner/",
-        "inLanguage": ["ru", "en"],
+        "inLanguage": "ru",
         "description": "Онлайн планировщик задач с Pomodoro-сессиями и прогрессом рабочего дня.",
         "isPartOf": {
           "@type": "WebApplication",
           "name": "Calcup",
           "url": "https://calcup.ru/"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Calcup",
+            "item": "https://calcup.ru/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Планировщик задач",
+            "item": "https://calcup.ru/task-planner/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Как привязать задачу к таймеру Помодоро?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Добавьте задачу в список и нажмите «Начать работу». Задача станет активной и появится рядом с Помодоро-таймером. Каждая фокус-сессия будет записана в историю этой задачи."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Данные сохраняются после перезагрузки страницы?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Все задачи и сессии хранятся в localStorage вашего браузера и остаются даже после закрытия вкладки или перезагрузки страницы."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Нужна ли регистрация для использования планировщика?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Calcup работает полностью в браузере без аккаунта. Никакой регистрации и синхронизации с облаком — только локальное хранение."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли отслеживать, сколько времени потрачено на задачу?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. В планировщике отображается суммарное время фокуса по каждой задаче, а также лента последних рабочих отрезков с разбивкой на фокус, перерыв и длинный перерыв."
+            }
+          }
+        ]
       }
     </script>
     <style>
@@ -105,6 +167,37 @@
       section {
         margin-top: 48px;
       }
+      .faq details {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px 0;
+      }
+      .faq details:first-of-type {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .faq summary {
+        cursor: pointer;
+        font: 600 17px/1.5 system-ui, sans-serif;
+        color: #f5efe4;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after {
+        content: '+';
+        flex-shrink: 0;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 1;
+        color: #ffd08a;
+      }
+      .faq details[open] summary::after { content: '−'; }
+      .faq details p {
+        margin: 10px 0 4px;
+        padding-right: 32px;
+      }
     </style>
   </head>
   <body>
@@ -130,8 +223,27 @@
         <h2>Связанные страницы</h2>
         <p>
           Если вы пришли за техникой Pomodoro, откройте <a href="/timer-pomodoro/">таймер Помодоро</a>.
-          Для английского поиска есть страница <a href="/pomodoro-timer/">Pomodoro timer</a>.
+          Для фоновых звуков во время работы — <a href="/focus-sounds/">звуки для фокуса</a>.
         </p>
+      </section>
+      <section class="faq">
+        <h2>Вопросы о планировщике задач</h2>
+        <details>
+          <summary>Как привязать задачу к таймеру Помодоро?</summary>
+          <p>Добавьте задачу в список и нажмите «Начать работу». Задача станет активной и появится рядом с Помодоро-таймером. Каждая завершённая фокус-сессия будет записана в историю этой задачи.</p>
+        </details>
+        <details>
+          <summary>Данные сохраняются после перезагрузки страницы?</summary>
+          <p>Да. Все задачи и сессии хранятся в localStorage вашего браузера и остаются даже после закрытия вкладки или перезагрузки страницы.</p>
+        </details>
+        <details>
+          <summary>Нужна ли регистрация для использования планировщика?</summary>
+          <p>Нет. Calcup работает полностью в браузере без аккаунта. Никакой регистрации и синхронизации с облаком — только локальное хранение на вашем устройстве.</p>
+        </details>
+        <details>
+          <summary>Можно ли видеть, сколько времени потрачено на задачу?</summary>
+          <p>Да. В планировщике отображается суммарное время фокуса по каждой задаче, а также лента последних рабочих отрезков с разбивкой на фокус, перерыв и длинный перерыв.</p>
+        </details>
       </section>
     </main>
   </body>
