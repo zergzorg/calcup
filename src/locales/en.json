@@ -39,23 +39,25 @@
   "settings": {
     "title": "Settings",
     "background": "Background & Style",
+    "pattern": "Pattern",
     "widgets": "Widgets",
     "colors": {
-      "wood": "Dark Wood",
-      "terracotta": "Terracotta",
-      "slate": "Slate",
-      "wine": "Wine",
+      "walnut": "Dark Walnut",
+      "copper": "Soft Copper",
+      "graphite": "Graphite",
+      "merlot": "Merlot",
       "blueprint": "Blueprint",
-      "cuttingMat": "Cutting Mat",
-      "midnight": "Midnight"
+      "moss": "Quiet Moss",
+      "ink": "Ink",
+      "custom": "Custom"
     },
     "patterns": {
       "none": "Solid",
-      "wood": "Classic Wood",
-      "grid": "Subtle Grid",
-      "lined": "Notebook Lines",
-      "dots": "Polka Dots",
-      "stripes": "Stripes"
+      "wood": "Veneer",
+      "grid": "Engineering Grid",
+      "lined": "Ruled Sheet",
+      "dots": "Micro Dots",
+      "stripes": "Woven Diagonal"
     }
   },
   "dateTimer": {
