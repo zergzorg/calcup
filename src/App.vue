@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { nextTick, onMounted } from 'vue';
 import DesktopLayout from './components/DesktopLayout.vue';
 import TimerWidget from './components/TimerWidget.vue';
 import DateTimerWidget from './components/DateTimerWidget.vue';
@@ -35,6 +36,7 @@ interface WidgetPosition {
 
 const WIDGET_GAP = 18;
 const DESK_PADDING = 28;
+const INITIAL_LAYOUT_KEY = 'calcup_initial_widget_layout_done';
 
 useSeo();
 const { t } = useI18n();
@@ -174,7 +176,7 @@ const setWidgetPosition = (storageKey: string, position: WidgetPosition) => {
   }));
 };
 
-const shuffleWidgets = () => {
+const applyRandomWidgetLayout = () => {
   const widgetRects = Array.from(document.querySelectorAll<HTMLElement>('[data-widget-key]'))
     .map((element) => ({
       storageKey: element.dataset.widgetKey ?? '',
@@ -200,6 +202,24 @@ const shuffleWidgets = () => {
     });
   }
 };
+
+const shuffleWidgets = () => {
+  applyRandomWidgetLayout();
+  localStorage.setItem(INITIAL_LAYOUT_KEY, '1');
+};
+
+const hasSavedWidgetPosition = () => {
+  return Object.keys(localStorage).some((key) => key.startsWith('draggable_'));
+};
+
+onMounted(async () => {
+  await nextTick();
+
+  if (localStorage.getItem(INITIAL_LAYOUT_KEY) || hasSavedWidgetPosition()) return;
+
+  applyRandomWidgetLayout();
+  localStorage.setItem(INITIAL_LAYOUT_KEY, '1');
+});
 </script>
 
 <style>

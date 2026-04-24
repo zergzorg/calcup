@@ -14,6 +14,8 @@
   - _Snake_: Added a new classic Snake game widget with keyboard controls, on-screen buttons, and a local top-10 leaderboard.
 - **Расстановка виджетов**: Добавлена кнопка случайной раскладки виджетов на рабочем столе без пересечений.
   - _Widget Shuffle_: Added a button to randomly arrange desktop widgets without overlaps.
+- **Первый запуск**: При первом входе виджеты автоматически получают случайную раскладку без пересечений.
+  - _First Launch_: Widgets now automatically receive a random non-overlapping layout on first visit.
 
 ### Changed / Изменено
 
