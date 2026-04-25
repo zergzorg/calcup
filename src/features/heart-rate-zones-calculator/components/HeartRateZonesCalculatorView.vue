@@ -193,9 +193,9 @@ const {
 
 .heart-rate-zone-card {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   border-radius: 8px;
-  padding: 16px;
+  padding: 14px;
   color: #fff;
 }
 
@@ -205,19 +205,23 @@ const {
 }
 
 .heart-rate-zone-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   line-height: 1.2;
   font-weight: 850;
 }
 
 .heart-rate-zone-card p {
   color: rgba(255, 255, 255, 0.86);
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .heart-rate-zone-card__metrics {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(84px, 0.55fr);
+  gap: 12px;
+  align-items: end;
+  margin-top: 2px;
 }
 
 .heart-rate-zone-card__metrics div {
@@ -227,13 +231,15 @@ const {
 
 .heart-rate-zone-card__metrics strong {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.55rem;
   line-height: 1;
   font-weight: 850;
+  white-space: nowrap;
 }
 
 .heart-rate-zone-card__metrics span {
   color: rgba(255, 255, 255, 0.86);
+  font-size: 0.82rem;
   font-weight: 700;
 }
 
@@ -258,8 +264,25 @@ const {
 }
 
 @media (max-width: 420px) {
+  .heart-rate-zone-card {
+    padding: 12px;
+  }
+
+  .heart-rate-zone-card h3 {
+    font-size: 1rem;
+  }
+
   .heart-rate-zone-card__metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(74px, 0.5fr);
+    gap: 10px;
+  }
+
+  .heart-rate-zone-card__metrics strong {
+    font-size: 1.35rem;
+  }
+
+  .heart-rate-zone-card__metrics span {
+    font-size: 0.76rem;
   }
 }
 </style>
