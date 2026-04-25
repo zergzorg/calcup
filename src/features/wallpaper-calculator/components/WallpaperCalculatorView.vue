@@ -41,18 +41,22 @@
           </div>
 
           <div class="wallpaper-openings">
-            <div class="wallpaper-openings__row">
-              <strong>{{ t('wallpaper.form.windows') }}</strong>
-              <NumberField field="windowHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
-              <NumberField field="windowWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
-              <NumberField field="windowsCount" :label="t('wallpaper.form.count')" :step="1" />
-            </div>
-            <div class="wallpaper-openings__row">
-              <strong>{{ t('wallpaper.form.doors') }}</strong>
-              <NumberField field="doorHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
-              <NumberField field="doorWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
-              <NumberField field="doorsCount" :label="t('wallpaper.form.count')" :step="1" />
-            </div>
+            <section class="wallpaper-opening-card">
+              <h3>{{ t('wallpaper.form.windows') }}</h3>
+              <div class="wallpaper-grid wallpaper-grid--three">
+                <NumberField field="windowHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
+                <NumberField field="windowWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
+                <NumberField field="windowsCount" :label="t('wallpaper.form.count')" :step="1" />
+              </div>
+            </section>
+            <section class="wallpaper-opening-card">
+              <h3>{{ t('wallpaper.form.doors') }}</h3>
+              <div class="wallpaper-grid wallpaper-grid--three">
+                <NumberField field="doorHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
+                <NumberField field="doorWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
+                <NumberField field="doorsCount" :label="t('wallpaper.form.count')" :step="1" />
+              </div>
+            </section>
           </div>
 
           <NumberField
@@ -526,16 +530,21 @@ function cm(value: number): string {
   gap: 12px;
 }
 
-.wallpaper-openings__row {
+.wallpaper-opening-card {
   display: grid;
-  grid-template-columns: 104px repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  align-items: end !important;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 12px;
 }
 
-.wallpaper-openings__row strong {
-  color: #374151;
-  padding-bottom: 1rem;
+.wallpaper-opening-card h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 800;
 }
 
 .wallpaper-preset-row {
@@ -715,13 +724,8 @@ function cm(value: number): string {
   }
 
   .wallpaper-grid--three,
-  .wallpaper-grid--two,
-  .wallpaper-openings__row {
+  .wallpaper-grid--two {
     grid-template-columns: 1fr !important;
-  }
-
-  .wallpaper-openings__row strong {
-    padding-bottom: 0;
   }
 
   .wallpaper-breakdown div {
