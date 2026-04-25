@@ -233,3 +233,43 @@ Commit hash:
 Следующий шаг:
 
 - Выбрать следующий high-value калькулятор: `/construction/tile`, `/clothing/clothing-size` или `/sport/race-split`.
+
+### Итерация 8: `/construction/tile` и визуальная доработка ЧСС
+
+Что выбрано:
+
+- Следующий P0-калькулятор строительного roadmap: `/construction/tile`.
+- По пользовательскому фидбеку доработать `/sport/heart-rate-zones`: сделать цветные карточки зон с пояснениями и целевым пульсом.
+
+Что изменено:
+
+- Создан `src/features/tile-calculator/`.
+- Добавлен расчёт площади, базового количества плиток, запаса, целых упаковок, остатка и опциональной стоимости.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+- Для `heart-rate-zones` добавлены цветные карточки Zone 1-5, описания зон и `targetBpm`; зоны уточнены до беговой шкалы 60-70, 70-75, 75-85, 85-95, 95-100%.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/tile/ /tmp/calcup-tile-mobile-cli.png`
+- Playwright smoke 430px по `/sport/heart-rate-zones/` для проверки цветных карточек и overflow.
+
+Результат проверок:
+
+- `npm run test` — OK, 22 files / 333 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/tile/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: `/construction/tile/` chip-переключатели полноширинные, активное состояние без наложений.
+- Mobile smoke — OK: `/sport/heart-rate-zones/` показывает 5 цветных карточек зон без horizontal overflow.
+
+Commit hash:
+
+- 90d49d2
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/construction/laminate`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.

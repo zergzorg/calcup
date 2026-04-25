@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.7 расширение спортивного раздела
+## Текущая фаза: 5.8 расширение строительного раздела и UX ЧСС
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 21 ready-калькулятор.
-- 53 soon-карточки.
+- 22 ready-калькулятора.
+- 52 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -36,6 +36,7 @@
 | 5.5 | Калькулятор дистанция/темп/время | /sport/distance-pace-time | ✅ ready |
 | 5.6 | Конвертер размера обуви | /clothing/shoe-size | ✅ ready |
 | 5.7 | Пульсовые зоны | /sport/heart-rate-zones | ✅ ready |
+| 5.8 | Калькулятор плитки | /construction/tile | ✅ ready |
 
 ## Sitemap
 
@@ -45,7 +46,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/
 - /transport/fuel/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
@@ -54,6 +55,42 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.8) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/tile` и доработан визуальный результат `/sport/heart-rate-zones`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/tile-calculator/`.
+- Добавлен расчёт:
+  - площадь поверхности;
+  - площадь одной плитки;
+  - базовое количество плиток;
+  - запас на подрезку;
+  - округление до целых упаковок;
+  - остаток плиток;
+  - опциональная стоимость покупки.
+- Добавлены быстрые размеры плитки: 20×20, 30×30, 60×60, 60×120 см.
+- Добавлены RU/EN локали `tile.*`.
+- Registry-запись `tile` переведена в `ready`.
+- В sitemap добавлен `/construction/tile/`.
+- `/sport/heart-rate-zones` получил цветные карточки Zone 1-5 с пояснениями, диапазоном и целевым пульсом.
+
+### Проверки
+
+- `npm run test` — OK, `333/333`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/tile/` title, description, canonical со slash, `index,follow`;
+  - `/construction/tile/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/tile/` 430px screenshot без сломанных chip-переключателей;
+  - `/sport/heart-rate-zones/` 430px без overflow, 5 цветных карточек зон отображаются корректно.
 
 ---
 

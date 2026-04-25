@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 21.
-- Soon после текущего milestone: 53.
+- Ready после текущего milestone: 22.
+- Soon после текущего milestone: 52.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
-- Категории с одним ready-калькулятором: `math`, `health`, `construction`, `transport`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (1 ready / 20 soon), `sport` (0 / 5), `clothing` (0 / 5).
+- Категории с одним ready-калькулятором: `math`, `health`, `transport`, `clothing`, `datetime`.
+- Категории с малым покрытием, но высоким потенциалом: `construction` (3 ready / 18 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -51,6 +51,7 @@ Owner: Codex
 4. `clothing/shoe-size` — первый ready-калькулятор в пустой категории `clothing`.
 5. Автоматизировать генерацию sitemap из реестра или добавить тест на соответствие sitemap ready-страницам.
 6. Усилить registry guards: ready-калькулятор должен иметь `componentLoader`, `popularity`, tags и не быть пропущенным в sitemap.
+7. `construction/tile` — следующий P0-калькулятор строительного roadmap.
 
 ## Приоритеты
 
@@ -61,24 +62,29 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `sport/heart-rate-zones`.
+Milestone: `construction/tile` + HR zones visual polish.
 Status: completed.
 
 Критерии готовности:
 
-- `heart-rate-zones` переведён из `soon` в `ready`.
-- Создан `src/features/heart-rate-zones-calculator/`.
+- `tile` переведён из `soon` в `ready`.
+- Создан `src/features/tile-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/sport/heart-rate-zones/` добавлен в sitemap.
+- `/construction/tile/` добавлен в sitemap.
+- Пульсовые зоны получили цветные карточки зон с пояснениями и целевым пульсом по запросу пользователя.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/heart-rate-zones-calculator/index.ts`
+- `src/features/tile-calculator/index.ts`
+- `src/features/tile-calculator/components/TileCalculatorView.vue`
+- `src/features/tile-calculator/composables/useTileCalculator.ts`
+- `src/features/tile-calculator/lib/calculations.ts`
+- `src/features/tile-calculator/lib/calculations.test.ts`
+- `src/features/tile-calculator/types/tile.ts`
 - `src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue`
-- `src/features/heart-rate-zones-calculator/composables/useHeartRateZonesCalculator.ts`
 - `src/features/heart-rate-zones-calculator/lib/calculations.ts`
 - `src/features/heart-rate-zones-calculator/lib/calculations.test.ts`
 - `src/features/heart-rate-zones-calculator/types/heart-rate-zones.ts`
@@ -96,13 +102,16 @@ Status: completed.
 - 2026-04-26: Реализован `/clothing/shoe-size`; каталог стал 20 ready / 54 soon, категория `/clothing` получила первый ready-инструмент.
 - 2026-04-26: Добавлен registry/sitemap guard test; ready-реестр теперь проверяется на loader/popularity/tags и соответствие `public/sitemap.xml`.
 - 2026-04-26: Реализован `/sport/heart-rate-zones`; каталог стал 21 ready / 53 soon, спортивный раздел получил третий ready-инструмент.
+- 2026-04-26: Реализован `/construction/tile`; каталог стал 22 ready / 52 soon, строительный раздел получил третий ready-инструмент.
+- 2026-04-26: По пользовательскому фидбеку обновлён UI `/sport/heart-rate-zones`: цветные карточки зон, пояснения и целевой пульс.
 
 ## Decisions Log
 
 - 2026-04-26: Первым milestone выбран `sport/pace-speed`, потому что категория `sport` пока не имеет ready-инструментов, а формулы низкорисковые и хорошо тестируются.
 - 2026-04-26: Для `pace-speed` используются формулы `speedKmH = 60 / paceMinPerKm`, `paceMinPerKm = 60 / speedKmH`, `paceMinPerMile = paceMinPerKm * 1.609344`, `speedMph = speedKmH / 1.609344`. Базовая связь скорости, расстояния и времени сверена с общедоступными учебными источниками; специализированная формула `min/km = 60 / km/h` сверена с running pace conversion references.
 - 2026-04-26: Для `shoe-size` базовой величиной выбрана длина стопы в сантиметрах. Mondopoint основан на ISO 9407 как маркировка по длине стопы в миллиметрах; EU/RU считается через Paris point с припуском 1.5 см, UK/US adult — через last length в barleycorn. Это ориентировочная конверсия, поэтому UI показывает предупреждение о различиях брендов и колодок.
-- 2026-04-26: Для `heart-rate-zones` используются зоны 50-60, 60-70, 70-80, 80-90, 90-100%. Метод `% от максимума` опирается на target heart rate ranges 50-85% от max HR; метод `reserve` использует Karvonen/HRR: `resting + (max - resting) * intensity`.
+- 2026-04-26: Для `heart-rate-zones` после визуального уточнения используются беговые зоны 60-70, 70-75, 75-85, 85-95, 95-100%. Метод `% от максимума` опирается на target heart rate ranges от max HR; метод `reserve` использует Karvonen/HRR: `resting + (max - resting) * intensity`.
+- 2026-04-26: Для `tile` расчёт ведётся от площади поверхности и площади одной плитки: базовые плитки округляются вверх, затем добавляется запас, итоговая покупка округляется до целых упаковок; цена считается только если задана цена упаковки.
 
 ## Risks / Blockers
 
@@ -140,6 +149,12 @@ Status: completed.
 - 2026-04-26: Для `/sport/heart-rate-zones` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/sport/heart-rate-zones/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright smoke 430px по `/sport/heart-rate-zones/` — overflow 0, chip-переключатели 360x46, наложений нет, активное состояние полноразмерное.
+- 2026-04-26: Для `/construction/tile` и HR visual polish `npm run test` — OK, 22 files / 333 tests.
+- 2026-04-26: Для `/construction/tile` и HR visual polish `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/tile` и HR visual polish `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/tile/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/construction/tile/` — chip-переключатели на всю ширину, активное состояние полноразмерное.
+- 2026-04-26: Mobile Playwright smoke 430px по `/sport/heart-rate-zones/` после раскраски — overflow 0, 5 цветных карточек зон, активная кнопка одна, наложений нет.
 
 ## Commit Log
 
@@ -149,10 +164,22 @@ Status: completed.
 - 0fc564f — `feat(clothing): add shoe size converter`.
 - 95ee3fe — `test(registry): guard sitemap ready routes`.
 - 28c10e6 — `feat(sport): add heart rate zones calculator`.
+- 90d49d2 — `feat(construction): add tile calculator and polish hr zones`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/tile`, `/clothing/clothing-size`, `/sport/race-split`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/laminate`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+
+Завершённый milestone `construction/tile` + HR zones visual polish:
+
+- `tile` переведён из `soon` в `ready`.
+- Создан `src/features/tile-calculator/`.
+- Добавлены формулы и unit-тесты для площади, количества плиток, запаса, упаковок, остатка и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/tile/` добавлен в sitemap.
+- `/sport/heart-rate-zones/` получил цветные карточки зон с пояснением и целевым пульсом.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула плитки: `baseTiles = ceil(surfaceArea / tileArea)`, `tilesWithWaste = ceil(baseTiles * (1 + wastePercent / 100))`, `boxesNeeded = ceil(tilesWithWaste / tilesPerBox)`.
 
 Завершённый milestone `sport/heart-rate-zones`:
 
