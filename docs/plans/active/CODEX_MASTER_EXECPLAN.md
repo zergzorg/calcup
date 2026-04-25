@@ -61,31 +61,20 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `clothing/shoe-size`.
+Milestone: `registry-sitemap-guards`.
 Status: completed.
 
 Критерии готовности:
 
-- `shoe-size` переведён из `soon` в `ready`.
-- Создан `src/features/shoe-size-converter/`.
-- Добавлены чистые формулы и unit-тесты.
-- Добавлены RU/EN локали.
-- `/clothing/` и `/clothing/shoe-size/` добавлены в sitemap.
+- Ready-калькуляторы покрыты registry guard тестом на `componentLoader`, `popularity` и search tags.
+- `public/sitemap.xml` покрыт тестом соответствия ready-калькуляторам и категориям с ready-контентом.
+- `soon`/`planned` страницы не попадают в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/shoe-size-converter/index.ts`
-- `src/features/shoe-size-converter/components/ShoeSizeConverterView.vue`
-- `src/features/shoe-size-converter/composables/useShoeSizeConverter.ts`
-- `src/features/shoe-size-converter/lib/calculations.ts`
-- `src/features/shoe-size-converter/lib/calculations.test.ts`
-- `src/features/shoe-size-converter/types/shoe-size.ts`
-- `src/data/calculators.ts`
-- `src/locales/ru.json`
-- `src/locales/en.json`
-- `public/sitemap.xml`
+- `src/data/registry-guards.test.ts`
 
 ## Completed Milestones
 
@@ -94,6 +83,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/paint`; каталог стал 18 ready / 56 soon, строительный раздел получил второй P0-инструмент.
 - 2026-04-26: Реализован `/sport/distance-pace-time`; каталог стал 19 ready / 55 soon, спортивный раздел получил второй P0-инструмент.
 - 2026-04-26: Реализован `/clothing/shoe-size`; каталог стал 20 ready / 54 soon, категория `/clothing` получила первый ready-инструмент.
+- 2026-04-26: Добавлен registry/sitemap guard test; ready-реестр теперь проверяется на loader/popularity/tags и соответствие `public/sitemap.xml`.
 
 ## Decisions Log
 
@@ -129,6 +119,9 @@ Status: completed.
 - 2026-04-26: Для `/clothing/shoe-size` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/clothing/shoe-size/index.html` и `dist/clothing/index.html` — canonical, robots и sitemap entries для `/clothing/` и `/clothing/shoe-size/` OK.
 - 2026-04-26: Mobile Playwright smoke 430px по `/clothing/shoe-size/` — overflow 0, chip-переключатели 360x46, наложений нет, активное состояние полноразмерное.
+- 2026-04-26: Registry/sitemap guard `npm run test` — OK, 20 files / 325 tests.
+- 2026-04-26: Registry/sitemap guard `npm run type-check` — OK.
+- 2026-04-26: Registry/sitemap guard `npm run build` — OK, Vite SSG rendered 87 pages.
 
 ## Commit Log
 
@@ -136,10 +129,20 @@ Status: completed.
 - b0dc25e — `feat(construction): add paint calculator`.
 - 88d5990 — `feat(sport): add distance-pace-time calculator`.
 - 0fc564f — `feat(clothing): add shoe size converter`.
+- 95ee3fe — `test(registry): guard sitemap ready routes`.
 
 ## Next Action
 
-Перейти к следующему backlog item: sitemap/registry guard, чтобы ручной `public/sitemap.xml` не расходился с ready-реестром.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/sport/heart-rate-zones`, `/construction/tile`, `/clothing/clothing-size`.
+
+Завершённый milestone `registry-sitemap-guards`:
+
+- Добавлен `src/data/registry-guards.test.ts`.
+- Проверяется `validateRegistry()`.
+- Ready-калькуляторы проверяются на `componentLoader`, числовой `popularity` и непустые `tags`.
+- `public/sitemap.xml` проверяется на наличие всех ready-калькуляторов и категорий с ready-контентом.
+- `soon`/`planned` калькуляторы и пустые категории проверяются на отсутствие в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 
 Завершённый milestone `clothing/shoe-size`:
 

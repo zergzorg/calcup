@@ -163,3 +163,35 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к sitemap/registry guard.
+
+### Итерация 6: sitemap/registry guard
+
+Что выбрано:
+
+- Защитить ручной `public/sitemap.xml` и ready-реестр от рассинхронизации при добавлении новых калькуляторов.
+
+Что изменено:
+
+- Добавлен `src/data/registry-guards.test.ts`.
+- Тест проверяет `validateRegistry()`, обязательные поля ready-калькуляторов и соответствие sitemap ready-страницам.
+- `soon`/`planned` калькуляторы и категории без ready-контента проверяются на отсутствие в sitemap.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат проверок:
+
+- `npm run test` — OK, 20 files / 325 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Commit hash:
+
+- 95ee3fe
+
+Следующий шаг:
+
+- Выбрать следующий high-value калькулятор из roadmap: `/sport/heart-rate-zones`, `/construction/tile` или `/clothing/clothing-size`.
