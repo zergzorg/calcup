@@ -9,12 +9,6 @@
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
-        <RouterLink
-          to="/"
-          class="px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-          :class="{ 'text-gray-900 bg-gray-100': route.path === '/' }"
-        >Главная</RouterLink>
-
         <div class="relative" @mouseenter="catOpen = true" @mouseleave="catOpen = false">
           <button
             class="px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors flex items-center gap-1"
@@ -55,7 +49,7 @@
         <LanguageSwitcher />
 
         <button
-          v-if="route.path !== '/'"
+          :class="route.path === '/' ? 'invisible pointer-events-none' : ''"
           class="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-500 hover:border-gray-300 hover:bg-gray-50 transition-colors"
           aria-label="Поиск калькуляторов"
           @click="$emit('search')"
@@ -88,7 +82,6 @@
       class="md:hidden border-t border-gray-100 bg-white px-4 pb-4"
       @click="mobileOpen = false"
     >
-      <RouterLink to="/" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900">Главная</RouterLink>
       <p class="pt-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">Категории</p>
       <RouterLink
         v-for="cat in CATEGORIES"
