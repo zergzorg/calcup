@@ -195,3 +195,41 @@ Commit hash:
 Следующий шаг:
 
 - Выбрать следующий high-value калькулятор из roadmap: `/sport/heart-rate-zones`, `/construction/tile` или `/clothing/clothing-size`.
+
+### Итерация 7: `/sport/heart-rate-zones`
+
+Что выбрано:
+
+- Следующий high-value sport-калькулятор: пульсовые зоны по максимальной ЧСС и резерву пульса.
+
+Что изменено:
+
+- Создан `src/features/heart-rate-zones-calculator/`.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+- Перед реализацией сверены источники: AHA target heart rate 50-85% и Karvonen/HRR формула.
+
+Команды:
+
+- web search по AHA target heart rate zones и Karvonen formula.
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- static smoke через `rg` по `dist/sport/heart-rate-zones/index.html` и sitemap.
+- Playwright mobile smoke 430px по `/sport/heart-rate-zones/`.
+
+Результат проверок:
+
+- `npm run test` — OK, 21 files / 330 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/sport/heart-rate-zones/` canonical, robots и sitemap entry checked.
+- Mobile smoke — OK: overflow 0, chip-переключатели без наложений, активное состояние полноразмерное.
+
+Commit hash:
+
+- 28c10e6
+
+Следующий шаг:
+
+- Выбрать следующий high-value калькулятор: `/construction/tile`, `/clothing/clothing-size` или `/sport/race-split`.

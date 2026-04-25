@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.6 открытие раздела одежды и обуви
+## Текущая фаза: 5.7 расширение спортивного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 20 ready-калькуляторов.
-- 54 soon-карточки.
+- 21 ready-калькулятор.
+- 53 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -35,6 +35,7 @@
 | 5.4 | Калькулятор краски | /construction/paint | ✅ ready |
 | 5.5 | Калькулятор дистанция/темп/время | /sport/distance-pace-time | ✅ ready |
 | 5.6 | Конвертер размера обуви | /clothing/shoe-size | ✅ ready |
+| 5.7 | Пульсовые зоны | /sport/heart-rate-zones | ✅ ready |
 
 ## Sitemap
 
@@ -46,7 +47,7 @@
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/
 - /transport/fuel/
-- /sport/pace-speed/ · /sport/distance-pace-time/
+- /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
@@ -84,6 +85,36 @@
 - Static smoke — OK:
   - `/clothing/shoe-size/` title, description, canonical со slash, `index,follow`;
   - `/clothing/` и `/clothing/shoe-size/` есть в sitemap.
+- Mobile smoke — OK:
+  - 430px viewport;
+  - chip-переключатели без overflow и наложений;
+  - активное состояние подсвечивается на всю кнопку.
+
+---
+
+## Сделано (Фаза 5.7) — 2026-04-26
+
+Реализован спортивный калькулятор `/sport/heart-rate-zones`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/heart-rate-zones-calculator/`.
+- Добавлены методы расчёта:
+  - зоны как процент от максимальной ЧСС;
+  - зоны по резерву пульса / Karvonen.
+- Добавлены RU/EN локали `heartRateZones.*`.
+- Registry-запись `heart-rate-zones` переведена в `ready`.
+- В sitemap добавлен `/sport/heart-rate-zones/`.
+
+### Проверки
+
+- `npm run test` — OK, `330/330`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/sport/heart-rate-zones/` title, description, canonical со slash, `index,follow`;
+  - `/sport/heart-rate-zones/` есть в sitemap.
 - Mobile smoke — OK:
   - 430px viewport;
   - chip-переключатели без overflow и наложений;

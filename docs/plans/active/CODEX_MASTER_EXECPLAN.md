@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 20.
-- Soon после текущего milestone: 54.
+- Ready после текущего milestone: 21.
+- Soon после текущего milestone: 53.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `construction`, `transport`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (1 ready / 20 soon), `sport` (0 / 5), `clothing` (0 / 5).
@@ -61,20 +61,31 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `registry-sitemap-guards`.
+Milestone: `sport/heart-rate-zones`.
 Status: completed.
 
 Критерии готовности:
 
-- Ready-калькуляторы покрыты registry guard тестом на `componentLoader`, `popularity` и search tags.
-- `public/sitemap.xml` покрыт тестом соответствия ready-калькуляторам и категориям с ready-контентом.
-- `soon`/`planned` страницы не попадают в sitemap.
+- `heart-rate-zones` переведён из `soon` в `ready`.
+- Создан `src/features/heart-rate-zones-calculator/`.
+- Добавлены чистые формулы и unit-тесты.
+- Добавлены RU/EN локали.
+- `/sport/heart-rate-zones/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/data/registry-guards.test.ts`
+- `src/features/heart-rate-zones-calculator/index.ts`
+- `src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue`
+- `src/features/heart-rate-zones-calculator/composables/useHeartRateZonesCalculator.ts`
+- `src/features/heart-rate-zones-calculator/lib/calculations.ts`
+- `src/features/heart-rate-zones-calculator/lib/calculations.test.ts`
+- `src/features/heart-rate-zones-calculator/types/heart-rate-zones.ts`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
 
 ## Completed Milestones
 
@@ -84,12 +95,14 @@ Status: completed.
 - 2026-04-26: Реализован `/sport/distance-pace-time`; каталог стал 19 ready / 55 soon, спортивный раздел получил второй P0-инструмент.
 - 2026-04-26: Реализован `/clothing/shoe-size`; каталог стал 20 ready / 54 soon, категория `/clothing` получила первый ready-инструмент.
 - 2026-04-26: Добавлен registry/sitemap guard test; ready-реестр теперь проверяется на loader/popularity/tags и соответствие `public/sitemap.xml`.
+- 2026-04-26: Реализован `/sport/heart-rate-zones`; каталог стал 21 ready / 53 soon, спортивный раздел получил третий ready-инструмент.
 
 ## Decisions Log
 
 - 2026-04-26: Первым milestone выбран `sport/pace-speed`, потому что категория `sport` пока не имеет ready-инструментов, а формулы низкорисковые и хорошо тестируются.
 - 2026-04-26: Для `pace-speed` используются формулы `speedKmH = 60 / paceMinPerKm`, `paceMinPerKm = 60 / speedKmH`, `paceMinPerMile = paceMinPerKm * 1.609344`, `speedMph = speedKmH / 1.609344`. Базовая связь скорости, расстояния и времени сверена с общедоступными учебными источниками; специализированная формула `min/km = 60 / km/h` сверена с running pace conversion references.
 - 2026-04-26: Для `shoe-size` базовой величиной выбрана длина стопы в сантиметрах. Mondopoint основан на ISO 9407 как маркировка по длине стопы в миллиметрах; EU/RU считается через Paris point с припуском 1.5 см, UK/US adult — через last length в barleycorn. Это ориентировочная конверсия, поэтому UI показывает предупреждение о различиях брендов и колодок.
+- 2026-04-26: Для `heart-rate-zones` используются зоны 50-60, 60-70, 70-80, 80-90, 90-100%. Метод `% от максимума` опирается на target heart rate ranges 50-85% от max HR; метод `reserve` использует Karvonen/HRR: `resting + (max - resting) * intensity`.
 
 ## Risks / Blockers
 
@@ -122,6 +135,11 @@ Status: completed.
 - 2026-04-26: Registry/sitemap guard `npm run test` — OK, 20 files / 325 tests.
 - 2026-04-26: Registry/sitemap guard `npm run type-check` — OK.
 - 2026-04-26: Registry/sitemap guard `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Для `/sport/heart-rate-zones` `npm run test` — OK, 21 files / 330 tests.
+- 2026-04-26: Для `/sport/heart-rate-zones` `npm run type-check` — OK.
+- 2026-04-26: Для `/sport/heart-rate-zones` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/sport/heart-rate-zones/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright smoke 430px по `/sport/heart-rate-zones/` — overflow 0, chip-переключатели 360x46, наложений нет, активное состояние полноразмерное.
 
 ## Commit Log
 
@@ -130,10 +148,21 @@ Status: completed.
 - 88d5990 — `feat(sport): add distance-pace-time calculator`.
 - 0fc564f — `feat(clothing): add shoe size converter`.
 - 95ee3fe — `test(registry): guard sitemap ready routes`.
+- 28c10e6 — `feat(sport): add heart rate zones calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/sport/heart-rate-zones`, `/construction/tile`, `/clothing/clothing-size`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/tile`, `/clothing/clothing-size`, `/sport/race-split`.
+
+Завершённый milestone `sport/heart-rate-zones`:
+
+- `heart-rate-zones` переведён из `soon` в `ready`.
+- Создан `src/features/heart-rate-zones-calculator/`.
+- Добавлены формулы и unit-тесты для `% от максимума` и Karvonen/HRR.
+- Добавлены RU/EN локали.
+- `/sport/heart-rate-zones/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формулы: `maxHr = 220 - age`, zone by max = `maxHr * percent`, zone by HRR = `restingHr + (maxHr - restingHr) * percent`.
 
 Завершённый milestone `registry-sitemap-guards`:
 
