@@ -1207,11 +1207,13 @@ export const CALCULATORS: CalculatorMeta[] = [
       en: 'Intermediate splits and target pace for a race',
     },
     icon: '⏱️',
-    status: 'soon',
+    status: 'ready',
     priority: 'P1',
+    popularity: 74,
     isPopular: false,
     path: '/sport/race-split',
-    tags: ['сплиты', 'отрезки', 'забег', 'темп', 'split calculator', 'race splits'],
+    tags: ['сплиты', 'отрезки', 'забег', 'темп', 'контрольные отсечки', 'split calculator', 'race splits', 'running splits'],
+    componentLoader: () => import('../features/race-split-calculator'),
   },
   // ===== CLOTHING =====
   {

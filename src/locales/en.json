@@ -1477,6 +1477,60 @@
       }
     }
   },
+  "raceSplit": {
+    "eyebrow": "Sport",
+    "title": "Race Split Calculator",
+    "intro": "Calculate target pace and checkpoint splits for a race.",
+    "form": {
+      "raceTitle": "Race",
+      "timeTitle": "Target time",
+      "distance": "Distance",
+      "splitDistance": "Split step",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "units": {
+      "km": "km",
+      "hours": "h",
+      "minutes": "min",
+      "seconds": "sec"
+    },
+    "result": {
+      "label": "Plan",
+      "empty": "Enter positive distance, target time and split step.",
+      "pace": "Target pace",
+      "finishTime": "Finish time",
+      "speed": "Average speed",
+      "splitAt": "{value} km",
+      "paceValue": "{value} min/km",
+      "speedValue": "{value} km/h"
+    },
+    "formula": "Pace = target time / distance. Split time = checkpoint distance × pace.",
+    "validation": {
+      "distanceKm": {
+        "positive": "Distance must be greater than 0."
+      },
+      "splitDistanceKm": {
+        "positive": "Split step must be greater than 0.",
+        "tooLarge": "Split step cannot be greater than distance."
+      },
+      "hours": {
+        "integer": "Hours must be a whole number, 0 or greater."
+      },
+      "minutes": {
+        "integer": "Minutes must be a whole number, 0 or greater.",
+        "range": "Minutes must be less than 60."
+      },
+      "seconds": {
+        "integer": "Seconds must be a whole number, 0 or greater.",
+        "range": "Seconds must be less than 60."
+      },
+      "duration": {
+        "positive": "Target time must be greater than 0."
+      }
+    }
+  },
   "heartRateZones": {
     "eyebrow": "Sport",
     "title": "Heart Rate Zones",
