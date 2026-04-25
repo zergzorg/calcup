@@ -1339,6 +1339,57 @@
       }
     }
   },
+  "heartRateZones": {
+    "eyebrow": "Sport",
+    "title": "Heart Rate Zones",
+    "intro": "Calculate training heart rate zones from age, maximum heart rate, or heart rate reserve.",
+    "methods": {
+      "max": "% of max",
+      "reserve": "Heart rate reserve"
+    },
+    "form": {
+      "method": "Calculation method",
+      "age": "Age",
+      "maxHeartRate": "Maximum heart rate",
+      "restingHeartRate": "Resting heart rate",
+      "auto": "auto",
+      "maxHint": "Leave empty to estimate maximum heart rate as 220 − age."
+    },
+    "units": {
+      "years": "years",
+      "bpm": "bpm"
+    },
+    "zones": {
+      "z1": "Zone 1 · {min}-{max}%",
+      "z2": "Zone 2 · {min}-{max}%",
+      "z3": "Zone 3 · {min}-{max}%",
+      "z4": "Zone 4 · {min}-{max}%",
+      "z5": "Zone 5 · {min}-{max}%"
+    },
+    "result": {
+      "label": "Zones",
+      "empty": "Check age, maximum heart rate and resting heart rate.",
+      "maxHeartRate": "Maximum heart rate",
+      "bpmValue": "{value} bpm",
+      "rangeValue": "{min}-{max} bpm"
+    },
+    "formula": {
+      "max": "Zone = maximum heart rate × intensity percentage.",
+      "reserve": "Zone = resting heart rate + (maximum heart rate − resting heart rate) × intensity percentage."
+    },
+    "validation": {
+      "age": {
+        "range": "Age must be from 10 to 100 years."
+      },
+      "maxHeartRate": {
+        "range": "Maximum heart rate must be from 80 to 240 bpm."
+      },
+      "restingHeartRate": {
+        "range": "Resting heart rate must be from 30 to 120 bpm.",
+        "belowMax": "Resting heart rate must be lower than maximum heart rate."
+      }
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",

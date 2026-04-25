@@ -1066,8 +1066,9 @@ export const CALCULATORS: CalculatorMeta[] = [
       en: 'Heart rate zones from max heart rate, age or heart rate reserve',
     },
     icon: '💓',
-    status: 'soon',
+    status: 'ready',
     priority: 'P0',
+    popularity: 77,
     isPopular: false,
     path: '/sport/heart-rate-zones',
     tags: [
@@ -1080,6 +1081,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'running zones',
     ],
     aliases: ['пульс', 'чсс max', 'пульсовая зона', 'кардио зоны'],
+    componentLoader: () => import('../features/heart-rate-zones-calculator'),
   },
   {
     id: 'pace-speed',
