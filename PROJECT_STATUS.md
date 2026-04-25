@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.17 MVP stabilization завершена, ожидание решения: деплой / следующий калькулятор / UX polish
+## Текущая фаза: 4.18 GitHub Pages deploy QA завершена, MVP deployed and verified
 
 ## Готовые калькуляторы
 
@@ -34,6 +34,113 @@
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
+
+---
+
+## Сделано (Фаза 4.18) — 2026-04-25
+
+GitHub Pages deploy QA. Новый калькулятор не начинался, UX polish и архитектурные изменения не выполнялись.
+
+### Деплой
+
+- Production URL: `https://calcup.ru/`
+- Репозиторий: `https://github.com/zergzorg/calcup`
+- Коммит деплоя: `59955ab feat: stabilize MVP calculators`
+- GitHub Actions workflow: `Deploy to GitHub Pages`
+- Run ID: `24936774306`
+- Publish branch: `gh-pages`
+- Workflow завершился успешно.
+
+### Перед деплоем
+
+- Рабочее дерево было не чистым: были незакоммиченные изменения фаз 4.13–4.17.
+- Изменения были явно проверены, добавлены в git и зафиксированы одним коммитом.
+- Проверены scripts в `package.json`:
+  - `build`: `vue-tsc -b && vite-ssg build && node scripts/create-route-indexes.mjs && cp dist/index.html dist/404.html`
+  - `deploy`: `gh-pages -d dist`
+- Проверено, что build создаёт:
+  - `dist/404.html`
+  - `dist/sitemap.xml`
+  - `dist/robots.txt`
+  - trailing-slash `index.html` для ready routes
+
+### Проверено на production
+
+- Главная `/` загружается без ошибок.
+- Ассеты JS/CSS не отдают 404.
+- Категории открываются:
+  - `/finance/`
+  - `/math/`
+  - `/health/`
+  - `/convert/`
+  - `/transport/`
+  - `/datetime/`
+  - `/everyday/`
+- Ready-калькуляторы открываются:
+  - `/finance/credit/`
+  - `/finance/vat/`
+  - `/finance/hourly-rate/`
+  - `/finance/project-price/`
+  - `/math/percentage/`
+  - `/health/bmi/`
+  - `/convert/length/`
+  - `/convert/temperature/`
+  - `/convert/weight/`
+  - `/convert/area/`
+  - `/transport/fuel/`
+  - `/datetime/date-diff/`
+  - `/everyday/tips/`
+  - `/everyday/discount/`
+  - `/everyday/unit-price/`
+- GitHub Pages fallback:
+  - `/not-existing-url` отдаёт 404-страницу приложения;
+  - 404 имеет `robots: noindex,nofollow`.
+- SEO:
+  - `/sitemap.xml` открывается;
+  - `/robots.txt` открывается;
+  - ready-страницы имеют `index,follow,max-image-preview:large`;
+  - canonical со slash;
+  - `/workspace` остаётся `noindex,nofollow`.
+- Mobile `360px` проверен:
+  - `/`
+  - `/everyday/unit-price/`
+  - `/finance/credit/`
+  - `/finance/hourly-rate/`
+- Production search проверен по запросам:
+  - `кредит`
+  - `НДС`
+  - `стоимость часа`
+  - `выгодная покупка`
+  - `площадь`
+  - `температура`
+
+### Проверки
+
+- `npm run type-check` — OK.
+- `npm run test` — OK, `279/279`.
+- `npm run build` — OK.
+- `curl` smoke на production — OK:
+  - `/`
+  - `/sitemap.xml`
+  - `/robots.txt`
+  - `/everyday/unit-price/`
+  - `/not-existing-url`
+- Playwright production smoke — OK.
+
+### Найденные проблемы
+
+- Проблем приложения на production не найдено.
+- GitHub Actions показал предупреждение о будущей deprecation Node.js 20 для actions runner. Это не ломает текущий деплой, но позже workflow стоит обновить на Node.js 24-compatible actions.
+
+### Итог
+
+MVP deployed and verified.
+
+Следующее решение:
+
+- продолжить с новым калькулятором;
+- сделать отдельный UX polish;
+- настроить дальнейшую эксплуатацию деплоя / мониторинг.
 
 ---
 
