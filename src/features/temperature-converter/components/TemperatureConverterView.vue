@@ -61,7 +61,7 @@
 
         <template v-if="result !== null">
           <div class="temperature-result__value">{{ result }} {{ t(`temperature.units.${toUnit}`) }}</div>
-          <p class="temperature-result__summary">{{ t('temperature.result.summary', { value: result, from: t(`temperature.units.${fromUnit}`), to: t(`temperature.units.${toUnit}`) }) }}</p>
+          <p class="temperature-result__summary">{{ value }} {{ t(`temperature.units.${fromUnit}`) }} = {{ result }} {{ t(`temperature.units.${toUnit}`) }}</p>
           <p v-if="formula" class="temperature-result__formula">{{ formula }}</p>
         </template>
 

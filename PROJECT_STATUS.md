@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.10 завершена, ожидание следующей фазы
+## Текущая фаза: 4.11 завершена, ожидание следующей фазы
 
 ## Готовые калькуляторы
 
@@ -29,6 +29,35 @@
 - /transport/fuel/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/
+
+---
+
+## Сделано (Фаза 4.11) — 2026-04-25 — Stabilization / UI consistency audit
+
+Проверено: 19 страниц (/, 7 категорий, 11 калькуляторов). Playwright 104/107 (3 — ложные срабатывания теста).
+
+### Найдено и исправлено
+
+| Баг | Файл | Исправление |
+|-----|------|-------------|
+| Credit mobile overflow (812px на 360px) | `credit-calculator.css` | `grid-template-columns: minmax(0, 1fr)` на `.credit-main-column` — таблица теперь скроллится внутри контейнера |
+| Temperature summary bug: `97.88 Цельсий = Фаренгейт` | `TemperatureConverterView.vue` | Прямая интерполяция: `{{ value }} {{ fromUnit }} = {{ result }} {{ toUnit }}` вместо `{ value: result }` |
+
+### Ложные срабатывания (не баги)
+
+- `credit layout`: мой тест использовал `form`/`result` CSS-селекторы; кредитный калькулятор использует `.credit-page`, `.credit-panel` — своя система классов
+- `i18n 373.15K36.6`: конкатенация соседних flex-элементов при `textContent()` — визуально корректно
+- `i18n 24.03.2031`: даты платёжного графика совпали с паттерном `word.word.word`
+
+### Итоговое состояние
+
+- 206/206 unit-тестов
+- type-check чистый
+- Build OK
+- Mobile 360px: все страницы без overflow
+- i18n: нет сырых ключей, нет `[object Object]`
+- Search: все 11 запросов находят нужный калькулятор; soon-калькуляторы скрыты
+- SEO: все ready-страницы в sitemap, index,follow; soon — нет в sitemap
 
 ---
 
