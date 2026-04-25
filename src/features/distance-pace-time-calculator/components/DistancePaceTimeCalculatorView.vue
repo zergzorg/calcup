@@ -12,7 +12,7 @@
           <div class="distance-section__header">
             <h2>{{ t('distancePaceTime.modes.label') }}</h2>
           </div>
-          <div class="distance-grid distance-grid--three" role="radiogroup" :aria-label="t('distancePaceTime.modes.label')">
+          <div class="distance-chip-list" role="radiogroup" :aria-label="t('distancePaceTime.modes.label')">
             <button
               v-for="item in modes"
               :key="item"
@@ -52,7 +52,7 @@
               {{ t(getIssue('distanceKm')!.messageKey) }}
             </p>
           </div>
-          <div class="distance-grid distance-grid--three" role="group" :aria-label="t('distancePaceTime.form.presets')">
+          <div class="distance-chip-list" role="group" :aria-label="t('distancePaceTime.form.presets')">
             <button
               v-for="preset in distancePresets"
               :key="preset"

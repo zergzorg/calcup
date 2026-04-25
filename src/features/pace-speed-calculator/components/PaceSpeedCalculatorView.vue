@@ -12,7 +12,7 @@
           <div class="pace-section__header">
             <h2>{{ t('paceSpeed.modes.label') }}</h2>
           </div>
-          <div class="pace-grid pace-grid--two" role="radiogroup" :aria-label="t('paceSpeed.modes.label')">
+          <div class="pace-chip-list" role="radiogroup" :aria-label="t('paceSpeed.modes.label')">
             <button
               v-for="item in modes"
               :key="item"

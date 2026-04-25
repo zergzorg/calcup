@@ -54,7 +54,7 @@
           <div class="paint-grid paint-grid--two">
             <div class="paint-field">
               <span class="paint-field__label">{{ t('paint.form.coveragePreset') }}</span>
-              <div class="paint-grid paint-grid--three" role="group" :aria-label="t('paint.form.coveragePreset')">
+              <div class="paint-chip-list" role="group" :aria-label="t('paint.form.coveragePreset')">
                 <button
                   v-for="coverage in coveragePresets"
                   :key="coverage"
@@ -70,7 +70,7 @@
 
             <div class="paint-field">
               <span class="paint-field__label">{{ t('paint.form.canPreset') }}</span>
-              <div class="paint-grid paint-grid--three" role="group" :aria-label="t('paint.form.canPreset')">
+              <div class="paint-chip-list" role="group" :aria-label="t('paint.form.canPreset')">
                 <button
                   v-for="volume in canPresets"
                   :key="volume"

@@ -331,7 +331,7 @@
 .calculator-view :is(
   label[class*="-mode-option"],
   label[class*="-rate-option"],
-  button[class$="-chip"],
+  button[class*="-chip"],
   button[class$="-swap"],
   .credit-button,
   .credit-icon-button
@@ -350,6 +350,23 @@
   cursor: pointer !important;
   box-shadow: none !important;
   transition: border-color 0.15s, background 0.15s, color 0.15s !important;
+}
+
+.calculator-view [class$="-chip-list"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+
+.calculator-view [class$="-chip-list"] button[class*="-chip"] {
+  flex: 1 1 140px !important;
+  min-width: min(100%, 120px) !important;
+  min-height: 46px !important;
+  padding: 8px 12px !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  text-align: center !important;
 }
 
 .calculator-view :is(
@@ -576,6 +593,10 @@
 
   .calculator-view :is([class$="-grid--two"], [class$="-grid--three"], [class$="-unit-grid"], .credit-form-grid, .credit-result-grid, .credit-early-form, .credit-early-item) {
     grid-template-columns: 1fr !important;
+  }
+
+  .calculator-view [class$="-chip-list"] button[class*="-chip"] {
+    flex-basis: 100% !important;
   }
 
   .calculator-view :is(button[class$="-swap"], .credit-icon-button) {
