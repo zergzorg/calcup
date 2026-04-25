@@ -79,13 +79,13 @@
               <option v-for="preset in rollPresets" :key="preset.id" :value="preset.id">
                 {{ t(`wallpaper.rollPreset.${preset.id}`) }}
               </option>
-              <option v-if="selectedPreset === 'custom'" value="custom">
+              <option value="custom">
                 {{ t('wallpaper.rollPreset.custom') }}
               </option>
             </select>
           </div>
 
-          <div class="wallpaper-grid wallpaper-grid--two">
+          <div v-if="isCustomRoll" class="wallpaper-grid wallpaper-grid--two">
             <NumberField
               field="rollWidth"
               :label="t('wallpaper.form.rollWidth')"
@@ -303,8 +303,15 @@ const patternRepeatValue = computed({
   set: (value: string) => setPatternRepeat(Number(value)),
 })
 
+const isCustomRoll = computed(() => selectedPreset.value === 'custom')
+
 function selectRollPreset(event: Event) {
   const target = event.target as HTMLSelectElement
+  if (target.value === 'custom') {
+    markCustomRoll()
+    return
+  }
+
   const preset = rollPresets.find(item => item.id === target.value)
   if (preset) setRollPreset(preset)
 }
