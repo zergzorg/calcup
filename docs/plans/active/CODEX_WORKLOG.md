@@ -273,3 +273,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/construction/laminate`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.
+
+### Итерация 9: `/construction/laminate`
+
+Что выбрано:
+
+- Следующий P0-калькулятор строительного roadmap: `/construction/laminate`.
+
+Что изменено:
+
+- Создан `src/features/laminate-calculator/`.
+- Добавлен расчёт чистой площади пола, площади с запасом, количества упаковок, купленной площади, остатка и опциональной стоимости.
+- Добавлены пресеты покрытия упаковки 1.8 / 2.13 / 2.5 м² и запаса 5 / 10 / 15%.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- web search по laminate/flooring waste allowance и pack coverage workflow.
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/laminate/ /tmp/calcup-laminate-mobile.png`
+- Static smoke через `rg` по `dist/construction/laminate/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 23 files / 336 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/laminate/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: chip-переключатели полноширинные, активное состояние без наложений.
+
+Commit hash:
+
+- 4131da0
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/construction/floor-screed`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.

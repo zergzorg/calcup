@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.8 расширение строительного раздела и UX ЧСС
+## Текущая фаза: 5.9 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 22 ready-калькулятора.
-- 52 soon-карточки.
+- 23 ready-калькулятора.
+- 51 soon-карточка.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -37,6 +37,7 @@
 | 5.6 | Конвертер размера обуви | /clothing/shoe-size | ✅ ready |
 | 5.7 | Пульсовые зоны | /sport/heart-rate-zones | ✅ ready |
 | 5.8 | Калькулятор плитки | /construction/tile | ✅ ready |
+| 5.9 | Калькулятор ламината | /construction/laminate | ✅ ready |
 
 ## Sitemap
 
@@ -46,7 +47,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/
 - /transport/fuel/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
@@ -55,6 +56,41 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.9) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/laminate`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/laminate-calculator/`.
+- Добавлен расчёт:
+  - площадь помещения;
+  - исключаемая площадь без укладки;
+  - площадь с запасом;
+  - количество упаковок;
+  - купленная площадь и остаток;
+  - опциональная стоимость покупки.
+- Добавлены быстрые пресеты:
+  - покрытие упаковки: 1.8, 2.13, 2.5 м²;
+  - запас: 5, 10, 15%.
+- Добавлены RU/EN локали `laminate.*`.
+- Registry-запись `laminate` переведена в `ready`.
+- В sitemap добавлен `/construction/laminate/`.
+
+### Проверки
+
+- `npm run test` — OK, `336/336`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/laminate/` title, description, canonical со slash, `index,follow`;
+  - `/construction/laminate/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/laminate/` 430px screenshot без сломанных chip-переключателей.
 
 ---
 

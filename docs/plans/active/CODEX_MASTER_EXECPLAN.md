@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 22.
-- Soon после текущего milestone: 52.
+- Ready после текущего milestone: 23.
+- Soon после текущего milestone: 51.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `transport`, `clothing`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (3 ready / 18 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
+- Категории с малым покрытием, но высоким потенциалом: `construction` (4 ready / 17 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -62,32 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/tile` + HR zones visual polish.
+Milestone: `construction/laminate`.
 Status: completed.
 
 Критерии готовности:
 
-- `tile` переведён из `soon` в `ready`.
-- Создан `src/features/tile-calculator/`.
+- `laminate` переведён из `soon` в `ready`.
+- Создан `src/features/laminate-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/tile/` добавлен в sitemap.
-- Пульсовые зоны получили цветные карточки зон с пояснениями и целевым пульсом по запросу пользователя.
+- `/construction/laminate/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/tile-calculator/index.ts`
-- `src/features/tile-calculator/components/TileCalculatorView.vue`
-- `src/features/tile-calculator/composables/useTileCalculator.ts`
-- `src/features/tile-calculator/lib/calculations.ts`
-- `src/features/tile-calculator/lib/calculations.test.ts`
-- `src/features/tile-calculator/types/tile.ts`
-- `src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue`
-- `src/features/heart-rate-zones-calculator/lib/calculations.ts`
-- `src/features/heart-rate-zones-calculator/lib/calculations.test.ts`
-- `src/features/heart-rate-zones-calculator/types/heart-rate-zones.ts`
+- `src/features/laminate-calculator/index.ts`
+- `src/features/laminate-calculator/components/LaminateCalculatorView.vue`
+- `src/features/laminate-calculator/composables/useLaminateCalculator.ts`
+- `src/features/laminate-calculator/lib/calculations.ts`
+- `src/features/laminate-calculator/lib/calculations.test.ts`
+- `src/features/laminate-calculator/types/laminate.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -104,6 +99,7 @@ Status: completed.
 - 2026-04-26: Реализован `/sport/heart-rate-zones`; каталог стал 21 ready / 53 soon, спортивный раздел получил третий ready-инструмент.
 - 2026-04-26: Реализован `/construction/tile`; каталог стал 22 ready / 52 soon, строительный раздел получил третий ready-инструмент.
 - 2026-04-26: По пользовательскому фидбеку обновлён UI `/sport/heart-rate-zones`: цветные карточки зон, пояснения и целевой пульс.
+- 2026-04-26: Реализован `/construction/laminate`; каталог стал 23 ready / 51 soon, строительный раздел получил четвёртый ready-инструмент.
 
 ## Decisions Log
 
@@ -112,6 +108,7 @@ Status: completed.
 - 2026-04-26: Для `shoe-size` базовой величиной выбрана длина стопы в сантиметрах. Mondopoint основан на ISO 9407 как маркировка по длине стопы в миллиметрах; EU/RU считается через Paris point с припуском 1.5 см, UK/US adult — через last length в barleycorn. Это ориентировочная конверсия, поэтому UI показывает предупреждение о различиях брендов и колодок.
 - 2026-04-26: Для `heart-rate-zones` после визуального уточнения используются беговые зоны 60-70, 70-75, 75-85, 85-95, 95-100%. Метод `% от максимума` опирается на target heart rate ranges от max HR; метод `reserve` использует Karvonen/HRR: `resting + (max - resting) * intensity`.
 - 2026-04-26: Для `tile` расчёт ведётся от площади поверхности и площади одной плитки: базовые плитки округляются вверх, затем добавляется запас, итоговая покупка округляется до целых упаковок; цена считается только если задана цена упаковки.
+- 2026-04-26: Для `laminate` расчёт ведётся от чистой площади пола, покрытия одной упаковки и процента запаса. Типовой запас на подрезку оставлен настраиваемым, с быстрыми пресетами 5/10/15%.
 
 ## Risks / Blockers
 
@@ -155,6 +152,11 @@ Status: completed.
 - 2026-04-26: Static smoke по `dist/construction/tile/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/construction/tile/` — chip-переключатели на всю ширину, активное состояние полноразмерное.
 - 2026-04-26: Mobile Playwright smoke 430px по `/sport/heart-rate-zones/` после раскраски — overflow 0, 5 цветных карточек зон, активная кнопка одна, наложений нет.
+- 2026-04-26: Для `/construction/laminate` `npm run test` — OK, 23 files / 336 tests.
+- 2026-04-26: Для `/construction/laminate` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/laminate` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/laminate/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/construction/laminate/` — chip-переключатели полноширинные, активное состояние без наложений.
 
 ## Commit Log
 
@@ -165,10 +167,21 @@ Status: completed.
 - 95ee3fe — `test(registry): guard sitemap ready routes`.
 - 28c10e6 — `feat(sport): add heart rate zones calculator`.
 - 90d49d2 — `feat(construction): add tile calculator and polish hr zones`.
+- 4131da0 — `feat(construction): add laminate calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/laminate`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/floor-screed`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+
+Завершённый milestone `construction/laminate`:
+
+- `laminate` переведён из `soon` в `ready`.
+- Создан `src/features/laminate-calculator/`.
+- Добавлены формулы и unit-тесты для площади пола, запаса, упаковок, купленной площади, остатка и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/laminate/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `materialArea = (roomLength * roomWidth - excludedArea) * (1 + wastePercent / 100)`, `packsNeeded = ceil(materialArea / packCoverage)`.
 
 Завершённый milestone `construction/tile` + HR zones visual polish:
 

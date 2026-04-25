@@ -62,8 +62,8 @@ Material calculators for renovation, finishing, construction and engineering wor
 |------|----------|----------|------|
 | `/construction/wallpaper` | Калькулятор обоев | Быстрый расчёт рулонов с окнами, дверями, запасом и раппортом | Низкий |
 | `/construction/paint` | Калькулятор краски | Литры, банки, слои, расход и стоимость | Низкий, ready |
-| `/construction/tile` | Калькулятор плитки | Плитки, упаковки, подрезка, запас и стоимость | Средний |
-| `/construction/laminate` | Калькулятор ламината | Площадь, упаковки, запас и стоимость | Низкий |
+| `/construction/tile` | Калькулятор плитки | Плитки, упаковки, подрезка, запас и стоимость | Средний, ready |
+| `/construction/laminate` | Калькулятор ламината | Площадь, упаковки, запас и стоимость | Низкий, ready |
 | `/construction/floor-screed` | Калькулятор стяжки пола | Объём, масса смеси, мешки и стоимость | Средний |
 
 ### P1: Стены, кладка и изоляция
@@ -170,6 +170,8 @@ Material calculators for renovation, finishing, construction and engineering wor
 - [x] Добавить P0/P1/P2/P3 строительные `soon`-карточки в реестр.
 - [ ] После первого ready-калькулятора проверить категорию `/construction/` в production.
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/paint`.
+- [x] Реализовать следующий строительный ready-калькулятор: `/construction/tile`.
+- [x] Реализовать следующий строительный ready-калькулятор: `/construction/laminate`.
 
 ## Post-Completion
 
@@ -184,4 +186,4 @@ Material calculators for renovation, finishing, construction and engineering wor
 
 ## Current Notes
 
-На 2026-04-25 готов только `/construction/wallpaper`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.
+На 2026-04-26 готовы `/construction/wallpaper`, `/construction/paint`, `/construction/tile` и `/construction/laminate`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.
