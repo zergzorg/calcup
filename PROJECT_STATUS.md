@@ -4,7 +4,7 @@
 Фаза 4.5 — Date diff calculator
 
 ## Текущий шаг
-Фаза 4.4 принята. Начата реализация /datetime/date-diff.
+Фаза 4.5 завершена. Ожидание согласования перед следующим калькулятором.
 
 ---
 
@@ -27,6 +27,7 @@
 | `/health/bmi` | ✅ ready | `src/features/health-bmi` | ✅ `/health/bmi/` | `index,follow,max-image-preview:large` |
 | `/convert/length` | ✅ ready | `src/features/length-converter` | ✅ `/convert/length/` | `index,follow,max-image-preview:large` |
 | `/transport/fuel` | ✅ ready | `src/features/fuel-calculator` | ✅ `/transport/fuel/` | `index,follow,max-image-preview:large` |
+| `/datetime/date-diff` | ✅ ready | `src/features/date-diff-calculator` | ✅ `/datetime/date-diff/` | `index,follow,max-image-preview:large` |
 
 ---
 
@@ -43,6 +44,102 @@
 - `/convert/length/`
 - `/transport/`
 - `/transport/fuel/`
+- `/datetime/`
+- `/datetime/date-diff/`
+
+---
+
+## Сделано (Фаза 4.5 — Date diff calculator)
+
+### Новые файлы
+- `src/features/date-diff-calculator/index.ts`
+- `src/features/date-diff-calculator/components/DateDiffCalculatorView.vue`
+- `src/features/date-diff-calculator/composables/useDateDiffCalculator.ts`
+- `src/features/date-diff-calculator/lib/calculations.ts` — UTC-safe парсинг, `parseDateOnly`, `calculateDayDifference`, breakdown по годам/месяцам/дням
+- `src/features/date-diff-calculator/lib/calculations.test.ts`
+- `src/features/date-diff-calculator/types/date-diff.ts`
+
+### Изменённые файлы
+- `src/data/calculators.ts` — `date-diff` переведён в `ready`, добавлен `componentLoader`, tags, aliases, popularity
+- `src/locales/ru.json` — добавлены ключи `dateDiff.*`
+- `src/locales/en.json` — добавлены ключи `dateDiff.*`
+- `public/sitemap.xml` — добавлены `/datetime/` и `/datetime/date-diff/`
+- `PROJECT_STATUS.md` — актуализирован
+
+### Ключевые решения
+- Никогда не используется `new Date('YYYY-MM-DD')` — парсинг через regex + round-trip UTC-валидация (`Date.UTC` + `getUTC*`)
+- Breakdown (годы/месяцы/дни) считается от earlier к later независимо от direction
+- `includeEndDate` прибавляет +1 только к итоговому числу дней
+- Валидация показывается только после `@blur` (touched-паттерн, как в fuel)
+- Дефолтные значения: сегодня + 30 дней — результат виден сразу
+
+### Проверки (Фаза 4.5)
+
+| Проверка | Результат |
+|----------|-----------|
+| `npm run type-check` | ✅ 0 ошибок |
+| `npm run test` | ✅ 5 файлов, 75 тестов passed |
+| `npm run build` | ✅ SSG: `dist/datetime/date-diff.html` 15.26 KiB |
+| robots meta | ✅ `index,follow,max-image-preview:large` |
+| sitemap | ✅ `/datetime/` и `/datetime/date-diff/` |
+| Same date = 0 дней | ✅ |
+| includeEndDate same = 1 день | ✅ |
+| includeEndDate consecutive = 2 дня | ✅ |
+| Обратный порядок | ✅ 364 дня, direction = past |
+| Leap year 2024-02-28 → 2024-03-01 | ✅ 2 дня |
+| Non-leap 2023-02-28 → 2023-03-01 | ✅ 1 день |
+| New Year 2025-12-31 → 2026-01-01 | ✅ 1 день |
+| 360px overflow | ✅ нет |
+| SearchModal | ✅ разница дат, сколько дней, дата, date diff, days between dates |
+
+### Scope control
+- ✅ Только `/datetime/date-diff` — другие datetime-калькуляторы не начинались
+- ✅ Остальные калькуляторы и архитектура не менялись
+
+---
+
+## Сделано (Фаза 4.4 — Fuel consumption calculator)
+
+### Новые файлы
+- `src/features/fuel-calculator/index.ts`
+- `src/features/fuel-calculator/components/FuelCalculatorView.vue`
+- `src/features/fuel-calculator/composables/useFuelCalculator.ts`
+- `src/features/fuel-calculator/lib/calculations.ts` — `calcConsumptionPer100Km`, `calcRequiredFuel`, `calcTripCost`
+- `src/features/fuel-calculator/lib/calculations.test.ts`
+- `src/features/fuel-calculator/types/fuel.ts`
+
+### Изменённые файлы
+- `src/data/calculators.ts` — `fuel` переведён в `ready`, добавлен `componentLoader`, tags, aliases, popularity
+- `src/locales/ru.json` — добавлены ключи `fuel.*`
+- `src/locales/en.json` — добавлены ключи `fuel.*`
+- `src/style.css` — глобально убраны нативные стрелки у `input[type=number]`
+- `public/sitemap.xml` — добавлены `/transport/` и `/transport/fuel/`
+- `PROJECT_STATUS.md` — актуализирован
+
+### Режимы
+- ✅ Расход л/100 км: расстояние + топливо → `топливо / расстояние × 100`
+- ✅ Нужно литров: расстояние + расход → `расстояние × расход / 100`
+- ✅ Стоимость поездки: расстояние + расход + цена → литры + стоимость
+
+### Проверки (Фаза 4.4)
+
+| Проверка | Результат |
+|----------|-----------|
+| `npm run type-check` | ✅ 0 ошибок |
+| `npm run test` | ✅ 47 тестов passed |
+| `npm run build` | ✅ SSG: `dist/transport/fuel.html` 15.56 KiB |
+| robots meta | ✅ `index,follow,max-image-preview:large` |
+| sitemap | ✅ `/transport/` и `/transport/fuel/` |
+| 600 км / 48 л → 8 л/100 км | ✅ |
+| 250 км при 8 л/100 км → 20 л | ✅ |
+| 250 км / 8 л/100 км / 60 ₽ → 1200 ₽ | ✅ |
+| price = 0 → cost = 0 | ✅ |
+| 360px overflow | ✅ нет |
+| SearchModal | ✅ расход топлива, бензин, литры, поездка, fuel, consumption |
+
+### Scope control
+- ✅ Только `/transport/fuel` — другие transport-калькуляторы не начинались
+- ✅ Остальные калькуляторы и архитектура не менялись
 
 ---
 
@@ -375,4 +472,4 @@
 ---
 
 ## Требуется согласование пользователя
-**Перед следующим калькулятором нужна отдельная команда пользователя.** Фаза 4.3 закрыта только для `/convert/length`; остальные инструменты не начинать автоматически.
+**Перед следующим калькулятором нужна отдельная команда пользователя.** Фаза 4.5 закрыта только для `/datetime/date-diff`; остальные инструменты не начинать автоматически.
