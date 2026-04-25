@@ -8,7 +8,7 @@ Scope: продуктовая дорожная карта разделов `/spo
 
 Добавить в Calcup две новые линейки калькуляторов:
 
-- `Спорт` — быстрые расчёты для бега, тренировок, пульса, темпа, скорости и дистанций.
+- `Спорт` — быстрые расчёты для бега, тренировок, пульса, темпа, скорости и дистанций. Первый ready-инструмент: `/sport/pace-speed`.
 - `Одежда и обувь` — конвертеры размеров кроссовок, обуви, одежды и популярных брендов.
 
 Первый шаг уже должен быть реестровым: категории и заглушечные карточки появляются в навигации, но конкретные калькуляторы остаются `soon` до реализации формул, UX, тестов и SEO.
@@ -85,7 +85,7 @@ Sneaker, shoe, clothing and brand size converters.
 | Path | Name | Value | Risk |
 |------|------|-------|------|
 | `/sport/heart-rate-zones` | Пульсовые зоны | Зоны ЧСС и целевой пульс по max HR / возрасту / HRR | Средний |
-| `/sport/pace-speed` | Калькулятор темп/скорость | Перевод мин/км ↔ км/ч | Низкий |
+| `/sport/pace-speed` | Калькулятор темп/скорость | Перевод мин/км ↔ км/ч | Низкий, ready |
 | `/sport/distance-pace-time` | Калькулятор дистанция/темп | Время, темп или дистанция для 3, 5, 10, 15, 21.1, 42.2 км | Низкий |
 
 ### P1: Sport Next
@@ -155,7 +155,7 @@ Sneaker, shoe, clothing and brand size converters.
 - [x] Добавить заглушечные `soon`-калькуляторы для спорта.
 - [x] Добавить заглушечные `soon`-калькуляторы для одежды и обуви.
 - [x] Оформить активный roadmap для дальнейшего наполнения.
-- [ ] Реализовать `/sport/pace-speed`.
+- [x] Реализовать `/sport/pace-speed`.
 - [ ] Реализовать `/sport/distance-pace-time`.
 - [ ] Реализовать `/sport/heart-rate-zones`.
 - [ ] Реализовать `/clothing/shoe-size`.
@@ -172,11 +172,11 @@ Sneaker, shoe, clothing and brand size converters.
 
 После первого ready-калькулятора в каждом разделе:
 
-- обновить `public/sitemap.xml` только для категорий/страниц с готовым содержимым;
+- [x] обновить `public/sitemap.xml` для `/sport/` и `/sport/pace-speed/`;
 - проверить SEO title/description через `src/composables/useSeo.ts`;
 - проверить карточки на главной и в футере;
 - пройти mobile smoke для списка категории и конкретного калькулятора.
 
 ## Completion Notes
 
-План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. Ready-калькуляторов в этих двух разделах пока нет, поэтому разделы не считаются завершёнными и не должны появляться в sitemap как категории с готовым содержимым до первого ready-инструмента.
+План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. На 2026-04-26 `/sport/pace-speed` переведён в ready, поэтому `/sport/` и `/sport/pace-speed/` добавлены в sitemap. `/clothing` пока не имеет ready-инструментов и не должен появляться в sitemap как категория с готовым содержимым.

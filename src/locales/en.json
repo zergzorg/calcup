@@ -1023,6 +1023,66 @@
       "rollTooShort": "The roll is shorter than one strip. Check wall height, roll length, or pattern repeat."
     }
   },
+  "paceSpeed": {
+    "eyebrow": "Sport",
+    "title": "Pace to Speed Calculator",
+    "intro": "Convert running pace to treadmill speed, or speed back to familiar minutes per kilometer and mile.",
+    "modes": {
+      "label": "Conversion mode",
+      "paceToSpeed": "Pace → speed",
+      "speedToPace": "Speed → pace"
+    },
+    "form": {
+      "paceTitle": "Pace per kilometer",
+      "paceHint": "Enter minutes and seconds for 1 km.",
+      "speedTitle": "Speed",
+      "speedHint": "Enter speed in kilometers per hour.",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "speed": "Speed"
+    },
+    "units": {
+      "min": "min",
+      "sec": "sec",
+      "kmh": "km/h",
+      "minPerKm": "min/km",
+      "minPerMile": "min/mile"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a positive pace or speed.",
+      "speed": "Speed",
+      "pace": "Pace",
+      "kmh": "Kilometers per hour",
+      "mph": "Miles per hour",
+      "minPerKm": "Pace per kilometer",
+      "minPerMile": "Pace per mile",
+      "speedValue": "{value} km/h",
+      "mphValue": "{value} mph",
+      "paceValue": "{minutes}:{seconds} {unit}"
+    },
+    "formula": {
+      "paceToSpeed": "Speed = 60 / pace in minutes per kilometer.",
+      "speedToPace": "Pace = 60 / speed in kilometers per hour."
+    },
+    "validation": {
+      "minutes": {
+        "required": "Enter minutes as a number.",
+        "nonNegativeInteger": "Minutes must be an integer greater than or equal to 0."
+      },
+      "seconds": {
+        "required": "Enter seconds as a number.",
+        "range": "Seconds must be an integer from 0 to 59."
+      },
+      "pace": {
+        "positive": "Pace must be greater than 0."
+      },
+      "speed": {
+        "required": "Enter speed as a number.",
+        "positive": "Speed must be greater than 0."
+      }
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",

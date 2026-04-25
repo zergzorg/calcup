@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 16 ready-калькуляторов в `src/data/calculators.ts`;
-- 58 `soon`-карточек для будущего наполнения;
+- 17 ready-калькуляторов в `src/data/calculators.ts`;
+- 57 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -72,7 +72,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Конвертеры | `/convert` | length, temperature, weight, area | volume, speed, currency, data-size |
 | Строительство | `/construction` | wallpaper | paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete, foundations, roof, engineering |
 | Транспорт | `/transport` | fuel | trip-cost, fuel-price, average-speed, ev-range |
-| Спорт | `/sport` | — | heart-rate-zones, pace-speed, distance-pace-time, metronome, race-split |
+| Спорт | `/sport` | pace-speed | heart-rate-zones, distance-pace-time, metronome, race-split |
 | Одежда и обувь | `/clothing` | — | sneaker-size, shoe-size, clothing-size, jeans-size, brand-size-compare |
 | Дата и время | `/datetime` | date-diff | age, workdays, time-duration, countdown |
 | Быт | `/everyday` | discount, tips, unit-price | bill-split, electricity, cooking-units, room-area |
@@ -93,6 +93,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/convert/area` | Конвертер площади |
 | `/construction/wallpaper` | Калькулятор обоев |
 | `/transport/fuel` | Калькулятор расхода топлива |
+| `/sport/pace-speed` | Калькулятор темп/скорость |
 | `/datetime/date-diff` | Разница между датами |
 | `/everyday/tips` | Чаевые и разделение счёта |
 | `/everyday/discount` | Калькулятор скидки |
@@ -113,7 +114,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
    - `/construction/paint`;
-   - `/sport/pace-speed`;
+   - `/sport/distance-pace-time`;
    - `/clothing/shoe-size`.
 
 ## Non-Goals

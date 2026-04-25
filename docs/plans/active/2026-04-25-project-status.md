@@ -1,13 +1,14 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.2 расширение каталога и подготовка большого коммита
+## Текущая фаза: 5.3 расширение спортивного раздела
 
-Фактическое состояние на 2026-04-25:
+Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 16 ready-калькуляторов.
-- 58 soon-карточек.
-- `/sport` и `/clothing` добавлены как новые активные продуктовые направления.
+- 17 ready-калькуляторов.
+- 57 soon-карточек.
+- `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
+- `/clothing` добавлен как активное продуктовое направление, но пока содержит только `soon`-карточки.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
 
 ## Готовые калькуляторы
@@ -30,22 +31,53 @@
 | 4.14 | Калькулятор стоимости проекта | /finance/project-price | ✅ ready |
 | 4.16 | Калькулятор выгодной покупки | /everyday/unit-price | ✅ ready |
 | 5.1 | Калькулятор обоев | /construction/wallpaper | ✅ ready |
+| 5.3 | Калькулятор темп/скорость | /sport/pace-speed | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
-- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /datetime/ · /everyday/
+- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/
 - /transport/fuel/
+- /sport/pace-speed/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
-Примечание: `/sport/` и `/clothing/` уже есть в роутинге и навигации, но пока не добавлены в sitemap как категории с готовым содержимым, потому что внутри только `soon`-инструменты.
+Примечание: `/sport/` добавлен в sitemap после первого ready-инструмента. `/clothing/` уже есть в роутинге и навигации, но пока не добавлен в sitemap как категория с готовым содержимым, потому что внутри только `soon`-инструменты.
+
+---
+
+## Сделано (Фаза 5.3) — 2026-04-26
+
+Реализован первый спортивный калькулятор `/sport/pace-speed`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/pace-speed-calculator/`.
+- Добавлен перевод:
+  - темп `мин/км` → скорость `км/ч` и `mph`;
+  - скорость `км/ч` → темп `мин/км` и `мин/миля`.
+- Добавлены RU/EN локали `paceSpeed.*`.
+- Registry-запись `pace-speed` переведена в `ready`.
+- В sitemap добавлены:
+  - `/sport/`;
+  - `/sport/pace-speed/`.
+
+### Проверки
+
+- `npm run test` — OK, `304/304`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/sport/pace-speed/` title, description, canonical со slash, `index,follow`;
+  - `/sport/` и `/sport/pace-speed/` есть в sitemap;
+  - `/clothing/` не добавлен в sitemap до первого ready-инструмента.
 
 ---
 
