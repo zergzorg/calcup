@@ -86,23 +86,6 @@
     </div>
   </section>
 
-  <!-- Workspace promo -->
-  <section class="bg-gray-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <h2 class="text-2xl font-bold">Рабочий стол Calcup</h2>
-        <p class="mt-2 text-gray-400 max-w-md">
-          Pomodoro-таймер, планировщик задач, фоновые звуки и многое другое — всё в одном месте.
-        </p>
-      </div>
-      <RouterLink
-        to="/workspace"
-        class="shrink-0 rounded-xl bg-white text-gray-900 px-6 py-3 font-semibold text-sm hover:bg-gray-100 transition-colors"
-      >
-        Открыть рабочий стол →
-      </RouterLink>
-    </div>
-  </section>
 </template>
 
 <script setup lang="ts">
