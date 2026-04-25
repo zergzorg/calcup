@@ -656,5 +656,55 @@
         "nonNegative": "Price must be 0 or greater."
       }
     }
+  },
+  "area": {
+    "eyebrow": "Converters",
+    "title": "Area Converter",
+    "intro": "Convert area between square meters, hectares, acres, square feet, and more.",
+    "form": {
+      "value": "Area",
+      "from": "From",
+      "to": "To",
+      "swap": "Swap units"
+    },
+    "units": {
+      "squareMillimeter": "Square millimeter (mm²)",
+      "squareCentimeter": "Square centimeter (cm²)",
+      "squareMeter": "Square meter (m²)",
+      "squareKilometer": "Square kilometer (km²)",
+      "hectare": "Hectare (ha)",
+      "are": "Are (a)",
+      "squareInch": "Square inch (in²)",
+      "squareFoot": "Square foot (ft²)",
+      "squareYard": "Square yard (yd²)",
+      "acre": "Acre"
+    },
+    "unitShort": {
+      "squareMillimeter": "mm²",
+      "squareCentimeter": "cm²",
+      "squareMeter": "m²",
+      "squareKilometer": "km²",
+      "hectare": "ha",
+      "are": "a",
+      "squareInch": "in²",
+      "squareFoot": "ft²",
+      "squareYard": "yd²",
+      "acre": "ac"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter an area value.",
+      "summary": "{value} {from} = {result} {to}"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "validation": {
+      "value": {
+        "required": "Enter an area value.",
+        "nonNegative": "Area cannot be negative."
+      }
+    }
   }
 }

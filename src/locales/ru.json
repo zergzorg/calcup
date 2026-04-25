@@ -656,5 +656,55 @@
         "nonNegative": "Цена не может быть отрицательной."
       }
     }
+  },
+  "area": {
+    "eyebrow": "Конвертеры",
+    "title": "Конвертер площади",
+    "intro": "Переводите площадь между квадратными метрами, гектарами, сотками, акрами, футами и другими единицами.",
+    "form": {
+      "value": "Площадь",
+      "from": "Из единицы",
+      "to": "В единицу",
+      "swap": "Поменять единицы местами"
+    },
+    "units": {
+      "squareMillimeter": "Квадратный миллиметр (мм²)",
+      "squareCentimeter": "Квадратный сантиметр (см²)",
+      "squareMeter": "Квадратный метр (м²)",
+      "squareKilometer": "Квадратный километр (км²)",
+      "hectare": "Гектар (га)",
+      "are": "Сотка / ар (а)",
+      "squareInch": "Квадратный дюйм (дюйм²)",
+      "squareFoot": "Квадратный фут (фут²)",
+      "squareYard": "Квадратный ярд (ярд²)",
+      "acre": "Акр"
+    },
+    "unitShort": {
+      "squareMillimeter": "мм²",
+      "squareCentimeter": "см²",
+      "squareMeter": "м²",
+      "squareKilometer": "км²",
+      "hectare": "га",
+      "are": "а",
+      "squareInch": "дюйм²",
+      "squareFoot": "фут²",
+      "squareYard": "ярд²",
+      "acre": "акр"
+    },
+    "result": {
+      "label": "Результат",
+      "empty": "Введите значение площади.",
+      "summary": "{value} {from} = {result} {to}"
+    },
+    "popular": {
+      "title": "Популярные значения",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "validation": {
+      "value": {
+        "required": "Введите значение площади.",
+        "nonNegative": "Площадь не может быть отрицательной."
+      }
+    }
   }
 }

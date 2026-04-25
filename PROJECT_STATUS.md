@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.11 завершена, ожидание следующей фазы
+## Текущая фаза: 4.12 завершена, ожидание следующей фазы
 
 ## Готовые калькуляторы
 
@@ -17,6 +17,7 @@
 | 4.8 | Конвертер температуры | /convert/temperature | ✅ ready |
 | 4.9 | Конвертер веса | /convert/weight | ✅ ready |
 | 4.10 | Калькулятор скидки | /everyday/discount | ✅ ready |
+| 4.12 | Конвертер площади | /convert/area | ✅ ready |
 
 ## Sitemap
 
@@ -29,6 +30,20 @@
 - /transport/fuel/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/
+- /convert/area/
+
+---
+
+## Сделано (Фаза 4.12) — 2026-04-25
+
+- `src/features/area-converter/` — полный модуль
+- 10 единиц: мм², см², м², км², га, а (сотка), дюйм², фут², ярд², акр; конвертация через squareMeter
+- Roundup до 8 значащих цифр; корректная работа с очень малыми и большими значениями
+- 27 unit-тестов (233/233 всего)
+- Swap button, популярные значения, layout как у length/weight converter
+- Registry: `area` → `status: 'ready'`, `popularity: 70`
+- Sitemap: `/convert/area/`
+- Playwright 18/19 (1 — ложное: тест проверял `площадь`, заголовок правильно использует `площади`)
 
 ---
 
