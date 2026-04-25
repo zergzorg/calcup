@@ -1,11 +1,11 @@
 import type { HeartRateZone, HeartRateZoneMethod, HeartRateZonesResult } from '../types/heart-rate-zones'
 
 export const HEART_RATE_ZONE_DEFINITIONS: Array<Pick<HeartRateZone, 'key' | 'minPercent' | 'maxPercent'>> = [
-  { key: 'z1', minPercent: 50, maxPercent: 60 },
-  { key: 'z2', minPercent: 60, maxPercent: 70 },
-  { key: 'z3', minPercent: 70, maxPercent: 80 },
-  { key: 'z4', minPercent: 80, maxPercent: 90 },
-  { key: 'z5', minPercent: 90, maxPercent: 100 },
+  { key: 'z1', minPercent: 60, maxPercent: 70 },
+  { key: 'z2', minPercent: 70, maxPercent: 75 },
+  { key: 'z3', minPercent: 75, maxPercent: 85 },
+  { key: 'z4', minPercent: 85, maxPercent: 95 },
+  { key: 'z5', minPercent: 95, maxPercent: 100 },
 ]
 
 export function estimateMaxHeartRate(age: number): number | null {
@@ -54,6 +54,7 @@ export function calculateHeartRateZones(input: {
       ...zone,
       minBpm: zoneBpm(zone.minPercent, maxHeartRate, restingHeartRate, input.method),
       maxBpm: zoneBpm(zone.maxPercent, maxHeartRate, restingHeartRate, input.method),
+      targetBpm: zoneBpm((zone.minPercent + zone.maxPercent) / 2, maxHeartRate, restingHeartRate, input.method),
     })),
   }
 }

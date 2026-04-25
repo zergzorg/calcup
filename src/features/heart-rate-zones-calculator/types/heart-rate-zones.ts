@@ -6,6 +6,7 @@ export interface HeartRateZone {
   maxPercent: number
   minBpm: number
   maxBpm: number
+  targetBpm: number
 }
 
 export interface HeartRateZonesResult {

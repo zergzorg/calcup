@@ -1360,18 +1360,36 @@
       "bpm": "bpm"
     },
     "zones": {
-      "z1": "Zone 1 · {min}-{max}%",
-      "z2": "Zone 2 · {min}-{max}%",
-      "z3": "Zone 3 · {min}-{max}%",
-      "z4": "Zone 4 · {min}-{max}%",
-      "z5": "Zone 5 · {min}-{max}%"
+      "z1": {
+        "title": "Zone 1: Slow run",
+        "description": "Recovery, warm-up and very easy longer efforts."
+      },
+      "z2": {
+        "title": "Zone 2: Easy pace",
+        "description": "Aerobic base work: speaking in short phrases is still possible."
+      },
+      "z3": {
+        "title": "Zone 3: Tempo run",
+        "description": "Moderately hard work for sustained pace."
+      },
+      "z4": {
+        "title": "Zone 4: Threshold work",
+        "description": "Hard intervals around anaerobic threshold."
+      },
+      "z5": {
+        "title": "Zone 5: VO2 max",
+        "description": "Short very hard intervals close to maximum effort."
+      }
     },
     "result": {
       "label": "Zones",
       "empty": "Check age, maximum heart rate and resting heart rate.",
       "maxHeartRate": "Maximum heart rate",
       "bpmValue": "{value} bpm",
-      "rangeValue": "{min}-{max} bpm"
+      "rangeValue": "{min}-{max} bpm",
+      "rangePlain": "{min}-{max}",
+      "zoneRange": "Heart rate zone",
+      "targetPulse": "Target pulse"
     },
     "formula": {
       "max": "Zone = maximum heart rate × intensity percentage.",
@@ -1387,6 +1405,63 @@
       "restingHeartRate": {
         "range": "Resting heart rate must be from 30 to 120 bpm.",
         "belowMax": "Resting heart rate must be lower than maximum heart rate."
+      }
+    }
+  },
+  "tile": {
+    "eyebrow": "Construction",
+    "title": "Tile Calculator",
+    "intro": "Estimate surface area, tile count, boxes, cutting waste and purchase cost.",
+    "form": {
+      "surfaceTitle": "Surface",
+      "surfaceLength": "Length",
+      "surfaceWidth": "Width",
+      "tileTitle": "Tile size",
+      "tileLength": "Tile length",
+      "tileWidth": "Tile width",
+      "presets": "Quick tile size",
+      "boxTitle": "Box and waste",
+      "wastePercent": "Waste",
+      "tilesPerBox": "Tiles per box",
+      "boxPrice": "Box price"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive surface, tile and box values.",
+      "boxes": "Buy",
+      "surfaceArea": "Surface area",
+      "baseTiles": "Tiles before waste",
+      "tilesWithWaste": "Tiles with waste",
+      "purchaseTiles": "Tiles in purchased boxes",
+      "leftoverTiles": "Leftover",
+      "totalCost": "Cost",
+      "boxesValue": "{count} boxes",
+      "tilesValue": "{count} pcs",
+      "areaValue": "{value} m²",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Tiles = surface area / one tile area, then waste is added and the count is rounded up to whole boxes.",
+    "validation": {
+      "surfaceLength": {
+        "positive": "Length must be greater than 0."
+      },
+      "surfaceWidth": {
+        "positive": "Width must be greater than 0."
+      },
+      "tileLengthCm": {
+        "positive": "Tile length must be greater than 0."
+      },
+      "tileWidthCm": {
+        "positive": "Tile width must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "tilesPerBox": {
+        "positiveInteger": "Tiles per box must be an integer greater than 0."
+      },
+      "boxPrice": {
+        "nonNegative": "Box price cannot be negative."
       }
     }
   },

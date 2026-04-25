@@ -10,15 +10,15 @@ describe('heart rate zone calculations', () => {
     const result = calculateHeartRateZones({ age: 40, method: 'max' })
 
     expect(result?.maxHeartRate).toBe(180)
-    expect(result?.zones[0]).toMatchObject({ key: 'z1', minBpm: 90, maxBpm: 108 })
-    expect(result?.zones[4]).toMatchObject({ key: 'z5', minBpm: 162, maxBpm: 180 })
+    expect(result?.zones[0]).toMatchObject({ key: 'z1', minBpm: 108, maxBpm: 126, targetBpm: 117 })
+    expect(result?.zones[4]).toMatchObject({ key: 'z5', minBpm: 171, maxBpm: 180, targetBpm: 176 })
   })
 
   it('calculates Karvonen zones from heart rate reserve', () => {
     const result = calculateHeartRateZones({ age: 40, maxHeartRate: 190, restingHeartRate: 60, method: 'reserve' })
 
-    expect(result?.zones[0]).toMatchObject({ minBpm: 125, maxBpm: 138 })
-    expect(result?.zones[4]).toMatchObject({ minBpm: 177, maxBpm: 190 })
+    expect(result?.zones[0]).toMatchObject({ minBpm: 138, maxBpm: 151, targetBpm: 145 })
+    expect(result?.zones[4]).toMatchObject({ minBpm: 184, maxBpm: 190, targetBpm: 187 })
   })
 
   it('uses a custom max heart rate when provided', () => {

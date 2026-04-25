@@ -105,14 +105,25 @@
             <strong>{{ t('heartRateZones.result.bpmValue', { value: result.maxHeartRate }) }}</strong>
           </div>
 
-          <div class="heart-rate-result__rows">
+          <div class="heart-rate-zone-list">
             <div
               v-for="zone in result.zones"
               :key="zone.key"
-              class="heart-rate-result__row"
+              class="heart-rate-zone-card"
+              :class="`heart-rate-zone-card--${zone.key}`"
             >
-              <span>{{ t(`heartRateZones.zones.${zone.key}`, { min: zone.minPercent, max: zone.maxPercent }) }}</span>
-              <strong>{{ t('heartRateZones.result.rangeValue', { min: zone.minBpm, max: zone.maxBpm }) }}</strong>
+              <h3>{{ t(`heartRateZones.zones.${zone.key}.title`) }}</h3>
+              <p>{{ t(`heartRateZones.zones.${zone.key}.description`) }}</p>
+              <div class="heart-rate-zone-card__metrics">
+                <div>
+                  <strong>{{ t('heartRateZones.result.rangePlain', { min: zone.minBpm, max: zone.maxBpm }) }}</strong>
+                  <span>{{ t('heartRateZones.result.zoneRange') }}</span>
+                </div>
+                <div>
+                  <strong>{{ zone.targetBpm }}</strong>
+                  <span>{{ t('heartRateZones.result.targetPulse') }}</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -174,7 +185,81 @@ const {
   color: #64748b;
 }
 
-.heart-rate-result__rows {
+.heart-rate-zone-list {
   display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+}
+
+.heart-rate-zone-card {
+  display: grid;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 16px;
+  color: #fff;
+}
+
+.heart-rate-zone-card h3,
+.heart-rate-zone-card p {
+  margin: 0;
+}
+
+.heart-rate-zone-card h3 {
+  font-size: 1.15rem;
+  line-height: 1.2;
+  font-weight: 850;
+}
+
+.heart-rate-zone-card p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.heart-rate-zone-card__metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 14px;
+}
+
+.heart-rate-zone-card__metrics div {
+  display: grid;
+  gap: 2px;
+}
+
+.heart-rate-zone-card__metrics strong {
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 850;
+}
+
+.heart-rate-zone-card__metrics span {
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 700;
+}
+
+.heart-rate-zone-card--z1 {
+  background: #38bdf8;
+}
+
+.heart-rate-zone-card--z2 {
+  background: #22c55e;
+}
+
+.heart-rate-zone-card--z3 {
+  background: #facc15;
+}
+
+.heart-rate-zone-card--z4 {
+  background: #fb923c;
+}
+
+.heart-rate-zone-card--z5 {
+  background: #ef4444;
+}
+
+@media (max-width: 420px) {
+  .heart-rate-zone-card__metrics {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
