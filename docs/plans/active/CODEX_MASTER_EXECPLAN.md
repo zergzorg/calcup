@@ -127,10 +127,11 @@ Status: completed.
 
 - 8b7c3cb — `feat(sport): add pace-speed calculator`.
 - b0dc25e — `feat(construction): add paint calculator`.
+- 88d5990 — `feat(sport): add distance-pace-time calculator`.
 
 ## Next Action
 
-Сделать атомарный commit `feat(sport): add distance-pace-time calculator`, затем перейти к следующему backlog item: `clothing/shoe-size`.
+Перейти к следующему backlog item: `clothing/shoe-size`.
 
 Завершённый milestone `sport/distance-pace-time`:
 

@@ -120,8 +120,8 @@ Commit hash:
 
 Commit hash:
 
-- Пока нет.
+- 88d5990
 
 Следующий шаг:
 
-- Закоммитить milestone и перейти к `/clothing/shoe-size`.
+- Перейти к `/clothing/shoe-size`.
