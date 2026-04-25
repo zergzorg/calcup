@@ -501,3 +501,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size` или строительному P1.
+
+### Итерация 15: `/construction/brick`
+
+Что выбрано:
+
+- Вернуться в строительный P1 roadmap и реализовать `/construction/brick`.
+
+Что изменено:
+
+- Создан `src/features/brick-calculator/`.
+- Добавлен расчёт площади кладки, кирпичей до и после запаса, объёма кладки, ориентира раствора и стоимости кирпича.
+- Добавлены пресеты стандартных размеров 250×120×65 / 88 / 138 мм.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/brick/ /tmp/calcup-brick-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/brick/ /tmp/calcup-brick-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/brick/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 29 files / 354 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/brick/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 6317139
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/construction/drywall` или `/clothing/clothing-size`.

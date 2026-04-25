@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 28.
-- Soon после текущего milestone: 46.
+- Ready после текущего milestone: 29.
+- Soon после текущего milestone: 45.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `sport/race-split`.
+Milestone: `construction/brick`.
 Status: completed.
 
 Критерии готовности:
 
-- `race-split` переведён из `soon` в `ready`.
-- Создан `src/features/race-split-calculator/`.
+- `brick` переведён из `soon` в `ready`.
+- Создан `src/features/brick-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/sport/race-split/` добавлен в sitemap.
+- `/construction/brick/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/race-split-calculator/index.ts`
-- `src/features/race-split-calculator/components/RaceSplitCalculatorView.vue`
-- `src/features/race-split-calculator/composables/useRaceSplitCalculator.ts`
-- `src/features/race-split-calculator/lib/calculations.ts`
-- `src/features/race-split-calculator/lib/calculations.test.ts`
-- `src/features/race-split-calculator/types/race-split.ts`
+- `src/features/brick-calculator/index.ts`
+- `src/features/brick-calculator/components/BrickCalculatorView.vue`
+- `src/features/brick-calculator/composables/useBrickCalculator.ts`
+- `src/features/brick-calculator/lib/calculations.ts`
+- `src/features/brick-calculator/lib/calculations.test.ts`
+- `src/features/brick-calculator/types/brick.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -105,6 +105,7 @@ Status: completed.
 - 2026-04-26: Реализован `/transport/fuel-price`; каталог стал 26 ready / 48 soon, транспортный раздел получил третий ready-инструмент.
 - 2026-04-26: Реализован `/transport/average-speed`; каталог стал 27 ready / 47 soon, транспортный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/sport/race-split`; каталог стал 28 ready / 46 soon, спортивный раздел получил четвёртый ready-инструмент.
+- 2026-04-26: Реализован `/construction/brick`; каталог стал 29 ready / 45 soon, строительный раздел получил шестой ready-инструмент.
 
 ## Decisions Log
 
@@ -119,6 +120,7 @@ Status: completed.
 - 2026-04-26: Для `fuel-price` расчёт идёт от бюджета: `liters = budget / pricePerLiter`, `distanceKm = liters / consumptionPer100Km * 100`, `costPer100Km = consumptionPer100Km * pricePerLiter`.
 - 2026-04-26: Для `average-speed` расчёт использует `speedKmH = distanceKm / (totalMinutes / 60)`, `speedMph = speedKmH / 1.609344`, `speedMs = speedKmH * 1000 / 3600`, `paceSecondsPerKm = totalMinutes * 60 / distanceKm`.
 - 2026-04-26: Для `race-split` расчёт использует `paceSecondsPerKm = totalSeconds / distanceKm`; каждая отсечка считается как `splitDistance * paceSecondsPerKm`, финишная отсечка добавляется всегда.
+- 2026-04-26: Для `brick` расчёт использует площадь лицевой стороны кирпича со швом: `bricks = netArea / ((length + joint) * (height + joint)) * thicknessBricks`, затем добавляется запас; раствор считается как настраиваемая доля объёма кладки.
 
 ## Risks / Blockers
 
@@ -192,6 +194,11 @@ Status: completed.
 - 2026-04-26: Для `/sport/race-split` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/sport/race-split/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/sport/race-split/` — поля, список сплитов и result rows без overflow и наложений.
+- 2026-04-26: Для `/construction/brick` `npm run test` — OK, 29 files / 354 tests.
+- 2026-04-26: Для `/construction/brick` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/brick` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/brick/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/brick/` — поля, пресеты, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -208,10 +215,21 @@ Status: completed.
 - cde7208 — `feat(transport): add fuel price calculator`.
 - 75f9560 — `feat(transport): add average speed calculator`.
 - 17d6823 — `feat(sport): add race split calculator`.
+- 6317139 — `feat(construction): add brick calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/drywall`, `/clothing/clothing-size`.
+
+Завершённый milestone `construction/brick`:
+
+- `brick` переведён из `soon` в `ready`.
+- Создан `src/features/brick-calculator/`.
+- Добавлены формулы и unit-тесты для количества кирпича, объёма кладки, раствора, запаса и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/brick/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `bricks = netArea / brickFaceAreaWithJoint * thicknessBricks`, затем запас.
 
 Завершённый milestone `sport/race-split`:
 

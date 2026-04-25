@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.14 расширение спортивного раздела
+## Текущая фаза: 5.15 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 28 ready-калькуляторов.
-- 46 soon-карточек.
+- 29 ready-калькуляторов.
+- 45 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -43,6 +43,7 @@
 | 5.12 | Калькулятор цены топлива | /transport/fuel-price | ✅ ready |
 | 5.13 | Калькулятор средней скорости | /transport/average-speed | ✅ ready |
 | 5.14 | Калькулятор сплитов | /sport/race-split | ✅ ready |
+| 5.15 | Калькулятор кирпича | /construction/brick | ✅ ready |
 
 ## Sitemap
 
@@ -52,7 +53,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -61,6 +62,39 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.15) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/brick`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/brick-calculator/`.
+- Добавлен расчёт:
+  - площадь кладки с вычетом проёмов;
+  - кирпичи до и после запаса;
+  - количество кирпичей на 1 м² в 0,5 кирпича;
+  - объём кладки;
+  - ориентировочный объём раствора;
+  - опциональная стоимость кирпича.
+- Добавлены пресеты размеров кирпича 250×120×65 / 88 / 138 мм.
+- Добавлены RU/EN локали `brick.*`.
+- Registry-запись `brick` переведена в `ready`.
+- В sitemap добавлен `/construction/brick/`.
+
+### Проверки
+
+- `npm run test` — OK, `354/354`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/brick/` title, description, canonical со slash, `index,follow`;
+  - `/construction/brick/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/brick/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
