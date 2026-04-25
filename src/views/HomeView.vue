@@ -78,11 +78,21 @@
     </div>
   </section>
 
-  <!-- Ready calculators -->
-  <section v-if="readyCalcs.length" class="max-w-7xl mx-auto px-4 pb-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-5">Готовые калькуляторы</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <CalculatorCard v-for="calc in readyCalcs" :key="calc.id" :calc="calc" />
+  <!-- Popular calculators -->
+  <section v-if="popularCalcs.length" class="max-w-7xl mx-auto px-4 pb-8">
+    <div class="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900">Популярные калькуляторы</h2>
+        <p class="text-sm text-gray-500">Инструменты, которые чаще всего ищут для быстрых расчётов.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+      <CalculatorCard
+        v-for="calc in popularCalcs"
+        :key="calc.id"
+        :calc="calc"
+        compact
+      />
     </div>
   </section>
 
@@ -113,6 +123,12 @@ function onSearchBlur(e: FocusEvent) {
 }
 
 const readyCalcs = computed(() => CALCULATORS.filter(c => c.status === 'ready'))
+const popularCalcs = computed(() =>
+  [...readyCalcs.value]
+    .filter(c => c.isPopular)
+    .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
+    .slice(0, 8),
+)
 
 const readyCountByCategory = computed(() => {
   const map: Record<string, number> = {}

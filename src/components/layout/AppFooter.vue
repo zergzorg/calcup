@@ -116,6 +116,7 @@ const readyCalcs = computed(() => CALCULATORS.filter(c => c.status === 'ready'))
 const readyCount = computed(() => readyCalcs.value.length)
 const popularCalcs = computed(() =>
   [...readyCalcs.value]
+    .filter(c => c.isPopular)
     .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
     .slice(0, 8),
 )

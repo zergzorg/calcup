@@ -47,8 +47,8 @@ const category = computed(() =>
 )
 
 const visibleCalcs = computed(() =>
-  CALCULATORS.filter(
-    c => c.categorySlug === route.meta.categorySlug && c.status !== 'planned',
-  ),
+  CALCULATORS
+    .filter(c => c.categorySlug === route.meta.categorySlug && c.status !== 'planned')
+    .sort((a, b) => Number(b.isPopular) - Number(a.isPopular) || (b.popularity ?? 0) - (a.popularity ?? 0)),
 )
 </script>
