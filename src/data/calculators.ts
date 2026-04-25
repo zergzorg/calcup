@@ -15,6 +15,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P0',
     popularity: 100,
+    isPopular: true,
     path: '/finance/credit',
     tags: ['кредит', 'ипотека', 'платеж', 'loan', 'mortgage', 'payment'],
     aliases: ['займ', 'кредит наличными'],
@@ -48,6 +49,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 86,
+    isPopular: true,
     path: '/finance/vat',
     tags: [
       'НДС',
@@ -165,6 +167,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 96,
+    isPopular: true,
     path: '/math/percentage',
     tags: ['процент', 'скидка', 'процентов', 'percent', 'percentage', 'discount'],
     aliases: ['процент от числа', 'сколько процентов', 'percentage change', 'увеличить на процент'],
@@ -184,6 +187,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P0',
     popularity: 92,
+    isPopular: true,
     path: '/health/bmi',
     tags: ['имт', 'вес', 'рост', 'bmi', 'weight', 'height'],
     aliases: ['индекс массы тела', 'body mass index', 'масса тела'],
@@ -203,6 +207,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 88,
+    isPopular: true,
     path: '/convert/length',
     tags: [
       'длина',
@@ -235,6 +240,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 75,
+    isPopular: true,
     path: '/convert/temperature',
     tags: [
       'температура',
@@ -264,6 +270,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 72,
+    isPopular: true,
     path: '/convert/weight',
     tags: [
       'вес',
@@ -409,6 +416,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 82,
+    isPopular: true,
     path: '/datetime/date-diff',
     tags: [
       'разница дат',
@@ -438,6 +446,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 80,
+    isPopular: true,
     path: '/everyday/discount',
     tags: [
       'скидка',
@@ -467,6 +476,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     status: 'ready',
     priority: 'P1',
     popularity: 78,
+    isPopular: true,
     path: '/everyday/tips',
     tags: [
       'чаевые',

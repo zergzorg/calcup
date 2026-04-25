@@ -25,6 +25,7 @@ export interface CalculatorMeta {
   aliases?: string[]
   path: string
   popularity?: number
+  isPopular?: boolean
   componentLoader?: () => Promise<{ default: Component }>
 }
 
