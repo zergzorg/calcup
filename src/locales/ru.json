@@ -499,6 +499,52 @@
       }
     }
   },
+  "averageSpeed": {
+    "eyebrow": "Транспорт",
+    "title": "Калькулятор средней скорости",
+    "intro": "Посчитайте среднюю скорость по расстоянию и времени в пути.",
+    "form": {
+      "routeTitle": "Маршрут",
+      "timeTitle": "Время в пути",
+      "distance": "Расстояние",
+      "hours": "Часы",
+      "minutes": "Минуты"
+    },
+    "units": {
+      "km": "км",
+      "hours": "ч",
+      "minutes": "мин"
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительное расстояние и время больше нуля.",
+      "speed": "Средняя скорость",
+      "travelTime": "Время в пути",
+      "speedMph": "Мили в час",
+      "speedMs": "Метры в секунду",
+      "pace": "Темп",
+      "speedKmHValue": "{value} км/ч",
+      "speedMphValue": "{value} mph",
+      "speedMsValue": "{value} м/с",
+      "paceValue": "{value} мин/км",
+      "timeValue": "{hours} ч {minutes} мин"
+    },
+    "formula": "Средняя скорость = расстояние / время. Темп = время / расстояние.",
+    "validation": {
+      "distanceKm": {
+        "positive": "Расстояние должно быть больше 0."
+      },
+      "hours": {
+        "nonNegative": "Часы не могут быть отрицательными."
+      },
+      "minutes": {
+        "nonNegative": "Минуты не могут быть отрицательными."
+      },
+      "duration": {
+        "positive": "Время в пути должно быть больше 0."
+      }
+    }
+  },
   "vat": {
     "eyebrow": "Финансы",
     "title": "Калькулятор НДС",

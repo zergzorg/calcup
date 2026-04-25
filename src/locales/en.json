@@ -499,6 +499,52 @@
       }
     }
   },
+  "averageSpeed": {
+    "eyebrow": "Transport",
+    "title": "Average Speed Calculator",
+    "intro": "Calculate average speed from distance and travel time.",
+    "form": {
+      "routeTitle": "Route",
+      "timeTitle": "Travel time",
+      "distance": "Distance",
+      "hours": "Hours",
+      "minutes": "Minutes"
+    },
+    "units": {
+      "km": "km",
+      "hours": "h",
+      "minutes": "min"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive distance and travel time greater than zero.",
+      "speed": "Average speed",
+      "travelTime": "Travel time",
+      "speedMph": "Miles per hour",
+      "speedMs": "Meters per second",
+      "pace": "Pace",
+      "speedKmHValue": "{value} km/h",
+      "speedMphValue": "{value} mph",
+      "speedMsValue": "{value} m/s",
+      "paceValue": "{value} min/km",
+      "timeValue": "{hours} h {minutes} min"
+    },
+    "formula": "Average speed = distance / time. Pace = time / distance.",
+    "validation": {
+      "distanceKm": {
+        "positive": "Distance must be greater than 0."
+      },
+      "hours": {
+        "nonNegative": "Hours cannot be negative."
+      },
+      "minutes": {
+        "nonNegative": "Minutes cannot be negative."
+      },
+      "duration": {
+        "positive": "Travel time must be greater than 0."
+      }
+    }
+  },
   "vat": {
     "eyebrow": "Finance",
     "title": "VAT Calculator",
