@@ -24,10 +24,7 @@
             <h2>{{ t('laminate.form.packTitle') }}</h2>
             <p>{{ t('laminate.form.packHint') }}</p>
           </div>
-          <div class="laminate-grid laminate-grid--two">
-            <NumberField field="packCoverage" :label="t('laminate.form.packCoverage')" suffix="м²" :step="0.001" />
-            <NumberField field="packPrice" :label="t('laminate.form.packPrice')" suffix="₽" :step="1" :min="0" />
-          </div>
+          <NumberField field="packCoverage" :label="t('laminate.form.packCoverage')" suffix="м²" :step="0.001" />
           <div class="laminate-chip-list" role="group" :aria-label="t('laminate.form.coveragePresets')">
             <button
               v-for="preset in coveragePresets"
@@ -40,6 +37,7 @@
               {{ t('laminate.form.coverageValue', { value: format(preset) }) }}
             </button>
           </div>
+          <NumberField field="packPrice" :label="t('laminate.form.packPrice')" suffix="₽" :step="1" :min="0" />
         </section>
 
         <section class="laminate-section">
