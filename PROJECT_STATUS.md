@@ -61,6 +61,34 @@
 - `src/style.css`: глобальное скрытие спиннеров number input
 - Sitemap: /transport/ + /transport/fuel/
 
+## Внеплановая задача: редизайн главной страницы — 2026-04-25
+
+**Мотивация:** Пользователь сравнил с Omni Calculator — хотел более компактный layout,
+одно большое поле поиска прямо в hero, без дублирования поиска в шапке.
+
+**Изменённые файлы:**
+- `src/views/HomeView.vue` — полный рефакторинг hero-секции:
+  - Убрана кнопка-заглушка, открывавшая SearchModal
+  - Добавлен полноширинный поисковый инпут (max-w-2xl, `py-3.5`) с shadow и focus-ring
+  - Inline-поиск: результаты показываются в дропдауне прямо под полем, модалка не открывается
+  - `useSearch()` подключён напрямую в HomeView; `searchOpen` — локальный ref
+  - Дропдаун закрывается через `@focusout` + `@mousedown.prevent` на ссылках (blur-before-click race)
+  - Кнопка очистки (×) появляется при наличии текста в поле
+  - Отступы в hero: `pt-8 pb-6` вместо `py-16`; секции: `py-8` вместо `py-12`
+  - Удалён `inject('openSearch')` — на главной он больше не нужен
+- `src/components/layout/AppHeader.vue`:
+  - Кнопка «Поиск» скрыта на главной (`v-if="route.path !== '/'"`) — чтобы не было двух полей поиска
+
+**Playwright: 8/8 проверок прошли:**
+- Header search hidden on `/` ✅
+- Inline search input visible ✅
+- Results appear in dropdown (no modal) ✅
+- Click navigates to calculator ✅
+- Header search visible on `/finance/credit/` ✅
+- Desktop + mobile screenshots ✅
+
+**Коммит:** `69e3691 feat: redesign home page hero — inline search, compact layout, single search`
+
 ## Ожидает (Phase 4.7)
 
 Следующий калькулятор не определён. Возможные кандидаты: ипотечный (/finance/mortgage), конвертер веса, конвертер температуры.
