@@ -1071,11 +1071,13 @@ export const CALCULATORS: CalculatorMeta[] = [
       en: 'Electric vehicle range by battery and consumption',
     },
     icon: '🔋',
-    status: 'soon',
+    status: 'ready',
     priority: 'P3',
+    popularity: 70,
     isPopular: false,
     path: '/transport/ev-range',
-    tags: ['электромобиль', 'запас хода', 'ev range', 'battery'],
+    tags: ['электромобиль', 'запас хода', 'батарея', 'зарядка', 'расход электромобиля', 'ev range', 'battery', 'electric car'],
+    componentLoader: () => import('../features/ev-range-calculator'),
   },
   // ===== SPORT =====
   {

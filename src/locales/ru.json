@@ -499,6 +499,65 @@
       }
     }
   },
+  "evRange": {
+    "eyebrow": "Транспорт",
+    "title": "Калькулятор запаса хода EV",
+    "intro": "Оцените запас хода электромобиля по ёмкости батареи, текущему заряду, расходу и резерву.",
+    "form": {
+      "batteryTitle": "Батарея",
+      "batteryCapacity": "Ёмкость батареи",
+      "currentCharge": "Текущий заряд",
+      "targetCharge": "Целевой заряд",
+      "chargePresets": "Быстрый выбор текущего заряда",
+      "consumptionTitle": "Расход и цена",
+      "consumption": "Расход",
+      "reserve": "Резерв",
+      "electricityPrice": "Цена электричества",
+      "reservePresets": "Быстрый выбор резерва",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "kwh": "кВт⋅ч",
+      "kwhPer100": "кВт⋅ч/100 км"
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительную батарею и расход. Заряд и резерв должны быть от 0 до 100%, резерв меньше текущего заряда.",
+      "range": "Запас хода",
+      "rangeMiles": "В милях",
+      "usableEnergy": "Доступно с резервом",
+      "currentEnergy": "Энергия сейчас",
+      "chargeEnergy": "Дозарядить до цели",
+      "chargeCost": "Стоимость зарядки",
+      "costPer100Km": "Стоимость 100 км",
+      "distanceValue": "{value} км",
+      "milesValue": "{value} mi",
+      "energyValue": "{value} кВт⋅ч",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Запас хода = (энергия текущего заряда − резерв батареи) / расход кВт⋅ч на 100 км × 100.",
+    "validation": {
+      "batteryCapacityKwh": {
+        "positive": "Ёмкость батареи должна быть больше 0."
+      },
+      "currentChargePercent": {
+        "percent": "Текущий заряд должен быть от 0 до 100%."
+      },
+      "targetChargePercent": {
+        "percent": "Целевой заряд должен быть от 0 до 100%."
+      },
+      "consumptionKwhPer100Km": {
+        "positive": "Расход должен быть больше 0."
+      },
+      "reservePercent": {
+        "percent": "Резерв должен быть от 0 до 100%.",
+        "belowCurrent": "Резерв должен быть меньше текущего заряда."
+      },
+      "electricityPrice": {
+        "nonNegative": "Цена электричества не может быть отрицательной."
+      }
+    }
+  },
   "averageSpeed": {
     "eyebrow": "Транспорт",
     "title": "Калькулятор средней скорости",

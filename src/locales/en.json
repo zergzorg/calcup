@@ -499,6 +499,65 @@
       }
     }
   },
+  "evRange": {
+    "eyebrow": "Transport",
+    "title": "EV Range Calculator",
+    "intro": "Estimate electric vehicle range from battery capacity, current charge, consumption and reserve.",
+    "form": {
+      "batteryTitle": "Battery",
+      "batteryCapacity": "Battery capacity",
+      "currentCharge": "Current charge",
+      "targetCharge": "Target charge",
+      "chargePresets": "Quick current charge",
+      "consumptionTitle": "Consumption and price",
+      "consumption": "Consumption",
+      "reserve": "Reserve",
+      "electricityPrice": "Electricity price",
+      "reservePresets": "Quick reserve choice",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "kwh": "kWh",
+      "kwhPer100": "kWh/100 km"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive battery and consumption. Charge and reserve must be 0-100%, reserve below current charge.",
+      "range": "Range",
+      "rangeMiles": "In miles",
+      "usableEnergy": "Usable with reserve",
+      "currentEnergy": "Current energy",
+      "chargeEnergy": "Charge to target",
+      "chargeCost": "Charging cost",
+      "costPer100Km": "Cost per 100 km",
+      "distanceValue": "{value} km",
+      "milesValue": "{value} mi",
+      "energyValue": "{value} kWh",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Range = (current charge energy − battery reserve) / kWh per 100 km × 100.",
+    "validation": {
+      "batteryCapacityKwh": {
+        "positive": "Battery capacity must be greater than 0."
+      },
+      "currentChargePercent": {
+        "percent": "Current charge must be 0-100%."
+      },
+      "targetChargePercent": {
+        "percent": "Target charge must be 0-100%."
+      },
+      "consumptionKwhPer100Km": {
+        "positive": "Consumption must be greater than 0."
+      },
+      "reservePercent": {
+        "percent": "Reserve must be 0-100%.",
+        "belowCurrent": "Reserve must be below current charge."
+      },
+      "electricityPrice": {
+        "nonNegative": "Electricity price cannot be negative."
+      }
+    }
+  },
   "averageSpeed": {
     "eyebrow": "Transport",
     "title": "Average Speed Calculator",
