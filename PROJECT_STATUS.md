@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.12 завершена, ожидание следующей фазы
+## Текущая фаза: 4.17 MVP stabilization завершена, ожидание решения: деплой / следующий калькулятор / UX polish
 
 ## Готовые калькуляторы
 
@@ -18,19 +18,239 @@
 | 4.9 | Конвертер веса | /convert/weight | ✅ ready |
 | 4.10 | Калькулятор скидки | /everyday/discount | ✅ ready |
 | 4.12 | Конвертер площади | /convert/area | ✅ ready |
+| 4.13 | Калькулятор стоимости часа | /finance/hourly-rate | ✅ ready |
+| 4.14 | Калькулятор стоимости проекта | /finance/project-price | ✅ ready |
+| 4.16 | Калькулятор выгодной покупки | /everyday/unit-price | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /transport/ · /datetime/ · /everyday/
-- /finance/credit/ · /finance/vat/
+- /finance/credit/ · /finance/vat/ · /finance/hourly-rate/ · /finance/project-price/
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /transport/fuel/
 - /datetime/date-diff/
-- /everyday/tips/ · /everyday/discount/
+- /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
+
+---
+
+## Сделано (Фаза 4.17) — 2026-04-25
+
+MVP stabilization before deploy. Новый калькулятор не начинался, редизайн и архитектура не менялись.
+
+### Проверено
+
+- Все текущие страницы MVP:
+  - `/`
+  - `/finance/`, `/math/`, `/health/`, `/convert/`, `/transport/`, `/datetime/`, `/everyday/`
+  - `/finance/credit/`, `/finance/vat/`, `/finance/hourly-rate/`, `/finance/project-price/`
+  - `/math/percentage/`, `/health/bmi/`
+  - `/convert/length/`, `/convert/temperature/`, `/convert/weight/`, `/convert/area/`
+  - `/transport/fuel/`, `/datetime/date-diff/`
+  - `/everyday/tips/`, `/everyday/discount/`, `/everyday/unit-price/`
+- Все ready-страницы открываются в preview.
+- Нет сырых i18n-ключей вида `unitPrice.*`, `weight.*`, `hourlyRate.*`.
+- Нет `[object Object]`, `NaN`, `Invalid Date` в проверенных пользовательских сценариях.
+- Mobile `360px` и `768px` без horizontal overflow на ready-калькуляторах.
+- Header/hamburger на mobile открывается.
+- Inline-search на главной и SearchModal работают.
+- Динамические формы проверены:
+  - `/everyday/unit-price`: добавление до 5 товаров, удаление, смешанные `кг + л`, warning без winner.
+  - `/finance/hourly-rate`: добавление/удаление доп. дохода, пустая строка не ломает расчёт.
+  - `/everyday/tips`: `peopleCount = 1` и `peopleCount > 1`.
+  - `/finance/project-price`: `projectHours = 0`.
+  - `/datetime/date-diff`: поля после mount корректны.
+- GitHub Pages readiness:
+  - `dist/404.html` создан.
+  - trailing-slash `index.html` создан для проверенных маршрутов.
+  - `/not-existing-url` открывает 404/fallback и остаётся `noindex,nofollow`.
+
+### SEO / Sitemap
+
+- Все ready-страницы есть в `sitemap.xml`.
+- `/everyday/unit-price/` есть в `sitemap.xml`.
+- Soon/planned страницы не попадают в sitemap.
+- Все ready-страницы имеют `robots: index,follow,max-image-preview:large`.
+- Canonical у ready-страниц со slash.
+- `/workspace` и 404 остаются `noindex,nofollow`.
+
+### Search
+
+Поиск проверен по запросам:
+
+- `кредит`
+- `НДС`
+- `стоимость часа`
+- `стоимость проекта`
+- `процент`
+- `ИМТ`
+- `длина`
+- `температура`
+- `вес`
+- `площадь`
+- `расход топлива`
+- `разница дат`
+- `чаевые`
+- `скидка`
+- `выгодная покупка`
+- `цена за кг`
+- `unit price`
+
+Soon/planned в результатах поиска не появляются.
+
+### Найденные проблемы
+
+- Проблем в приложении по Phase 4.17 не найдено.
+- Код приложения не менялся в рамках стабилизации; обновлён только `PROJECT_STATUS.md`.
+
+### Проверки
+
+- `npm run type-check` — OK.
+- `npm run test` — OK, `279/279`.
+- `npm run build` — OK, SSG `27` страниц, `dist/404.html` создан.
+- Playwright MVP smoke — OK:
+  - page basics / i18n;
+  - SEO / sitemap / fallback;
+  - search;
+  - mobile `360px` / `768px`;
+  - dynamic forms.
+
+### Следующее решение
+
+Остановиться и выбрать дальнейшее направление:
+
+- деплой на GitHub Pages;
+- следующий калькулятор;
+- отдельный UX polish.
+
+---
+
+## Сделано (Фаза 4.16) — 2026-04-25
+
+Отдельная задача: калькулятор выгодной покупки для сравнения товаров в супермаркете.
+
+- `src/features/unit-price-calculator/` — полный отдельный модуль
+- Путь: `/everyday/unit-price`
+- Назначение: сравнить товары по цене за базовую единицу
+- Поддержаны группы единиц: масса (`г`, `кг`), объём (`мл`, `л`), количество (`шт`)
+- Базовые единицы сравнения: `кг`, `л`, `шт`
+- По умолчанию 2 товара; товары можно добавлять и удалять, минимум 1 товар остаётся
+- Название товара необязательно; при пустом названии показывается `Товар N`
+- Форма ускорена для расчёта в магазине: одна цена на товар, без отдельной цены со скидкой и заметки
+- Поле количества в UI подстраивается под единицу: `Вес`, `Объём`, `Штук`
+- Внизу страницы добавлена памятка, как сохранить калькулятор на экран Домой в iOS и Android
+- Если группы единиц смешаны, общий победитель не выбирается и показывается warning
+- Если валиден только один товар, показывается цена за единицу без winner
+- Реестр: `unit-price` → `status: 'ready'`, `popularity: 76`, `/everyday/unit-price`
+- Sitemap: `/everyday/unit-price/`
+- Поиск: запросы `выгодная покупка`, `цена за кг`, `цена за литр`, `сравнить товары`, `супермаркет`, `unit price`, `supermarket`
+- Unit-тесты: `src/features/unit-price-calculator/lib/calculations.test.ts`
+- i18n: RU/EN
+
+### UX-доработки после первичной реализации
+
+- После просмотра `https://t-j.ru/supermarket-calc/` форма упрощена под быстрый расчёт в магазине.
+- Удалены отдельные поля `Цена со скидкой` и `Заметка`.
+- Скрытая логика `discountPrice` полностью удалена из типов, расчётов, валидации, локалей и тестов.
+- Добавлена памятка “Как держать калькулятор под рукой”:
+  - iOS: открыть в Safari → Поделиться → На экран Домой;
+  - Android: открыть в Chrome → меню → Добавить на главный экран / Установить приложение.
+
+### Проверки
+
+- `npm run type-check` — OK.
+- `npm run test` — OK, `279/279`.
+- `npm run build` — OK, SSG `27` страниц.
+- Playwright smoke — OK: `/everyday/unit-price/`, поиск, SEO/sitemap, mixed units, add/remove, упрощённая форма без второй цены, mobile `360px`.
+
+---
+
+## Сделано (Фаза 4.15 QA) — 2026-04-25
+
+Короткая QA-проверка финансовой логики `/finance/hourly-rate` и `/finance/project-price`. Новый калькулятор не начинался.
+
+### Проверено `/finance/hourly-rate`
+
+- Зарплата вводится до НДФЛ; это явно видно в warning-плашке.
+- Warning-плашка оформлена как предупреждение, не как ошибка.
+- Расчёт после НДФЛ корректен: при `120 000 ₽` до НДФЛ базовая ставка считается от `104 400 ₽` после НДФЛ и даёт около `634 ₽/ч`.
+- Прогрессивная шкала НДФЛ РФ 2025+ покрыта unit-тестами и проверена в UI.
+- Свой процент налога работает.
+- Дополнительные доходы можно добавлять и удалять.
+- Пустые строки дополнительного дохода считаются как `0` и не ломают результат.
+- Помесячная разбивка НДФЛ проверена на mobile `360px` без horizontal overflow.
+- Privacy-текст отображается корректно: данные не хранятся и никуда не передаются.
+
+### Проверено `/finance/project-price`
+
+- Формула `ставка × часы × сложность × срочность` работает корректно.
+- Расходы добавляются после расчёта труда.
+- Налог/комиссия считается от `subtotal`.
+- `projectHours = 0` не ломает расчёт.
+- Коэффициенты сложности и срочности видны в UI.
+
+### Проверено поиск / SEO / sitemap
+
+- Поиск находит нужные страницы по запросам: `стоимость часа`, `зарплата после ндфл`, `ндфл`, `подработка`, `фриланс`, `стоимость проекта`, `оценить проект`, `hourly rate`, `project price`.
+- `/finance/hourly-rate/` и `/finance/project-price/` есть в `sitemap.xml`.
+- Обе страницы отдают `robots: index,follow,max-image-preview:large`.
+- Canonical у обеих страниц со slash.
+
+### Исправлено в ходе QA
+
+- В `/finance/hourly-rate` добавлено удаление строк дополнительного дохода.
+- Уточнена warning-плашка: зарплата указывается до НДФЛ, а расчёт выполняется только в браузере.
+
+### Проверки
+
+- `npm run type-check` — OK.
+- `npm run test` — OK, `263/263`.
+- `npm run build` — OK, SSG `26` страниц.
+- Playwright smoke — OK: обе финансовые страницы, поиск, SEO/sitemap, mobile `360px`.
+
+---
+
+## Сделано (Фаза 4.14) — 2026-04-25
+
+Отдельная задача: вынести оценку подработки / проекта из калькулятора стоимости часа.
+
+- `src/features/project-price-calculator/` — полный отдельный модуль
+- Путь: `/finance/project-price`
+- Назначение: оценка проекта или подработки без смешения с зарплатой и НДФЛ
+- Поля: ставка за час, часы проекта, сложность, срочность, расходы, налог или комиссия
+- Формула: `стоимость = ставка × часы × сложность × срочность + расходы + налог`
+- Коэффициенты сложности: simple ×1, normal ×1.2, complex ×1.5, expert ×2
+- Коэффициенты срочности: normal ×1, soon ×1.25, urgent ×1.5
+- Реестр: `project-price` → `status: 'ready'`, `popularity: 81`, `/finance/project-price`
+- Sitemap: `/finance/project-price/`
+- Поиск: запросы `подработка`, `стоимость проекта`, `оценить проект`, `фриланс`, `project price`
+- Unit-тесты: `src/features/project-price-calculator/lib/calculations.test.ts`
+
+---
+
+## Сделано (Фаза 4.13) — 2026-04-25
+
+Отдельная задача: калькулятор зарплаты, НДФЛ, дополнительного дохода и базовой стоимости часа.
+
+- `src/features/hourly-rate-calculator/` — полный модуль
+- Путь: `/finance/hourly-rate`
+- Назначение: рассчитать зарплату после НДФЛ, дополнительный доход и базовую стоимость рабочего часа
+- Зарплата вводится до НДФЛ; это явно указано в warning-плашке
+- НДФЛ: прогрессивная шкала РФ 2025+ или свой процент
+- Для прогрессивной шкалы показывается помесячная разбивка НДФЛ
+- Дополнительные доходы задаются строками `сумма + налог`, строки можно добавлять и удалять
+- Пустые поля дополнительного дохода считаются как `0` и не ломают расчёт
+- Базовая часовая ставка считается через общий доход после налогов, график, рабочие дни в году и часы в рабочем дне
+- Графики: 5/2 — 247 дней, 2/2 — 183 дня, сутки через трое — 92 дня, свой график
+- Privacy: данные не хранятся и никуда не передаются, расчёт выполняется в браузере
+- Реестр: `hourly-rate` → `status: 'ready'`, `popularity: 82`, `/finance/hourly-rate`
+- Sitemap: `/finance/hourly-rate/`
+- Поиск: запросы `ндфл`, `зарплата после ндфл`, `зарплата до ндфл`, `стоимость часа`, `hourly rate`
+- Unit-тесты: `src/features/hourly-rate-calculator/lib/calculations.test.ts`
+- i18n: RU/EN
 
 ---
 

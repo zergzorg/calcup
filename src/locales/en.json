@@ -161,7 +161,7 @@
       "eyebrow": "Scenarios",
       "title": "Early repayments",
       "date": "Date",
-      "amount": "Amount",
+      "amount": "Weight",
       "strategy": "Strategy",
       "frequency": "Frequency",
       "reduceTerm": "Reduce term",
@@ -712,6 +712,256 @@
       "cm": "cm",
       "m": "m",
       "km": "km"
+    }
+  },
+  "hourlyRate": {
+    "eyebrow": "Finance",
+    "title": "Hourly Rate Calculator",
+    "intro": "Calculate net salary after income tax, additional income, and base hourly rate.",
+    "sections": {
+      "base": "Base rate"
+    },
+    "form": {
+      "monthlySalary": "Monthly salary before income tax",
+      "salaryTaxMode": "Salary tax",
+      "customSalaryTaxPercent": "Custom salary tax",
+      "salaryTaxHint": "By default, the Russian progressive personal income tax scale is used: 13%, 15%, 18%, 20%, and 22% only for the income part above each threshold.",
+      "salaryTaxLink": "Learn more",
+      "additionalIncome": "Additional monthly income",
+      "additionalIncomeTaxPercent": "Additional income tax",
+      "additionalIncomeActions": "Additional income actions",
+      "addAdditionalIncome": "Add another additional income",
+      "removeAdditionalIncome": "Remove additional income",
+      "additionalIncomeHint": "For example: renting out an apartment, interest, regular payments, or other income outside salary.",
+      "scheduleType": "Work schedule",
+      "hoursPerWorkDay": "Hours per workday",
+      "customWorkDaysPerYear": "Workdays per year"
+    },
+    "schedule": {
+      "fiveTwo": "5/2 — 247 days per year",
+      "twoTwo": "2/2 — 183 days per year",
+      "dayThree": "24h shift then 3 days off — 92 days per year",
+      "custom": "Custom schedule"
+    },
+    "salaryTaxMode": {
+      "russiaProgressive": "Russian PIT 2025+",
+      "custom": "Custom percent"
+    },
+    "units": {
+      "currency": "₽",
+      "hours": "h",
+      "days": "d",
+      "hoursValue": "{value} h"
+    },
+    "privacy": "Your data is not stored or sent anywhere: the calculation runs only in your browser.",
+    "warning": "Enter salary before income tax. Your data is not stored or sent anywhere: the calculation runs only in your browser.",
+    "result": {
+      "label": "Calculation",
+      "empty": "Check the form values.",
+      "baseHourlyRate": "Base hourly rate per hour",
+      "workDayPrice": "Workday price",
+      "averageWorkHoursPerMonth": "Average hours per month",
+      "monthlySalaryGross": "Salary before tax",
+      "annualGrossSalary": "Annual salary before tax",
+      "additionalIncome": "Additional income",
+      "additionalIncomeTaxAmount": "Additional income tax",
+      "salaryTaxAmount": "Salary tax",
+      "monthlySalaryAfterTax": "After salary tax",
+      "monthlyTotalIncomeAfterTax": "Total after taxes"
+    },
+    "formula": {
+      "rate": "rate = income after taxes / ((workdays per year / 12) × hours per day)"
+    },
+    "taxBreakdown": {
+      "title": "Monthly salary tax",
+      "note": "Shows the monthly withholding when the same gross salary is paid each month.",
+      "month": "Month",
+      "tax": "Tax",
+      "afterTax": "After tax"
+    },
+    "months": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
+    },
+    "validation": {
+      "monthlySalary": {
+        "required": "Enter salary as a number.",
+        "positive": "Salary must be greater than 0."
+      },
+      "customSalaryTaxPercent": {
+        "required": "Enter tax as a number.",
+        "nonNegative": "Tax cannot be negative.",
+        "max": "Tax cannot be greater than 100%."
+      },
+      "additionalIncome": {
+        "required": "Enter additional income as a number.",
+        "nonNegative": "Additional income cannot be negative."
+      },
+      "additionalIncomeTaxPercent": {
+        "required": "Enter tax as a number.",
+        "nonNegative": "Tax cannot be negative.",
+        "max": "Tax cannot be greater than 100%."
+      },
+      "hoursPerWorkDay": {
+        "required": "Enter hours as a number.",
+        "positive": "Hours per workday must be greater than 0.",
+        "max": "A workday cannot be longer than 24 hours."
+      },
+      "customWorkDaysPerYear": {
+        "required": "Enter workdays per year.",
+        "positive": "Workdays must be greater than 0.",
+        "max": "A year cannot have more than 366 workdays."
+      }
+    }
+  },
+  "projectPrice": {
+    "eyebrow": "Finance",
+    "title": "Project Price Calculator",
+    "intro": "Estimate a project or side job from rate, hours, complexity, urgency, expenses, and tax.",
+    "form": {
+      "hourlyRate": "Hourly rate",
+      "projectHours": "Project hours",
+      "complexityLevel": "Complexity",
+      "urgencyLevel": "Urgency",
+      "expenseAmount": "Expenses",
+      "taxPercent": "Tax or fee"
+    },
+    "complexity": {
+      "simple": "Simple ×1",
+      "normal": "Normal ×1.2",
+      "complex": "Complex ×1.5",
+      "expert": "Expert ×2"
+    },
+    "urgency": {
+      "normal": "Normal ×1",
+      "soon": "Soon ×1.25",
+      "urgent": "Urgent ×1.5"
+    },
+    "units": {
+      "currency": "₽",
+      "currencyPerHour": "₽/h",
+      "hours": "h"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Check the form values.",
+      "totalProjectPrice": "Total project price",
+      "adjustedHourlyRate": "Adjusted hourly rate",
+      "baseHourlyRate": "Base hourly rate",
+      "laborCost": "Labor cost",
+      "expenseAmount": "Expenses",
+      "taxAmount": "Tax or fee"
+    },
+    "formula": {
+      "price": "price = rate × hours × complexity × urgency + expenses + tax"
+    },
+    "validation": {
+      "hourlyRate": {
+        "required": "Enter rate as a number.",
+        "positive": "Rate must be greater than 0."
+      },
+      "projectHours": {
+        "required": "Enter project hours as a number.",
+        "nonNegative": "Project hours cannot be negative."
+      },
+      "expenseAmount": {
+        "required": "Enter expenses as a number.",
+        "nonNegative": "Expenses cannot be negative."
+      },
+      "taxPercent": {
+        "required": "Enter percent as a number.",
+        "nonNegative": "Percent cannot be negative.",
+        "max": "Percent cannot be greater than 100."
+      }
+    }
+  },
+  "unitPrice": {
+    "eyebrow": "Shopping",
+    "title": "Unit Price Calculator",
+    "intro": "Compare packages by price per kilogram, liter, or piece and choose the better deal.",
+    "productFallback": "Product {number}",
+    "form": {
+      "hint": "The calculator converts price to one base unit: kilogram, liter, or piece. That makes different packages easier to compare.",
+      "addProduct": "Add product",
+      "removeProduct": "Remove product",
+      "name": "Name",
+      "namePlaceholder": "Product {number}",
+      "price": "Price",
+      "amount": "Weight",
+      "amountVolume": "Volume",
+      "amountCount": "Pieces",
+      "unit": "Unit",
+      "note": "Note",
+      "notePlaceholder": "For example: promo, brand, store"
+    },
+    "unit": {
+      "gram": "g",
+      "kilogram": "kg",
+      "milliliter": "ml",
+      "liter": "l",
+      "piece": "pc"
+    },
+    "unitShort": {
+      "gram": "g",
+      "kilogram": "kg",
+      "milliliter": "ml",
+      "liter": "l",
+      "piece": "pc"
+    },
+    "baseUnit": {
+      "kilogram": "kg",
+      "liter": "l",
+      "piece": "pc"
+    },
+    "units": {
+      "currency": "₽"
+    },
+    "result": {
+      "label": "Comparison",
+      "empty": "Fill in at least one product to see the unit price.",
+      "winner": "Better deal",
+      "bestBadge": "best deal",
+      "mixedWarning": "Compare products within the same unit group: weight with weight, volume with volume, pieces with pieces.",
+      "noWinnerMixed": "Products from different groups are calculated separately, so no overall winner is selected.",
+      "noWinnerSingle": "Add a second valid product in the same group to choose the better deal.",
+      "unitPriceText": "{price}/{unit}",
+      "packageText": "{price} for {amount} {unit}",
+      "savingsPercent": "{percent}% more expensive"
+    },
+    "formula": "Unit price = package price / amount in the base unit.",
+    "install": {
+      "title": "Keep this calculator handy",
+      "iosTitle": "iPhone and iPad",
+      "iosStep1": "Open this page in Safari.",
+      "iosStep2": "Tap the Share button.",
+      "iosStep3": "Choose Add to Home Screen and save the shortcut.",
+      "androidTitle": "Android",
+      "androidStep1": "Open this page in Chrome.",
+      "androidStep2": "Tap the three-dot menu.",
+      "androidStep3": "Choose Add to Home screen or Install app."
+    },
+    "validation": {
+      "price": {
+        "required": "Enter price as a number.",
+        "nonNegative": "Price cannot be negative."
+      },
+      "amount": {
+        "required": "Enter amount as a number.",
+        "positive": "Amount must be greater than 0."
+      },
+      "unit": {
+        "required": "Select a unit."
+      }
     }
   }
 }
