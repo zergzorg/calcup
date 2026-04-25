@@ -52,6 +52,8 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-2">
+        <LanguageSwitcher />
+
         <button
           class="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-500 hover:border-gray-300 hover:bg-gray-50 transition-colors"
           aria-label="Поиск калькуляторов"
@@ -106,6 +108,7 @@
 import { ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { CATEGORIES } from '../../data/categories'
+import LanguageSwitcher from '../LanguageSwitcher.vue'
 
 defineEmits<{ search: [] }>()
 
