@@ -1465,6 +1465,62 @@
       }
     }
   },
+  "laminate": {
+    "eyebrow": "Construction",
+    "title": "Laminate Calculator",
+    "intro": "Estimate floor area, laminate packs, cutting waste, leftover coverage and purchase cost.",
+    "form": {
+      "roomTitle": "Room",
+      "roomLength": "Length",
+      "roomWidth": "Width",
+      "excludedArea": "Do not cover",
+      "packTitle": "Pack",
+      "packHint": "Pack coverage is usually printed on the laminate box.",
+      "packCoverage": "Coverage per pack",
+      "packPrice": "Pack price",
+      "coveragePresets": "Quick pack coverage",
+      "coverageValue": "{value} m²",
+      "wasteTitle": "Waste",
+      "wastePercent": "Waste",
+      "wastePresets": "Quick waste allowance",
+      "percentValue": "{value}%"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive room dimensions and pack coverage.",
+      "packs": "Buy",
+      "netArea": "Floor area",
+      "materialArea": "With waste",
+      "purchaseArea": "Purchased coverage",
+      "leftoverArea": "Leftover",
+      "totalCost": "Cost",
+      "packsValue": "{count} packs",
+      "areaValue": "{value} m²",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Packs = (room area − excluded area) × (1 + waste / 100) / pack coverage, then rounded up.",
+    "validation": {
+      "roomLength": {
+        "positive": "Length must be greater than 0."
+      },
+      "roomWidth": {
+        "positive": "Width must be greater than 0."
+      },
+      "excludedArea": {
+        "nonNegative": "Excluded area cannot be negative.",
+        "belowGross": "Excluded area must be smaller than room area."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "packCoverage": {
+        "positive": "Pack coverage must be greater than 0."
+      },
+      "packPrice": {
+        "nonNegative": "Pack price cannot be negative."
+      }
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",
