@@ -407,6 +407,65 @@
       }
     }
   },
+  "tripCost": {
+    "eyebrow": "Transport",
+    "title": "Trip Cost Calculator",
+    "intro": "Estimate fuel, tolls, parking, extra expenses and cost per person.",
+    "direction": {
+      "oneWay": "One way",
+      "roundTrip": "Round trip"
+    },
+    "form": {
+      "routeTitle": "Route",
+      "direction": "Trip direction",
+      "distanceKm": "Distance",
+      "fuelTitle": "Fuel",
+      "consumption": "Consumption",
+      "fuelPrice": "Fuel price",
+      "extraTitle": "Extra costs",
+      "tolls": "Tolls",
+      "parking": "Parking",
+      "otherCosts": "Other",
+      "passengers": "Passengers"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter valid distance, consumption, price and passengers.",
+      "totalCost": "Total",
+      "distance": "Calculated distance",
+      "fuelLiters": "Fuel",
+      "fuelCost": "Fuel cost",
+      "extraCosts": "Extra costs",
+      "costPerPerson": "Per person",
+      "moneyValue": "{value} ₽",
+      "distanceValue": "{value} km",
+      "litersValue": "{value} L"
+    },
+    "formula": "Fuel = distance × consumption / 100. Total = fuel × price per liter + tolls + parking + other costs.",
+    "validation": {
+      "distanceKm": {
+        "positive": "Distance must be greater than 0."
+      },
+      "consumptionPer100Km": {
+        "positive": "Consumption must be greater than 0."
+      },
+      "fuelPricePerLiter": {
+        "nonNegative": "Fuel price cannot be negative."
+      },
+      "tolls": {
+        "nonNegative": "Tolls cannot be negative."
+      },
+      "parking": {
+        "nonNegative": "Parking cannot be negative."
+      },
+      "otherCosts": {
+        "nonNegative": "Other costs cannot be negative."
+      },
+      "passengers": {
+        "positiveInteger": "Passengers must be an integer greater than 0."
+      }
+    }
+  },
   "vat": {
     "eyebrow": "Finance",
     "title": "VAT Calculator",
