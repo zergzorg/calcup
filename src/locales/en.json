@@ -466,6 +466,39 @@
       }
     }
   },
+  "fuelPrice": {
+    "eyebrow": "Transport",
+    "title": "Fuel Price Calculator",
+    "intro": "Find out how many liters your budget buys and how far that fuel can take you.",
+    "form": {
+      "fuelTitle": "Refuel",
+      "budget": "Budget",
+      "pricePerLiter": "Price per liter",
+      "consumption": "Consumption"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive budget, price and consumption.",
+      "liters": "You can buy",
+      "distance": "Estimated range",
+      "costPer100Km": "Cost per 100 km",
+      "litersValue": "{value} L",
+      "distanceValue": "{value} km",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Liters = budget / price per liter. Distance = liters / consumption × 100.",
+    "validation": {
+      "budget": {
+        "positive": "Budget must be greater than 0."
+      },
+      "pricePerLiter": {
+        "positive": "Price per liter must be greater than 0."
+      },
+      "consumptionPer100Km": {
+        "positive": "Consumption must be greater than 0."
+      }
+    }
+  },
   "vat": {
     "eyebrow": "Finance",
     "title": "VAT Calculator",
