@@ -476,5 +476,46 @@
         "invalid": "Enter a valid end date."
       }
     }
+  },
+  "tips": {
+    "eyebrow": "Everyday life",
+    "title": "Tip Calculator",
+    "intro": "Calculate the tip amount and split the bill among multiple people.",
+    "form": {
+      "label": "Parameters",
+      "billAmount": "Bill amount",
+      "tipPercent": "Tip percent",
+      "customRate": "Custom",
+      "customRateLabel": "Tip rate",
+      "peopleCount": "Number of people"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid numbers.",
+      "tipAmount": "Tip",
+      "totalAmount": "Total amount",
+      "perPersonTitle": "Per person",
+      "billPerPerson": "Bill per person",
+      "tipPerPerson": "Tip per person",
+      "amountPerPerson": "Total per person"
+    },
+    "formula": {
+      "tip": "tip = bill × percent / 100",
+      "split": "per person = total / people"
+    },
+    "validation": {
+      "billAmount": {
+        "required": "Enter bill amount as a number.",
+        "nonNegative": "Amount must be 0 or greater."
+      },
+      "tipPercent": {
+        "required": "Enter tip percent as a number.",
+        "nonNegative": "Percent must be 0 or greater."
+      },
+      "peopleCount": {
+        "required": "Enter number of people.",
+        "positiveInteger": "Number of people must be a whole number, at least 1."
+      }
+    }
   }
 }
