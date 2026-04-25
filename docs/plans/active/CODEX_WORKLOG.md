@@ -579,3 +579,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/blocks` или `/construction/putty`.
+
+### Итерация 17: `/construction/blocks`
+
+Что выбрано:
+
+- Продолжить строительный P1 roadmap и реализовать `/construction/blocks`.
+
+Что изменено:
+
+- Создан `src/features/blocks-calculator/`.
+- Добавлен расчёт количества газоблоков/пеноблоков, объёма кладки, объёма блока, клея, мешков, запаса и стоимости.
+- Добавлены пресеты размеров блока 600×250×300 / 600×200×300 / 600×250×200 мм и запаса 3 / 5 / 10%.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/blocks/ /tmp/calcup-blocks-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/blocks/ /tmp/calcup-blocks-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/blocks/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 31 files / 360 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/blocks/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- bcec9ce
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/putty` или `/construction/insulation`.

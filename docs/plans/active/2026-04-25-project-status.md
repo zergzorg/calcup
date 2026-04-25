@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.16 расширение строительного раздела
+## Текущая фаза: 5.17 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 30 ready-калькуляторов.
-- 44 soon-карточки.
+- 31 ready-калькулятор.
+- 43 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -45,6 +45,7 @@
 | 5.14 | Калькулятор сплитов | /sport/race-split | ✅ ready |
 | 5.15 | Калькулятор кирпича | /construction/brick | ✅ ready |
 | 5.16 | Калькулятор гипсокартона | /construction/drywall | ✅ ready |
+| 5.17 | Калькулятор газоблока | /construction/blocks | ✅ ready |
 
 ## Sitemap
 
@@ -54,7 +55,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/drywall/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -63,6 +64,40 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.17) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/blocks`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/blocks-calculator/`.
+- Добавлен расчёт:
+  - чистая площадь кладки с вычетом проёмов;
+  - количество блоков без запаса и с запасом;
+  - объём кладки;
+  - объём одного блока;
+  - расход клея и количество мешков;
+  - опциональная стоимость блоков.
+- Добавлены пресеты размеров блока 600×250×300 / 600×200×300 / 600×250×200 мм.
+- Добавлены пресеты запаса 3 / 5 / 10%.
+- Добавлены RU/EN локали `blocks.*`.
+- Registry-запись `blocks` переведена в `ready`.
+- В sitemap добавлен `/construction/blocks/`.
+
+### Проверки
+
+- `npm run test` — OK, `360/360`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/blocks/` title, canonical со slash, `index,follow`;
+  - `/construction/blocks/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/blocks/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

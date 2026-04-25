@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 30.
-- Soon после текущего milestone: 44.
+- Ready после текущего milestone: 31.
+- Soon после текущего milestone: 43.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (7 ready / 14 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
+- Категории с малым покрытием, но высоким потенциалом: `construction` (8 ready / 13 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/drywall`.
+Milestone: `construction/blocks`.
 Status: completed.
 
 Критерии готовности:
 
-- `drywall` переведён из `soon` в `ready`.
-- Создан `src/features/drywall-calculator/`.
+- `blocks` переведён из `soon` в `ready`.
+- Создан `src/features/blocks-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/drywall/` добавлен в sitemap.
+- `/construction/blocks/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/drywall-calculator/index.ts`
-- `src/features/drywall-calculator/components/DrywallCalculatorView.vue`
-- `src/features/drywall-calculator/composables/useDrywallCalculator.ts`
-- `src/features/drywall-calculator/lib/calculations.ts`
-- `src/features/drywall-calculator/lib/calculations.test.ts`
-- `src/features/drywall-calculator/types/drywall.ts`
+- `src/features/blocks-calculator/index.ts`
+- `src/features/blocks-calculator/components/BlocksCalculatorView.vue`
+- `src/features/blocks-calculator/composables/useBlocksCalculator.ts`
+- `src/features/blocks-calculator/lib/calculations.ts`
+- `src/features/blocks-calculator/lib/calculations.test.ts`
+- `src/features/blocks-calculator/types/blocks.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -107,6 +107,7 @@ Status: completed.
 - 2026-04-26: Реализован `/sport/race-split`; каталог стал 28 ready / 46 soon, спортивный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/construction/brick`; каталог стал 29 ready / 45 soon, строительный раздел получил шестой ready-инструмент.
 - 2026-04-26: Реализован `/construction/drywall`; каталог стал 30 ready / 44 soon, строительный раздел получил седьмой ready-инструмент.
+- 2026-04-26: Реализован `/construction/blocks`; каталог стал 31 ready / 43 soon, строительный раздел получил восьмой ready-инструмент.
 
 ## Decisions Log
 
@@ -123,6 +124,7 @@ Status: completed.
 - 2026-04-26: Для `race-split` расчёт использует `paceSecondsPerKm = totalSeconds / distanceKm`; каждая отсечка считается как `splitDistance * paceSecondsPerKm`, финишная отсечка добавляется всегда.
 - 2026-04-26: Для `brick` расчёт использует площадь лицевой стороны кирпича со швом: `bricks = netArea / ((length + joint) * (height + joint)) * thicknessBricks`, затем добавляется запас; раствор считается как настраиваемая доля объёма кладки.
 - 2026-04-26: Для `drywall` расчёт использует чистую площадь стены, количество слоёв и запас: `sheets = ceil(netArea * layers * (1 + waste / 100) / sheetArea)`. Профиль считается как две направляющие по длине стены и стойки по шагу, саморезы — настраиваемым количеством на лист.
+- 2026-04-26: Для `blocks` расчёт использует лицевую площадь блока: `blocks = ceil(netArea / (blockLength * blockHeight))`, затем добавляется запас. Объём кладки считается по толщине блока, клей — по настраиваемому расходу кг/м².
 
 ## Risks / Blockers
 
@@ -206,6 +208,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/drywall` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/drywall/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/drywall/` — поля, пресеты, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/blocks` `npm run test` — OK, 31 files / 360 tests.
+- 2026-04-26: Для `/construction/blocks` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/blocks` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/blocks/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/blocks/` — поля, пресеты, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -224,10 +231,21 @@ Status: completed.
 - 17d6823 — `feat(sport): add race split calculator`.
 - 6317139 — `feat(construction): add brick calculator`.
 - 1e154e3 — `feat(construction): add drywall calculator`.
+- bcec9ce — `feat(construction): add blocks calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/construction/blocks`, `/construction/putty`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/construction/putty`, `/construction/insulation`.
+
+Завершённый milestone `construction/blocks`:
+
+- `blocks` переведён из `soon` в `ready`.
+- Создан `src/features/blocks-calculator/`.
+- Добавлены формулы и unit-тесты для количества блоков, объёма кладки, клея, мешков, запаса и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/blocks/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `blocks = ceil(netArea / blockFaceArea)`, затем запас.
 
 Завершённый milestone `construction/drywall`:
 
