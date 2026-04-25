@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.15 расширение строительного раздела
+## Текущая фаза: 5.16 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 29 ready-калькуляторов.
-- 45 soon-карточек.
+- 30 ready-калькуляторов.
+- 44 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -44,6 +44,7 @@
 | 5.13 | Калькулятор средней скорости | /transport/average-speed | ✅ ready |
 | 5.14 | Калькулятор сплитов | /sport/race-split | ✅ ready |
 | 5.15 | Калькулятор кирпича | /construction/brick | ✅ ready |
+| 5.16 | Калькулятор гипсокартона | /construction/drywall | ✅ ready |
 
 ## Sitemap
 
@@ -53,7 +54,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/drywall/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -62,6 +63,41 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.16) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/drywall`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/drywall-calculator/`.
+- Добавлен расчёт:
+  - чистая площадь стены с вычетом проёмов;
+  - площадь с учётом слоёв и запаса;
+  - количество листов ГКЛ с округлением вверх;
+  - купленная площадь листов;
+  - направляющий и стоечный профиль;
+  - количество саморезов;
+  - опциональная стоимость листов.
+- Добавлены пресеты размеров листа 1.2×2.5 / 1.2×3.0 / 1.2×2.7 м.
+- Добавлены пресеты запаса 5 / 10 / 15%.
+- Добавлены RU/EN локали `drywall.*`.
+- Registry-запись `drywall` переведена в `ready`.
+- В sitemap добавлен `/construction/drywall/`.
+
+### Проверки
+
+- `npm run test` — OK, `357/357`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/drywall/` title, canonical со slash, `index,follow`;
+  - `/construction/drywall/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/drywall/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 29.
-- Soon после текущего milestone: 45.
+- Ready после текущего milestone: 30.
+- Soon после текущего milestone: 44.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
+- Категории с малым покрытием, но высоким потенциалом: `construction` (7 ready / 14 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/brick`.
+Milestone: `construction/drywall`.
 Status: completed.
 
 Критерии готовности:
 
-- `brick` переведён из `soon` в `ready`.
-- Создан `src/features/brick-calculator/`.
+- `drywall` переведён из `soon` в `ready`.
+- Создан `src/features/drywall-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/brick/` добавлен в sitemap.
+- `/construction/drywall/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/brick-calculator/index.ts`
-- `src/features/brick-calculator/components/BrickCalculatorView.vue`
-- `src/features/brick-calculator/composables/useBrickCalculator.ts`
-- `src/features/brick-calculator/lib/calculations.ts`
-- `src/features/brick-calculator/lib/calculations.test.ts`
-- `src/features/brick-calculator/types/brick.ts`
+- `src/features/drywall-calculator/index.ts`
+- `src/features/drywall-calculator/components/DrywallCalculatorView.vue`
+- `src/features/drywall-calculator/composables/useDrywallCalculator.ts`
+- `src/features/drywall-calculator/lib/calculations.ts`
+- `src/features/drywall-calculator/lib/calculations.test.ts`
+- `src/features/drywall-calculator/types/drywall.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -106,6 +106,7 @@ Status: completed.
 - 2026-04-26: Реализован `/transport/average-speed`; каталог стал 27 ready / 47 soon, транспортный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/sport/race-split`; каталог стал 28 ready / 46 soon, спортивный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/construction/brick`; каталог стал 29 ready / 45 soon, строительный раздел получил шестой ready-инструмент.
+- 2026-04-26: Реализован `/construction/drywall`; каталог стал 30 ready / 44 soon, строительный раздел получил седьмой ready-инструмент.
 
 ## Decisions Log
 
@@ -121,6 +122,7 @@ Status: completed.
 - 2026-04-26: Для `average-speed` расчёт использует `speedKmH = distanceKm / (totalMinutes / 60)`, `speedMph = speedKmH / 1.609344`, `speedMs = speedKmH * 1000 / 3600`, `paceSecondsPerKm = totalMinutes * 60 / distanceKm`.
 - 2026-04-26: Для `race-split` расчёт использует `paceSecondsPerKm = totalSeconds / distanceKm`; каждая отсечка считается как `splitDistance * paceSecondsPerKm`, финишная отсечка добавляется всегда.
 - 2026-04-26: Для `brick` расчёт использует площадь лицевой стороны кирпича со швом: `bricks = netArea / ((length + joint) * (height + joint)) * thicknessBricks`, затем добавляется запас; раствор считается как настраиваемая доля объёма кладки.
+- 2026-04-26: Для `drywall` расчёт использует чистую площадь стены, количество слоёв и запас: `sheets = ceil(netArea * layers * (1 + waste / 100) / sheetArea)`. Профиль считается как две направляющие по длине стены и стойки по шагу, саморезы — настраиваемым количеством на лист.
 
 ## Risks / Blockers
 
@@ -199,6 +201,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/brick` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/brick/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/brick/` — поля, пресеты, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/drywall` `npm run test` — OK, 30 files / 357 tests.
+- 2026-04-26: Для `/construction/drywall` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/drywall` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/drywall/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/drywall/` — поля, пресеты, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -216,10 +223,21 @@ Status: completed.
 - 75f9560 — `feat(transport): add average speed calculator`.
 - 17d6823 — `feat(sport): add race split calculator`.
 - 6317139 — `feat(construction): add brick calculator`.
+- 1e154e3 — `feat(construction): add drywall calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/drywall`, `/clothing/clothing-size`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/construction/blocks`, `/construction/putty`.
+
+Завершённый milestone `construction/drywall`:
+
+- `drywall` переведён из `soon` в `ready`.
+- Создан `src/features/drywall-calculator/`.
+- Добавлены формулы и unit-тесты для листов ГКЛ, площади с запасом, профилей, стоек, саморезов и стоимости листов.
+- Добавлены RU/EN локали.
+- `/construction/drywall/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `sheets = ceil(netArea * layers * (1 + waste / 100) / sheetArea)`.
 
 Завершённый milestone `construction/brick`:
 

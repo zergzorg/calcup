@@ -540,3 +540,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/construction/drywall` или `/clothing/clothing-size`.
+
+### Итерация 16: `/construction/drywall`
+
+Что выбрано:
+
+- Продолжить строительный P1 roadmap и реализовать `/construction/drywall`.
+
+Что изменено:
+
+- Создан `src/features/drywall-calculator/`.
+- Добавлен расчёт чистой площади стены, листов ГКЛ с учётом слоёв и запаса, купленной площади, направляющего и стоечного профиля, саморезов и стоимости листов.
+- Добавлены пресеты размеров листа 1.2×2.5 / 1.2×3.0 / 1.2×2.7 м и запаса 5 / 10 / 15%.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/drywall/ /tmp/calcup-drywall-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/drywall/ /tmp/calcup-drywall-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/drywall/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 30 files / 357 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/drywall/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 1e154e3
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/blocks` или `/construction/putty`.
