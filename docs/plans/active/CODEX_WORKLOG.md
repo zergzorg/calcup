@@ -618,3 +618,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/putty` или `/construction/insulation`.
+
+### Итерация 18: `/construction/putty`
+
+Что выбрано:
+
+- Продолжить строительный P1 roadmap и реализовать `/construction/putty`.
+
+Что изменено:
+
+- Создан `src/features/putty-calculator/`.
+- Добавлен расчёт расхода шпатлёвки/штукатурной смеси, количества мешков, покупаемого веса, остатка, запаса и стоимости.
+- Добавлены пресеты толщины слоя 1 / 2 / 3 мм и веса мешка 5 / 20 / 25 кг.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/putty/ /tmp/calcup-putty-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/putty/ /tmp/calcup-putty-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/putty/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 32 files / 363 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/putty/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 9c37203
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/construction/insulation`, `/clothing/clothing-size` или `/transport/ev-range`.

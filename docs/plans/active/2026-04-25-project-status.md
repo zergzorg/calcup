@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.17 расширение строительного раздела
+## Текущая фаза: 5.18 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 31 ready-калькулятор.
-- 43 soon-карточки.
+- 32 ready-калькулятора.
+- 42 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -46,6 +46,7 @@
 | 5.15 | Калькулятор кирпича | /construction/brick | ✅ ready |
 | 5.16 | Калькулятор гипсокартона | /construction/drywall | ✅ ready |
 | 5.17 | Калькулятор газоблока | /construction/blocks | ✅ ready |
+| 5.18 | Калькулятор шпатлёвки | /construction/putty | ✅ ready |
 
 ## Sitemap
 
@@ -55,7 +56,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -64,6 +65,39 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.18) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/putty`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/putty-calculator/`.
+- Добавлен расчёт:
+  - площадь работ с вычетом исключаемой зоны;
+  - масса смеси по толщине слоя и расходу кг/м²/мм;
+  - количество мешков;
+  - покупаемый вес и остаток;
+  - опциональная стоимость мешков.
+- Добавлены пресеты толщины слоя 1 / 2 / 3 мм.
+- Добавлены пресеты веса мешка 5 / 20 / 25 кг.
+- Добавлены RU/EN локали `putty.*`.
+- Registry-запись `putty` переведена в `ready`.
+- В sitemap добавлен `/construction/putty/`.
+
+### Проверки
+
+- `npm run test` — OK, `363/363`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/putty/` title, canonical со slash, `index,follow`;
+  - `/construction/putty/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/putty/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
