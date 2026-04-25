@@ -1,22 +1,24 @@
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { calculateDayDifference, isValidDateOnly } from '../lib/calculations'
 import type { DateDiffValidationIssue } from '../types/date-diff'
 
-function todayString(): string {
-  const d = new Date()
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
-
-function offsetDateString(days: number): string {
-  const d = new Date()
-  d.setDate(d.getDate() + days)
+function toDateString(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 export function useDateDiffCalculator() {
-  const startDate = ref(todayString())
-  const endDate = ref(offsetDateString(30))
+  // Empty during SSG to avoid hydration mismatch; filled after mount
+  const startDate = ref('')
+  const endDate = ref('')
   const includeEndDate = ref(false)
+
+  onMounted(() => {
+    const today = new Date()
+    const end = new Date(today)
+    end.setDate(end.getDate() + 30)
+    startDate.value = toDateString(today)
+    endDate.value = toDateString(end)
+  })
 
   const touched = ref(new Set<DateDiffValidationIssue['field']>())
 
