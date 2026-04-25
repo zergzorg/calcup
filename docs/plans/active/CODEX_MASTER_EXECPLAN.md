@@ -120,10 +120,11 @@ Status: completed.
 ## Commit Log
 
 - 8b7c3cb — `feat(sport): add pace-speed calculator`.
+- b0dc25e — `feat(construction): add paint calculator`.
 
 ## Next Action
 
-Сделать атомарный commit `feat(construction): add paint calculator`, затем перейти к следующему backlog item: `sport/distance-pace-time`.
+Перейти к следующему backlog item: `sport/distance-pace-time`.
 
 Завершённый milestone `construction/paint`:
 

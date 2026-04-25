@@ -91,8 +91,8 @@ Commit hash:
 
 Commit hash:
 
-- Пока нет.
+- b0dc25e
 
 Следующий шаг:
 
-- Закоммитить milestone и перейти к `/sport/distance-pace-time`.
+- Перейти к `/sport/distance-pace-time`.
