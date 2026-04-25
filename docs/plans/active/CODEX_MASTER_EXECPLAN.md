@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 33.
-- Soon после текущего milestone: 41.
+- Ready после текущего milestone: 34.
+- Soon после текущего milestone: 40.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (10 ready / 11 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/insulation`.
+Milestone: `transport/ev-range`.
 Status: completed.
 
 Критерии готовности:
 
-- `insulation` переведён из `soon` в `ready`.
-- Создан `src/features/insulation-calculator/`.
+- `ev-range` переведён из `soon` в `ready`.
+- Создан `src/features/ev-range-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/insulation/` добавлен в sitemap.
+- `/transport/ev-range/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/insulation-calculator/index.ts`
-- `src/features/insulation-calculator/components/InsulationCalculatorView.vue`
-- `src/features/insulation-calculator/composables/useInsulationCalculator.ts`
-- `src/features/insulation-calculator/lib/calculations.ts`
-- `src/features/insulation-calculator/lib/calculations.test.ts`
-- `src/features/insulation-calculator/types/insulation.ts`
+- `src/features/ev-range-calculator/index.ts`
+- `src/features/ev-range-calculator/components/EvRangeCalculatorView.vue`
+- `src/features/ev-range-calculator/composables/useEvRangeCalculator.ts`
+- `src/features/ev-range-calculator/lib/calculations.ts`
+- `src/features/ev-range-calculator/lib/calculations.test.ts`
+- `src/features/ev-range-calculator/types/ev-range.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -110,6 +110,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/blocks`; каталог стал 31 ready / 43 soon, строительный раздел получил восьмой ready-инструмент.
 - 2026-04-26: Реализован `/construction/putty`; каталог стал 32 ready / 42 soon, строительный раздел получил девятый ready-инструмент.
 - 2026-04-26: Реализован `/construction/insulation`; каталог стал 33 ready / 41 soon, строительный раздел получил десятый ready-инструмент.
+- 2026-04-26: Реализован `/transport/ev-range`; каталог стал 34 ready / 40 soon, транспортный раздел закрыл все текущие ready-кандидаты.
 
 ## Decisions Log
 
@@ -129,6 +130,7 @@ Status: completed.
 - 2026-04-26: Для `blocks` расчёт использует лицевую площадь блока: `blocks = ceil(netArea / (blockLength * blockHeight))`, затем добавляется запас. Объём кладки считается по толщине блока, клей — по настраиваемому расходу кг/м².
 - 2026-04-26: Для `putty` расчёт использует настраиваемый расход смеси: `mixKg = netArea * layerThicknessMm * consumptionKgPerM2Mm * (1 + waste / 100)`, затем покупка округляется до целых мешков.
 - 2026-04-26: Для `insulation` расчёт использует площадь плиты и целые упаковки: `boards = ceil(netArea * (1 + waste / 100) / boardArea)`, `packs = ceil(boards / boardsPerPack)`. Объём считается по толщине утеплителя.
+- 2026-04-26: Для `ev-range` запас хода считается от текущей энергии батареи минус резерв: `rangeKm = (batteryKwh * (currentCharge - reserve) / 100) / consumptionKwhPer100Km * 100`. Дозарядка до цели не уходит ниже нуля.
 
 ## Risks / Blockers
 
@@ -227,6 +229,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/insulation` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/insulation/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/insulation/` — поля, пресеты, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/transport/ev-range` `npm run test` — OK, 34 files / 369 tests.
+- 2026-04-26: Для `/transport/ev-range` `npm run type-check` — OK.
+- 2026-04-26: Для `/transport/ev-range` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/transport/ev-range/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/transport/ev-range/` — поля, пресеты, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -248,10 +255,21 @@ Status: completed.
 - bcec9ce — `feat(construction): add blocks calculator`.
 - 9c37203 — `feat(construction): add putty calculator`.
 - d880d93 — `feat(construction): add insulation calculator`.
+- f665b29 — `feat(transport): add ev range calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/transport/ev-range`, `/clothing/clothing-size`, `/construction/concrete`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/construction/concrete`, `/datetime/age`.
+
+Завершённый milestone `transport/ev-range`:
+
+- `ev-range` переведён из `soon` в `ready`.
+- Создан `src/features/ev-range-calculator/`.
+- Добавлены формулы и unit-тесты для энергии батареи, резерва, запаса хода, дозарядки и стоимости.
+- Добавлены RU/EN локали.
+- `/transport/ev-range/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `rangeKm = usableEnergyKwh / consumptionKwhPer100Km * 100`.
 
 Завершённый milestone `construction/insulation`:
 

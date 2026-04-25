@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 33 ready-калькулятора в `src/data/calculators.ts`;
-- 41 `soon`-карточка для будущего наполнения;
+- 34 ready-калькулятора в `src/data/calculators.ts`;
+- 40 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -71,7 +71,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Здоровье | `/health` | bmi | calorie, ideal-weight, body-fat, pregnancy-due-date |
 | Конвертеры | `/convert` | length, temperature, weight, area | volume, speed, currency, data-size |
 | Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation | concrete, strip-foundation, slab-foundation, rebar, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
-| Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed | ev-range |
+| Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed, ev-range | — |
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones, race-split | metronome |
 | Одежда и обувь | `/clothing` | shoe-size | sneaker-size, clothing-size, jeans-size, brand-size-compare |
 | Дата и время | `/datetime` | date-diff | age, workdays, time-duration, countdown |
@@ -105,6 +105,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/transport/trip-cost` | Калькулятор стоимости поездки |
 | `/transport/fuel-price` | Калькулятор цены топлива |
 | `/transport/average-speed` | Калькулятор средней скорости |
+| `/transport/ev-range` | Калькулятор запаса хода EV |
 | `/sport/heart-rate-zones` | Пульсовые зоны |
 | `/sport/pace-speed` | Калькулятор темп/скорость |
 | `/sport/distance-pace-time` | Калькулятор дистанция/темп/время |
@@ -130,8 +131,8 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
    - `/clothing/clothing-size`;
-   - `/transport/ev-range`;
-   - `/construction/concrete`.
+   - `/construction/concrete`;
+   - `/datetime/age`.
 
 ## Non-Goals
 

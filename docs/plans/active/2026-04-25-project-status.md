@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.19 расширение строительного раздела
+## Текущая фаза: 5.20 расширение транспортного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 33 ready-калькулятора.
-- 41 soon-карточка.
+- 34 ready-калькулятора.
+- 40 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -48,6 +48,7 @@
 | 5.17 | Калькулятор газоблока | /construction/blocks | ✅ ready |
 | 5.18 | Калькулятор шпатлёвки | /construction/putty | ✅ ready |
 | 5.19 | Калькулятор утеплителя | /construction/insulation | ✅ ready |
+| 5.20 | Калькулятор запаса хода EV | /transport/ev-range | ✅ ready |
 
 ## Sitemap
 
@@ -58,7 +59,7 @@
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/
-- /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
+- /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
 - /datetime/date-diff/
@@ -66,6 +67,40 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.20) — 2026-04-26
+
+Реализован транспортный калькулятор `/transport/ev-range`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/ev-range-calculator/`.
+- Добавлен расчёт:
+  - текущая энергия батареи;
+  - доступная энергия с резервом;
+  - запас хода в километрах и милях;
+  - энергия дозарядки до целевого процента;
+  - стоимость зарядки;
+  - стоимость 100 км.
+- Добавлены пресеты текущего заряда 30 / 50 / 80%.
+- Добавлены пресеты резерва 5 / 10 / 15%.
+- Добавлены RU/EN локали `evRange.*`.
+- Registry-запись `ev-range` переведена в `ready`.
+- В sitemap добавлен `/transport/ev-range/`.
+
+### Проверки
+
+- `npm run test` — OK, `369/369`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/transport/ev-range/` title, canonical со slash, `index,follow`;
+  - `/transport/ev-range/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/transport/ev-range/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

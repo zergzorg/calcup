@@ -696,3 +696,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/transport/ev-range`, `/clothing/clothing-size` или `/construction/concrete`.
+
+### Итерация 20: `/transport/ev-range`
+
+Что выбрано:
+
+- Закрыть оставшийся транспортный `soon`-инструмент: `/transport/ev-range`.
+
+Что изменено:
+
+- Создан `src/features/ev-range-calculator/`.
+- Добавлен расчёт доступной энергии, запаса хода в км и милях, дозарядки до целевого процента, стоимости зарядки и стоимости 100 км.
+- Добавлены пресеты текущего заряда 30 / 50 / 80% и резерва 5 / 10 / 15%.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/transport/ev-range/ /tmp/calcup-ev-range-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/transport/ev-range/ /tmp/calcup-ev-range-mobile-full.png`
+- Static smoke через `rg` по `dist/transport/ev-range/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 34 files / 369 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/transport/ev-range/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- f665b29
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/concrete` или `/datetime/age`.
