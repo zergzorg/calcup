@@ -2043,6 +2043,69 @@
       }
     }
   },
+  "concrete": {
+    "eyebrow": "Construction",
+    "title": "Concrete Calculator",
+    "intro": "Estimate concrete volume for a rectangular pour, waste, dry-mix bags and approximate cost.",
+    "form": {
+      "sizeTitle": "Pour size",
+      "length": "Length",
+      "width": "Width",
+      "thickness": "Thickness",
+      "thicknessPresets": "Quick thickness choice",
+      "purchaseTitle": "Waste and purchase",
+      "waste": "Waste",
+      "bagYield": "Bag yield",
+      "pricePerM3": "Price per m³",
+      "wastePresets": "Quick waste choice",
+      "mmValue": "{value} mm",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "m3": "m³",
+      "mm": "mm",
+      "l": "L"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive length, width, thickness and bag yield. Waste and price cannot be negative.",
+      "volume": "Concrete with waste",
+      "area": "Pour area",
+      "baseVolume": "Volume without waste",
+      "liters": "In liters",
+      "bags": "Mix bags",
+      "leftover": "Mix leftover",
+      "totalCost": "Concrete cost",
+      "areaValue": "{value} m²",
+      "volumeValue": "{value} m³",
+      "litersValue": "{value} L",
+      "bagsValue": "{count} bags",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Volume = length × width × thickness in meters × (1 + waste / 100). Bags are rounded up by yield in liters.",
+    "validation": {
+      "lengthM": {
+        "positive": "Length must be greater than 0."
+      },
+      "widthM": {
+        "positive": "Width must be greater than 0."
+      },
+      "thicknessMm": {
+        "positive": "Thickness must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "bagYieldLiters": {
+        "positive": "Bag yield must be greater than 0."
+      },
+      "pricePerM3": {
+        "nonNegative": "Price per m³ cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",
