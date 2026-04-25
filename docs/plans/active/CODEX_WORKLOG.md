@@ -28,7 +28,7 @@
 
 Commit hash:
 
-- b7154c1
+- 8b7c3cb
 
 Следующий шаг:
 
@@ -62,7 +62,7 @@ Commit hash:
 
 Commit hash:
 
-- b7154c1
+- 8b7c3cb
 
 Следующий шаг:
 
