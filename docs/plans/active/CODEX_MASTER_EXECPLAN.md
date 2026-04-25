@@ -34,10 +34,10 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 24.
-- Soon после текущего milestone: 50.
+- Ready после текущего milestone: 25.
+- Soon после текущего milestone: 49.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
-- Категории с одним ready-калькулятором: `math`, `health`, `transport`, `clothing`, `datetime`.
+- Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/floor-screed`.
+Milestone: `transport/trip-cost`.
 Status: completed.
 
 Критерии готовности:
 
-- `floor-screed` переведён из `soon` в `ready`.
-- Создан `src/features/floor-screed-calculator/`.
+- `trip-cost` переведён из `soon` в `ready`.
+- Создан `src/features/trip-cost-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/floor-screed/` добавлен в sitemap.
+- `/transport/trip-cost/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/floor-screed-calculator/index.ts`
-- `src/features/floor-screed-calculator/components/FloorScreedCalculatorView.vue`
-- `src/features/floor-screed-calculator/composables/useFloorScreedCalculator.ts`
-- `src/features/floor-screed-calculator/lib/calculations.ts`
-- `src/features/floor-screed-calculator/lib/calculations.test.ts`
-- `src/features/floor-screed-calculator/types/floor-screed.ts`
+- `src/features/trip-cost-calculator/index.ts`
+- `src/features/trip-cost-calculator/components/TripCostCalculatorView.vue`
+- `src/features/trip-cost-calculator/composables/useTripCostCalculator.ts`
+- `src/features/trip-cost-calculator/lib/calculations.ts`
+- `src/features/trip-cost-calculator/lib/calculations.test.ts`
+- `src/features/trip-cost-calculator/types/trip-cost.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -101,6 +101,7 @@ Status: completed.
 - 2026-04-26: По пользовательскому фидбеку обновлён UI `/sport/heart-rate-zones`: цветные карточки зон, пояснения и целевой пульс.
 - 2026-04-26: Реализован `/construction/laminate`; каталог стал 23 ready / 51 soon, строительный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/construction/floor-screed`; каталог стал 24 ready / 50 soon, строительный P0 first wave закрыт.
+- 2026-04-26: Реализован `/transport/trip-cost`; каталог стал 25 ready / 49 soon, транспортный раздел получил второй ready-инструмент.
 
 ## Decisions Log
 
@@ -111,6 +112,7 @@ Status: completed.
 - 2026-04-26: Для `tile` расчёт ведётся от площади поверхности и площади одной плитки: базовые плитки округляются вверх, затем добавляется запас, итоговая покупка округляется до целых упаковок; цена считается только если задана цена упаковки.
 - 2026-04-26: Для `laminate` расчёт ведётся от чистой площади пола, покрытия одной упаковки и процента запаса. Типовой запас на подрезку оставлен настраиваемым, с быстрыми пресетами 5/10/15%.
 - 2026-04-26: Для `floor-screed` расчёт сухой смеси ведётся по настраиваемому расходу `кг/м²/мм`; дефолт 1.8 кг/м²/мм взят как типичный паспортный ориентир, но UI прямо просит сверять значение с мешком или data sheet.
+- 2026-04-26: Для `trip-cost` формула использует `fuelLiters = distance * consumption / 100`; дополнительные расходы прибавляются отдельной строкой, а стоимость на человека считается делением итоговой суммы на целое число пассажиров.
 
 ## Risks / Blockers
 
@@ -164,6 +166,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/floor-screed` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/floor-screed/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/construction/floor-screed/` — chip-переключатели полноширинные, активное состояние без наложений.
+- 2026-04-26: Для `/transport/trip-cost` `npm run test` — OK, 25 files / 342 tests.
+- 2026-04-26: Для `/transport/trip-cost` `npm run type-check` — OK.
+- 2026-04-26: Для `/transport/trip-cost` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/transport/trip-cost/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/transport/trip-cost/` — direction chips полноширинные, активное состояние без наложений.
 
 ## Commit Log
 
@@ -176,10 +183,21 @@ Status: completed.
 - 90d49d2 — `feat(construction): add tile calculator and polish hr zones`.
 - 4131da0 — `feat(construction): add laminate calculator`.
 - 1388e97 — `feat(construction): add floor screed calculator`.
+- 705bdfb — `feat(transport): add trip cost calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/fuel-price`, `/transport/average-speed`.
+
+Завершённый milestone `transport/trip-cost`:
+
+- `trip-cost` переведён из `soon` в `ready`.
+- Создан `src/features/trip-cost-calculator/`.
+- Добавлены формулы и unit-тесты для топлива, стоимости топлива, дополнительных расходов, round trip и стоимости на человека.
+- Добавлены RU/EN локали.
+- `/transport/trip-cost/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `fuelLiters = effectiveDistanceKm * consumptionPer100Km / 100`, `totalCost = fuelLiters * fuelPricePerLiter + tolls + parking + otherCosts`.
 
 Завершённый milestone `construction/floor-screed`:
 

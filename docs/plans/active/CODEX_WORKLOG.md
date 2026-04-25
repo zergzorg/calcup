@@ -351,3 +351,41 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.
+
+### Итерация 11: `/transport/trip-cost`
+
+Что выбрано:
+
+- Расширить транспортный раздел вторым ready-инструментом: `/transport/trip-cost`.
+
+Что изменено:
+
+- Создан `src/features/trip-cost-calculator/`.
+- Добавлен расчёт топлива, стоимости топлива, платных дорог, парковки, прочих расходов и стоимости на человека.
+- Добавлен выбор направления поездки: в одну сторону / туда и обратно через полноширинные chip-кнопки.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/transport/trip-cost/ /tmp/calcup-trip-cost-mobile.png`
+- Static smoke через `rg` по `dist/transport/trip-cost/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 25 files / 342 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/transport/trip-cost/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: direction chip-переключатели полноширинные, активное состояние без наложений.
+
+Commit hash:
+
+- 705bdfb
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/transport/fuel-price`, `/transport/average-speed`, `/clothing/clothing-size`, `/sport/race-split` или строительному P1.

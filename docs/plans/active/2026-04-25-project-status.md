@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.10 завершение P0 first wave строительства
+## Текущая фаза: 5.11 расширение транспортного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 24 ready-калькулятора.
-- 50 soon-карточек.
+- 25 ready-калькуляторов.
+- 49 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -39,6 +39,7 @@
 | 5.8 | Калькулятор плитки | /construction/tile | ✅ ready |
 | 5.9 | Калькулятор ламината | /construction/laminate | ✅ ready |
 | 5.10 | Калькулятор стяжки пола | /construction/floor-screed | ✅ ready |
+| 5.11 | Калькулятор стоимости поездки | /transport/trip-cost | ✅ ready |
 
 ## Sitemap
 
@@ -49,7 +50,7 @@
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
-- /transport/fuel/
+- /transport/fuel/ · /transport/trip-cost/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
 - /datetime/date-diff/
@@ -57,6 +58,38 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.11) — 2026-04-26
+
+Реализован транспортный калькулятор `/transport/trip-cost`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/trip-cost-calculator/`.
+- Добавлен расчёт:
+  - топливо по дистанции и расходу;
+  - стоимость топлива;
+  - платные дороги, парковка и прочие расходы;
+  - итоговая стоимость;
+  - стоимость на человека;
+  - режимы в одну сторону / туда и обратно.
+- Добавлены RU/EN локали `tripCost.*`.
+- Registry-запись `trip-cost` переведена в `ready`.
+- В sitemap добавлен `/transport/trip-cost/`.
+
+### Проверки
+
+- `npm run test` — OK, `342/342`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/transport/trip-cost/` title, description, canonical со slash, `index,follow`;
+  - `/transport/trip-cost/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/transport/trip-cost/` 430px screenshot без сломанных chip-переключателей.
 
 ---
 
