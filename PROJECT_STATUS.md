@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.6 завершена, ожидание Phase 4.7
+## Текущая фаза: 4.9 завершена, ожидание Phase 4.10
 
 ## Готовые калькуляторы
 
@@ -8,11 +8,14 @@
 |------|-------------|------|--------|
 | 4.1 | Кредитный | /finance/credit | ✅ ready |
 | 4.2 | ИМТ | /health/bmi | ✅ ready |
+| 4.2 | Калькулятор процентов | /math/percentage | ✅ ready |
 | 4.3 | Конвертер длины | /convert/length | ✅ ready |
 | 4.4 | Расход топлива | /transport/fuel | ✅ ready |
 | 4.5 | Разница дат | /datetime/date-diff | ✅ ready |
 | 4.6 | НДС | /finance/vat | ✅ ready |
-| 4.3 | Калькулятор процентов | /math/percentage | ✅ ready |
+| 4.7 | Чаевые / разделение счёта | /everyday/tips | ✅ ready |
+| 4.8 | Конвертер температуры | /convert/temperature | ✅ ready |
+| 4.9 | Конвертер веса | /convert/weight | ✅ ready |
 
 ## Sitemap
 
@@ -23,11 +26,15 @@
 - /convert/
 - /transport/
 - /datetime/
+- /everyday/
+- /everyday/tips/
 - /finance/credit/
 - /finance/vat/
 - /math/percentage/
 - /health/bmi/
 - /convert/length/
+- /convert/temperature/
+- /convert/weight/
 - /transport/fuel/
 - /datetime/date-diff/
 
@@ -89,10 +96,6 @@
 
 **Коммит:** `69e3691 feat: redesign home page hero — inline search, compact layout, single search`
 
-## Ожидает (Phase 4.7)
-
-Следующий калькулятор не определён. Возможные кандидаты: ипотечный (/finance/mortgage), конвертер веса, конвертер температуры.
-
 ## Сделано (Фаза 4.7) — 2026-04-25
 
 - `src/features/tips-calculator/` — полный модуль: types, calculations, composable, view, index
@@ -109,6 +112,36 @@
 - Открыта новая категория `/everyday`
 - Коммит: `8b3b329 feat: phase 4.7 — tips calculator /everyday/tips`
 
-## Ожидает (Phase 4.8)
+## Исправления после Phase 4.7 — 2026-04-25
 
-Следующий калькулятор не определён. Возможные кандидаты (без ипотеки): конвертер веса, конвертер температуры, конвертер площади, скидка/наценка (/math или /everyday).
+- Layout: результат перенесён справа от формы (grid 2 колонки), как у других калькуляторов
+- type-check + build прошли
+
+## Сделано (Фаза 4.8) — 2026-04-25
+
+- `src/features/temperature-converter/` — полный модуль: types, calculations, composable, view, index
+- Конвертация между °C, °F и K через базовую единицу Celsius
+- Swap units кнопка
+- Валидация: below absolute zero, NaN/Infinity
+- 22 unit-тестов (153/153 всего), type-check, build → `dist/convert/temperature.html` 16.64 KiB
+- Registry: `temperature` → `status: 'ready'`, `popularity: 75`, теги/алиасы, componentLoader
+- Локали: ru.json + en.json ключи `temperature.*`
+- Sitemap: добавлен `/convert/temperature/`
+- SEO: index,follow,max-image-preview:large (автоматически из статуса ready)
+
+## Сделано (Фаза 4.9) — 2026-04-25
+
+- `src/features/weight-converter/` — полный модуль: types, calculations, composable, view, index
+- Конвертация между всеми единицами веса через базовую единицу kilogram
+- 7 единиц: mg, g, kg, t, oz, lb, st
+- Swap units кнопка
+- Валидация: non-negative, NaN/Infinity
+- 17 unit-тестов (170/170 всего), type-check, build → `dist/convert/weight.html` 17.07 KiB
+- Registry: `weight` → `status: 'ready'`, `popularity: 72`, теги/алиасы, componentLoader
+- Локали: ru.json + en.json ключи `weight.*`
+- Sitemap: добавлен `/convert/weight/`
+- SEO: index,follow,max-image-preview:large
+
+## Ожидает (Phase 4.10)
+
+Следующий калькулятор не определён. Возможные кандидаты: конвертер площади, конвертер объёма, скидка/наценка.

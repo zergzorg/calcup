@@ -517,5 +517,82 @@
         "positiveInteger": "Number of people must be a whole number, at least 1."
       }
     }
+  },
+  "temperature": {
+    "eyebrow": "Converters",
+    "title": "Temperature Converter",
+    "intro": "Convert temperature between Celsius, Fahrenheit and Kelvin.",
+    "form": {
+      "value": "Temperature",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a temperature value.",
+      "summary": "{value} {from} = {to}"
+    },
+    "popular": {
+      "title": "Common temperatures",
+      "freezing": "0°C = 32°F = 273.15K",
+      "boiling": "100°C = 212°F = 373.15K",
+      "body": "36.6°C = 97.88°F = 309.75K",
+      "room": "20°C = 68°F = 293.15K"
+    },
+    "units": {
+      "celsius": "Celsius (°C)",
+      "fahrenheit": "Fahrenheit (°F)",
+      "kelvin": "Kelvin (K)"
+    },
+    "errors": {
+      "invalid": "Enter a valid number.",
+      "belowAbsoluteZero": "Temperature cannot be below absolute zero."
+    }
+  },
+  "weight": {
+    "eyebrow": "Converters",
+    "title": "Weight Converter",
+    "intro": "Convert kilograms, grams, tons, pounds, ounces and stones.",
+    "form": {
+      "value": "Weight",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a weight value.",
+      "summary": "{value} {from} = {to}"
+    },
+    "popular": {
+      "title": "Common weights",
+      "adult": "70 kg ≈ 154 pounds",
+      "newborn": "3.5 kg ≈ 7.7 pounds",
+      "apple": "150 g ≈ 5.3 oz",
+      "car": "1500 kg ≈ 1.5 tons"
+    },
+    "units": {
+      "milligram": "Milligram",
+      "gram": "Gram",
+      "kilogram": "Kilogram",
+      "ton": "Ton",
+      "ounce": "Ounce",
+      "pound": "Pound",
+      "stone": "Stone"
+    },
+    "errors": {
+      "invalid": "Enter a valid number.",
+      "negative": "Weight cannot be negative."
+    },
+    "unitShort": {
+      "milligram": "mg",
+      "gram": "g",
+      "kilogram": "kg",
+      "ton": "t",
+      "ounce": "oz",
+      "pound": "lb",
+      "stone": "st"
+    }
   }
 }
