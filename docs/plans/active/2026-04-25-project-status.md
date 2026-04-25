@@ -5,8 +5,8 @@
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 18 ready-калькуляторов.
-- 56 soon-карточек.
+- 19 ready-калькуляторов.
+- 55 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` добавлен как активное продуктовое направление, но пока содержит только `soon`-карточки.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -33,6 +33,7 @@
 | 5.1 | Калькулятор обоев | /construction/wallpaper | ✅ ready |
 | 5.3 | Калькулятор темп/скорость | /sport/pace-speed | ✅ ready |
 | 5.4 | Калькулятор краски | /construction/paint | ✅ ready |
+| 5.5 | Калькулятор дистанция/темп/время | /sport/distance-pace-time | ✅ ready |
 
 ## Sitemap
 
@@ -44,7 +45,7 @@
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/
 - /transport/fuel/
-- /sport/pace-speed/
+- /sport/pace-speed/ · /sport/distance-pace-time/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
@@ -109,6 +110,35 @@
   - `/construction/paint/` title, description, canonical со slash, `index,follow`;
   - `/construction/paint/` есть в sitemap;
   - результат по умолчанию: 9,83 л, 4 банки по 2,5 л.
+
+---
+
+## Сделано (Фаза 5.5) — 2026-04-26
+
+Реализован спортивный калькулятор `/sport/distance-pace-time`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/distance-pace-time-calculator/`.
+- Добавлены режимы:
+  - найти время по дистанции и темпу;
+  - найти темп по дистанции и времени;
+  - найти дистанцию по времени и темпу.
+- Добавлены быстрые дистанции: 3, 5, 10, 15, 21.1, 42.2 км.
+- Добавлены RU/EN локали `distancePaceTime.*`.
+- Registry-запись `distance-pace-time` переведена в `ready`.
+- В sitemap добавлен `/sport/distance-pace-time/`.
+
+### Проверки
+
+- `npm run test` — OK, `317/317`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/sport/distance-pace-time/` title, description, canonical со slash, `index,follow`;
+  - `/sport/distance-pace-time/` есть в sitemap;
+  - результат по умолчанию: 10 км за 0:50:00 при темпе 5:00 мин/км.
 
 ---
 

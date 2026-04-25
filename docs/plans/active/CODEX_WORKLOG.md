@@ -96,3 +96,32 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к `/sport/distance-pace-time`.
+
+### Итерация 4: старт `/sport/distance-pace-time`
+
+Что выбрано:
+
+- Следующий спортивный P0-калькулятор: дистанция / темп / время.
+
+Что изменено:
+
+- Обновлён `CODEX_MASTER_EXECPLAN.md` с критериями готовности и формульными допущениями.
+
+Команды:
+
+- Используются уже сверенные формулы pace/speed/time из предыдущего спортивного milestone.
+
+Результат проверок:
+
+- `npm run test` — OK, 18 files / 317 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/sport/distance-pace-time/` canonical, robots, route index and sitemap entries checked.
+
+Commit hash:
+
+- Пока нет.
+
+Следующий шаг:
+
+- Закоммитить milestone и перейти к `/clothing/shoe-size`.

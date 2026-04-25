@@ -92,6 +92,7 @@ Status: completed.
 - 2026-04-26: Audit проекта и создание автономных планов Codex.
 - 2026-04-26: Реализован `/sport/pace-speed`; каталог стал 17 ready / 57 soon, категория `/sport` получила первый ready-инструмент.
 - 2026-04-26: Реализован `/construction/paint`; каталог стал 18 ready / 56 soon, строительный раздел получил второй P0-инструмент.
+- 2026-04-26: Реализован `/sport/distance-pace-time`; каталог стал 19 ready / 55 soon, спортивный раздел получил второй P0-инструмент.
 
 ## Decisions Log
 
@@ -116,6 +117,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/paint` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/paint/index.html` — title, description, `index,follow` robots и canonical `https://calcup.ru/construction/paint/` OK.
 - 2026-04-26: Static smoke по `dist/sitemap.xml` и `public/sitemap.xml` — `/construction/paint/` присутствует.
+- 2026-04-26: Для `/sport/distance-pace-time` `npm run test` — OK, 18 files / 317 tests.
+- 2026-04-26: Для `/sport/distance-pace-time` `npm run type-check` — OK.
+- 2026-04-26: Для `/sport/distance-pace-time` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/sport/distance-pace-time/index.html` — title, description, `index,follow` robots и canonical `https://calcup.ru/sport/distance-pace-time/` OK.
+- 2026-04-26: Static smoke по `dist/sitemap.xml` и `public/sitemap.xml` — `/sport/distance-pace-time/` присутствует.
 
 ## Commit Log
 
@@ -124,7 +130,17 @@ Status: completed.
 
 ## Next Action
 
-Перейти к следующему backlog item: `sport/distance-pace-time`.
+Сделать атомарный commit `feat(sport): add distance-pace-time calculator`, затем перейти к следующему backlog item: `clothing/shoe-size`.
+
+Завершённый milestone `sport/distance-pace-time`:
+
+- `distance-pace-time` переведён из `soon` в `ready`.
+- Создан `src/features/distance-pace-time-calculator/`.
+- Добавлены формулы и unit-тесты для времени, темпа и дистанции.
+- Добавлены RU/EN локали.
+- `/sport/distance-pace-time/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формулы: `time = distance * pace`, `pace = time / distance`, `distance = time / pace`.
 
 Завершённый milestone `construction/paint`:
 

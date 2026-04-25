@@ -86,7 +86,7 @@ Sneaker, shoe, clothing and brand size converters.
 |------|------|-------|------|
 | `/sport/heart-rate-zones` | Пульсовые зоны | Зоны ЧСС и целевой пульс по max HR / возрасту / HRR | Средний |
 | `/sport/pace-speed` | Калькулятор темп/скорость | Перевод мин/км ↔ км/ч | Низкий, ready |
-| `/sport/distance-pace-time` | Калькулятор дистанция/темп | Время, темп или дистанция для 3, 5, 10, 15, 21.1, 42.2 км | Низкий |
+| `/sport/distance-pace-time` | Калькулятор дистанция/темп | Время, темп или дистанция для 3, 5, 10, 15, 21.1, 42.2 км | Низкий, ready |
 
 ### P1: Sport Next
 
@@ -156,7 +156,7 @@ Sneaker, shoe, clothing and brand size converters.
 - [x] Добавить заглушечные `soon`-калькуляторы для одежды и обуви.
 - [x] Оформить активный roadmap для дальнейшего наполнения.
 - [x] Реализовать `/sport/pace-speed`.
-- [ ] Реализовать `/sport/distance-pace-time`.
+- [x] Реализовать `/sport/distance-pace-time`.
 - [ ] Реализовать `/sport/heart-rate-zones`.
 - [ ] Реализовать `/clothing/shoe-size`.
 - [ ] Реализовать `/clothing/sneaker-size`.

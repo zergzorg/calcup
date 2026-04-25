@@ -1199,6 +1199,84 @@
       }
     }
   },
+  "distancePaceTime": {
+    "eyebrow": "Sport",
+    "title": "Distance Pace Time Calculator",
+    "intro": "Calculate finish time, average pace, or distance for runs and popular race goals.",
+    "modes": {
+      "label": "Find",
+      "time": "Time",
+      "pace": "Pace",
+      "distance": "Distance"
+    },
+    "form": {
+      "distanceTitle": "Distance",
+      "distance": "Distance",
+      "presets": "Popular distances",
+      "paceTitle": "Pace",
+      "timeTitle": "Time",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "units": {
+      "km": "km"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter positive values for the selected mode.",
+      "distance": "Distance",
+      "time": "Time",
+      "pace": "Pace",
+      "speed": "Average speed",
+      "distanceValue": "{value} km",
+      "timeValue": "{hours}:{minutes}:{seconds}",
+      "paceValue": "{minutes}:{seconds} min/km",
+      "speedValue": "{value} km/h",
+      "primary": {
+        "time": "Finish time",
+        "pace": "Average pace",
+        "distance": "Distance"
+      }
+    },
+    "formula": {
+      "time": "Time = distance × pace.",
+      "pace": "Pace = time / distance.",
+      "distance": "Distance = time / pace."
+    },
+    "validation": {
+      "distanceKm": {
+        "required": "Enter distance as a number.",
+        "positive": "Distance must be greater than 0."
+      },
+      "timeHours": {
+        "integer": "Hours must be an integer.",
+        "range": "Hours cannot be negative."
+      },
+      "timeMinutes": {
+        "integer": "Minutes must be an integer.",
+        "range": "Minutes must be from 0 to 59."
+      },
+      "timeSeconds": {
+        "integer": "Seconds must be an integer.",
+        "range": "Seconds must be from 0 to 59."
+      },
+      "paceMinutes": {
+        "integer": "Pace minutes must be an integer.",
+        "range": "Pace minutes cannot be negative."
+      },
+      "paceSeconds": {
+        "integer": "Pace seconds must be an integer.",
+        "range": "Pace seconds must be from 0 to 59."
+      },
+      "time": {
+        "positive": "Time must be greater than 0."
+      },
+      "pace": {
+        "positive": "Pace must be greater than 0."
+      }
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",
