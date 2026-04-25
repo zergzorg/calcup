@@ -1911,6 +1911,79 @@
       }
     }
   },
+  "insulation": {
+    "eyebrow": "Строительство",
+    "title": "Калькулятор утеплителя",
+    "intro": "Посчитайте плиты утеплителя, упаковки, площадь покупки, объём, остаток и стоимость.",
+    "form": {
+      "surfaceTitle": "Поверхность",
+      "surfaceArea": "Площадь",
+      "excludedArea": "Не утеплять",
+      "boardTitle": "Плита утеплителя",
+      "boardLength": "Длина плиты",
+      "boardWidth": "Ширина плиты",
+      "boardThickness": "Толщина",
+      "boardPresets": "Быстрый выбор плиты",
+      "purchaseTitle": "Упаковка и запас",
+      "boardsPerPack": "Плит в упаковке",
+      "waste": "Запас",
+      "packPrice": "Цена упаковки",
+      "thicknessPresets": "Быстрый выбор толщины",
+      "mmValue": "{value} мм"
+    },
+    "units": {
+      "m": "м",
+      "m2": "м²",
+      "m3": "м³",
+      "mm": "мм",
+      "pcs": "шт."
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительную площадь, размеры плиты, толщину и количество плит в упаковке.",
+      "packs": "Нужно упаковок",
+      "boards": "Нужно плит",
+      "netArea": "Площадь работ",
+      "materialArea": "С учётом запаса",
+      "purchaseArea": "Покупаемая площадь",
+      "purchaseVolume": "Покупаемый объём",
+      "leftoverArea": "Остаток площади",
+      "totalCost": "Стоимость",
+      "packsValue": "{count} уп.",
+      "boardsValue": "{count} шт.",
+      "areaValue": "{value} м²",
+      "volumeValue": "{value} м³",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Плиты = площадь работ × (1 + запас / 100) / площадь плиты, затем округление до целых упаковок.",
+    "validation": {
+      "surfaceArea": {
+        "positive": "Площадь должна быть больше 0."
+      },
+      "excludedArea": {
+        "nonNegative": "Исключаемая площадь не может быть отрицательной.",
+        "belowGross": "Исключаемая площадь должна быть меньше общей."
+      },
+      "boardLengthM": {
+        "positive": "Длина плиты должна быть больше 0."
+      },
+      "boardWidthM": {
+        "positive": "Ширина плиты должна быть больше 0."
+      },
+      "boardThicknessMm": {
+        "positive": "Толщина должна быть больше 0."
+      },
+      "boardsPerPack": {
+        "positiveInteger": "Количество плит в упаковке должно быть целым числом больше 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Запас не может быть отрицательным."
+      },
+      "packPrice": {
+        "nonNegative": "Цена упаковки не может быть отрицательной."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Строительство",
     "title": "Калькулятор плитки",

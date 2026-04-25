@@ -1911,6 +1911,79 @@
       }
     }
   },
+  "insulation": {
+    "eyebrow": "Construction",
+    "title": "Insulation Calculator",
+    "intro": "Estimate insulation boards, packs, purchased area, volume, leftover and cost.",
+    "form": {
+      "surfaceTitle": "Surface",
+      "surfaceArea": "Area",
+      "excludedArea": "Excluded area",
+      "boardTitle": "Insulation board",
+      "boardLength": "Board length",
+      "boardWidth": "Board width",
+      "boardThickness": "Thickness",
+      "boardPresets": "Quick board size",
+      "purchaseTitle": "Pack and waste",
+      "boardsPerPack": "Boards per pack",
+      "waste": "Waste",
+      "packPrice": "Pack price",
+      "thicknessPresets": "Quick thickness choice",
+      "mmValue": "{value} mm"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "m3": "m³",
+      "mm": "mm",
+      "pcs": "pcs"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive area, board dimensions, thickness and boards per pack.",
+      "packs": "Packs needed",
+      "boards": "Boards needed",
+      "netArea": "Work area",
+      "materialArea": "With waste",
+      "purchaseArea": "Purchased area",
+      "purchaseVolume": "Purchased volume",
+      "leftoverArea": "Area leftover",
+      "totalCost": "Cost",
+      "packsValue": "{count} packs",
+      "boardsValue": "{count} pcs",
+      "areaValue": "{value} m²",
+      "volumeValue": "{value} m³",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Boards = work area × (1 + waste / 100) / board area, then rounded up to whole packs.",
+    "validation": {
+      "surfaceArea": {
+        "positive": "Area must be greater than 0."
+      },
+      "excludedArea": {
+        "nonNegative": "Excluded area cannot be negative.",
+        "belowGross": "Excluded area must be smaller than total area."
+      },
+      "boardLengthM": {
+        "positive": "Board length must be greater than 0."
+      },
+      "boardWidthM": {
+        "positive": "Board width must be greater than 0."
+      },
+      "boardThicknessMm": {
+        "positive": "Thickness must be greater than 0."
+      },
+      "boardsPerPack": {
+        "positiveInteger": "Boards per pack must be a whole number greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "packPrice": {
+        "nonNegative": "Pack price cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",
