@@ -7,546 +7,607 @@
   "../../../../../calcup.svg": [],
   "index.html": [],
   "node_modules/@intlify/core-base/dist/core-base.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@intlify/message-compiler/dist/message-compiler.esm-browser.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@intlify/shared/dist/shared.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/styled/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/styles/dist/base/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/classnames/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/dom/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/eventbus/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/mergeprops/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/object/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/uuid/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primeuix/utils/dist/zindex/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primevue/core/api/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primevue/core/base/style/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primevue/core/config/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primevue/core/service/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@primevue/core/usestyle/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/client.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/server.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.BM998iwd.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.CVf9mpRR.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.Cr7xSEtD.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.N9zWjxoK.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@unhead/vue/dist/utils.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/api.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/app.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/component.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/context.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/hooks.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/index.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/util.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/const.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/env.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/index.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/plugin.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/proxy.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/time.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/@vue/shared/dist/shared.esm-bundler.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/hookable/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/primevue/config/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/client.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/parser.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/plugins.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/scripts.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/server.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.B5FWS6X0.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.BYvz9V1x.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.BnoAbrHA.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.CbpEuj3y.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.Ct24BOby.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.D4vSFytZ.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.DQc16pHI.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.Dh1cQCTe.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.TxTMM7cM.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/shared/unhead.yem5I2v_.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/unhead/dist/utils.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vite-ssg/dist/index.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vite-ssg/dist/shared/vite-ssg.C6pK7rvr.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vite-ssg/dist/shared/vite-ssg.ETIvV-80.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vue-i18n/dist/vue-i18n.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vue-router/dist/vue-router.mjs": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "node_modules/vue/dist/vue.runtime.esm-bundler.js": [
-    "/assets/vendor-CgSq4fiW.js"
+    "/assets/vendor-BYjTMlm7.js"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/DateTimerWidget.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DateTimerWidget.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DateTimerWidget.vue?vue&type=style&index=0&scoped=fa686d15&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue?vue&type=style&index=0&scoped=b2cefb20&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
-  "src/components/LanguageSwitcher.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
-  ],
-  "src/components/LanguageSwitcher.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
-  ],
-  "src/components/LanguageSwitcher.vue?vue&type=style&index=0&scoped=b7ba6669&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
-  ],
+  "src/components/LanguageSwitcher.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/SessionDots.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SessionDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SessionDots.vue?vue&type=style&index=0&scoped=d49f40f7&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue?vue&type=style&index=0&scoped=0fe64d04&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue?vue&type=style&index=0&scoped=0a0131a0&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue?vue&type=style&index=0&scoped=cd39d18f&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue?vue&type=style&index=0&scoped=7da104ed&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue?vue&type=style&index=0&scoped=aac41b4f&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue?vue&type=style&index=0&scoped=988b3ca1&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue?vue&type=style&index=0&scoped=5c6438fb&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue?vue&type=style&index=0&scoped=652a12e0&lang.css": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/layout/AppBreadcrumb.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/AppBreadcrumb.vue_vue_type_script_setup_true_lang-clTY02f-.js"
+    "/assets/AppBreadcrumb.vue_vue_type_script_setup_true_lang-ABSKxqlR.js"
   ],
   "src/components/layout/AppFooter.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/layout/AppHeader.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/layout/SiteLayout.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ui/CalculatorCard.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorCard.vue_vue_type_script_setup_true_lang-HtIqhLaO.js"
+    "/assets/CalculatorCard.vue_vue_type_script_setup_true_lang-D-JqEbef.js"
   ],
   "src/components/ui/CategoryCard.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/HomeView-EZCBv5ab.js"
+    "/assets/HomeView-dH2Lc4Rh.js"
   ],
   "src/components/ui/SearchModal.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ui/SoonPlaceholder.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorView-C5ATKtfb.js",
+    "/assets/CalculatorView-Cq96OhHN.js",
     "/assets/CalculatorView-yWmKJhMh.css"
   ],
   "src/composables/useAudioContext.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDateCalculator.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDesktopSettings.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDraggable.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useMobileLayout.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useNow.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/usePomodoro.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/usePomodoroSounds.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useScale.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useSearch.ts": [],
   "src/composables/useSeo.ts": [],
   "src/composables/useTaskPomodoro.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useWidgets.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/data/calculators.ts": [],
   "src/data/categories.ts": [],
   "src/features/credit-calculator/components/CreditCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditEarlyRepayments.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditLoanForm.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditPrintActions.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditPrintView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditResults.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/components/CreditScheduleTable.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/credit-calculator.css": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/index.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/lib/annuity.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/lib/calculateCreditSchedule.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/lib/date.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/lib/money.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
   "src/features/credit-calculator/lib/validation.ts": [
-    "/assets/index-C369gpv9.js",
+    "/assets/index-CMhLVWlY.js",
     "/assets/index-CSkH_nYO.css"
   ],
+  "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue?vue&type=style&index=0&scoped=4b9bd1b3&lang.css": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/date-diff-calculator/composables/useDateDiffCalculator.ts": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/date-diff-calculator/index.ts": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/date-diff-calculator/lib/calculations.ts": [
+    "/assets/index-QcedKVj8.js",
+    "/assets/index-CC_215_F.css"
+  ],
+  "src/features/fuel-calculator/components/FuelCalculatorView.vue": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
+  "src/features/fuel-calculator/components/FuelCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
+  "src/features/fuel-calculator/components/FuelCalculatorView.vue?vue&type=style&index=0&scoped=0e5b4557&lang.css": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
+  "src/features/fuel-calculator/composables/useFuelCalculator.ts": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
+  "src/features/fuel-calculator/index.ts": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
+  "src/features/fuel-calculator/lib/calculations.ts": [
+    "/assets/index-cUZhbaqk.js",
+    "/assets/index-cJ8DdhiT.css"
+  ],
   "src/features/health-bmi/components/BmiCalculatorView.vue": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/components/BmiCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/components/BmiCalculatorView.vue?vue&type=style&index=0&scoped=a6405402&lang.css": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/composables/useBmiCalculator.ts": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/index.ts": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/lib/calculations.ts": [
-    "/assets/index-BqvXd050.js",
+    "/assets/index-Bynq-UOJ.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue?vue&type=style&index=0&scoped=3f764401&lang.css": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/composables/useLengthConverter.ts": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/index.ts": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/lib/calculations.ts": [
-    "/assets/index-CKeedwW8.js",
+    "/assets/index-D9kZG6fl.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue?vue&type=style&index=0&scoped=172caabc&lang.css": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/composables/usePercentageCalculator.ts": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/index.ts": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/lib/calculations.ts": [
-    "/assets/index-BRYT9HfK.js",
+    "/assets/index-B8IyNyM5.js",
     "/assets/index-CZE_tQ01.css"
+  ],
+  "src/features/vat-calculator/components/VatCalculatorView.vue": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
+  ],
+  "src/features/vat-calculator/components/VatCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
+  ],
+  "src/features/vat-calculator/components/VatCalculatorView.vue?vue&type=style&index=0&scoped=cecf0f3f&lang.css": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
+  ],
+  "src/features/vat-calculator/composables/useVatCalculator.ts": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
+  ],
+  "src/features/vat-calculator/index.ts": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
+  ],
+  "src/features/vat-calculator/lib/calculations.ts": [
+    "/assets/index-B22ekg7V.js",
+    "/assets/index-DJosDdZA.css"
   ],
   "src/i18n.ts": [],
   "src/locales/en.json": [],
@@ -555,43 +616,43 @@
   "src/router/index.ts": [],
   "src/style.css": [],
   "src/views/CalculatorView.vue": [
-    "/assets/CalculatorView-C5ATKtfb.js",
+    "/assets/CalculatorView-Cq96OhHN.js",
     "/assets/CalculatorView-yWmKJhMh.css"
   ],
   "src/views/CalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorView-C5ATKtfb.js",
+    "/assets/CalculatorView-Cq96OhHN.js",
     "/assets/CalculatorView-yWmKJhMh.css"
   ],
   "src/views/CalculatorView.vue?vue&type=style&index=0&scoped=7071710c&lang.css": [
-    "/assets/CalculatorView-C5ATKtfb.js",
+    "/assets/CalculatorView-Cq96OhHN.js",
     "/assets/CalculatorView-yWmKJhMh.css"
   ],
   "src/views/CategoryView.vue": [
-    "/assets/CategoryView-DFFwrIZ7.js"
+    "/assets/CategoryView-Dd9NwEGO.js"
   ],
   "src/views/CategoryView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CategoryView-DFFwrIZ7.js"
+    "/assets/CategoryView-Dd9NwEGO.js"
   ],
   "src/views/HomeView.vue": [
-    "/assets/HomeView-EZCBv5ab.js"
+    "/assets/HomeView-dH2Lc4Rh.js"
   ],
   "src/views/HomeView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/HomeView-EZCBv5ab.js"
+    "/assets/HomeView-dH2Lc4Rh.js"
   ],
   "src/views/NotFoundView.vue": [
-    "/assets/NotFoundView-CqqrXzYa.js",
+    "/assets/NotFoundView-DDCaOyUE.js",
     "/assets/NotFoundView-DQLqm3XL.css"
   ],
   "src/views/NotFoundView.vue?vue&type=style&index=0&scoped=97b31805&lang.css": [
-    "/assets/NotFoundView-CqqrXzYa.js",
+    "/assets/NotFoundView-DDCaOyUE.js",
     "/assets/NotFoundView-DQLqm3XL.css"
   ],
   "src/views/WorkspaceView.vue": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/views/WorkspaceView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DfeTeVca.js",
-    "/assets/WorkspaceView-BJK98qIZ.css"
+    "/assets/WorkspaceView-BxPxSj0X.js",
+    "/assets/WorkspaceView-D6zrquzl.css"
   ]
 }
