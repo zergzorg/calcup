@@ -1521,6 +1521,73 @@
       }
     }
   },
+  "floorScreed": {
+    "eyebrow": "Construction",
+    "title": "Floor Screed Calculator",
+    "intro": "Estimate screed volume, dry mix weight, bags, waste allowance and purchase cost.",
+    "form": {
+      "roomTitle": "Room",
+      "roomLength": "Length",
+      "roomWidth": "Width",
+      "excludedArea": "Do not fill",
+      "layerTitle": "Screed layer",
+      "thicknessMm": "Thickness",
+      "consumption": "Mix consumption",
+      "consumptionHint": "Consumption depends on the exact product. Check the value on the bag or data sheet.",
+      "thicknessPresets": "Quick thickness",
+      "thicknessValue": "{value} mm",
+      "bagTitle": "Bags and waste",
+      "wastePercent": "Waste",
+      "bagWeight": "Bag weight",
+      "bagPrice": "Bag price",
+      "bagPresets": "Quick bag weight",
+      "kgValue": "{value} kg"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive dimensions, thickness, consumption and bag weight.",
+      "bags": "Buy",
+      "netArea": "Filled area",
+      "volume": "Screed volume",
+      "dryMix": "Dry mix with waste",
+      "purchaseKg": "Purchased weight",
+      "leftoverKg": "Leftover",
+      "totalCost": "Cost",
+      "bagsValue": "{count} bags",
+      "areaValue": "{value} m²",
+      "volumeValue": "{value} m³",
+      "kgValue": "{value} kg",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Mix = area × thickness in mm × consumption kg/m²/mm × (1 + waste / 100), then rounded up to whole bags.",
+    "validation": {
+      "roomLength": {
+        "positive": "Length must be greater than 0."
+      },
+      "roomWidth": {
+        "positive": "Width must be greater than 0."
+      },
+      "excludedArea": {
+        "nonNegative": "Excluded area cannot be negative.",
+        "belowGross": "Excluded area must be smaller than room area."
+      },
+      "thicknessMm": {
+        "positive": "Thickness must be greater than 0."
+      },
+      "consumptionKgPerM2Mm": {
+        "positive": "Mix consumption must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "bagWeight": {
+        "positive": "Bag weight must be greater than 0."
+      },
+      "bagPrice": {
+        "nonNegative": "Bag price cannot be negative."
+      }
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",
