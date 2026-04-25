@@ -350,5 +350,61 @@
         "nonNegative": "Value must be 0 or greater."
       }
     }
+  },
+  "fuel": {
+    "eyebrow": "Transport",
+    "title": "Fuel Consumption",
+    "intro": "Calculate fuel consumption, how many liters you need for a trip, or the total trip cost.",
+    "modes": {
+      "label": "Calculation mode",
+      "consumption": "Consumption L/100km",
+      "requiredFuel": "Liters needed",
+      "tripCost": "Trip cost"
+    },
+    "form": {
+      "distance": "Distance",
+      "fuelLiters": "Fuel used",
+      "consumptionPer100": "Consumption",
+      "pricePerLiter": "Price per liter"
+    },
+    "units": {
+      "km": "km",
+      "liters": "L",
+      "per100km": "L/100km",
+      "perLiter": "/L",
+      "currency": "total"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid numbers.",
+      "consumption": {
+        "formula": "consumption = fuel ÷ distance × 100"
+      },
+      "requiredFuel": {
+        "formula": "liters = distance × consumption ÷ 100"
+      },
+      "tripCost": {
+        "liters": "Fuel needed: {liters} L",
+        "formula": "cost = liters × price per liter"
+      }
+    },
+    "validation": {
+      "distance": {
+        "required": "Enter distance as a number.",
+        "positive": "Distance must be greater than 0."
+      },
+      "fuel": {
+        "required": "Enter fuel amount as a number.",
+        "positive": "Fuel amount must be greater than 0."
+      },
+      "consumption": {
+        "required": "Enter consumption as a number.",
+        "positive": "Consumption must be greater than 0."
+      },
+      "price": {
+        "required": "Enter price per liter as a number.",
+        "nonNegative": "Price cannot be negative."
+      }
+    }
   }
 }
