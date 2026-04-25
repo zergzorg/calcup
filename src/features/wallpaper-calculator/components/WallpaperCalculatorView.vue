@@ -89,25 +89,26 @@
               :step="0.01"
               @changed="markCustomRoll"
             />
-            <NumberField
-              field="rollLength"
-              :label="t('wallpaper.form.rollLength')"
-              suffix="м"
-              :step="0.01"
-              @changed="markCustomRoll"
-            />
-          </div>
-
-          <div class="wallpaper-preset-row" role="group" :aria-label="t('wallpaper.form.rollLengthPreset')">
-            <button
-              v-for="length in rollLengthPresets"
-              :key="length"
-              type="button"
-              class="wallpaper-chip wallpaper-chip--small"
-              @click="setRollLength(length)"
-            >
-              {{ n(length, { maximumFractionDigits: 2 }) }} м
-            </button>
+            <div class="wallpaper-roll-length">
+              <NumberField
+                field="rollLength"
+                :label="t('wallpaper.form.rollLength')"
+                suffix="м"
+                :step="0.01"
+                @changed="markCustomRoll"
+              />
+              <div class="wallpaper-preset-row" role="group" :aria-label="t('wallpaper.form.rollLengthPreset')">
+                <button
+                  v-for="length in rollLengthPresets"
+                  :key="length"
+                  type="button"
+                  class="wallpaper-chip wallpaper-chip--small"
+                  @click="setRollLength(length)"
+                >
+                  {{ n(length, { maximumFractionDigits: 2 }) }} м
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -540,6 +541,12 @@ function cm(value: number): string {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.wallpaper-roll-length {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
 }
 
 .wallpaper-chip {
