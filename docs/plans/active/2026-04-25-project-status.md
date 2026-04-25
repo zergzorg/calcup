@@ -1,14 +1,14 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.3 расширение спортивного раздела
+## Текущая фаза: 5.6 открытие раздела одежды и обуви
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 19 ready-калькуляторов.
-- 55 soon-карточек.
+- 20 ready-калькуляторов.
+- 54 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
-- `/clothing` добавлен как активное продуктовое направление, но пока содержит только `soon`-карточки.
+- `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
 
 ## Готовые калькуляторы
@@ -34,11 +34,12 @@
 | 5.3 | Калькулятор темп/скорость | /sport/pace-speed | ✅ ready |
 | 5.4 | Калькулятор краски | /construction/paint | ✅ ready |
 | 5.5 | Калькулятор дистанция/темп/время | /sport/distance-pace-time | ✅ ready |
+| 5.6 | Конвертер размера обуви | /clothing/shoe-size | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
-- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /datetime/ · /everyday/
+- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
 - /math/percentage/
 - /health/bmi/
@@ -46,11 +47,47 @@
 - /construction/wallpaper/ · /construction/paint/
 - /transport/fuel/
 - /sport/pace-speed/ · /sport/distance-pace-time/
+- /clothing/shoe-size/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
-Примечание: `/sport/` добавлен в sitemap после первого ready-инструмента. `/clothing/` уже есть в роутинге и навигации, но пока не добавлен в sitemap как категория с готовым содержимым, потому что внутри только `soon`-инструменты.
+Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.6) — 2026-04-26
+
+Реализован первый калькулятор раздела одежды и обуви `/clothing/shoe-size`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/shoe-size-converter/`.
+- Добавлен перевод:
+  - длина стопы в сантиметрах;
+  - Mondopoint в миллиметрах;
+  - EU/RU;
+  - UK;
+  - US мужской и US женский.
+- Добавлены RU/EN локали `shoeSize.*`.
+- Registry-запись `shoe-size` переведена в `ready`.
+- В sitemap добавлены:
+  - `/clothing/`;
+  - `/clothing/shoe-size/`.
+
+### Проверки
+
+- `npm run test` — OK, `322/322`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/clothing/shoe-size/` title, description, canonical со slash, `index,follow`;
+  - `/clothing/` и `/clothing/shoe-size/` есть в sitemap.
+- Mobile smoke — OK:
+  - 430px viewport;
+  - chip-переключатели без overflow и наложений;
+  - активное состояние подсвечивается на всю кнопку.
 
 ---
 
@@ -79,7 +116,7 @@
 - Static smoke — OK:
   - `/sport/pace-speed/` title, description, canonical со slash, `index,follow`;
   - `/sport/` и `/sport/pace-speed/` есть в sitemap;
-  - `/clothing/` не добавлен в sitemap до первого ready-инструмента.
+  - на момент фазы 5.3 `/clothing/` ещё не добавлялся в sitemap до первого ready-инструмента.
 
 ---
 

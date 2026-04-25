@@ -34,9 +34,9 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready до текущего milestone: 16.
-- Soon до текущего milestone: 58.
-- Пустые ready-категории до текущего milestone: `sport`, `clothing`.
+- Ready после текущего milestone: 20.
+- Soon после текущего milestone: 54.
+- Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `construction`, `transport`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (1 ready / 20 soon), `sport` (0 / 5), `clothing` (0 / 5).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
@@ -61,27 +61,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `sport/pace-speed`.
+Milestone: `clothing/shoe-size`.
 Status: completed.
 
 Критерии готовности:
 
-- `pace-speed` переведён из `soon` в `ready`.
-- Создан `src/features/pace-speed-calculator/`.
+- `shoe-size` переведён из `soon` в `ready`.
+- Создан `src/features/shoe-size-converter/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/sport/` и `/sport/pace-speed/` добавлены в sitemap.
+- `/clothing/` и `/clothing/shoe-size/` добавлены в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/pace-speed-calculator/index.ts`
-- `src/features/pace-speed-calculator/components/PaceSpeedCalculatorView.vue`
-- `src/features/pace-speed-calculator/composables/usePaceSpeedCalculator.ts`
-- `src/features/pace-speed-calculator/lib/calculations.ts`
-- `src/features/pace-speed-calculator/lib/calculations.test.ts`
-- `src/features/pace-speed-calculator/types/pace-speed.ts`
+- `src/features/shoe-size-converter/index.ts`
+- `src/features/shoe-size-converter/components/ShoeSizeConverterView.vue`
+- `src/features/shoe-size-converter/composables/useShoeSizeConverter.ts`
+- `src/features/shoe-size-converter/lib/calculations.ts`
+- `src/features/shoe-size-converter/lib/calculations.test.ts`
+- `src/features/shoe-size-converter/types/shoe-size.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -93,11 +93,13 @@ Status: completed.
 - 2026-04-26: Реализован `/sport/pace-speed`; каталог стал 17 ready / 57 soon, категория `/sport` получила первый ready-инструмент.
 - 2026-04-26: Реализован `/construction/paint`; каталог стал 18 ready / 56 soon, строительный раздел получил второй P0-инструмент.
 - 2026-04-26: Реализован `/sport/distance-pace-time`; каталог стал 19 ready / 55 soon, спортивный раздел получил второй P0-инструмент.
+- 2026-04-26: Реализован `/clothing/shoe-size`; каталог стал 20 ready / 54 soon, категория `/clothing` получила первый ready-инструмент.
 
 ## Decisions Log
 
 - 2026-04-26: Первым milestone выбран `sport/pace-speed`, потому что категория `sport` пока не имеет ready-инструментов, а формулы низкорисковые и хорошо тестируются.
 - 2026-04-26: Для `pace-speed` используются формулы `speedKmH = 60 / paceMinPerKm`, `paceMinPerKm = 60 / speedKmH`, `paceMinPerMile = paceMinPerKm * 1.609344`, `speedMph = speedKmH / 1.609344`. Базовая связь скорости, расстояния и времени сверена с общедоступными учебными источниками; специализированная формула `min/km = 60 / km/h` сверена с running pace conversion references.
+- 2026-04-26: Для `shoe-size` базовой величиной выбрана длина стопы в сантиметрах. Mondopoint основан на ISO 9407 как маркировка по длине стопы в миллиметрах; EU/RU считается через Paris point с припуском 1.5 см, UK/US adult — через last length в barleycorn. Это ориентировочная конверсия, поэтому UI показывает предупреждение о различиях брендов и колодок.
 
 ## Risks / Blockers
 
@@ -122,16 +124,32 @@ Status: completed.
 - 2026-04-26: Для `/sport/distance-pace-time` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/sport/distance-pace-time/index.html` — title, description, `index,follow` robots и canonical `https://calcup.ru/sport/distance-pace-time/` OK.
 - 2026-04-26: Static smoke по `dist/sitemap.xml` и `public/sitemap.xml` — `/sport/distance-pace-time/` присутствует.
+- 2026-04-26: Для `/clothing/shoe-size` `npm run test` — OK, 19 files / 322 tests.
+- 2026-04-26: Для `/clothing/shoe-size` `npm run type-check` — OK.
+- 2026-04-26: Для `/clothing/shoe-size` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/clothing/shoe-size/index.html` и `dist/clothing/index.html` — canonical, robots и sitemap entries для `/clothing/` и `/clothing/shoe-size/` OK.
+- 2026-04-26: Mobile Playwright smoke 430px по `/clothing/shoe-size/` — overflow 0, chip-переключатели 360x46, наложений нет, активное состояние полноразмерное.
 
 ## Commit Log
 
 - 8b7c3cb — `feat(sport): add pace-speed calculator`.
 - b0dc25e — `feat(construction): add paint calculator`.
 - 88d5990 — `feat(sport): add distance-pace-time calculator`.
+- 0fc564f — `feat(clothing): add shoe size converter`.
 
 ## Next Action
 
-Перейти к следующему backlog item: `clothing/shoe-size`.
+Перейти к следующему backlog item: sitemap/registry guard, чтобы ручной `public/sitemap.xml` не расходился с ready-реестром.
+
+Завершённый milestone `clothing/shoe-size`:
+
+- `shoe-size` переведён из `soon` в `ready`.
+- Создан `src/features/shoe-size-converter/`.
+- Добавлены формулы и unit-тесты для длины стопы, Mondopoint, EU/RU, UK, US men и US women.
+- Добавлены RU/EN локали.
+- `/clothing/` и `/clothing/shoe-size/` добавлены в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формулы: Mondopoint = длина стопы в мм; `EU/RU = (footLengthCm + 1.5) * 1.5`; `UK = 3 * (footLengthIn + 2/3) - 25`; `US men = UK + 1`; `US women = UK + 2`.
 
 Завершённый milestone `sport/distance-pace-time`:
 

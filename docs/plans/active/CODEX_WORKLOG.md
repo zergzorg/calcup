@@ -125,3 +125,41 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к `/clothing/shoe-size`.
+
+### Итерация 5: `/clothing/shoe-size`
+
+Что выбрано:
+
+- Первый ready-инструмент для категории `/clothing`: конвертер размера обуви между длиной стопы, Mondopoint, EU/RU, UK и US.
+
+Что изменено:
+
+- Создан `src/features/shoe-size-converter/`.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+- Перед реализацией сверены исходные допущения: Mondopoint основан на ISO 9407; остальные системы считаются через длину стопы и стандартные размерные формулы с предупреждением о различиях брендов.
+
+Команды:
+
+- web search по ISO 9407 / Mondopoint и формулам shoe size conversion.
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- static smoke через `rg` по `dist/clothing/shoe-size/index.html`, `dist/clothing/index.html` и sitemap.
+- Playwright mobile smoke 430px по `/clothing/shoe-size/`.
+
+Результат проверок:
+
+- `npm run test` — OK, 19 files / 322 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/clothing/shoe-size/` canonical, robots и sitemap entries checked.
+- Mobile smoke — OK: overflow 0, chip-переключатели без наложений, активное состояние полноразмерное.
+
+Commit hash:
+
+- 0fc564f
+
+Следующий шаг:
+
+- Перейти к sitemap/registry guard.
