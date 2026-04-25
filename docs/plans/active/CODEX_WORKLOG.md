@@ -389,3 +389,40 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/transport/fuel-price`, `/transport/average-speed`, `/clothing/clothing-size`, `/sport/race-split` или строительному P1.
+
+### Итерация 12: `/transport/fuel-price`
+
+Что выбрано:
+
+- Расширить транспортный раздел калькулятором покупки топлива по бюджету: `/transport/fuel-price`.
+
+Что изменено:
+
+- Создан `src/features/fuel-price-calculator/`.
+- Добавлен расчёт литров по бюджету, примерного запаса хода и стоимости 100 км.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/transport/fuel-price/ /tmp/calcup-fuel-price-mobile.png`
+- Static smoke через `rg` по `dist/transport/fuel-price/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 26 files / 345 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/transport/fuel-price/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: поля и результат без overflow и наложений.
+
+Commit hash:
+
+- cde7208
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/transport/average-speed`, `/clothing/clothing-size`, `/sport/race-split` или строительному P1.

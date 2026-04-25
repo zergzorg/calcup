@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 25.
-- Soon после текущего milestone: 49.
+- Ready после текущего milestone: 26.
+- Soon после текущего milestone: 48.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `transport/trip-cost`.
+Milestone: `transport/fuel-price`.
 Status: completed.
 
 Критерии готовности:
 
-- `trip-cost` переведён из `soon` в `ready`.
-- Создан `src/features/trip-cost-calculator/`.
+- `fuel-price` переведён из `soon` в `ready`.
+- Создан `src/features/fuel-price-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/transport/trip-cost/` добавлен в sitemap.
+- `/transport/fuel-price/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/trip-cost-calculator/index.ts`
-- `src/features/trip-cost-calculator/components/TripCostCalculatorView.vue`
-- `src/features/trip-cost-calculator/composables/useTripCostCalculator.ts`
-- `src/features/trip-cost-calculator/lib/calculations.ts`
-- `src/features/trip-cost-calculator/lib/calculations.test.ts`
-- `src/features/trip-cost-calculator/types/trip-cost.ts`
+- `src/features/fuel-price-calculator/index.ts`
+- `src/features/fuel-price-calculator/components/FuelPriceCalculatorView.vue`
+- `src/features/fuel-price-calculator/composables/useFuelPriceCalculator.ts`
+- `src/features/fuel-price-calculator/lib/calculations.ts`
+- `src/features/fuel-price-calculator/lib/calculations.test.ts`
+- `src/features/fuel-price-calculator/types/fuel-price.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -102,6 +102,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/laminate`; каталог стал 23 ready / 51 soon, строительный раздел получил четвёртый ready-инструмент.
 - 2026-04-26: Реализован `/construction/floor-screed`; каталог стал 24 ready / 50 soon, строительный P0 first wave закрыт.
 - 2026-04-26: Реализован `/transport/trip-cost`; каталог стал 25 ready / 49 soon, транспортный раздел получил второй ready-инструмент.
+- 2026-04-26: Реализован `/transport/fuel-price`; каталог стал 26 ready / 48 soon, транспортный раздел получил третий ready-инструмент.
 
 ## Decisions Log
 
@@ -113,6 +114,7 @@ Status: completed.
 - 2026-04-26: Для `laminate` расчёт ведётся от чистой площади пола, покрытия одной упаковки и процента запаса. Типовой запас на подрезку оставлен настраиваемым, с быстрыми пресетами 5/10/15%.
 - 2026-04-26: Для `floor-screed` расчёт сухой смеси ведётся по настраиваемому расходу `кг/м²/мм`; дефолт 1.8 кг/м²/мм взят как типичный паспортный ориентир, но UI прямо просит сверять значение с мешком или data sheet.
 - 2026-04-26: Для `trip-cost` формула использует `fuelLiters = distance * consumption / 100`; дополнительные расходы прибавляются отдельной строкой, а стоимость на человека считается делением итоговой суммы на целое число пассажиров.
+- 2026-04-26: Для `fuel-price` расчёт идёт от бюджета: `liters = budget / pricePerLiter`, `distanceKm = liters / consumptionPer100Km * 100`, `costPer100Km = consumptionPer100Km * pricePerLiter`.
 
 ## Risks / Blockers
 
@@ -171,6 +173,11 @@ Status: completed.
 - 2026-04-26: Для `/transport/trip-cost` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/transport/trip-cost/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/transport/trip-cost/` — direction chips полноширинные, активное состояние без наложений.
+- 2026-04-26: Для `/transport/fuel-price` `npm run test` — OK, 26 files / 345 tests.
+- 2026-04-26: Для `/transport/fuel-price` `npm run type-check` — OK.
+- 2026-04-26: Для `/transport/fuel-price` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/transport/fuel-price/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/transport/fuel-price/` — поля и результат без overflow и наложений.
 
 ## Commit Log
 
@@ -184,10 +191,21 @@ Status: completed.
 - 4131da0 — `feat(construction): add laminate calculator`.
 - 1388e97 — `feat(construction): add floor screed calculator`.
 - 705bdfb — `feat(transport): add trip cost calculator`.
+- cde7208 — `feat(transport): add fuel price calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/fuel-price`, `/transport/average-speed`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/average-speed`.
+
+Завершённый milestone `transport/fuel-price`:
+
+- `fuel-price` переведён из `soon` в `ready`.
+- Создан `src/features/fuel-price-calculator/`.
+- Добавлены формулы и unit-тесты для литров по бюджету, запаса хода и стоимости 100 км.
+- Добавлены RU/EN локали.
+- `/transport/fuel-price/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `liters = budget / pricePerLiter`, `distanceKm = liters / consumptionPer100Km * 100`, `costPer100Km = consumptionPer100Km * pricePerLiter`.
 
 Завершённый milestone `transport/trip-cost`:
 

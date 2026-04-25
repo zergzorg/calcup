@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.11 расширение транспортного раздела
+## Текущая фаза: 5.12 расширение транспортного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 25 ready-калькуляторов.
-- 49 soon-карточек.
+- 26 ready-калькуляторов.
+- 48 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -40,6 +40,7 @@
 | 5.9 | Калькулятор ламината | /construction/laminate | ✅ ready |
 | 5.10 | Калькулятор стяжки пола | /construction/floor-screed | ✅ ready |
 | 5.11 | Калькулятор стоимости поездки | /transport/trip-cost | ✅ ready |
+| 5.12 | Калькулятор цены топлива | /transport/fuel-price | ✅ ready |
 
 ## Sitemap
 
@@ -50,7 +51,7 @@
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
-- /transport/fuel/ · /transport/trip-cost/
+- /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
 - /datetime/date-diff/
@@ -58,6 +59,35 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.12) — 2026-04-26
+
+Реализован транспортный калькулятор `/transport/fuel-price`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/fuel-price-calculator/`.
+- Добавлен расчёт:
+  - сколько литров можно купить на бюджет;
+  - примерный запас хода по расходу;
+  - стоимость 100 км.
+- Добавлены RU/EN локали `fuelPrice.*`.
+- Registry-запись `fuel-price` переведена в `ready`.
+- В sitemap добавлен `/transport/fuel-price/`.
+
+### Проверки
+
+- `npm run test` — OK, `345/345`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/transport/fuel-price/` title, description, canonical со slash, `index,follow`;
+  - `/transport/fuel-price/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/transport/fuel-price/` 430px screenshot без overflow и наложений.
 
 ---
 
