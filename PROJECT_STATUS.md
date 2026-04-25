@@ -92,3 +92,23 @@
 ## Ожидает (Phase 4.7)
 
 Следующий калькулятор не определён. Возможные кандидаты: ипотечный (/finance/mortgage), конвертер веса, конвертер температуры.
+
+## Сделано (Фаза 4.7) — 2026-04-25
+
+- `src/features/tips-calculator/` — полный модуль: types, calculations, composable, view, index
+- Функциональность: базовые чаевые + разделение счёта на N человек
+- Быстрые ставки: 0% / 5% / 10% / 15% / 20% / Свой %
+- Результат: tipAmount, totalAmount, billPerPerson, tipPerPerson, amountPerPerson
+- Блок "На каждого" скрыт если peopleCount=1
+- 30 unit-тестов (131/131 всего), type-check, build → `dist/everyday/tips.html` 17.89 KiB
+- Playwright: 14/14 проверок прошли
+- Все 5 поисковых запросов находят калькулятор: чаевые, разделить счёт, ресторан, tips, split bill
+- Registry: `tips` → `status: 'ready'`, `popularity: 78`, теги/алиасы, componentLoader
+- Локали: ru.json + en.json ключи `tips.*`
+- Sitemap: добавлены `/everyday/` и `/everyday/tips/`
+- Открыта новая категория `/everyday`
+- Коммит: `8b3b329 feat: phase 4.7 — tips calculator /everyday/tips`
+
+## Ожидает (Phase 4.8)
+
+Следующий калькулятор не определён. Возможные кандидаты (без ипотеки): конвертер веса, конвертер температуры, конвертер площади, скидка/наценка (/math или /everyday).
