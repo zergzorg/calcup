@@ -1845,6 +1845,72 @@
       }
     }
   },
+  "putty": {
+    "eyebrow": "Construction",
+    "title": "Putty Calculator",
+    "intro": "Estimate putty or plaster mix by area, layer thickness, bags, waste and price.",
+    "form": {
+      "surfaceTitle": "Surface",
+      "surfaceArea": "Area",
+      "excludedArea": "Excluded area",
+      "layerTitle": "Layer and use",
+      "layerThickness": "Layer thickness",
+      "consumption": "Mix use",
+      "thicknessPresets": "Quick thickness choice",
+      "purchaseTitle": "Purchase",
+      "waste": "Waste",
+      "bagWeight": "Bag weight",
+      "bagPrice": "Bag price",
+      "bagPresets": "Quick bag choice",
+      "mmValue": "{value} mm",
+      "kgValue": "{value} kg"
+    },
+    "units": {
+      "m2": "m²",
+      "mm": "mm",
+      "kg": "kg",
+      "kgPerM2Mm": "kg/m²/mm"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive area, layer thickness, consumption and bag weight. Excluded area must be smaller than total area.",
+      "bags": "Bags needed",
+      "netArea": "Work area",
+      "mixKg": "Mix needed",
+      "purchaseKg": "Purchased weight",
+      "leftoverKg": "Leftover",
+      "totalCost": "Cost",
+      "bagsValue": "{count} bags",
+      "areaValue": "{value} m²",
+      "kgValue": "{value} kg",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Mix = work area × layer thickness × kg/m²/mm consumption × (1 + waste / 100), then rounded up to whole bags.",
+    "validation": {
+      "surfaceArea": {
+        "positive": "Area must be greater than 0."
+      },
+      "excludedArea": {
+        "nonNegative": "Excluded area cannot be negative.",
+        "belowGross": "Excluded area must be smaller than total area."
+      },
+      "layerThicknessMm": {
+        "positive": "Layer thickness must be greater than 0."
+      },
+      "consumptionKgPerM2Mm": {
+        "positive": "Consumption must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "bagWeightKg": {
+        "positive": "Bag weight must be greater than 0."
+      },
+      "bagPrice": {
+        "nonNegative": "Bag price cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",
