@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.13 расширение транспортного раздела
+## Текущая фаза: 5.14 расширение спортивного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 27 ready-калькуляторов.
-- 47 soon-карточек.
+- 28 ready-калькуляторов.
+- 46 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -42,6 +42,7 @@
 | 5.11 | Калькулятор стоимости поездки | /transport/trip-cost | ✅ ready |
 | 5.12 | Калькулятор цены топлива | /transport/fuel-price | ✅ ready |
 | 5.13 | Калькулятор средней скорости | /transport/average-speed | ✅ ready |
+| 5.14 | Калькулятор сплитов | /sport/race-split | ✅ ready |
 
 ## Sitemap
 
@@ -53,13 +54,43 @@
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
-- /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
+- /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
 - /datetime/date-diff/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.14) — 2026-04-26
+
+Реализован спортивный калькулятор `/sport/race-split`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/race-split-calculator/`.
+- Добавлен расчёт:
+  - целевой темп;
+  - средняя скорость;
+  - контрольные отсечки по выбранному шагу сплита;
+  - финальная отсечка даже при неполном последнем шаге.
+- Добавлены RU/EN локали `raceSplit.*`.
+- Registry-запись `race-split` переведена в `ready`.
+- В sitemap добавлен `/sport/race-split/`.
+
+### Проверки
+
+- `npm run test` — OK, `351/351`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/sport/race-split/` title, description, canonical со slash, `index,follow`;
+  - `/sport/race-split/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/sport/race-split/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

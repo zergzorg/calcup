@@ -463,3 +463,41 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/sport/race-split` или строительному P1.
+
+### Итерация 14: `/sport/race-split`
+
+Что выбрано:
+
+- Закрыть следующий спортивный P1-инструмент: `/sport/race-split`.
+
+Что изменено:
+
+- Создан `src/features/race-split-calculator/`.
+- Добавлен расчёт целевого темпа, средней скорости и контрольных отсечек по шагу сплита.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/sport/race-split/ /tmp/calcup-race-split-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/sport/race-split/ /tmp/calcup-race-split-mobile-full.png`
+- Static smoke через `rg` по `dist/sport/race-split/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 28 files / 351 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/sport/race-split/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, список сплитов и result rows без overflow и наложений.
+
+Commit hash:
+
+- 17d6823
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size` или строительному P1.

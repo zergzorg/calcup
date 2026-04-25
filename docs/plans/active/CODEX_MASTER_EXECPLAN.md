@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 27.
-- Soon после текущего milestone: 47.
+- Ready после текущего milestone: 28.
+- Soon после текущего milestone: 46.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `transport/average-speed`.
+Milestone: `sport/race-split`.
 Status: completed.
 
 Критерии готовности:
 
-- `average-speed` переведён из `soon` в `ready`.
-- Создан `src/features/average-speed-calculator/`.
+- `race-split` переведён из `soon` в `ready`.
+- Создан `src/features/race-split-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/transport/average-speed/` добавлен в sitemap.
+- `/sport/race-split/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/average-speed-calculator/index.ts`
-- `src/features/average-speed-calculator/components/AverageSpeedCalculatorView.vue`
-- `src/features/average-speed-calculator/composables/useAverageSpeedCalculator.ts`
-- `src/features/average-speed-calculator/lib/calculations.ts`
-- `src/features/average-speed-calculator/lib/calculations.test.ts`
-- `src/features/average-speed-calculator/types/average-speed.ts`
+- `src/features/race-split-calculator/index.ts`
+- `src/features/race-split-calculator/components/RaceSplitCalculatorView.vue`
+- `src/features/race-split-calculator/composables/useRaceSplitCalculator.ts`
+- `src/features/race-split-calculator/lib/calculations.ts`
+- `src/features/race-split-calculator/lib/calculations.test.ts`
+- `src/features/race-split-calculator/types/race-split.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -104,6 +104,7 @@ Status: completed.
 - 2026-04-26: Реализован `/transport/trip-cost`; каталог стал 25 ready / 49 soon, транспортный раздел получил второй ready-инструмент.
 - 2026-04-26: Реализован `/transport/fuel-price`; каталог стал 26 ready / 48 soon, транспортный раздел получил третий ready-инструмент.
 - 2026-04-26: Реализован `/transport/average-speed`; каталог стал 27 ready / 47 soon, транспортный раздел получил четвёртый ready-инструмент.
+- 2026-04-26: Реализован `/sport/race-split`; каталог стал 28 ready / 46 soon, спортивный раздел получил четвёртый ready-инструмент.
 
 ## Decisions Log
 
@@ -117,6 +118,7 @@ Status: completed.
 - 2026-04-26: Для `trip-cost` формула использует `fuelLiters = distance * consumption / 100`; дополнительные расходы прибавляются отдельной строкой, а стоимость на человека считается делением итоговой суммы на целое число пассажиров.
 - 2026-04-26: Для `fuel-price` расчёт идёт от бюджета: `liters = budget / pricePerLiter`, `distanceKm = liters / consumptionPer100Km * 100`, `costPer100Km = consumptionPer100Km * pricePerLiter`.
 - 2026-04-26: Для `average-speed` расчёт использует `speedKmH = distanceKm / (totalMinutes / 60)`, `speedMph = speedKmH / 1.609344`, `speedMs = speedKmH * 1000 / 3600`, `paceSecondsPerKm = totalMinutes * 60 / distanceKm`.
+- 2026-04-26: Для `race-split` расчёт использует `paceSecondsPerKm = totalSeconds / distanceKm`; каждая отсечка считается как `splitDistance * paceSecondsPerKm`, финишная отсечка добавляется всегда.
 
 ## Risks / Blockers
 
@@ -185,6 +187,11 @@ Status: completed.
 - 2026-04-26: Для `/transport/average-speed` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/transport/average-speed/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/transport/average-speed/` — поля, i18n-суффиксы и результат без overflow и наложений.
+- 2026-04-26: Для `/sport/race-split` `npm run test` — OK, 28 files / 351 tests.
+- 2026-04-26: Для `/sport/race-split` `npm run type-check` — OK.
+- 2026-04-26: Для `/sport/race-split` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/sport/race-split/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/sport/race-split/` — поля, список сплитов и result rows без overflow и наложений.
 
 ## Commit Log
 
@@ -200,10 +207,21 @@ Status: completed.
 - 705bdfb — `feat(transport): add trip cost calculator`.
 - cde7208 — `feat(transport): add fuel price calculator`.
 - 75f9560 — `feat(transport): add average speed calculator`.
+- 17d6823 — `feat(sport): add race split calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`.
+
+Завершённый milestone `sport/race-split`:
+
+- `race-split` переведён из `soon` в `ready`.
+- Создан `src/features/race-split-calculator/`.
+- Добавлены формулы и unit-тесты для темпа, скорости и контрольных отсечек.
+- Добавлены RU/EN локали.
+- `/sport/race-split/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `paceSecondsPerKm = totalSeconds / distanceKm`, `splitTime = splitDistance * paceSecondsPerKm`.
 
 Завершённый milestone `transport/average-speed`:
 
