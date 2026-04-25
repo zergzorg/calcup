@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 23.
-- Soon после текущего milestone: 51.
+- Ready после текущего milestone: 24.
+- Soon после текущего milestone: 50.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `transport`, `clothing`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (4 ready / 17 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
+- Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/laminate`.
+Milestone: `construction/floor-screed`.
 Status: completed.
 
 Критерии готовности:
 
-- `laminate` переведён из `soon` в `ready`.
-- Создан `src/features/laminate-calculator/`.
+- `floor-screed` переведён из `soon` в `ready`.
+- Создан `src/features/floor-screed-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/laminate/` добавлен в sitemap.
+- `/construction/floor-screed/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/laminate-calculator/index.ts`
-- `src/features/laminate-calculator/components/LaminateCalculatorView.vue`
-- `src/features/laminate-calculator/composables/useLaminateCalculator.ts`
-- `src/features/laminate-calculator/lib/calculations.ts`
-- `src/features/laminate-calculator/lib/calculations.test.ts`
-- `src/features/laminate-calculator/types/laminate.ts`
+- `src/features/floor-screed-calculator/index.ts`
+- `src/features/floor-screed-calculator/components/FloorScreedCalculatorView.vue`
+- `src/features/floor-screed-calculator/composables/useFloorScreedCalculator.ts`
+- `src/features/floor-screed-calculator/lib/calculations.ts`
+- `src/features/floor-screed-calculator/lib/calculations.test.ts`
+- `src/features/floor-screed-calculator/types/floor-screed.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -100,6 +100,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/tile`; каталог стал 22 ready / 52 soon, строительный раздел получил третий ready-инструмент.
 - 2026-04-26: По пользовательскому фидбеку обновлён UI `/sport/heart-rate-zones`: цветные карточки зон, пояснения и целевой пульс.
 - 2026-04-26: Реализован `/construction/laminate`; каталог стал 23 ready / 51 soon, строительный раздел получил четвёртый ready-инструмент.
+- 2026-04-26: Реализован `/construction/floor-screed`; каталог стал 24 ready / 50 soon, строительный P0 first wave закрыт.
 
 ## Decisions Log
 
@@ -109,6 +110,7 @@ Status: completed.
 - 2026-04-26: Для `heart-rate-zones` после визуального уточнения используются беговые зоны 60-70, 70-75, 75-85, 85-95, 95-100%. Метод `% от максимума` опирается на target heart rate ranges от max HR; метод `reserve` использует Karvonen/HRR: `resting + (max - resting) * intensity`.
 - 2026-04-26: Для `tile` расчёт ведётся от площади поверхности и площади одной плитки: базовые плитки округляются вверх, затем добавляется запас, итоговая покупка округляется до целых упаковок; цена считается только если задана цена упаковки.
 - 2026-04-26: Для `laminate` расчёт ведётся от чистой площади пола, покрытия одной упаковки и процента запаса. Типовой запас на подрезку оставлен настраиваемым, с быстрыми пресетами 5/10/15%.
+- 2026-04-26: Для `floor-screed` расчёт сухой смеси ведётся по настраиваемому расходу `кг/м²/мм`; дефолт 1.8 кг/м²/мм взят как типичный паспортный ориентир, но UI прямо просит сверять значение с мешком или data sheet.
 
 ## Risks / Blockers
 
@@ -157,6 +159,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/laminate` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/laminate/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/construction/laminate/` — chip-переключатели полноширинные, активное состояние без наложений.
+- 2026-04-26: Для `/construction/floor-screed` `npm run test` — OK, 24 files / 339 tests.
+- 2026-04-26: Для `/construction/floor-screed` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/floor-screed` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/floor-screed/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/construction/floor-screed/` — chip-переключатели полноширинные, активное состояние без наложений.
 
 ## Commit Log
 
@@ -168,10 +175,21 @@ Status: completed.
 - 28c10e6 — `feat(sport): add heart rate zones calculator`.
 - 90d49d2 — `feat(construction): add tile calculator and polish hr zones`.
 - 4131da0 — `feat(construction): add laminate calculator`.
+- 1388e97 — `feat(construction): add floor screed calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/floor-screed`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/trip-cost`.
+
+Завершённый milestone `construction/floor-screed`:
+
+- `floor-screed` переведён из `soon` в `ready`.
+- Создан `src/features/floor-screed-calculator/`.
+- Добавлены формулы и unit-тесты для площади, объёма, сухой смеси, мешков, остатка и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/floor-screed/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `dryMixKg = area * thicknessMm * consumptionKgPerM2Mm * (1 + wastePercent / 100)`, `bagsNeeded = ceil(dryMixKg / bagWeight)`.
 
 Завершённый milestone `construction/laminate`:
 

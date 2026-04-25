@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.9 расширение строительного раздела
+## Текущая фаза: 5.10 завершение P0 first wave строительства
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 23 ready-калькулятора.
-- 51 soon-карточка.
+- 24 ready-калькулятора.
+- 50 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -38,6 +38,7 @@
 | 5.7 | Пульсовые зоны | /sport/heart-rate-zones | ✅ ready |
 | 5.8 | Калькулятор плитки | /construction/tile | ✅ ready |
 | 5.9 | Калькулятор ламината | /construction/laminate | ✅ ready |
+| 5.10 | Калькулятор стяжки пола | /construction/floor-screed | ✅ ready |
 
 ## Sitemap
 
@@ -47,7 +48,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
 - /transport/fuel/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
@@ -56,6 +57,41 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.10) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/floor-screed`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/floor-screed-calculator/`.
+- Добавлен расчёт:
+  - площадь заливки;
+  - объём стяжки;
+  - масса сухой смеси по настраиваемому расходу кг/м²/мм;
+  - количество мешков;
+  - остаток смеси;
+  - опциональная стоимость покупки.
+- Добавлены быстрые пресеты:
+  - толщина: 30, 50, 70 мм;
+  - вес мешка: 20, 25, 40 кг.
+- Добавлены RU/EN локали `floorScreed.*`.
+- Registry-запись `floor-screed` переведена в `ready`.
+- В sitemap добавлен `/construction/floor-screed/`.
+
+### Проверки
+
+- `npm run test` — OK, `339/339`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/floor-screed/` title, description, canonical со slash, `index,follow`;
+  - `/construction/floor-screed/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/floor-screed/` 430px screenshot без сломанных chip-переключателей.
 
 ---
 

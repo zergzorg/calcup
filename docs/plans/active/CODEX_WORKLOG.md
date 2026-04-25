@@ -312,3 +312,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/construction/floor-screed`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.
+
+### Итерация 10: `/construction/floor-screed`
+
+Что выбрано:
+
+- Закрыть P0 first wave строительного roadmap калькулятором `/construction/floor-screed`.
+
+Что изменено:
+
+- Создан `src/features/floor-screed-calculator/`.
+- Добавлен расчёт площади, объёма, сухой смеси по расходу кг/м²/мм, количества мешков, остатка и опциональной стоимости.
+- Добавлены пресеты толщины 30 / 50 / 70 мм и веса мешка 20 / 25 / 40 кг.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- web search по floor screed consumption и формуле area × thickness.
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/floor-screed/ /tmp/calcup-floor-screed-mobile.png`
+- Static smoke через `rg` по `dist/construction/floor-screed/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 24 files / 339 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/floor-screed/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: chip-переключатели полноширинные, активное состояние без наложений.
+
+Commit hash:
+
+- 1388e97
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split` или `/transport/trip-cost`.

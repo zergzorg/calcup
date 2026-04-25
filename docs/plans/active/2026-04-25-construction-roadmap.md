@@ -64,7 +64,7 @@ Material calculators for renovation, finishing, construction and engineering wor
 | `/construction/paint` | Калькулятор краски | Литры, банки, слои, расход и стоимость | Низкий, ready |
 | `/construction/tile` | Калькулятор плитки | Плитки, упаковки, подрезка, запас и стоимость | Средний, ready |
 | `/construction/laminate` | Калькулятор ламината | Площадь, упаковки, запас и стоимость | Низкий, ready |
-| `/construction/floor-screed` | Калькулятор стяжки пола | Объём, масса смеси, мешки и стоимость | Средний |
+| `/construction/floor-screed` | Калькулятор стяжки пола | Объём, масса смеси, мешки и стоимость | Средний, ready |
 
 ### P1: Стены, кладка и изоляция
 
@@ -172,6 +172,7 @@ Material calculators for renovation, finishing, construction and engineering wor
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/paint`.
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/tile`.
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/laminate`.
+- [x] Реализовать следующий строительный ready-калькулятор: `/construction/floor-screed`.
 
 ## Post-Completion
 
@@ -186,4 +187,4 @@ Material calculators for renovation, finishing, construction and engineering wor
 
 ## Current Notes
 
-На 2026-04-26 готовы `/construction/wallpaper`, `/construction/paint`, `/construction/tile` и `/construction/laminate`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.
+На 2026-04-26 готова первая P0-волна строительных калькуляторов: `/construction/wallpaper`, `/construction/paint`, `/construction/tile`, `/construction/laminate` и `/construction/floor-screed`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.
