@@ -145,7 +145,8 @@
 
           <label class="wallpaper-toggle">
             <input v-model="input.usePatternRepeat" type="checkbox" />
-            <span>{{ t('wallpaper.form.usePatternRepeat') }}</span>
+            <span class="wallpaper-toggle__control" aria-hidden="true"></span>
+            <span class="wallpaper-toggle__text">{{ t('wallpaper.form.usePatternRepeat') }}</span>
           </label>
 
           <NumberField
@@ -579,14 +580,42 @@ function cm(value: number): string {
   gap: 8px;
   align-items: center;
   color: #374151;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+  user-select: none;
 }
 
 .wallpaper-toggle input {
-  width: 1.05rem;
-  height: 1.05rem;
-  accent-color: #0d9488;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wallpaper-toggle__control {
+  position: relative;
+  flex: 0 0 auto;
+  transition: background 0.16s, border-color 0.16s;
+}
+
+.wallpaper-toggle__control::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 999px;
+  content: "";
+  transition: transform 0.16s;
+}
+
+.wallpaper-toggle input:checked + .wallpaper-toggle__control::after {
+  transform: translateX(18px);
+}
+
+.wallpaper-toggle input:focus-visible + .wallpaper-toggle__control {
+  outline: 3px solid rgba(13, 148, 136, 0.18);
+  outline-offset: 2px;
 }
 
 .wallpaper-result__hero {
