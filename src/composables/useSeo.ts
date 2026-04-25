@@ -14,6 +14,8 @@ const APP_CATEGORY_BY_CATEGORY: Record<string, string> = {
   construction: 'UtilityApplication',
   datetime: 'UtilityApplication',
   transport: 'UtilityApplication',
+  sport: 'HealthApplication',
+  clothing: 'UtilityApplication',
   convert: 'UtilityApplication',
   everyday: 'UtilityApplication',
 }

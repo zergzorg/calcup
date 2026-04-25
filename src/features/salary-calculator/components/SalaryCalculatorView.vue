@@ -1,57 +1,57 @@
 <template>
-  <main class="hourly-page" aria-labelledby="hourly-title">
-    <section class="hourly-heading">
-      <p class="hourly-eyebrow">{{ t('hourlyRate.eyebrow') }}</p>
-      <h1 id="hourly-title">{{ t('hourlyRate.title') }}</h1>
-      <p>{{ t('hourlyRate.intro') }}</p>
+  <main class="salary-page" aria-labelledby="salary-title">
+    <section class="salary-heading">
+      <p class="salary-eyebrow">{{ t('salary.eyebrow') }}</p>
+      <h1 id="salary-title">{{ t('salary.title') }}</h1>
+      <p>{{ t('salary.intro') }}</p>
     </section>
 
-    <div class="hourly-workspace">
-      <form class="hourly-form" @submit.prevent>
-        <section class="hourly-form__group" aria-labelledby="hourly-base-title">
-          <div id="hourly-base-title" class="hourly-warning-note" role="note">
-            {{ t('hourlyRate.warning') }}
+    <div class="salary-workspace">
+      <form class="salary-form" @submit.prevent>
+        <section class="salary-form__group" aria-labelledby="salary-base-title">
+          <div id="salary-base-title" class="salary-warning-note" role="note">
+            {{ t('salary.warning') }}
           </div>
 
-          <div class="hourly-field">
-            <label for="hourly-salary">{{ t('hourlyRate.form.monthlySalary') }}</label>
-            <div class="hourly-input-wrap">
+          <div class="salary-field">
+            <label for="salary-salary">{{ t('salary.form.monthlySalary') }}</label>
+            <div class="salary-input-wrap">
               <input
-                id="hourly-salary"
+                id="salary-salary"
                 v-model.number="monthlySalary"
                 type="number"
                 min="0"
                 step="any"
                 inputmode="decimal"
                 :aria-invalid="Boolean(getIssue('monthlySalary'))"
-                aria-describedby="hourly-salary-error"
+                aria-describedby="salary-salary-error"
                 @blur="touch('monthlySalary')"
               />
-              <span>{{ t('hourlyRate.units.currency') }}</span>
+              <span>{{ t('salary.units.currency') }}</span>
             </div>
-            <p v-if="getIssue('monthlySalary')" id="hourly-salary-error" class="hourly-error">
+            <p v-if="getIssue('monthlySalary')" id="salary-salary-error" class="salary-error">
               {{ t(getIssue('monthlySalary')!.messageKey) }}
             </p>
           </div>
 
-          <div class="hourly-tax-mode">
-            <span class="hourly-field__label">{{ t('hourlyRate.form.salaryTaxMode') }}</span>
+          <div class="salary-tax-mode">
+            <span class="salary-field__label">{{ t('salary.form.salaryTaxMode') }}</span>
             <label
               v-for="option in salaryTaxOptions"
               :key="option"
-              class="hourly-radio"
-              :class="{ 'hourly-radio--active': salaryTaxMode === option }"
+              class="salary-radio"
+              :class="{ 'salary-radio--active': salaryTaxMode === option }"
             >
               <input v-model="salaryTaxMode" type="radio" name="salary-tax-mode" :value="option" />
-              <span>{{ t(`hourlyRate.salaryTaxMode.${option}`) }}</span>
+              <span>{{ t(`salary.salaryTaxMode.${option}`) }}</span>
             </label>
           </div>
 
-          <div v-if="salaryTaxMode === 'custom'" class="hourly-field">
-            <label for="hourly-salary-tax">{{ t('hourlyRate.form.customSalaryTaxPercent') }}</label>
-            <div class="hourly-input-wrap">
+          <div v-if="salaryTaxMode === 'custom'" class="salary-field">
+            <label for="salary-salary-tax">{{ t('salary.form.customSalaryTaxPercent') }}</label>
+            <div class="salary-input-wrap">
               <input
-                id="hourly-salary-tax"
+                id="salary-salary-tax"
                 v-model.number="customSalaryTaxPercent"
                 type="number"
                 min="0"
@@ -59,77 +59,77 @@
                 step="any"
                 inputmode="decimal"
                 :aria-invalid="Boolean(getIssue('customSalaryTaxPercent'))"
-                aria-describedby="hourly-salary-tax-error"
+                aria-describedby="salary-salary-tax-error"
                 @blur="touch('customSalaryTaxPercent')"
               />
               <span>%</span>
             </div>
             <p
               v-if="getIssue('customSalaryTaxPercent')"
-              id="hourly-salary-tax-error"
-              class="hourly-error"
+              id="salary-salary-tax-error"
+              class="salary-error"
             >
               {{ t(getIssue('customSalaryTaxPercent')!.messageKey) }}
             </p>
           </div>
 
-          <p class="hourly-note">
-            {{ t('hourlyRate.form.salaryTaxHint') }}
+          <p class="salary-note">
+            {{ t('salary.form.salaryTaxHint') }}
             <a
               href="https://www.garant.ru/1c-wiseadvice/guide/progressivnaya-shkala-ndfl-s-2025-goda/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {{ t('hourlyRate.form.salaryTaxLink') }}
+              {{ t('salary.form.salaryTaxLink') }}
             </a>
           </p>
 
-          <div class="hourly-additional-list">
-            <div class="hourly-additional-list__head">
-              <span>{{ t('hourlyRate.form.additionalIncome') }}</span>
-              <span>{{ t('hourlyRate.form.additionalIncomeTaxPercent') }}</span>
-              <span class="sr-only">{{ t('hourlyRate.form.additionalIncomeActions') }}</span>
+          <div class="salary-additional-list">
+            <div class="salary-additional-list__head">
+              <span>{{ t('salary.form.additionalIncome') }}</span>
+              <span>{{ t('salary.form.additionalIncomeTaxPercent') }}</span>
+              <span class="sr-only">{{ t('salary.form.additionalIncomeActions') }}</span>
             </div>
 
             <div
               v-for="(item, index) in additionalIncomes"
               :key="index"
-              class="hourly-additional-row"
+              class="salary-additional-row"
             >
-              <div class="hourly-field">
-                <label class="sr-only" :for="`hourly-additional-income-${index}`">
-                  {{ t('hourlyRate.form.additionalIncome') }}
+              <div class="salary-field">
+                <label class="sr-only" :for="`salary-additional-income-${index}`">
+                  {{ t('salary.form.additionalIncome') }}
                 </label>
-                <div class="hourly-input-wrap">
+                <div class="salary-input-wrap">
                   <input
-                    :id="`hourly-additional-income-${index}`"
+                    :id="`salary-additional-income-${index}`"
                     v-model.number="item.amount"
                     type="number"
                     min="0"
                     step="any"
                     inputmode="decimal"
                     :aria-invalid="Boolean(getIssue(`additionalIncome.${index}.amount`))"
-                    :aria-describedby="`hourly-additional-income-${index}-error`"
+                    :aria-describedby="`salary-additional-income-${index}-error`"
                     @blur="touch(`additionalIncome.${index}.amount`)"
                   />
-                  <span>{{ t('hourlyRate.units.currency') }}</span>
+                  <span>{{ t('salary.units.currency') }}</span>
                 </div>
                 <p
                   v-if="getIssue(`additionalIncome.${index}.amount`)"
-                  :id="`hourly-additional-income-${index}-error`"
-                  class="hourly-error"
+                  :id="`salary-additional-income-${index}-error`"
+                  class="salary-error"
                 >
                   {{ t(getIssue(`additionalIncome.${index}.amount`)!.messageKey) }}
                 </p>
               </div>
 
-              <div class="hourly-field">
-                <label class="sr-only" :for="`hourly-additional-tax-${index}`">
-                  {{ t('hourlyRate.form.additionalIncomeTaxPercent') }}
+              <div class="salary-field">
+                <label class="sr-only" :for="`salary-additional-tax-${index}`">
+                  {{ t('salary.form.additionalIncomeTaxPercent') }}
                 </label>
-                <div class="hourly-input-wrap">
+                <div class="salary-input-wrap">
                   <input
-                    :id="`hourly-additional-tax-${index}`"
+                    :id="`salary-additional-tax-${index}`"
                     v-model.number="item.taxPercent"
                     type="number"
                     min="0"
@@ -137,56 +137,56 @@
                     step="any"
                     inputmode="decimal"
                     :aria-invalid="Boolean(getIssue(`additionalIncome.${index}.taxPercent`))"
-                    :aria-describedby="`hourly-additional-tax-${index}-error`"
+                    :aria-describedby="`salary-additional-tax-${index}-error`"
                     @blur="touch(`additionalIncome.${index}.taxPercent`)"
                   />
                   <span>%</span>
                 </div>
                 <p
                   v-if="getIssue(`additionalIncome.${index}.taxPercent`)"
-                  :id="`hourly-additional-tax-${index}-error`"
-                  class="hourly-error"
+                  :id="`salary-additional-tax-${index}-error`"
+                  class="salary-error"
                 >
                   {{ t(getIssue(`additionalIncome.${index}.taxPercent`)!.messageKey) }}
                 </p>
               </div>
 
-              <div class="hourly-additional-actions">
+              <div class="salary-additional-actions">
                 <button
                   v-if="additionalIncomes.length > 1"
                   type="button"
-                  class="hourly-remove-button"
-                  :aria-label="t('hourlyRate.form.removeAdditionalIncome')"
-                  :title="t('hourlyRate.form.removeAdditionalIncome')"
+                  class="salary-remove-button"
+                  :aria-label="t('salary.form.removeAdditionalIncome')"
+                  :title="t('salary.form.removeAdditionalIncome')"
                   @click="removeAdditionalIncome(index)"
                 />
                 <button
                   type="button"
-                  class="hourly-add-button"
-                  :aria-label="t('hourlyRate.form.addAdditionalIncome')"
-                  :title="t('hourlyRate.form.addAdditionalIncome')"
+                  class="salary-add-button"
+                  :aria-label="t('salary.form.addAdditionalIncome')"
+                  :title="t('salary.form.addAdditionalIncome')"
                   @click="addAdditionalIncome"
                 />
               </div>
             </div>
           </div>
 
-          <p class="hourly-note">{{ t('hourlyRate.form.additionalIncomeHint') }}</p>
+          <p class="salary-note">{{ t('salary.form.additionalIncomeHint') }}</p>
 
-          <div class="hourly-field">
-            <label for="hourly-schedule">{{ t('hourlyRate.form.scheduleType') }}</label>
-            <select id="hourly-schedule" v-model="scheduleType">
+          <div class="salary-field">
+            <label for="salary-schedule">{{ t('salary.form.scheduleType') }}</label>
+            <select id="salary-schedule" v-model="scheduleType">
               <option v-for="option in scheduleOptions" :key="option" :value="option">
-                {{ t(`hourlyRate.schedule.${option}`) }}
+                {{ t(`salary.schedule.${option}`) }}
               </option>
             </select>
           </div>
 
-          <div class="hourly-field">
-            <label for="hourly-day-hours">{{ t('hourlyRate.form.hoursPerWorkDay') }}</label>
-            <div class="hourly-input-wrap">
+          <div class="salary-field">
+            <label for="salary-day-hours">{{ t('salary.form.hoursPerWorkDay') }}</label>
+            <div class="salary-input-wrap">
               <input
-                id="hourly-day-hours"
+                id="salary-day-hours"
                 v-model.number="hoursPerWorkDay"
                 type="number"
                 min="0"
@@ -194,21 +194,21 @@
                 step="any"
                 inputmode="decimal"
                 :aria-invalid="Boolean(getIssue('hoursPerWorkDay'))"
-                aria-describedby="hourly-day-hours-error"
+                aria-describedby="salary-day-hours-error"
                 @blur="touch('hoursPerWorkDay')"
               />
-              <span>{{ t('hourlyRate.units.hours') }}</span>
+              <span>{{ t('salary.units.hours') }}</span>
             </div>
-            <p v-if="getIssue('hoursPerWorkDay')" id="hourly-day-hours-error" class="hourly-error">
+            <p v-if="getIssue('hoursPerWorkDay')" id="salary-day-hours-error" class="salary-error">
               {{ t(getIssue('hoursPerWorkDay')!.messageKey) }}
             </p>
           </div>
 
-          <div v-if="scheduleType === 'custom'" class="hourly-field">
-            <label for="hourly-work-days">{{ t('hourlyRate.form.customWorkDaysPerYear') }}</label>
-            <div class="hourly-input-wrap">
+          <div v-if="scheduleType === 'custom'" class="salary-field">
+            <label for="salary-work-days">{{ t('salary.form.customWorkDaysPerYear') }}</label>
+            <div class="salary-input-wrap">
               <input
-                id="hourly-work-days"
+                id="salary-work-days"
                 v-model.number="customWorkDaysPerYear"
                 type="number"
                 min="1"
@@ -216,15 +216,15 @@
                 step="1"
                 inputmode="numeric"
                 :aria-invalid="Boolean(getIssue('customWorkDaysPerYear'))"
-                aria-describedby="hourly-work-days-error"
+                aria-describedby="salary-work-days-error"
                 @blur="touch('customWorkDaysPerYear')"
               />
-              <span>{{ t('hourlyRate.units.days') }}</span>
+              <span>{{ t('salary.units.days') }}</span>
             </div>
             <p
               v-if="getIssue('customWorkDaysPerYear')"
-              id="hourly-work-days-error"
-              class="hourly-error"
+              id="salary-work-days-error"
+              class="salary-error"
             >
               {{ t(getIssue('customWorkDaysPerYear')!.messageKey) }}
             </p>
@@ -232,82 +232,82 @@
         </section>
       </form>
 
-      <section class="hourly-result" aria-live="polite">
-        <p class="hourly-result__label">{{ t('hourlyRate.result.label') }}</p>
+      <section class="salary-result" aria-live="polite">
+        <p class="salary-result__label">{{ t('salary.result.label') }}</p>
 
         <template v-if="result">
-          <div class="hourly-result__total">
+          <div class="salary-result__total">
             <span>
-              {{ t('hourlyRate.result.baseHourlyRate') }}
+              {{ t('salary.result.baseSalary') }}
             </span>
-            <strong>{{ money(result.baseHourlyRate) }}</strong>
+            <strong>{{ money(result.baseSalary) }}</strong>
           </div>
 
-          <div class="hourly-result__rows">
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.monthlySalaryGross') }}</span>
+          <div class="salary-result__rows">
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.monthlySalaryGross') }}</span>
               <strong>{{ money(monthlySalary) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.annualGrossSalary') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.annualGrossSalary') }}</span>
               <strong>{{ money(result.annualGrossSalary) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.additionalIncome') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.additionalIncome') }}</span>
               <strong>{{ money(result.annualAdditionalIncome / 12) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.additionalIncomeTaxAmount') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.additionalIncomeTaxAmount') }}</span>
               <strong>{{ money(result.additionalIncomeTaxAmount) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.monthlyTotalIncomeAfterTax') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.monthlyTotalIncomeAfterTax') }}</span>
               <strong>{{ money(result.monthlyTotalIncomeAfterTax) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.salaryTaxAmount') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.salaryTaxAmount') }}</span>
               <strong>{{ money(result.salaryTaxAmount) }} · {{ percent(result.salaryTaxPercent) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.monthlySalaryAfterTax') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.monthlySalaryAfterTax') }}</span>
               <strong>{{ money(result.monthlySalaryAfterTax) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.baseHourlyRate') }}</span>
-              <strong>{{ money(result.baseHourlyRate) }}</strong>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.baseSalary') }}</span>
+              <strong>{{ money(result.baseSalary) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.workDayPrice') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.workDayPrice') }}</span>
               <strong>{{ money(result.workDayPrice) }}</strong>
             </div>
-            <div class="hourly-result__row">
-              <span>{{ t('hourlyRate.result.averageWorkHoursPerMonth') }}</span>
+            <div class="salary-result__row">
+              <span>{{ t('salary.result.averageWorkHoursPerMonth') }}</span>
               <strong>{{ hours(result.averageWorkHoursPerMonth) }}</strong>
             </div>
           </div>
 
-          <div class="hourly-formula">
-            <p>{{ t('hourlyRate.formula.rate') }}</p>
+          <div class="salary-formula">
+            <p>{{ t('salary.formula.rate') }}</p>
           </div>
 
           <div
             v-if="salaryTaxMode === 'russiaProgressive' && result.monthlyTaxBreakdown.length"
-            class="hourly-tax-breakdown"
+            class="salary-tax-summary"
           >
-            <h3>{{ t('hourlyRate.taxBreakdown.title') }}</h3>
-            <p>{{ t('hourlyRate.taxBreakdown.note') }}</p>
-            <div class="hourly-tax-breakdown__table">
-              <div class="hourly-tax-breakdown__head">
-                <span>{{ t('hourlyRate.taxBreakdown.month') }}</span>
-                <span>{{ t('hourlyRate.taxBreakdown.tax') }}</span>
-                <span>{{ t('hourlyRate.taxBreakdown.afterTax') }}</span>
+            <h3>{{ t('salary.taxBreakdown.title') }}</h3>
+            <p>{{ t('salary.taxBreakdown.note') }}</p>
+            <div class="salary-tax-summary__table">
+              <div class="salary-tax-summary__head">
+                <span>{{ t('salary.taxBreakdown.month') }}</span>
+                <span>{{ t('salary.taxBreakdown.tax') }}</span>
+                <span>{{ t('salary.taxBreakdown.afterTax') }}</span>
               </div>
               <div
                 v-for="item in result.monthlyTaxBreakdown"
                 :key="item.month"
-                class="hourly-tax-breakdown__row"
+                class="salary-tax-summary__row"
               >
-                <span>{{ t(`hourlyRate.months.${item.month}`) }}</span>
+                <span>{{ t(`salary.months.${item.month}`) }}</span>
                 <span>{{ money(item.taxAmount) }} · {{ percent(item.effectiveTaxPercent) }}</span>
                 <span>{{ money(item.salaryAfterTax) }}</span>
               </div>
@@ -315,7 +315,7 @@
           </div>
         </template>
 
-        <p v-else class="hourly-result__empty">{{ t('hourlyRate.result.empty') }}</p>
+        <p v-else class="salary-result__empty">{{ t('salary.result.empty') }}</p>
       </section>
     </div>
   </main>
@@ -323,8 +323,8 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useHourlyRateCalculator } from '../composables/useHourlyRateCalculator'
-import type { ScheduleType } from '../types/hourly-rate'
+import { useSalaryCalculator } from '../composables/useSalaryCalculator'
+import type { ScheduleType } from '../types/salary'
 
 const { t, n, locale } = useI18n()
 
@@ -341,7 +341,7 @@ const {
   touch,
   getIssue,
   result,
-} = useHourlyRateCalculator()
+} = useSalaryCalculator()
 
 const scheduleOptions: ScheduleType[] = ['fiveTwo', 'twoTwo', 'dayThree', 'custom']
 const salaryTaxOptions = ['russiaProgressive', 'custom'] as const
@@ -355,7 +355,7 @@ function money(value: number): string {
 }
 
 function hours(value: number): string {
-  return t('hourlyRate.units.hoursValue', {
+  return t('salary.units.hoursValue', {
     value: n(value, { maximumFractionDigits: 2, minimumFractionDigits: 0 }),
   })
 }
@@ -366,17 +366,17 @@ function percent(value: number): string {
 </script>
 
 <style scoped>
-.hourly-page {
+.salary-page {
   display: grid;
   gap: 24px;
   color: #172033;
 }
 
-.hourly-heading {
+.salary-heading {
   max-width: 780px;
 }
 
-.hourly-eyebrow {
+.salary-eyebrow {
   margin: 0 0 10px;
   color: #0d9488;
   font-size: 0.78rem;
@@ -384,7 +384,7 @@ function percent(value: number): string {
   text-transform: uppercase;
 }
 
-.hourly-heading h1 {
+.salary-heading h1 {
   margin: 0;
   color: #111827;
   font-size: 3rem;
@@ -392,52 +392,52 @@ function percent(value: number): string {
   font-weight: 850;
 }
 
-.hourly-heading p:last-child {
+.salary-heading p:last-child {
   margin: 14px 0 0;
   color: #526174;
   font-size: 1.05rem;
 }
 
-.hourly-workspace {
+.salary-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
   gap: 20px;
   align-items: start;
 }
 
-.hourly-form,
-.hourly-result {
+.salary-form,
+.salary-result {
   border: 1px solid #d7e3ea;
   border-radius: 8px;
   background: #fbfdff;
 }
 
-.hourly-form {
+.salary-form {
   display: grid;
   gap: 24px;
   padding: 24px;
 }
 
-.hourly-form__group {
+.salary-form__group {
   display: grid;
   gap: 16px;
   margin: 0;
 }
 
-.hourly-form__group h2 {
+.salary-form__group h2 {
   margin: 0;
   color: #111827;
   font-size: 1.05rem;
   font-weight: 800;
 }
 
-.hourly-note {
+.salary-note {
   margin: -4px 0 0;
   color: #64748b;
   font-size: 13px;
 }
 
-.hourly-warning-note {
+.salary-warning-note {
   margin: 0;
   border: 1px solid #facc15;
   border-left: 4px solid #eab308;
@@ -449,7 +449,7 @@ function percent(value: number): string {
   font-weight: 700;
 }
 
-.hourly-note a {
+.salary-note a {
   color: #0f766e;
   font-weight: 800;
   text-decoration: underline;
@@ -457,32 +457,32 @@ function percent(value: number): string {
   text-underline-offset: 3px;
 }
 
-.hourly-additional-list {
+.salary-additional-list {
   display: grid;
   gap: 8px;
 }
 
-.hourly-additional-list__head,
-.hourly-additional-row {
+.salary-additional-list__head,
+.salary-additional-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(90px, 150px) auto;
   gap: 8px;
   align-items: start;
 }
 
-.hourly-additional-list__head {
+.salary-additional-list__head {
   color: #374151;
   font-size: 13px;
   font-weight: 600;
 }
 
-.hourly-additional-actions {
+.salary-additional-actions {
   display: inline-flex;
   gap: 6px;
 }
 
-.hourly-add-button,
-.hourly-remove-button {
+.salary-add-button,
+.salary-remove-button {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -497,9 +497,9 @@ function percent(value: number): string {
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.hourly-add-button::before,
-.hourly-add-button::after,
-.hourly-remove-button::before {
+.salary-add-button::before,
+.salary-add-button::after,
+.salary-remove-button::before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -511,20 +511,20 @@ function percent(value: number): string {
   transform: translate(-50%, -50%);
 }
 
-.hourly-add-button::after {
+.salary-add-button::after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.hourly-add-button:hover {
+.salary-add-button:hover {
   border-color: #0f766e;
   background: #eef8f6;
 }
 
-.hourly-remove-button::before {
+.salary-remove-button::before {
   background: #64748b;
 }
 
-.hourly-remove-button:hover {
+.salary-remove-button:hover {
   border-color: #94a3b8;
   background: #f1f5f9;
 }
@@ -538,21 +538,21 @@ function percent(value: number): string {
   white-space: nowrap;
 }
 
-.hourly-toggle-row {
+.salary-toggle-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
 }
 
-.hourly-toggle-row p,
-.hourly-optional-note {
+.salary-toggle-row p,
+.salary-optional-note {
   margin: 6px 0 0;
   color: #64748b;
   font-size: 13px;
 }
 
-.hourly-toggle {
+.salary-toggle {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -564,7 +564,7 @@ function percent(value: number): string {
   cursor: pointer;
 }
 
-.hourly-toggle input {
+.salary-toggle input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -572,7 +572,7 @@ function percent(value: number): string {
   pointer-events: none;
 }
 
-.hourly-toggle__control {
+.salary-toggle__control {
   position: relative;
   width: 42px;
   height: 24px;
@@ -582,7 +582,7 @@ function percent(value: number): string {
   transition: background 0.16s, border-color 0.16s;
 }
 
-.hourly-toggle__control::after {
+.salary-toggle__control::after {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -595,47 +595,47 @@ function percent(value: number): string {
   transition: transform 0.16s;
 }
 
-.hourly-toggle input:checked + .hourly-toggle__control {
+.salary-toggle input:checked + .salary-toggle__control {
   border-color: #0d9488;
   background: #0d9488;
 }
 
-.hourly-toggle input:checked + .hourly-toggle__control::after {
+.salary-toggle input:checked + .salary-toggle__control::after {
   transform: translateX(18px);
 }
 
-.hourly-toggle input:focus-visible + .hourly-toggle__control {
+.salary-toggle input:focus-visible + .salary-toggle__control {
   outline: 3px solid rgba(13, 148, 136, 0.2);
   outline-offset: 2px;
 }
 
-.hourly-toggle__text {
+.salary-toggle__text {
   color: #0f766e;
 }
 
-.hourly-field {
+.salary-field {
   display: grid;
   gap: 6px;
 }
 
-.hourly-field__label,
-.hourly-field label {
+.salary-field__label,
+.salary-field label {
   color: #374151;
   font-size: 13px;
   font-weight: 600;
 }
 
-.hourly-tax-mode {
+.salary-tax-mode {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
-.hourly-tax-mode .hourly-field__label {
+.salary-tax-mode .salary-field__label {
   grid-column: 1 / -1;
 }
 
-.hourly-radio {
+.salary-radio {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -649,7 +649,7 @@ function percent(value: number): string {
   cursor: pointer;
 }
 
-.hourly-radio input {
+.salary-radio input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -657,14 +657,14 @@ function percent(value: number): string {
   pointer-events: none;
 }
 
-.hourly-radio--active {
+.salary-radio--active {
   border-color: #0d9488;
   background: #eef8f6;
   color: #0f766e;
 }
 
-.hourly-field select,
-.hourly-input-wrap {
+.salary-field select,
+.salary-input-wrap {
   width: 100%;
   border: 1.5px solid #d1d5db;
   border-radius: 10px;
@@ -672,21 +672,21 @@ function percent(value: number): string {
   transition: border-color 0.15s, background 0.15s;
 }
 
-.hourly-field select {
+.salary-field select {
   box-sizing: border-box;
   padding: 10px 12px;
   color: #111827;
   font-size: 15px;
 }
 
-.hourly-input-wrap {
+.salary-input-wrap {
   display: flex;
   align-items: center;
   min-height: 44px;
   overflow: hidden;
 }
 
-.hourly-input-wrap input {
+.salary-input-wrap input {
   min-width: 0;
   flex: 1;
   border: 0;
@@ -696,7 +696,7 @@ function percent(value: number): string {
   font-size: 15px;
 }
 
-.hourly-input-wrap span {
+.salary-input-wrap span {
   flex: 0 0 auto;
   padding: 0 12px;
   color: #64748b;
@@ -704,34 +704,34 @@ function percent(value: number): string {
   font-weight: 700;
 }
 
-.hourly-field select:focus,
-.hourly-input-wrap:focus-within {
+.salary-field select:focus,
+.salary-input-wrap:focus-within {
   outline: none;
   border-color: #0d9488;
   background: #fff;
 }
 
-.hourly-input-wrap input:focus {
+.salary-input-wrap input:focus {
   outline: none;
 }
 
-.hourly-input-wrap:has(input[aria-invalid="true"]) {
+.salary-input-wrap:has(input[aria-invalid="true"]) {
   border-color: #ef4444;
 }
 
-.hourly-error {
+.salary-error {
   margin: 0;
   color: #ef4444;
   font-size: 12px;
 }
 
-.hourly-two-columns {
+.salary-two-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-.hourly-result {
+.salary-result {
   position: sticky;
   top: 88px;
   display: grid;
@@ -739,7 +739,7 @@ function percent(value: number): string {
   padding: 24px;
 }
 
-.hourly-result__label {
+.salary-result__label {
   margin: 0;
   color: #0d9488;
   font-size: 0.78rem;
@@ -747,20 +747,20 @@ function percent(value: number): string {
   text-transform: uppercase;
 }
 
-.hourly-result__total {
+.salary-result__total {
   display: grid;
   gap: 6px;
 }
 
-.hourly-result__total span,
-.hourly-result__rate,
-.hourly-result__empty {
+.salary-result__total span,
+.salary-result__rate,
+.salary-result__empty {
   margin: 0;
   color: #64748b;
   font-size: 14px;
 }
 
-.hourly-result__total strong {
+.salary-result__total strong {
   color: #111827;
   font-size: 2.55rem;
   line-height: 1.05;
@@ -768,17 +768,17 @@ function percent(value: number): string {
   overflow-wrap: anywhere;
 }
 
-.hourly-result__rate strong {
+.salary-result__rate strong {
   color: #0f766e;
   font-size: 1.05rem;
 }
 
-.hourly-result__rows {
+.salary-result__rows {
   display: grid;
   gap: 10px;
 }
 
-.hourly-result__row {
+.salary-result__row {
   display: flex;
   justify-content: space-between;
   gap: 14px;
@@ -788,13 +788,13 @@ function percent(value: number): string {
   font-size: 14px;
 }
 
-.hourly-result__row strong {
+.salary-result__row strong {
   color: #111827;
   text-align: right;
   white-space: nowrap;
 }
 
-.hourly-formula {
+.salary-formula {
   display: grid;
   gap: 8px;
   border-radius: 8px;
@@ -802,33 +802,33 @@ function percent(value: number): string {
   padding: 12px;
 }
 
-.hourly-formula p {
+.salary-formula p {
   margin: 0;
   color: #31544f;
   font-size: 13px;
 }
 
-.hourly-tax-breakdown {
+.salary-tax-summary {
   display: grid;
   gap: 10px;
   border-top: 1px solid #e5edf2;
   padding-top: 4px;
 }
 
-.hourly-tax-breakdown h3 {
+.salary-tax-summary h3 {
   margin: 0;
   color: #111827;
   font-size: 1rem;
   font-weight: 800;
 }
 
-.hourly-tax-breakdown p {
+.salary-tax-summary p {
   margin: 0;
   color: #64748b;
   font-size: 13px;
 }
 
-.hourly-tax-breakdown__table {
+.salary-tax-summary__table {
   display: grid;
   gap: 0;
   overflow: hidden;
@@ -836,8 +836,8 @@ function percent(value: number): string {
   border-radius: 8px;
 }
 
-.hourly-tax-breakdown__head,
-.hourly-tax-breakdown__row {
+.salary-tax-summary__head,
+.salary-tax-summary__row {
   display: grid;
   grid-template-columns: 0.8fr 1fr 1fr;
   gap: 10px;
@@ -846,72 +846,72 @@ function percent(value: number): string {
   font-size: 12px;
 }
 
-.hourly-tax-breakdown__head {
+.salary-tax-summary__head {
   background: #eef8f6;
   color: #31544f;
   font-weight: 800;
 }
 
-.hourly-tax-breakdown__row {
+.salary-tax-summary__row {
   color: #475569;
 }
 
-.hourly-tax-breakdown__row + .hourly-tax-breakdown__row {
+.salary-tax-summary__row + .salary-tax-summary__row {
   border-top: 1px solid #edf2f7;
 }
 
-.hourly-tax-breakdown__row span:not(:first-child),
-.hourly-tax-breakdown__head span:not(:first-child) {
+.salary-tax-summary__row span:not(:first-child),
+.salary-tax-summary__head span:not(:first-child) {
   text-align: right;
 }
 
 @media (max-width: 900px) {
-  .hourly-workspace {
+  .salary-workspace {
     grid-template-columns: 1fr;
   }
 
-  .hourly-result {
+  .salary-result {
     position: static;
   }
 }
 
 @media (max-width: 640px) {
-  .hourly-heading h1 {
+  .salary-heading h1 {
     font-size: 2.1rem;
   }
 
-  .hourly-heading p:last-child {
+  .salary-heading p:last-child {
     font-size: 1rem;
   }
 
-  .hourly-form,
-  .hourly-result {
+  .salary-form,
+  .salary-result {
     padding: 18px;
   }
 
-  .hourly-two-columns {
+  .salary-two-columns {
     grid-template-columns: 1fr;
   }
 
-  .hourly-tax-mode {
+  .salary-tax-mode {
     grid-template-columns: 1fr;
   }
 
-  .hourly-additional-list__head,
-  .hourly-additional-row {
+  .salary-additional-list__head,
+  .salary-additional-row {
     grid-template-columns: minmax(0, 1fr) minmax(72px, 110px) auto;
   }
 
-  .hourly-add-button,
-  .hourly-remove-button {
+  .salary-add-button,
+  .salary-remove-button {
     width: 40px;
   }
 
-  .hourly-toggle-row {
+  .salary-toggle-row {
     display: grid;
   }
 
-  .hourly-result__total strong {
+  .salary-result__total strong {
     font-size: 2rem;
   }
 }

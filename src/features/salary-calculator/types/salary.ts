@@ -1,7 +1,7 @@
 export type ScheduleType = 'fiveTwo' | 'twoTwo' | 'dayThree' | 'custom'
 export type SalaryTaxMode = 'russiaProgressive' | 'custom'
 
-export interface HourlyRateInput {
+export interface SalaryInput {
   monthlySalary: number
   salaryTaxMode: SalaryTaxMode
   customSalaryTaxPercent: number
@@ -11,7 +11,7 @@ export interface HourlyRateInput {
   customWorkDaysPerYear?: number
 }
 
-export interface HourlyRateResult {
+export interface SalaryResult {
   workDaysPerYear: number
   averageWorkDaysPerMonth: number
   averageWorkHoursPerMonth: number
@@ -22,7 +22,7 @@ export interface HourlyRateResult {
   monthlyTotalIncomeAfterTax: number
   salaryTaxPercent: number
   monthlySalaryAfterTax: number
-  baseHourlyRate: number
+  baseSalary: number
   workDayPrice: number
   monthlyTaxBreakdown: MonthlyTaxBreakdownItem[]
 }
@@ -41,7 +41,7 @@ export interface MonthlyTaxBreakdownItem {
   effectiveTaxPercent: number
 }
 
-export interface HourlyRateValidationIssue {
+export interface SalaryValidationIssue {
   field:
     | 'monthlySalary'
     | 'customSalaryTaxPercent'

@@ -1,52 +1,115 @@
 # Calcup
 
-**Language / Язык:** [Русский](#русский) | [English](#english)
+Calcup — каталог бесплатных онлайн-калькуляторов и конвертеров. Главная концепция проекта больше не ограничивается рабочим столом продуктивности: сайт развивается как SEO-friendly агрегатор быстрых расчётов для финансов, математики, здоровья, строительства, транспорта, дат, конвертеров, спорта, одежды и бытовых задач.
 
----
+Рабочий стол с Pomodoro, задачами, звуками, обратным отсчётом и Snake сохранён как отдельный инструмент по адресу `/workspace`.
 
-## Русский
+## Текущее состояние
 
-Calcup — веб-рабочий стол для фокуса и личной продуктивности в ретро-эстетике. На одном экране собраны Pomodoro-таймер, планировщик задач, звуковая машина, обратный отсчёт до даты и классическая змейка. Отдельная страница `/credit-calc/` содержит кредитный калькулятор с графиком платежей.
+- 10 категорий в реестре.
+- 16 готовых калькуляторов.
+- 58 запланированных `soon`-карточек для расширения каталога.
+- Vue Router + Vite SSG генерируют статические страницы и fallback для GitHub Pages.
+- `src/data/calculators.ts` и `src/data/categories.ts` являются источником правды для каталога, роутов, поиска, карточек, хлебных крошек и sitemap.
 
-### Возможности
+## Готовые разделы
 
-- **Pomodoro** — таймер фокуса с короткими и длинными перерывами.
-- **Планировщик задач** — список задач, активная задача для текущей Pomodoro-сессии, дневная статистика и история отрезков.
-- **Звуковая машина** — фоновые звуки и радиопотоки для концентрации.
-- **Обратный отсчёт** — виджет до выбранной даты с быстрыми пресетами.
-- **Змейка** — классическая игра Snake с локальным топ-10 рекордов.
-- **Рабочий стол** — перетаскиваемые виджеты, настройка цвета и паттерна, случайная раскладка без пересечений.
-- **Кредитный калькулятор** — расчёт аннуитетного или дифференцированного платежа, переплаты, графика платежей, разовых и ежемесячных досрочных погашений.
-- **Печатная форма** — отдельный A4-отчёт по кредиту с сохранением в PDF через системный диалог печати браузера.
-- **Локализация** — русский и английский интерфейс.
+- `/finance/` — кредит, НДС, зарплата, стоимость проекта.
+- `/math/` — проценты.
+- `/health/` — ИМТ.
+- `/convert/` — длина, температура, вес, площадь.
+- `/construction/` — обои.
+- `/transport/` — расход топлива.
+- `/datetime/` — разница между датами.
+- `/everyday/` — чаевые, скидка, выгодная покупка.
 
-### Страницы
+Новые направления `/sport/` и `/clothing/` уже добавлены в навигацию и реестр как дорожные карты с `soon`-инструментами.
 
-- `/` — основной рабочий стол Calcup.
-- `/credit-calc/` — кредитный калькулятор.
-- `/timer-pomodoro/`, `/pomodoro-timer/`, `/task-planner/`, `/focus-sounds/` — SEO-страницы отдельных инструментов.
+## Готовые калькуляторы
 
-### Быстрый старт
+- `/finance/credit/` — кредитный калькулятор.
+- `/finance/vat/` — НДС.
+- `/finance/salary/` — зарплата после НДФЛ, дополнительный доход и ставка за час.
+- `/finance/project-price/` — стоимость проекта и фриланс-оценка.
+- `/math/percentage/` — проценты.
+- `/health/bmi/` — индекс массы тела.
+- `/convert/length/` — длина.
+- `/convert/temperature/` — температура.
+- `/convert/weight/` — вес.
+- `/convert/area/` — площадь.
+- `/construction/wallpaper/` — расход обоев.
+- `/transport/fuel/` — расход топлива.
+- `/datetime/date-diff/` — разница дат.
+- `/everyday/tips/` — чаевые и разделение счёта.
+- `/everyday/discount/` — скидка.
+- `/everyday/unit-price/` — выгодная покупка.
+
+## Архитектура каталога
+
+Реестр калькуляторов хранится в `src/data/calculators.ts`. Каждый готовый калькулятор должен иметь:
+
+- запись в реестре со статусом `ready`;
+- feature-модуль в `src/features/<feature-name>/`;
+- чистые расчётные функции в `lib/calculations.ts`;
+- unit-тесты в `lib/calculations.test.ts`;
+- RU/EN локали;
+- SEO-данные и поисковые теги.
+
+Карточки со статусом `soon` показываются в категориях и могут иметь маршруты-заглушки, но не считаются готовыми инструментами и не должны индексироваться как полноценные калькуляторы.
+
+## UI-контракт калькуляторов
+
+Перед созданием или рестайлингом калькулятора нужно свериться с:
+
+```txt
+src/features/calculator-design-system.css
+```
+
+Новые калькуляторы используют стандартную форму классов:
+
+- `<prefix>-page`
+- `<prefix>-heading`
+- `<prefix>-eyebrow`
+- `<prefix>-workspace`
+- `<prefix>-form`
+- `<prefix>-field`
+- `<prefix>-input-wrap`
+- `<prefix>-result`
+- `<prefix>-result__row`
+- `<prefix>-formula`
+- `<prefix>-toggle`
+
+Локальные переопределения рамок, радиусов, высот контролов, focus-ring, result-panel layout и акцентных цветов не добавляются без изменения общего design system файла.
+
+## SEO и статическая сборка
+
+- `vite-ssg` собирает статические страницы.
+- `public/sitemap.xml` содержит главную, категории с готовым содержимым и ready-калькуляторы.
+- Ready-страницы индексируются с canonical URL со slash.
+- `/workspace`, 404 и `soon`-страницы остаются `noindex`.
+- `scripts/create-route-indexes.mjs` создаёт route indexes и `404.html` для GitHub Pages fallback.
+
+## Быстрый старт
 
 ```bash
 npm install
 npm run dev
 ```
 
-После запуска Vite откроет локальный адрес в терминале, обычно `http://localhost:5173/`.
+Обычно Vite поднимается на `http://localhost:5173/`.
 
-### Скрипты
+## Скрипты
 
 ```bash
-npm run dev      # режим разработки
-npm run build    # type-check + production build
-npm run preview  # локальный preview production-сборки
-npm run deploy   # публикация dist через gh-pages
+npm run dev        # режим разработки
+npm run type-check # проверка TypeScript/Vue типов
+npm run test       # unit-тесты Vitest
+npm run build      # type-check + vite-ssg build + route indexes + 404 fallback
+npm run preview    # локальный preview production-сборки
+npm run deploy     # публикация dist через gh-pages
 ```
 
-### Переменные окружения
-
-Создайте `.env` локально или задайте переменные в CI/CD:
+## Переменные окружения
 
 ```bash
 VITE_SITE_URL=https://calcup.ru
@@ -55,91 +118,25 @@ VITE_YANDEX_METRIKA_ID=105706802
 ```
 
 - `VITE_SITE_URL` используется для canonical, Open Graph и Twitter URL.
-- `VITE_GA_MEASUREMENT_ID` опциональна: если значение пустое, Google Analytics не подключается.
-- `VITE_YANDEX_METRIKA_ID` имеет дефолт в коде, но может быть переопределена через окружение.
+- `VITE_GA_MEASUREMENT_ID` опциональна.
+- `VITE_YANDEX_METRIKA_ID` имеет дефолт в коде, но может быть переопределена.
 
-### Технологии
-
-- Vue 3
-- TypeScript
-- Vite
-- Vue I18n
-
-### Данные пользователя
-
-Calcup хранит пользовательские настройки локально в браузере: позиции виджетов, выбранный фон, состояние виджетов, задачи, настройки таймера, рекорды змейки и параметры кредитного калькулятора. Кнопка очистки рабочего стола сбрасывает локальное состояние.
-
-### Лицензия
-
-MIT
-
----
-
-## English
-
-Calcup is a web desktop for focus and personal productivity with a retro desk feel. It brings together a Pomodoro timer, task planner, sound machine, date countdown, and a classic Snake game on one draggable workspace. A dedicated `/credit-calc/` page provides a loan calculator with a payment schedule.
-
-### Features
-
-- **Pomodoro** — focus timer with short and long breaks.
-- **Task Planner** — task list, active task handoff to Pomodoro, daily stats, and recent session history.
-- **Sound Machine** — ambient sounds and radio streams for concentration.
-- **Date Countdown** — countdown widget for a chosen date with quick presets.
-- **Snake** — classic Snake game with a local top-10 leaderboard.
-- **Desktop Workspace** — draggable widgets, color and pattern customization, and random non-overlapping layouts.
-- **Loan Calculator** — annuity or differentiated payment, total interest, payment schedule, one-time and monthly early repayment scenarios.
-- **Printable Report** — a dedicated A4 loan report that can be saved as PDF through the browser print dialog.
-- **Localization** — Russian and English interface.
-
-### Pages
-
-- `/` — main Calcup desktop.
-- `/credit-calc/` — loan calculator.
-- `/timer-pomodoro/`, `/pomodoro-timer/`, `/task-planner/`, `/focus-sounds/` — SEO pages for individual tools.
-
-### Quick Start
-
-```bash
-npm install
-npm run dev
-```
-
-Vite will print the local URL in the terminal, usually `http://localhost:5173/`.
-
-### Scripts
-
-```bash
-npm run dev      # development mode
-npm run build    # type-check + production build
-npm run preview  # local production preview
-npm run deploy   # publish dist with gh-pages
-```
-
-### Environment Variables
-
-Create a local `.env` file or set these values in CI/CD:
-
-```bash
-VITE_SITE_URL=https://calcup.ru
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
-VITE_YANDEX_METRIKA_ID=105706802
-```
-
-- `VITE_SITE_URL` is used for canonical, Open Graph, and Twitter URLs.
-- `VITE_GA_MEASUREMENT_ID` is optional: Google Analytics is skipped when it is empty.
-- `VITE_YANDEX_METRIKA_ID` has a code default, but can be overridden through the environment.
-
-### Tech Stack
+## Технологии
 
 - Vue 3
 - TypeScript
 - Vite
+- Vite SSG
+- Vue Router
 - Vue I18n
+- Vitest
+- Tailwind CSS
+- PrimeVue в unstyled-режиме для будущих сложных форм
 
-### User Data
+## Данные пользователя
 
-Calcup stores user state locally in the browser: widget positions, selected desktop style, widget visibility, tasks, timer settings, Snake scores, and loan calculator parameters. The reset desk button clears local state.
+Калькуляторы работают локально в браузере и не отправляют введённые значения на сервер. Состояние отдельных инструментов и рабочего стола может сохраняться в `localStorage`: настройки виджетов, задачи, параметры таймера, рекорды Snake и последние значения некоторых форм.
 
-### License
+## Лицензия
 
 MIT

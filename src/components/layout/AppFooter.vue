@@ -11,7 +11,7 @@
             Бесплатные онлайн калькуляторы для финансов, здоровья, математики и повседневных задач.
           </p>
           <p class="mt-4 text-xs font-medium text-gray-400">
-            {{ readyCount }} готовых инструментов. Без регистрации.
+            {{ readyCount }} {{ readyToolsLabel }}. {{ soonCount }} {{ soonToolsLabel }} ещё на подходе. Без регистрации.
           </p>
         </div>
 
@@ -51,9 +51,6 @@
               </RouterLink>
             </li>
           </ul>
-          <p class="mt-4 text-xs leading-relaxed text-gray-400">
-            Добавляем новые расчёты, но держим навигацию короткой и предсказуемой.
-          </p>
         </div>
 
         <div class="space-y-3 md:hidden">
@@ -98,7 +95,7 @@
 
       <div class="mt-8 flex flex-col gap-2 border-t border-gray-200 pt-5 text-xs text-gray-400 sm:flex-row sm:items-center sm:justify-between">
         <span>© {{ year }} Calcup. Все калькуляторы бесплатны.</span>
-        <span>Финансы, здоровье, математика, строительство и повседневные расчёты.</span>
+        <span>Финансы, здоровье, спорт, размеры, строительство и повседневные расчёты.</span>
       </div>
     </div>
   </footer>
@@ -111,13 +108,27 @@ import { CATEGORIES } from '../../data/categories'
 import { CALCULATORS } from '../../data/calculators'
 
 const year = new Date().getFullYear()
-const mainCategories = CATEGORIES.slice(0, 8)
+const mainCategories = CATEGORIES
 const readyCalcs = computed(() => CALCULATORS.filter(c => c.status === 'ready'))
+const soonCalcs = computed(() => CALCULATORS.filter(c => c.status === 'soon'))
 const readyCount = computed(() => readyCalcs.value.length)
+const soonCount = computed(() => soonCalcs.value.length)
+const readyToolsLabel = computed(() => pluralizeRu(readyCount.value, ['готовый инструмент', 'готовых инструмента', 'готовых инструментов']))
+const soonToolsLabel = computed(() => pluralizeRu(soonCount.value, ['инструмент', 'инструмента', 'инструментов']))
 const popularCalcs = computed(() =>
   [...readyCalcs.value]
     .filter(c => c.isPopular)
     .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
     .slice(0, 8),
 )
+
+function pluralizeRu(count: number, forms: [string, string, string]) {
+  const mod100 = Math.abs(count) % 100
+  const mod10 = mod100 % 10
+
+  if (mod100 > 10 && mod100 < 20) return forms[2]
+  if (mod10 === 1) return forms[0]
+  if (mod10 >= 2 && mod10 <= 4) return forms[1]
+  return forms[2]
+}
 </script>

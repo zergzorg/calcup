@@ -1,16 +1,16 @@
 import { computed, ref } from 'vue'
 import {
-  calculateHourlyRate,
+  calculateSalary,
   isValidNonNegativeNumber,
   isValidPositiveNumber,
 } from '../lib/calculations'
 import type {
-  HourlyRateValidationIssue,
+  SalaryValidationIssue,
   ScheduleType,
   AdditionalIncomeInput,
-} from '../types/hourly-rate'
+} from '../types/salary'
 
-export function useHourlyRateCalculator() {
+export function useSalaryCalculator() {
   const monthlySalary = ref(120_000)
   const salaryTaxMode = ref<'russiaProgressive' | 'custom'>('russiaProgressive')
   const customSalaryTaxPercent = ref(13)
@@ -21,36 +21,36 @@ export function useHourlyRateCalculator() {
   const hoursPerWorkDay = ref(8)
   const customWorkDaysPerYear = ref(247)
 
-  const touched = ref(new Set<HourlyRateValidationIssue['field']>())
+  const touched = ref(new Set<SalaryValidationIssue['field']>())
 
-  function touch(field: HourlyRateValidationIssue['field']) {
+  function touch(field: SalaryValidationIssue['field']) {
     touched.value = new Set(touched.value).add(field)
   }
 
-  const allIssues = computed<HourlyRateValidationIssue[]>(() => {
-    const issues: HourlyRateValidationIssue[] = []
+  const allIssues = computed<SalaryValidationIssue[]>(() => {
+    const issues: SalaryValidationIssue[] = []
 
     if (!Number.isFinite(monthlySalary.value)) {
-      issues.push({ field: 'monthlySalary', messageKey: 'hourlyRate.validation.monthlySalary.required' })
+      issues.push({ field: 'monthlySalary', messageKey: 'salary.validation.monthlySalary.required' })
     } else if (!isValidPositiveNumber(monthlySalary.value)) {
-      issues.push({ field: 'monthlySalary', messageKey: 'hourlyRate.validation.monthlySalary.positive' })
+      issues.push({ field: 'monthlySalary', messageKey: 'salary.validation.monthlySalary.positive' })
     }
 
     if (salaryTaxMode.value === 'custom') {
       if (!Number.isFinite(customSalaryTaxPercent.value)) {
         issues.push({
           field: 'customSalaryTaxPercent',
-          messageKey: 'hourlyRate.validation.customSalaryTaxPercent.required',
+          messageKey: 'salary.validation.customSalaryTaxPercent.required',
         })
       } else if (!isValidNonNegativeNumber(customSalaryTaxPercent.value)) {
         issues.push({
           field: 'customSalaryTaxPercent',
-          messageKey: 'hourlyRate.validation.customSalaryTaxPercent.nonNegative',
+          messageKey: 'salary.validation.customSalaryTaxPercent.nonNegative',
         })
       } else if (customSalaryTaxPercent.value > 100) {
         issues.push({
           field: 'customSalaryTaxPercent',
-          messageKey: 'hourlyRate.validation.customSalaryTaxPercent.max',
+          messageKey: 'salary.validation.customSalaryTaxPercent.max',
         })
       }
     }
@@ -63,9 +63,9 @@ export function useHourlyRateCalculator() {
         return
       }
       if (!Number.isFinite(item.amount)) {
-        issues.push({ field: amountField, messageKey: 'hourlyRate.validation.additionalIncome.required' })
+        issues.push({ field: amountField, messageKey: 'salary.validation.additionalIncome.required' })
       } else if (!isValidNonNegativeNumber(item.amount)) {
-        issues.push({ field: amountField, messageKey: 'hourlyRate.validation.additionalIncome.nonNegative' })
+        issues.push({ field: amountField, messageKey: 'salary.validation.additionalIncome.nonNegative' })
       }
 
       if (isBlankOptionalNumber(item.taxPercent)) {
@@ -74,44 +74,44 @@ export function useHourlyRateCalculator() {
       if (!Number.isFinite(item.taxPercent)) {
         issues.push({
           field: taxField,
-          messageKey: 'hourlyRate.validation.additionalIncomeTaxPercent.required',
+          messageKey: 'salary.validation.additionalIncomeTaxPercent.required',
         })
       } else if (!isValidNonNegativeNumber(item.taxPercent)) {
         issues.push({
           field: taxField,
-          messageKey: 'hourlyRate.validation.additionalIncomeTaxPercent.nonNegative',
+          messageKey: 'salary.validation.additionalIncomeTaxPercent.nonNegative',
         })
       } else if (item.taxPercent > 100) {
         issues.push({
           field: taxField,
-          messageKey: 'hourlyRate.validation.additionalIncomeTaxPercent.max',
+          messageKey: 'salary.validation.additionalIncomeTaxPercent.max',
         })
       }
     })
 
     if (!Number.isFinite(hoursPerWorkDay.value)) {
-      issues.push({ field: 'hoursPerWorkDay', messageKey: 'hourlyRate.validation.hoursPerWorkDay.required' })
+      issues.push({ field: 'hoursPerWorkDay', messageKey: 'salary.validation.hoursPerWorkDay.required' })
     } else if (!isValidPositiveNumber(hoursPerWorkDay.value)) {
-      issues.push({ field: 'hoursPerWorkDay', messageKey: 'hourlyRate.validation.hoursPerWorkDay.positive' })
+      issues.push({ field: 'hoursPerWorkDay', messageKey: 'salary.validation.hoursPerWorkDay.positive' })
     } else if (hoursPerWorkDay.value > 24) {
-      issues.push({ field: 'hoursPerWorkDay', messageKey: 'hourlyRate.validation.hoursPerWorkDay.max' })
+      issues.push({ field: 'hoursPerWorkDay', messageKey: 'salary.validation.hoursPerWorkDay.max' })
     }
 
     if (scheduleType.value === 'custom') {
       if (!Number.isFinite(customWorkDaysPerYear.value)) {
         issues.push({
           field: 'customWorkDaysPerYear',
-          messageKey: 'hourlyRate.validation.customWorkDaysPerYear.required',
+          messageKey: 'salary.validation.customWorkDaysPerYear.required',
         })
       } else if (!isValidPositiveNumber(customWorkDaysPerYear.value)) {
         issues.push({
           field: 'customWorkDaysPerYear',
-          messageKey: 'hourlyRate.validation.customWorkDaysPerYear.positive',
+          messageKey: 'salary.validation.customWorkDaysPerYear.positive',
         })
       } else if (customWorkDaysPerYear.value > 366) {
         issues.push({
           field: 'customWorkDaysPerYear',
-          messageKey: 'hourlyRate.validation.customWorkDaysPerYear.max',
+          messageKey: 'salary.validation.customWorkDaysPerYear.max',
         })
       }
     }
@@ -119,7 +119,7 @@ export function useHourlyRateCalculator() {
     return issues
   })
 
-  function getIssue(field: HourlyRateValidationIssue['field']): HourlyRateValidationIssue | undefined {
+  function getIssue(field: SalaryValidationIssue['field']): SalaryValidationIssue | undefined {
     if (!touched.value.has(field)) return undefined
     return allIssues.value.find(issue => issue.field === field)
   }
@@ -138,7 +138,7 @@ export function useHourlyRateCalculator() {
 
   const result = computed(() => {
     if (allIssues.value.length > 0) return null
-    return calculateHourlyRate({
+    return calculateSalary({
       monthlySalary: monthlySalary.value,
       salaryTaxMode: salaryTaxMode.value,
       customSalaryTaxPercent: customSalaryTaxPercent.value,

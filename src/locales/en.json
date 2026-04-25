@@ -714,9 +714,9 @@
       "km": "km"
     }
   },
-  "hourlyRate": {
+  "salary": {
     "eyebrow": "Finance",
-    "title": "Hourly Rate Calculator",
+    "title": "Salary Calculator",
     "intro": "Calculate net salary after income tax, additional income, and base hourly rate.",
     "sections": {
       "base": "Base rate"
@@ -758,7 +758,7 @@
     "result": {
       "label": "Calculation",
       "empty": "Check the form values.",
-      "baseHourlyRate": "Base hourly rate per hour",
+      "baseSalary": "Base hourly wage",
       "workDayPrice": "Workday price",
       "averageWorkHoursPerMonth": "Average hours per month",
       "monthlySalaryGross": "Salary before tax",

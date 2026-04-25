@@ -73,7 +73,7 @@
         v-for="cat in CATEGORIES"
         :key="cat.slug"
         :category="cat"
-        :count="readyCountByCategory[cat.slug]"
+        :count="visibleCountByCategory[cat.slug]"
       />
     </div>
   </section>
@@ -130,10 +130,10 @@ const popularCalcs = computed(() =>
     .slice(0, 8),
 )
 
-const readyCountByCategory = computed(() => {
+const visibleCountByCategory = computed(() => {
   const map: Record<string, number> = {}
   for (const c of CALCULATORS) {
-    if (c.status === 'ready') {
+    if (c.status !== 'planned') {
       map[c.categorySlug] = (map[c.categorySlug] ?? 0) + 1
     }
   }

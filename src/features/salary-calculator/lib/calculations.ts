@@ -1,10 +1,10 @@
 import type {
-  HourlyRateInput,
-  HourlyRateResult,
+  SalaryInput,
+  SalaryResult,
   MonthlyTaxBreakdownItem,
   SalaryTaxMode,
   ScheduleType,
-} from '../types/hourly-rate'
+} from '../types/salary'
 
 export const WORK_DAYS_PER_YEAR: Record<Exclude<ScheduleType, 'custom'>, number> = {
   fiveTwo: 247,
@@ -58,7 +58,7 @@ export function calculateAverageWorkHoursPerMonth(
   return averageWorkDaysPerMonth * hoursPerWorkDay
 }
 
-export function calculateBaseHourlyRate(
+export function calculateBaseSalary(
   monthlySalaryAfterTax: number,
   workDaysPerYear: number,
   hoursPerWorkDay: number,
@@ -141,7 +141,7 @@ export function calculateMonthlySalaryAfterTax(
   return monthlySalary - taxAmount
 }
 
-export function calculateHourlyRate(input: HourlyRateInput): HourlyRateResult | null {
+export function calculateSalary(input: SalaryInput): SalaryResult | null {
   if (!isValidPositiveNumber(input.monthlySalary)) return null
   for (const item of input.additionalIncomes) {
     if (!isValidNonNegativeNumber(item.amount)) return null
@@ -183,7 +183,7 @@ export function calculateHourlyRate(input: HourlyRateInput): HourlyRateResult | 
   const monthlyTaxBreakdown = input.salaryTaxMode === 'russiaProgressive'
     ? calculateMonthlyProgressiveNdflBreakdown(input.monthlySalary)
     : []
-  const baseHourlyRate = calculateBaseHourlyRate(
+  const baseSalary = calculateBaseSalary(
     monthlyTotalIncomeAfterTax ?? Number.NaN,
     workDaysPerYear,
     input.hoursPerWorkDay,
@@ -196,12 +196,12 @@ export function calculateHourlyRate(input: HourlyRateInput): HourlyRateResult | 
     || monthlySalaryAfterTax === null
     || monthlyTotalIncomeAfterTax === null
     || monthlyTaxBreakdown === null
-    || baseHourlyRate === null
+    || baseSalary === null
   ) {
     return null
   }
 
-  const workDayPrice = baseHourlyRate * input.hoursPerWorkDay
+  const workDayPrice = baseSalary * input.hoursPerWorkDay
 
   return {
     workDaysPerYear,
@@ -214,7 +214,7 @@ export function calculateHourlyRate(input: HourlyRateInput): HourlyRateResult | 
     salaryTaxPercent: input.monthlySalary === 0 ? 0 : salaryTaxAmount / input.monthlySalary * 100,
     monthlySalaryAfterTax,
     monthlyTotalIncomeAfterTax,
-    baseHourlyRate,
+    baseSalary,
     workDayPrice,
     monthlyTaxBreakdown,
   }

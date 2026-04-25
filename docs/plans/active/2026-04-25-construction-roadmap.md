@@ -166,7 +166,10 @@ Material calculators for renovation, finishing, construction and engineering wor
 - [x] Сформировать отдельную строительную дорожную карту.
 - [x] Согласовать первый калькулятор: `/construction/wallpaper`.
 - [x] Реализовать Phase 5.1: wallpaper.
+- [x] Перенести completed-план `/construction/wallpaper` в `docs/plans/completed/2026-04-25-wallpaper-calculator.md`.
+- [x] Добавить P0/P1/P2/P3 строительные `soon`-карточки в реестр.
 - [ ] После первого ready-калькулятора проверить категорию `/construction/` в production.
+- [ ] Реализовать следующий строительный ready-калькулятор: `/construction/paint`.
 
 ## Post-Completion
 
@@ -178,3 +181,7 @@ Material calculators for renovation, finishing, construction and engineering wor
 - единый стиль полей;
 - корректность дисклеймеров;
 - sitemap и индексация.
+
+## Current Notes
+
+На 2026-04-25 готов только `/construction/wallpaper`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.

@@ -4,6 +4,9 @@
     <component :is="asyncComponent" v-if="asyncComponent" :key="calc?.id" />
     <SoonPlaceholder v-else-if="calc?.status === 'soon'" :calc="calc" />
     <NotFoundView v-else />
+    <div v-if="calc?.status === 'ready'" :class="isCreditCalculator ? 'calculator-view__related' : ''">
+      <RelatedCalculators :calc="calc" />
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@ import { CALCULATORS } from '../data/calculators'
 import NotFoundView from './NotFoundView.vue'
 import AppBreadcrumb from '../components/layout/AppBreadcrumb.vue'
 import SoonPlaceholder from '../components/ui/SoonPlaceholder.vue'
+import RelatedCalculators from '../components/ui/RelatedCalculators.vue'
 
 const route = useRoute()
 
@@ -58,6 +62,24 @@ watch(
   margin-left: auto;
 }
 
+.calculator-view__related {
+  width: min(1240px, calc(100vw - 80px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.calculator-view--credit :deep(.related-calculators__divider) {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.calculator-view--credit :deep(.related-calculators__heading h2) {
+  color: #fff;
+}
+
+.calculator-view--credit :deep(.related-calculators__heading p) {
+  color: rgba(255, 255, 255, 0.62);
+}
+
 .calculator-view--credit :deep(.calculator-view__breadcrumb a) {
   color: rgba(255, 255, 255, 0.68);
 }
@@ -76,6 +98,10 @@ watch(
   }
 
   .calculator-view--credit :deep(.calculator-view__breadcrumb) {
+    width: min(100% - 28px, 430px);
+  }
+
+  .calculator-view__related {
     width: min(100% - 28px, 430px);
   }
 }

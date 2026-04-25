@@ -9,6 +9,8 @@ export type CategorySlug =
   | 'health'
   | 'datetime'
   | 'transport'
+  | 'sport'
+  | 'clothing'
   | 'convert'
   | 'everyday'
 
@@ -25,7 +27,7 @@ export interface CalculatorMeta {
   aliases?: string[]
   path: string
   popularity?: number
-  isPopular?: boolean
+  isPopular: boolean
   componentLoader?: () => Promise<{ default: Component }>
 }
 

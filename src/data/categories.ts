@@ -53,6 +53,28 @@ export const CATEGORIES: CategoryMeta[] = [
     path: '/transport',
   },
   {
+    slug: 'sport',
+    title: { ru: 'Спорт', en: 'Sport' },
+    description: {
+      ru: 'Пульс, темп, скорость, дистанции и тренировки',
+      en: 'Heart rate, pace, speed, distance and training',
+    },
+    icon: '🏃',
+    color: '#14b8a6',
+    path: '/sport',
+  },
+  {
+    slug: 'clothing',
+    title: { ru: 'Одежда и обувь', en: 'Clothing & Shoes' },
+    description: {
+      ru: 'Размеры кроссовок, обуви, одежды и брендов',
+      en: 'Sneaker, shoe, clothing and brand size converters',
+    },
+    icon: '👟',
+    color: '#a855f7',
+    path: '/clothing',
+  },
+  {
     slug: 'convert',
     title: { ru: 'Конвертеры', en: 'Converters' },
     description: { ru: 'Длина, вес, температура, объём', en: 'Length, weight, temperature, volume' },
