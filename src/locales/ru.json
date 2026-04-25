@@ -1682,6 +1682,87 @@
       }
     }
   },
+  "blocks": {
+    "eyebrow": "Строительство",
+    "title": "Калькулятор газоблока",
+    "intro": "Посчитайте газоблоки или пеноблоки для стены: количество, объём кладки, клей, запас и стоимость.",
+    "form": {
+      "wallTitle": "Стена",
+      "wallLength": "Длина",
+      "wallHeight": "Высота",
+      "openingsArea": "Проёмы",
+      "blockTitle": "Блок",
+      "blockLength": "Длина блока",
+      "blockHeight": "Высота блока",
+      "blockWidth": "Толщина блока",
+      "blockPresets": "Быстрый выбор блока",
+      "purchaseTitle": "Запас и покупка",
+      "waste": "Запас",
+      "adhesive": "Расход клея",
+      "bagWeight": "Вес мешка",
+      "blockPrice": "Цена блока",
+      "wastePresets": "Быстрый выбор запаса",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "м",
+      "m2": "м²",
+      "m3": "м³",
+      "mm": "мм",
+      "kg": "кг",
+      "kgPerM2": "кг/м²"
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительные размеры стены и блока. Проёмы должны быть меньше площади стены.",
+      "blocks": "Нужно блоков",
+      "netArea": "Площадь кладки",
+      "baseBlocks": "Без запаса",
+      "wallVolume": "Объём кладки",
+      "blockVolume": "Объём блока",
+      "adhesive": "Клей",
+      "totalCost": "Стоимость блоков",
+      "blocksValue": "{count} шт.",
+      "areaValue": "{value} м²",
+      "volumeValue": "{value} м³",
+      "adhesiveValue": "{kg} кг / {bags} меш.",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Блоки = площадь кладки / лицевая площадь блока, затем запас и округление вверх. Расход клея задаётся вручную.",
+    "validation": {
+      "wallLength": {
+        "positive": "Длина стены должна быть больше 0."
+      },
+      "wallHeight": {
+        "positive": "Высота стены должна быть больше 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Площадь проёмов не может быть отрицательной.",
+        "tooLarge": "Проёмы должны быть меньше площади стены."
+      },
+      "blockLengthMm": {
+        "positive": "Длина блока должна быть больше 0."
+      },
+      "blockHeightMm": {
+        "positive": "Высота блока должна быть больше 0."
+      },
+      "blockWidthMm": {
+        "positive": "Толщина блока должна быть больше 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Запас не может быть отрицательным."
+      },
+      "adhesiveKgPerM2": {
+        "nonNegative": "Расход клея не может быть отрицательным."
+      },
+      "bagWeightKg": {
+        "positive": "Вес мешка должен быть больше 0."
+      },
+      "blockPrice": {
+        "nonNegative": "Цена блока не может быть отрицательной."
+      }
+    }
+  },
   "drywall": {
     "eyebrow": "Строительство",
     "title": "Калькулятор гипсокартона",

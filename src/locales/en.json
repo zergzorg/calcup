@@ -1682,6 +1682,87 @@
       }
     }
   },
+  "blocks": {
+    "eyebrow": "Construction",
+    "title": "Block Calculator",
+    "intro": "Estimate aerated concrete or foam blocks for a wall: quantity, masonry volume, adhesive, waste and cost.",
+    "form": {
+      "wallTitle": "Wall",
+      "wallLength": "Length",
+      "wallHeight": "Height",
+      "openingsArea": "Openings",
+      "blockTitle": "Block",
+      "blockLength": "Block length",
+      "blockHeight": "Block height",
+      "blockWidth": "Block thickness",
+      "blockPresets": "Quick block size",
+      "purchaseTitle": "Waste and purchase",
+      "waste": "Waste",
+      "adhesive": "Adhesive use",
+      "bagWeight": "Bag weight",
+      "blockPrice": "Block price",
+      "wastePresets": "Quick waste choice",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "m3": "m³",
+      "mm": "mm",
+      "kg": "kg",
+      "kgPerM2": "kg/m²"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive wall and block dimensions. Openings must be smaller than wall area.",
+      "blocks": "Blocks needed",
+      "netArea": "Masonry area",
+      "baseBlocks": "Without waste",
+      "wallVolume": "Masonry volume",
+      "blockVolume": "Block volume",
+      "adhesive": "Adhesive",
+      "totalCost": "Block cost",
+      "blocksValue": "{count} pcs",
+      "areaValue": "{value} m²",
+      "volumeValue": "{value} m³",
+      "adhesiveValue": "{kg} kg / {bags} bags",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Blocks = masonry area / block face area, then waste and round up. Adhesive use is entered manually.",
+    "validation": {
+      "wallLength": {
+        "positive": "Wall length must be greater than 0."
+      },
+      "wallHeight": {
+        "positive": "Wall height must be greater than 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Openings area cannot be negative.",
+        "tooLarge": "Openings must be smaller than wall area."
+      },
+      "blockLengthMm": {
+        "positive": "Block length must be greater than 0."
+      },
+      "blockHeightMm": {
+        "positive": "Block height must be greater than 0."
+      },
+      "blockWidthMm": {
+        "positive": "Block thickness must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "adhesiveKgPerM2": {
+        "nonNegative": "Adhesive use cannot be negative."
+      },
+      "bagWeightKg": {
+        "positive": "Bag weight must be greater than 0."
+      },
+      "blockPrice": {
+        "nonNegative": "Block price cannot be negative."
+      }
+    }
+  },
   "drywall": {
     "eyebrow": "Construction",
     "title": "Drywall Calculator",
