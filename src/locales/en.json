@@ -407,6 +407,44 @@
       }
     }
   },
+  "vat": {
+    "eyebrow": "Finance",
+    "title": "VAT Calculator",
+    "intro": "Add VAT on top of a net amount, or extract VAT from a gross amount. Supports 20%, 10%, 0%, or a custom rate.",
+    "modes": {
+      "label": "Calculation mode",
+      "add": "Add VAT",
+      "extract": "Extract VAT"
+    },
+    "form": {
+      "amountWithout": "Amount without VAT",
+      "amountWith": "Amount with VAT",
+      "rate": "VAT rate",
+      "customRate": "Custom",
+      "customRateLabel": "VAT rate"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid numbers.",
+      "amountWithout": "Amount without VAT",
+      "amountWith": "Amount with VAT",
+      "vatAmount": "VAT {rate}%",
+      "formula": {
+        "add": "VAT = amount × rate / 100",
+        "extract": "net = gross / (1 + rate / 100)"
+      }
+    },
+    "validation": {
+      "amount": {
+        "required": "Enter amount as a number.",
+        "nonNegative": "Amount must be 0 or greater."
+      },
+      "rate": {
+        "required": "Enter VAT rate as a number.",
+        "nonNegative": "Rate must be 0 or greater."
+      }
+    }
+  },
   "dateDiff": {
     "eyebrow": "Date & Time",
     "title": "Date Difference",
