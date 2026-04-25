@@ -1600,6 +1600,88 @@
       }
     }
   },
+  "brick": {
+    "eyebrow": "Construction",
+    "title": "Brick Calculator",
+    "intro": "Estimate bricks, masonry volume, mortar, waste and purchase cost.",
+    "form": {
+      "wallTitle": "Wall",
+      "wallLength": "Length",
+      "wallHeight": "Height",
+      "openingsArea": "Openings",
+      "brickTitle": "Brick",
+      "brickLength": "Length",
+      "brickWidth": "Width",
+      "brickHeight": "Height",
+      "presets": "Quick brick size",
+      "masonryTitle": "Masonry and waste",
+      "joint": "Joint",
+      "thickness": "Wall thickness",
+      "waste": "Waste",
+      "mortarShare": "Mortar share",
+      "brickPrice": "Brick price"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "m3": "m³",
+      "mm": "mm",
+      "brick": "brick"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive wall and brick dimensions. Openings must be smaller than wall area.",
+      "bricks": "Bricks needed",
+      "netArea": "Masonry area",
+      "baseBricks": "Before waste",
+      "bricksPerM2": "Per 1 m² in 0.5 brick",
+      "masonryVolume": "Masonry volume",
+      "mortarVolume": "Mortar estimate",
+      "totalCost": "Brick cost",
+      "bricksValue": "{count} pcs",
+      "bricksPerM2Value": "{value} pcs",
+      "areaValue": "{value} m²",
+      "volumeValue": "{value} m³",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Bricks = masonry area / visible brick face with joint × wall thickness, then waste is added.",
+    "validation": {
+      "wallLength": {
+        "positive": "Wall length must be greater than 0."
+      },
+      "wallHeight": {
+        "positive": "Wall height must be greater than 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Openings area cannot be negative.",
+        "tooLarge": "Openings must be smaller than wall area."
+      },
+      "brickLengthMm": {
+        "positive": "Brick length must be greater than 0."
+      },
+      "brickWidthMm": {
+        "positive": "Brick width must be greater than 0."
+      },
+      "brickHeightMm": {
+        "positive": "Brick height must be greater than 0."
+      },
+      "jointMm": {
+        "nonNegative": "Joint cannot be negative."
+      },
+      "thicknessBricks": {
+        "positive": "Wall thickness must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "mortarSharePercent": {
+        "nonNegative": "Mortar share cannot be negative."
+      },
+      "brickPrice": {
+        "nonNegative": "Brick price cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",

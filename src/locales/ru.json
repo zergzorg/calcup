@@ -1600,6 +1600,88 @@
       }
     }
   },
+  "brick": {
+    "eyebrow": "Строительство",
+    "title": "Калькулятор кирпича",
+    "intro": "Оцените количество кирпича, объём кладки, раствор, запас и стоимость закупки.",
+    "form": {
+      "wallTitle": "Стена",
+      "wallLength": "Длина",
+      "wallHeight": "Высота",
+      "openingsArea": "Проёмы",
+      "brickTitle": "Кирпич",
+      "brickLength": "Длина",
+      "brickWidth": "Ширина",
+      "brickHeight": "Высота",
+      "presets": "Быстрый выбор кирпича",
+      "masonryTitle": "Кладка и запас",
+      "joint": "Шов",
+      "thickness": "Толщина кладки",
+      "waste": "Запас",
+      "mortarShare": "Доля раствора",
+      "brickPrice": "Цена кирпича"
+    },
+    "units": {
+      "m": "м",
+      "m2": "м²",
+      "m3": "м³",
+      "mm": "мм",
+      "brick": "кирп."
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительные размеры стены и кирпича. Проёмы должны быть меньше площади стены.",
+      "bricks": "Нужно кирпича",
+      "netArea": "Площадь кладки",
+      "baseBricks": "Без запаса",
+      "bricksPerM2": "На 1 м² в 0,5 кирпича",
+      "masonryVolume": "Объём кладки",
+      "mortarVolume": "Ориентир раствора",
+      "totalCost": "Стоимость кирпича",
+      "bricksValue": "{count} шт.",
+      "bricksPerM2Value": "{value} шт.",
+      "areaValue": "{value} м²",
+      "volumeValue": "{value} м³",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Кирпичи = площадь кладки / площадь лицевой стороны кирпича со швом × толщина кладки, затем добавляется запас.",
+    "validation": {
+      "wallLength": {
+        "positive": "Длина стены должна быть больше 0."
+      },
+      "wallHeight": {
+        "positive": "Высота стены должна быть больше 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Площадь проёмов не может быть отрицательной.",
+        "tooLarge": "Проёмы должны быть меньше площади стены."
+      },
+      "brickLengthMm": {
+        "positive": "Длина кирпича должна быть больше 0."
+      },
+      "brickWidthMm": {
+        "positive": "Ширина кирпича должна быть больше 0."
+      },
+      "brickHeightMm": {
+        "positive": "Высота кирпича должна быть больше 0."
+      },
+      "jointMm": {
+        "nonNegative": "Шов не может быть отрицательным."
+      },
+      "thicknessBricks": {
+        "positive": "Толщина кладки должна быть больше 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Запас не может быть отрицательным."
+      },
+      "mortarSharePercent": {
+        "nonNegative": "Доля раствора не может быть отрицательной."
+      },
+      "brickPrice": {
+        "nonNegative": "Цена кирпича не может быть отрицательной."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Строительство",
     "title": "Калькулятор плитки",
