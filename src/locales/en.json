@@ -1682,6 +1682,88 @@
       }
     }
   },
+  "drywall": {
+    "eyebrow": "Construction",
+    "title": "Drywall Calculator",
+    "intro": "Estimate drywall sheets, frame profiles, screws, waste and purchase cost.",
+    "form": {
+      "wallTitle": "Wall",
+      "wallLength": "Length",
+      "wallHeight": "Height",
+      "openingsArea": "Openings",
+      "sheetTitle": "Drywall sheet",
+      "sheetWidth": "Sheet width",
+      "sheetHeight": "Sheet height",
+      "sheetPresets": "Quick sheet size",
+      "frameTitle": "Frame and waste",
+      "layers": "Layers",
+      "studSpacing": "Stud spacing",
+      "waste": "Waste",
+      "screwsPerSheet": "Screws per sheet",
+      "sheetPrice": "Sheet price",
+      "wastePresets": "Quick waste choice",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "mm": "mm",
+      "pcs": "pcs",
+      "layers": "layers"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive wall and sheet dimensions. Openings must be smaller than wall area.",
+      "sheets": "Sheets needed",
+      "netArea": "Sheathing area",
+      "materialArea": "With layers and waste",
+      "purchaseArea": "Purchased sheet area",
+      "guideProfile": "Guide profile",
+      "studProfile": "Stud profile",
+      "screws": "Screws",
+      "totalCost": "Sheet cost",
+      "sheetsValue": "{count} sheets",
+      "areaValue": "{value} m²",
+      "lengthValue": "{value} m",
+      "profileValue": "{meters} m / {count} studs",
+      "pcsValue": "{count} pcs",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Sheets = sheathing area × layers × (1 + waste / 100) / sheet area, rounded up.",
+    "validation": {
+      "wallLength": {
+        "positive": "Wall length must be greater than 0."
+      },
+      "wallHeight": {
+        "positive": "Wall height must be greater than 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Openings area cannot be negative.",
+        "tooLarge": "Openings must be smaller than wall area."
+      },
+      "sheetWidth": {
+        "positive": "Sheet width must be greater than 0."
+      },
+      "sheetHeight": {
+        "positive": "Sheet height must be greater than 0."
+      },
+      "layers": {
+        "positiveInteger": "Layers must be a whole number greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "studSpacingMm": {
+        "positive": "Stud spacing must be greater than 0."
+      },
+      "screwsPerSheet": {
+        "positiveInteger": "Screws must be a whole number greater than 0."
+      },
+      "sheetPrice": {
+        "nonNegative": "Sheet price cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",

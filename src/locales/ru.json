@@ -1682,6 +1682,88 @@
       }
     }
   },
+  "drywall": {
+    "eyebrow": "Строительство",
+    "title": "Калькулятор гипсокартона",
+    "intro": "Посчитайте листы ГКЛ, профили каркаса, саморезы, запас и стоимость покупки.",
+    "form": {
+      "wallTitle": "Стена",
+      "wallLength": "Длина",
+      "wallHeight": "Высота",
+      "openingsArea": "Проёмы",
+      "sheetTitle": "Лист ГКЛ",
+      "sheetWidth": "Ширина листа",
+      "sheetHeight": "Высота листа",
+      "sheetPresets": "Быстрый выбор размера листа",
+      "frameTitle": "Каркас и запас",
+      "layers": "Слоёв",
+      "studSpacing": "Шаг стоек",
+      "waste": "Запас",
+      "screwsPerSheet": "Саморезов на лист",
+      "sheetPrice": "Цена листа",
+      "wastePresets": "Быстрый выбор запаса",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "м",
+      "m2": "м²",
+      "mm": "мм",
+      "pcs": "шт.",
+      "layers": "сл."
+    },
+    "result": {
+      "label": "Расчёт",
+      "empty": "Введите положительные размеры стены и листа. Проёмы должны быть меньше площади стены.",
+      "sheets": "Нужно листов",
+      "netArea": "Площадь обшивки",
+      "materialArea": "С учётом слоёв и запаса",
+      "purchaseArea": "Площадь купленных листов",
+      "guideProfile": "Направляющий профиль",
+      "studProfile": "Стоечный профиль",
+      "screws": "Саморезы",
+      "totalCost": "Стоимость листов",
+      "sheetsValue": "{count} лист.",
+      "areaValue": "{value} м²",
+      "lengthValue": "{value} м",
+      "profileValue": "{meters} м / {count} стоек",
+      "pcsValue": "{count} шт.",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Листы = площадь обшивки × слои × (1 + запас / 100) / площадь листа, затем округление вверх.",
+    "validation": {
+      "wallLength": {
+        "positive": "Длина стены должна быть больше 0."
+      },
+      "wallHeight": {
+        "positive": "Высота стены должна быть больше 0."
+      },
+      "openingsArea": {
+        "nonNegative": "Площадь проёмов не может быть отрицательной.",
+        "tooLarge": "Проёмы должны быть меньше площади стены."
+      },
+      "sheetWidth": {
+        "positive": "Ширина листа должна быть больше 0."
+      },
+      "sheetHeight": {
+        "positive": "Высота листа должна быть больше 0."
+      },
+      "layers": {
+        "positiveInteger": "Количество слоёв должно быть целым числом больше 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Запас не может быть отрицательным."
+      },
+      "studSpacingMm": {
+        "positive": "Шаг стоек должен быть больше 0."
+      },
+      "screwsPerSheet": {
+        "positiveInteger": "Количество саморезов должно быть целым числом больше 0."
+      },
+      "sheetPrice": {
+        "nonNegative": "Цена листа не может быть отрицательной."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Строительство",
     "title": "Калькулятор плитки",
