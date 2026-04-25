@@ -41,6 +41,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://calcup.ru/datetime/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Ready calculators -->
   <url>
     <loc>https://calcup.ru/finance/credit/</loc>
@@ -68,6 +74,12 @@
   </url>
   <url>
     <loc>https://calcup.ru/transport/fuel/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://calcup.ru/datetime/date-diff/</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

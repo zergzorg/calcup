@@ -1,10 +1,10 @@
 # PROJECT_STATUS
 
 ## Текущая фаза
-Фаза 4.3 — Length converter
+Фаза 4.5 — Date diff calculator
 
 ## Текущий шаг
-Фаза 4.3 завершена. Ожидание согласования перед следующим калькулятором.
+Фаза 4.4 принята. Начата реализация /datetime/date-diff.
 
 ---
 
@@ -26,6 +26,7 @@
 | `/math/percentage` | ✅ ready | `src/features/percentage-calculator` | ✅ `/math/percentage/` | `index,follow,max-image-preview:large` |
 | `/health/bmi` | ✅ ready | `src/features/health-bmi` | ✅ `/health/bmi/` | `index,follow,max-image-preview:large` |
 | `/convert/length` | ✅ ready | `src/features/length-converter` | ✅ `/convert/length/` | `index,follow,max-image-preview:large` |
+| `/transport/fuel` | ✅ ready | `src/features/fuel-calculator` | ✅ `/transport/fuel/` | `index,follow,max-image-preview:large` |
 
 ---
 
@@ -40,6 +41,8 @@
 - `/health/bmi/`
 - `/convert/`
 - `/convert/length/`
+- `/transport/`
+- `/transport/fuel/`
 
 ---
 

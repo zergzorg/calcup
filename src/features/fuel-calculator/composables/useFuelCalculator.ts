@@ -11,10 +11,10 @@ import type { FuelMode, FuelValidationIssue } from '../types/fuel'
 export function useFuelCalculator() {
   const mode = ref<FuelMode>('consumption')
 
-  const distance = ref<number>(NaN)
-  const fuelLiters = ref<number>(NaN)
-  const consumptionPer100 = ref<number>(NaN)
-  const pricePerLiter = ref<number>(NaN)
+  const distance = ref<number>(100)
+  const fuelLiters = ref<number>(8)
+  const consumptionPer100 = ref<number>(8)
+  const pricePerLiter = ref<number>(55)
 
   const touched = ref(new Set<FuelValidationIssue['field']>())
 

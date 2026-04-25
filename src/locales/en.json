@@ -406,5 +406,37 @@
         "nonNegative": "Price cannot be negative."
       }
     }
+  },
+  "dateDiff": {
+    "eyebrow": "Date & Time",
+    "title": "Date Difference",
+    "intro": "Calculate the number of days, months, and years between two dates. Optionally include the end date.",
+    "form": {
+      "startDate": "Start date",
+      "endDate": "End date",
+      "includeEndDate": "Include end date"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter valid dates.",
+      "days": "{n} day | {n} days",
+      "direction": {
+        "future": "end date is in the future",
+        "past": "end date is in the past"
+      },
+      "breakdown": {
+        "years": "{n} year | {n} years",
+        "months": "{n} month | {n} months",
+        "days": "{n} day | {n} days"
+      }
+    },
+    "validation": {
+      "startDate": {
+        "invalid": "Enter a valid start date."
+      },
+      "endDate": {
+        "invalid": "Enter a valid end date."
+      }
+    }
   }
 }
