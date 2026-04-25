@@ -443,6 +443,7 @@ function cm(value: number): string {
 .wallpaper-grid {
   display: grid;
   gap: 14px;
+  align-items: start;
 }
 
 .wallpaper-grid--three {
