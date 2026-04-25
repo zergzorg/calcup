@@ -55,6 +55,7 @@
         <LanguageSwitcher />
 
         <button
+          v-if="route.path !== '/'"
           class="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-500 hover:border-gray-300 hover:bg-gray-50 transition-colors"
           aria-label="Поиск калькуляторов"
           @click="$emit('search')"
