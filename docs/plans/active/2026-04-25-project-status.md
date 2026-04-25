@@ -5,8 +5,8 @@
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 17 ready-калькуляторов.
-- 57 soon-карточек.
+- 18 ready-калькуляторов.
+- 56 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` добавлен как активное продуктовое направление, но пока содержит только `soon`-карточки.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -32,6 +32,7 @@
 | 4.16 | Калькулятор выгодной покупки | /everyday/unit-price | ✅ ready |
 | 5.1 | Калькулятор обоев | /construction/wallpaper | ✅ ready |
 | 5.3 | Калькулятор темп/скорость | /sport/pace-speed | ✅ ready |
+| 5.4 | Калькулятор краски | /construction/paint | ✅ ready |
 
 ## Sitemap
 
@@ -41,7 +42,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/
+- /construction/wallpaper/ · /construction/paint/
 - /transport/fuel/
 - /sport/pace-speed/
 - /datetime/date-diff/
@@ -78,6 +79,36 @@
   - `/sport/pace-speed/` title, description, canonical со slash, `index,follow`;
   - `/sport/` и `/sport/pace-speed/` есть в sitemap;
   - `/clothing/` не добавлен в sitemap до первого ready-инструмента.
+
+---
+
+## Сделано (Фаза 5.4) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/paint`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/paint-calculator/`.
+- Добавлен расчёт:
+  - площадь стен по периметру и высоте;
+  - вычет окон, дверей и дополнительной площади проёмов;
+  - литры по слоям, укрывистости и запасу;
+  - округление до целых банок;
+  - опциональная стоимость покупки.
+- Добавлены RU/EN локали `paint.*`.
+- Registry-запись `paint` переведена в `ready`.
+- В sitemap добавлен `/construction/paint/`.
+
+### Проверки
+
+- `npm run test` — OK, `311/311`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/paint/` title, description, canonical со slash, `index,follow`;
+  - `/construction/paint/` есть в sitemap;
+  - результат по умолчанию: 9,83 л, 4 банки по 2,5 л.
 
 ---
 

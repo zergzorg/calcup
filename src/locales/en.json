@@ -1023,6 +1023,122 @@
       "rollTooShort": "The roll is shorter than one strip. Check wall height, roll length, or pattern repeat."
     }
   },
+  "paint": {
+    "eyebrow": "Construction",
+    "title": "Paint Calculator",
+    "intro": "Estimate how many liters and cans of wall paint you need, including windows, doors, coats, coverage and waste.",
+    "form": {
+      "roomTitle": "Room size",
+      "roomHint": "Wall area is calculated from room perimeter and wall height.",
+      "roomLength": "Room length",
+      "roomWidth": "Room width",
+      "wallHeight": "Wall height",
+      "openingsTitle": "Windows and doors",
+      "openingsHint": "Openings are subtracted from the paintable area.",
+      "windowsCount": "Windows",
+      "windowWidth": "Window width",
+      "windowHeight": "Window height",
+      "doorsCount": "Doors",
+      "doorWidth": "Door width",
+      "doorHeight": "Door height",
+      "extraOpeningsArea": "Additional opening area",
+      "paintTitle": "Paint and waste",
+      "paintHint": "Use the coverage rate from the can: it is usually listed as m²/liter for one coat.",
+      "coats": "Coats",
+      "coveragePerLiter": "Coverage",
+      "coveragePreset": "Coverage presets",
+      "coveragePresetValue": "{value} m²/l",
+      "wastePercent": "Waste",
+      "canVolume": "Can volume",
+      "canPreset": "Can presets",
+      "canPresetValue": "{value} l",
+      "canPrice": "Can price"
+    },
+    "units": {
+      "squareMetersValue": "{value} m²",
+      "litersValue": "{value} l"
+    },
+    "result": {
+      "label": "Calculation",
+      "empty": "Check the form values.",
+      "recommendedPurchase": "Recommended purchase",
+      "cansValue": "{count} cans",
+      "litersSummary": "Need {liters}; purchase volume {volume}.",
+      "grossWallArea": "Wall area",
+      "openingsArea": "Windows and doors",
+      "paintableArea": "Paintable area",
+      "coatedArea": "Area including coats",
+      "baseLiters": "Liters before waste",
+      "litersWithWaste": "Liters with waste",
+      "leftoverLiters": "Left after purchase",
+      "totalCost": "Purchase cost",
+      "openingsWarning": "Openings area is larger than wall area. Check the sizes: the calculation still works, but paintable area becomes 0."
+    },
+    "formula": "Liters = paintable area × coats / coverage × (1 + waste). Cans are rounded up to whole packages.",
+    "validation": {
+      "roomLength": {
+        "required": "Enter length as a number.",
+        "positive": "Length must be greater than 0."
+      },
+      "roomWidth": {
+        "required": "Enter width as a number.",
+        "positive": "Width must be greater than 0."
+      },
+      "wallHeight": {
+        "required": "Enter height as a number.",
+        "positive": "Height must be greater than 0."
+      },
+      "windowsCount": {
+        "integer": "Window count must be an integer.",
+        "nonNegative": "Window count cannot be negative."
+      },
+      "doorsCount": {
+        "integer": "Door count must be an integer.",
+        "nonNegative": "Door count cannot be negative."
+      },
+      "windowWidth": {
+        "required": "Enter window width as a number.",
+        "nonNegative": "Window width cannot be negative."
+      },
+      "windowHeight": {
+        "required": "Enter window height as a number.",
+        "nonNegative": "Window height cannot be negative."
+      },
+      "doorWidth": {
+        "required": "Enter door width as a number.",
+        "nonNegative": "Door width cannot be negative."
+      },
+      "doorHeight": {
+        "required": "Enter door height as a number.",
+        "nonNegative": "Door height cannot be negative."
+      },
+      "extraOpeningsArea": {
+        "required": "Enter area as a number.",
+        "nonNegative": "Area cannot be negative."
+      },
+      "coats": {
+        "integer": "Coats must be an integer.",
+        "positive": "Coats must be greater than 0."
+      },
+      "coveragePerLiter": {
+        "required": "Enter coverage as a number.",
+        "positive": "Coverage must be greater than 0."
+      },
+      "wastePercent": {
+        "required": "Enter waste as a number.",
+        "nonNegative": "Waste cannot be negative.",
+        "max": "Waste cannot be greater than 100%."
+      },
+      "canVolume": {
+        "required": "Enter can volume as a number.",
+        "positive": "Can volume must be greater than 0."
+      },
+      "canPrice": {
+        "required": "Enter price as a number.",
+        "nonNegative": "Price cannot be negative."
+      }
+    }
+  },
   "paceSpeed": {
     "eyebrow": "Sport",
     "title": "Pace to Speed Calculator",

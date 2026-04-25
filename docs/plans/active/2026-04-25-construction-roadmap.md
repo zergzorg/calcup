@@ -61,7 +61,7 @@ Material calculators for renovation, finishing, construction and engineering wor
 | Путь | Название | Ценность | Риск |
 |------|----------|----------|------|
 | `/construction/wallpaper` | Калькулятор обоев | Быстрый расчёт рулонов с окнами, дверями, запасом и раппортом | Низкий |
-| `/construction/paint` | Калькулятор краски | Литры, банки, слои, расход и стоимость | Низкий |
+| `/construction/paint` | Калькулятор краски | Литры, банки, слои, расход и стоимость | Низкий, ready |
 | `/construction/tile` | Калькулятор плитки | Плитки, упаковки, подрезка, запас и стоимость | Средний |
 | `/construction/laminate` | Калькулятор ламината | Площадь, упаковки, запас и стоимость | Низкий |
 | `/construction/floor-screed` | Калькулятор стяжки пола | Объём, масса смеси, мешки и стоимость | Средний |
@@ -169,7 +169,7 @@ Material calculators for renovation, finishing, construction and engineering wor
 - [x] Перенести completed-план `/construction/wallpaper` в `docs/plans/completed/2026-04-25-wallpaper-calculator.md`.
 - [x] Добавить P0/P1/P2/P3 строительные `soon`-карточки в реестр.
 - [ ] После первого ready-калькулятора проверить категорию `/construction/` в production.
-- [ ] Реализовать следующий строительный ready-калькулятор: `/construction/paint`.
+- [x] Реализовать следующий строительный ready-калькулятор: `/construction/paint`.
 
 ## Post-Completion
 

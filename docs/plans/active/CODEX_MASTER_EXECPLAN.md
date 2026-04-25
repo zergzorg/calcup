@@ -62,7 +62,7 @@ Owner: Codex
 ## Текущий Milestone
 
 Milestone: `sport/pace-speed`.
-Status: completed, awaiting commit.
+Status: completed.
 
 Критерии готовности:
 
@@ -91,6 +91,7 @@ Status: completed, awaiting commit.
 
 - 2026-04-26: Audit проекта и создание автономных планов Codex.
 - 2026-04-26: Реализован `/sport/pace-speed`; каталог стал 17 ready / 57 soon, категория `/sport` получила первый ready-инструмент.
+- 2026-04-26: Реализован `/construction/paint`; каталог стал 18 ready / 56 soon, строительный раздел получил второй P0-инструмент.
 
 ## Decisions Log
 
@@ -110,6 +111,11 @@ Status: completed, awaiting commit.
 - 2026-04-26: `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/sport/pace-speed/index.html` — title, description, `index,follow` robots и canonical `https://calcup.ru/sport/pace-speed/` OK.
 - 2026-04-26: Static smoke по `dist/sitemap.xml` и `public/sitemap.xml` — `/sport/` и `/sport/pace-speed/` присутствуют, `/clothing/` не добавлен в sitemap.
+- 2026-04-26: Для `/construction/paint` `npm run test` — OK, 17 files / 311 tests.
+- 2026-04-26: Для `/construction/paint` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/paint` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/paint/index.html` — title, description, `index,follow` robots и canonical `https://calcup.ru/construction/paint/` OK.
+- 2026-04-26: Static smoke по `dist/sitemap.xml` и `public/sitemap.xml` — `/construction/paint/` присутствует.
 
 ## Commit Log
 
@@ -117,4 +123,14 @@ Status: completed, awaiting commit.
 
 ## Next Action
 
-Сделать атомарный commit `feat(sport): add pace-speed calculator`, затем перейти к следующему backlog item: `construction/paint`.
+Сделать атомарный commit `feat(construction): add paint calculator`, затем перейти к следующему backlog item: `sport/distance-pace-time`.
+
+Завершённый milestone `construction/paint`:
+
+- `paint` переведён из `soon` в `ready`.
+- Создан `src/features/paint-calculator/`.
+- Добавлены формулы и unit-тесты для площади, вычета проёмов, литров, банок и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/paint/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `liters = paintableArea * coats / coveragePerLiter * (1 + wastePercent / 100)`, банки округляются вверх до целой упаковки.

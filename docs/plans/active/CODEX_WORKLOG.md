@@ -67,3 +67,32 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к `/construction/paint`.
+
+### Итерация 3: старт `/construction/paint`
+
+Что выбрано:
+
+- Следующий P0-калькулятор строительного roadmap: `/construction/paint`.
+
+Что изменено:
+
+- Обновлён `CODEX_MASTER_EXECPLAN.md` с критериями готовности и формульными допущениями.
+
+Команды:
+
+- web search по paint coverage formulas и производственным калькуляторам.
+
+Результат проверок:
+
+- `npm run test` — OK, 17 files / 311 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/paint/` canonical, robots, route index and sitemap entries checked.
+
+Commit hash:
+
+- Пока нет.
+
+Следующий шаг:
+
+- Закоммитить milestone и перейти к `/sport/distance-pace-time`.
