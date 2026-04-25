@@ -54,6 +54,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://calcup.ru/clothing/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://calcup.ru/datetime/</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -146,6 +152,12 @@
   </url>
   <url>
     <loc>https://calcup.ru/sport/distance-pace-time/</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://calcup.ru/clothing/shoe-size/</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
