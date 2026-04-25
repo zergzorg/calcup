@@ -43,15 +43,15 @@
           <div class="wallpaper-openings">
             <div class="wallpaper-openings__row">
               <strong>{{ t('wallpaper.form.windows') }}</strong>
-              <NumberField field="windowsCount" :label="t('wallpaper.form.count')" :step="1" />
-              <NumberField field="windowWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
               <NumberField field="windowHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
+              <NumberField field="windowWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
+              <NumberField field="windowsCount" :label="t('wallpaper.form.count')" :step="1" />
             </div>
             <div class="wallpaper-openings__row">
               <strong>{{ t('wallpaper.form.doors') }}</strong>
-              <NumberField field="doorsCount" :label="t('wallpaper.form.count')" :step="1" />
-              <NumberField field="doorWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
               <NumberField field="doorHeight" :label="t('wallpaper.form.height')" suffix="м" :step="0.01" />
+              <NumberField field="doorWidth" :label="t('wallpaper.form.width')" suffix="м" :step="0.01" />
+              <NumberField field="doorsCount" :label="t('wallpaper.form.count')" :step="1" />
             </div>
           </div>
 
@@ -526,9 +526,9 @@ function cm(value: number): string {
 
 .wallpaper-openings__row {
   display: grid;
-  grid-template-columns: 90px repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  align-items: end;
+  grid-template-columns: 104px repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  align-items: end !important;
 }
 
 .wallpaper-openings__row strong {
@@ -681,7 +681,7 @@ function cm(value: number): string {
   .wallpaper-grid--three,
   .wallpaper-grid--two,
   .wallpaper-openings__row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .wallpaper-openings__row strong {

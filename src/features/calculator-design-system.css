@@ -315,7 +315,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 
-.calculator-view :is([class$="-unit-grid"], [class$="-openings__row"]) {
+.calculator-view :is([class$="-unit-grid"]) {
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
 }
 
@@ -565,7 +565,7 @@
     font-size: 1rem !important;
   }
 
-  .calculator-view :is([class$="-grid--two"], [class$="-grid--three"], [class$="-unit-grid"], [class$="-openings__row"], .credit-form-grid, .credit-result-grid, .credit-early-form, .credit-early-item) {
+  .calculator-view :is([class$="-grid--two"], [class$="-grid--three"], [class$="-unit-grid"], .credit-form-grid, .credit-result-grid, .credit-early-form, .credit-early-item) {
     grid-template-columns: 1fr !important;
   }
 
