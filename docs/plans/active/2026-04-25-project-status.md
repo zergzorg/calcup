@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.12 расширение транспортного раздела
+## Текущая фаза: 5.13 расширение транспортного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 26 ready-калькуляторов.
-- 48 soon-карточек.
+- 27 ready-калькуляторов.
+- 47 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -41,6 +41,7 @@
 | 5.10 | Калькулятор стяжки пола | /construction/floor-screed | ✅ ready |
 | 5.11 | Калькулятор стоимости поездки | /transport/trip-cost | ✅ ready |
 | 5.12 | Калькулятор цены топлива | /transport/fuel-price | ✅ ready |
+| 5.13 | Калькулятор средней скорости | /transport/average-speed | ✅ ready |
 
 ## Sitemap
 
@@ -51,7 +52,7 @@
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/
-- /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/
+- /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/
 - /clothing/shoe-size/
 - /datetime/date-diff/
@@ -59,6 +60,36 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.13) — 2026-04-26
+
+Реализован транспортный калькулятор `/transport/average-speed`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/average-speed-calculator/`.
+- Добавлен расчёт:
+  - средняя скорость по расстоянию и времени;
+  - скорость в mph;
+  - скорость в м/с;
+  - темп в мин/км.
+- Добавлены RU/EN локали `averageSpeed.*`.
+- Registry-запись `average-speed` переведена в `ready`.
+- В sitemap добавлен `/transport/average-speed/`.
+
+### Проверки
+
+- `npm run test` — OK, `348/348`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/transport/average-speed/` title, description, canonical со slash, `index,follow`;
+  - `/transport/average-speed/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/transport/average-speed/` 430px screenshot без overflow и наложений.
 
 ---
 

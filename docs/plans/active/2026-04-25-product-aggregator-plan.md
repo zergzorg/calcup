@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 26 ready-калькуляторов в `src/data/calculators.ts`;
-- 48 `soon`-карточек для будущего наполнения;
+- 27 ready-калькуляторов в `src/data/calculators.ts`;
+- 47 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -71,7 +71,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Здоровье | `/health` | bmi | calorie, ideal-weight, body-fat, pregnancy-due-date |
 | Конвертеры | `/convert` | length, temperature, weight, area | volume, speed, currency, data-size |
 | Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed | brick, blocks, drywall, putty, insulation, concrete, foundations, roof, engineering |
-| Транспорт | `/transport` | fuel, trip-cost, fuel-price | average-speed, ev-range |
+| Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed | ev-range |
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones | metronome, race-split |
 | Одежда и обувь | `/clothing` | shoe-size | sneaker-size, clothing-size, jeans-size, brand-size-compare |
 | Дата и время | `/datetime` | date-diff | age, workdays, time-duration, countdown |
@@ -99,6 +99,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/transport/fuel` | Калькулятор расхода топлива |
 | `/transport/trip-cost` | Калькулятор стоимости поездки |
 | `/transport/fuel-price` | Калькулятор цены топлива |
+| `/transport/average-speed` | Калькулятор средней скорости |
 | `/sport/heart-rate-zones` | Пульсовые зоны |
 | `/sport/pace-speed` | Калькулятор темп/скорость |
 | `/sport/distance-pace-time` | Калькулятор дистанция/темп/время |
@@ -125,8 +126,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
    - `/construction/brick`;
    - `/construction/drywall`;
    - `/clothing/clothing-size`;
-   - `/sport/race-split`;
-   - `/transport/average-speed`.
+   - `/sport/race-split`.
 
 ## Non-Goals
 

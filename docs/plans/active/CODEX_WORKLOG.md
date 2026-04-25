@@ -426,3 +426,40 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/transport/average-speed`, `/clothing/clothing-size`, `/sport/race-split` или строительному P1.
+
+### Итерация 13: `/transport/average-speed`
+
+Что выбрано:
+
+- Завершить текущую транспортную пачку калькулятором средней скорости: `/transport/average-speed`.
+
+Что изменено:
+
+- Создан `src/features/average-speed-calculator/`.
+- Добавлен расчёт средней скорости по расстоянию и времени, а также mph, м/с и темпа.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/transport/average-speed/ /tmp/calcup-average-speed-mobile.png`
+- Static smoke через `rg` по `dist/transport/average-speed/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 27 files / 348 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/transport/average-speed/` canonical, robots и sitemap entry checked.
+- Mobile screenshot — OK: поля, i18n-суффиксы и результат без overflow и наложений.
+
+Commit hash:
+
+- 75f9560
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/sport/race-split` или строительному P1.

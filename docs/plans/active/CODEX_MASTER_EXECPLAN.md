@@ -34,8 +34,8 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 26.
-- Soon после текущего milestone: 48.
+- Ready после текущего milestone: 27.
+- Soon после текущего milestone: 47.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (5 ready / 16 soon), `sport` (3 ready / 2 soon), `clothing` (1 ready / 4 soon).
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `transport/fuel-price`.
+Milestone: `transport/average-speed`.
 Status: completed.
 
 Критерии готовности:
 
-- `fuel-price` переведён из `soon` в `ready`.
-- Создан `src/features/fuel-price-calculator/`.
+- `average-speed` переведён из `soon` в `ready`.
+- Создан `src/features/average-speed-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/transport/fuel-price/` добавлен в sitemap.
+- `/transport/average-speed/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/fuel-price-calculator/index.ts`
-- `src/features/fuel-price-calculator/components/FuelPriceCalculatorView.vue`
-- `src/features/fuel-price-calculator/composables/useFuelPriceCalculator.ts`
-- `src/features/fuel-price-calculator/lib/calculations.ts`
-- `src/features/fuel-price-calculator/lib/calculations.test.ts`
-- `src/features/fuel-price-calculator/types/fuel-price.ts`
+- `src/features/average-speed-calculator/index.ts`
+- `src/features/average-speed-calculator/components/AverageSpeedCalculatorView.vue`
+- `src/features/average-speed-calculator/composables/useAverageSpeedCalculator.ts`
+- `src/features/average-speed-calculator/lib/calculations.ts`
+- `src/features/average-speed-calculator/lib/calculations.test.ts`
+- `src/features/average-speed-calculator/types/average-speed.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -103,6 +103,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/floor-screed`; каталог стал 24 ready / 50 soon, строительный P0 first wave закрыт.
 - 2026-04-26: Реализован `/transport/trip-cost`; каталог стал 25 ready / 49 soon, транспортный раздел получил второй ready-инструмент.
 - 2026-04-26: Реализован `/transport/fuel-price`; каталог стал 26 ready / 48 soon, транспортный раздел получил третий ready-инструмент.
+- 2026-04-26: Реализован `/transport/average-speed`; каталог стал 27 ready / 47 soon, транспортный раздел получил четвёртый ready-инструмент.
 
 ## Decisions Log
 
@@ -115,6 +116,7 @@ Status: completed.
 - 2026-04-26: Для `floor-screed` расчёт сухой смеси ведётся по настраиваемому расходу `кг/м²/мм`; дефолт 1.8 кг/м²/мм взят как типичный паспортный ориентир, но UI прямо просит сверять значение с мешком или data sheet.
 - 2026-04-26: Для `trip-cost` формула использует `fuelLiters = distance * consumption / 100`; дополнительные расходы прибавляются отдельной строкой, а стоимость на человека считается делением итоговой суммы на целое число пассажиров.
 - 2026-04-26: Для `fuel-price` расчёт идёт от бюджета: `liters = budget / pricePerLiter`, `distanceKm = liters / consumptionPer100Km * 100`, `costPer100Km = consumptionPer100Km * pricePerLiter`.
+- 2026-04-26: Для `average-speed` расчёт использует `speedKmH = distanceKm / (totalMinutes / 60)`, `speedMph = speedKmH / 1.609344`, `speedMs = speedKmH * 1000 / 3600`, `paceSecondsPerKm = totalMinutes * 60 / distanceKm`.
 
 ## Risks / Blockers
 
@@ -178,6 +180,11 @@ Status: completed.
 - 2026-04-26: Для `/transport/fuel-price` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/transport/fuel-price/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright screenshot 430px по `/transport/fuel-price/` — поля и результат без overflow и наложений.
+- 2026-04-26: Для `/transport/average-speed` `npm run test` — OK, 27 files / 348 tests.
+- 2026-04-26: Для `/transport/average-speed` `npm run type-check` — OK.
+- 2026-04-26: Для `/transport/average-speed` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/transport/average-speed/index.html` — title, description, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright screenshot 430px по `/transport/average-speed/` — поля, i18n-суффиксы и результат без overflow и наложений.
 
 ## Commit Log
 
@@ -192,10 +199,21 @@ Status: completed.
 - 1388e97 — `feat(construction): add floor screed calculator`.
 - 705bdfb — `feat(transport): add trip cost calculator`.
 - cde7208 — `feat(transport): add fuel price calculator`.
+- 75f9560 — `feat(transport): add average speed calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`, `/transport/average-speed`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/brick`, `/construction/drywall`, `/clothing/clothing-size`, `/sport/race-split`.
+
+Завершённый milestone `transport/average-speed`:
+
+- `average-speed` переведён из `soon` в `ready`.
+- Создан `src/features/average-speed-calculator/`.
+- Добавлены формулы и unit-тесты для средней скорости, mph, м/с и темпа.
+- Добавлены RU/EN локали.
+- `/transport/average-speed/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `speedKmH = distanceKm / (totalMinutes / 60)`.
 
 Завершённый milestone `transport/fuel-price`:
 
