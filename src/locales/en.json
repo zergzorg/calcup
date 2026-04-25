@@ -885,6 +885,144 @@
       }
     }
   },
+  "wallpaper": {
+    "eyebrow": "Construction",
+    "title": "Wallpaper Calculator",
+    "intro": "Calculate how many rolls you need for a room, including windows, doors, waste, and pattern repeat.",
+    "form": {
+      "quickHint": "Room sizes and calculations stay only in your browser. Start with the room, then choose the roll size and waste.",
+      "roomTitle": "Room",
+      "roomLength": "Room length",
+      "roomWidth": "Room width",
+      "wallHeight": "Wall height",
+      "openingsTitle": "Windows and doors",
+      "openingsHint": "Openings are subtracted from wall area. If there are none, leave 0.",
+      "windows": "Windows",
+      "doors": "Doors",
+      "count": "Count",
+      "width": "Width",
+      "height": "Height",
+      "extraOpeningsArea": "Extra openings area",
+      "rollTitle": "Roll",
+      "rollHint": "Choose a common format or enter the size from the label.",
+      "rollPreset": "Roll format",
+      "rollLengthPreset": "Quick roll length",
+      "rollWidth": "Roll width",
+      "rollLength": "Roll length",
+      "optionsTitle": "Waste and pattern",
+      "wastePercent": "Waste",
+      "rollPrice": "Roll price",
+      "patternTitle": "Pattern repeat",
+      "patternHint": "Pattern repeat increases every strip to the next full repeat of the design.",
+      "patternPreset": "Repeat type",
+      "usePatternRepeat": "Use pattern repeat",
+      "patternRepeat": "Pattern repeat"
+    },
+    "rollPreset": {
+      "standard": "0.53 × 10 m",
+      "medium": "0.70 × 10 m",
+      "wide": "1.06 × 10 m",
+      "custom": "Custom size"
+    },
+    "pattern": {
+      "none": "No repeat",
+      "cm": "{value} cm"
+    },
+    "units": {
+      "metersValue": "{value} m",
+      "squareMetersValue": "{value} m²"
+    },
+    "result": {
+      "label": "Calculation",
+      "empty": "Check the form values.",
+      "recommendedRolls": "Recommended purchase",
+      "rollsValue": "{count} rolls",
+      "grossWallArea": "Wall area",
+      "openingsArea": "Windows and doors",
+      "netWallArea": "Area to cover",
+      "areaWithWaste": "With waste",
+      "rollArea": "Roll area",
+      "stripsNeeded": "Strips needed",
+      "stripsPerRoll": "Strips per roll",
+      "rollsByArea": "Rolls by area",
+      "rollsByStrips": "Rolls by strips",
+      "adjustedStripHeight": "Strip length with repeat",
+      "totalCost": "Purchase cost",
+      "openingsWarning": "Openings area is larger than wall area. Check the sizes: the calculation still works, but cover area becomes 0.",
+      "basis": {
+        "area": "The result is based on wall area with waste.",
+        "strips": "The result is based on the number of full strips."
+      }
+    },
+    "formula": {
+      "area": "By area: walls − openings + waste.",
+      "strips": "By strips: perimeter / roll width and full strips from each roll."
+    },
+    "validation": {
+      "roomLength": {
+        "required": "Enter length as a number.",
+        "positive": "Length must be greater than 0."
+      },
+      "roomWidth": {
+        "required": "Enter width as a number.",
+        "positive": "Width must be greater than 0."
+      },
+      "wallHeight": {
+        "required": "Enter height as a number.",
+        "positive": "Height must be greater than 0."
+      },
+      "rollWidth": {
+        "required": "Enter roll width as a number.",
+        "positive": "Roll width must be greater than 0."
+      },
+      "rollLength": {
+        "required": "Enter roll length as a number.",
+        "positive": "Roll length must be greater than 0."
+      },
+      "windowsCount": {
+        "integer": "Window count must be an integer.",
+        "nonNegative": "Window count cannot be negative."
+      },
+      "doorsCount": {
+        "integer": "Door count must be an integer.",
+        "nonNegative": "Door count cannot be negative."
+      },
+      "windowWidth": {
+        "required": "Enter window width as a number.",
+        "nonNegative": "Window width cannot be negative."
+      },
+      "windowHeight": {
+        "required": "Enter window height as a number.",
+        "nonNegative": "Window height cannot be negative."
+      },
+      "doorWidth": {
+        "required": "Enter door width as a number.",
+        "nonNegative": "Door width cannot be negative."
+      },
+      "doorHeight": {
+        "required": "Enter door height as a number.",
+        "nonNegative": "Door height cannot be negative."
+      },
+      "extraOpeningsArea": {
+        "required": "Enter area as a number.",
+        "nonNegative": "Area cannot be negative."
+      },
+      "wastePercent": {
+        "required": "Enter waste as a number.",
+        "nonNegative": "Waste cannot be negative.",
+        "max": "Waste cannot be greater than 100%."
+      },
+      "rollPrice": {
+        "required": "Enter price as a number.",
+        "nonNegative": "Price cannot be negative."
+      },
+      "patternRepeat": {
+        "required": "Enter pattern repeat as a number.",
+        "positive": "Pattern repeat must be greater than 0."
+      },
+      "rollTooShort": "The roll is shorter than one strip. Check wall height, roll length, or pattern repeat."
+    }
+  },
   "unitPrice": {
     "eyebrow": "Shopping",
     "title": "Unit Price Calculator",

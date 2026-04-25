@@ -9,11 +9,13 @@
 
       <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
-        <div class="relative" @mouseenter="catOpen = true" @mouseleave="catOpen = false">
+        <div ref="categoryRoot" class="relative" @pointerenter="openCategoryMenu">
           <button
+            ref="categoryButton"
             class="px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors flex items-center gap-1"
             aria-haspopup="true"
             :aria-expanded="catOpen"
+            @focus="openCategoryMenu"
           >
             Калькуляторы
             <svg class="w-3.5 h-3.5 transition-transform" :class="{ 'rotate-180': catOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -22,19 +24,23 @@
           </button>
 
           <div
+            ref="categoryMenu"
             v-show="catOpen"
-            class="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden"
+            class="site-category-menu absolute left-1/2 -translate-x-1/2 w-80"
+            @mouseenter="openCategoryMenu"
           >
-            <RouterLink
-              v-for="cat in CATEGORIES"
-              :key="cat.slug"
-              :to="cat.path"
-              class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
-              @click="catOpen = false"
-            >
-              <span class="text-xl leading-none w-6 text-center">{{ cat.icon }}</span>
-              <span class="text-sm text-gray-700">{{ cat.title.ru }}</span>
-            </RouterLink>
+            <div class="site-category-menu__panel rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+              <RouterLink
+                v-for="cat in CATEGORIES"
+                :key="cat.slug"
+                :to="cat.path"
+                class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                @click="closeCategoryMenu"
+              >
+                <span class="text-xl leading-none w-6 text-center">{{ cat.icon }}</span>
+                <span class="text-sm text-gray-700">{{ cat.title.ru }}</span>
+              </RouterLink>
+            </div>
           </div>
         </div>
 
@@ -99,7 +105,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { CATEGORIES } from '../../data/categories'
 import LanguageSwitcher from '../LanguageSwitcher.vue'
@@ -109,4 +115,54 @@ defineEmits<{ search: [] }>()
 const route = useRoute()
 const catOpen = ref(false)
 const mobileOpen = ref(false)
+const categoryRoot = ref<HTMLElement | null>(null)
+const categoryButton = ref<HTMLElement | null>(null)
+const categoryMenu = ref<HTMLElement | null>(null)
+let categoryPointerListenerActive = false
+
+function isPointInsideRect(rect: DOMRect, x: number, y: number) {
+  return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+}
+
+function openCategoryMenu() {
+  catOpen.value = true
+  if (categoryPointerListenerActive || typeof window === 'undefined') return
+  window.addEventListener('pointermove', handleCategoryPointerMove)
+  categoryPointerListenerActive = true
+}
+
+function closeCategoryMenu() {
+  catOpen.value = false
+  if (!categoryPointerListenerActive || typeof window === 'undefined') return
+  window.removeEventListener('pointermove', handleCategoryPointerMove)
+  categoryPointerListenerActive = false
+}
+
+function handleCategoryPointerMove(event: PointerEvent) {
+  if (!catOpen.value) return
+
+  const buttonRect = categoryButton.value?.getBoundingClientRect()
+  const menuRect = categoryMenu.value?.getBoundingClientRect()
+  const rootRect = categoryRoot.value?.getBoundingClientRect()
+
+  const isInsideButton = buttonRect ? isPointInsideRect(buttonRect, event.clientX, event.clientY) : false
+  const isInsideMenu = menuRect ? isPointInsideRect(menuRect, event.clientX, event.clientY) : false
+  const isInsideRoot = rootRect ? isPointInsideRect(rootRect, event.clientX, event.clientY) : false
+
+  if (isInsideButton || isInsideMenu || isInsideRoot) return
+  closeCategoryMenu()
+}
+
+onBeforeUnmount(closeCategoryMenu)
 </script>
+
+<style scoped>
+.site-category-menu {
+  top: 100%;
+  padding-top: 10px;
+}
+
+.site-category-menu__panel {
+  position: relative;
+}
+</style>

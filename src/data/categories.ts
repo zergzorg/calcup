@@ -20,7 +20,10 @@ export const CATEGORIES: CategoryMeta[] = [
   {
     slug: 'construction',
     title: { ru: 'Строительство', en: 'Construction' },
-    description: { ru: 'Кирпич, бетон, краска, плитка', en: 'Brick, concrete, paint, tiles' },
+    description: {
+      ru: 'Материалы для ремонта, отделки и строительства',
+      en: 'Materials for renovation, finishing and construction',
+    },
     icon: '🏗️',
     color: '#f59e0b',
     path: '/construction',

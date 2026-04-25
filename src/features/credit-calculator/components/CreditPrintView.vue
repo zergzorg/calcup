@@ -1,9 +1,14 @@
 <template>
   <section class="credit-print-view" aria-label="Печатная форма расчета кредита">
-    <div class="print-watermark">{{ watermark }}</div>
     <header class="print-header">
-      <img :src="logoSrc" alt="Calcup" />
-      <div>
+      <div class="print-brand">
+        <img src="/calcup.svg" alt="" aria-hidden="true" />
+        <div>
+          <strong>Calcup</strong>
+          <span>calcup.ru</span>
+        </div>
+      </div>
+      <div class="print-header-title">
         <p>{{ t('credit.print.document') }}</p>
         <h2>{{ t('credit.title') }}</h2>
       </div>
@@ -72,11 +77,7 @@ import { formatMoney } from '../lib/money';
 const props = withDefaults(defineProps<{
   input: CreditInput;
   result: CreditCalculationResult;
-  logoSrc?: string;
-  watermark?: string;
 }>(), {
-  logoSrc: '/calcup.svg',
-  watermark: 'calcup.ru',
 });
 
 const { t, locale } = useI18n();

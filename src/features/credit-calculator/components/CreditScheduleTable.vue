@@ -5,9 +5,6 @@
         <span>{{ t('credit.schedule.eyebrow') }}</span>
         <h2>{{ t('credit.schedule.title') }}</h2>
       </div>
-      <button class="credit-button ghost" type="button" @click="expanded = !expanded">
-        {{ expanded ? t('credit.schedule.collapse') : t('credit.schedule.expand') }}
-      </button>
     </div>
 
     <div class="credit-table-wrap">
@@ -36,6 +33,10 @@
         </tbody>
       </table>
     </div>
+
+    <button v-if="canToggle" class="credit-button ghost credit-schedule-toggle" type="button" @click="expanded = !expanded">
+      {{ expanded ? t('credit.schedule.collapse') : t('credit.schedule.expand') }}
+    </button>
   </section>
 </template>
 
@@ -48,11 +49,14 @@ import { formatMoney } from '../lib/money';
 
 const props = defineProps<{
   items: PaymentScheduleItem[];
+  termMonths: number;
 }>();
 
 const { t, locale } = useI18n();
 const expanded = ref(false);
-const visibleItems = computed(() => expanded.value ? props.items : props.items.slice(0, 12));
+const visibleRowLimit = 60;
+const canToggle = computed(() => props.termMonths > visibleRowLimit && props.items.length > visibleRowLimit);
+const visibleItems = computed(() => canToggle.value && !expanded.value ? props.items.slice(0, visibleRowLimit) : props.items);
 const money = (value: number) => formatMoney(value, locale.value);
 const date = (value: string) => formatDisplayDate(value, locale.value);
 </script>

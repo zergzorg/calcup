@@ -1,0 +1,580 @@
+/*
+  Calcup calculator design system
+
+  This is the single visual contract for calculator pages. New calculators must
+  follow the existing class shape: <prefix>-page, <prefix>-heading,
+  <prefix>-workspace, <prefix>-form, <prefix>-field, <prefix>-input-wrap,
+  <prefix>-result, <prefix>-result__row, <prefix>-formula, <prefix>-toggle.
+
+  Visual standard:
+  - Layout: title block, two-column workspace, form on the left, sticky result
+    panel on the right. Collapse to one column below 960px.
+  - Surfaces: 8px radius, #d7e3ea border, #fbfdff panel background.
+  - Controls: 46px min height, 8px radius, white fill, #cbd7e6 border,
+    teal focus ring. Text fields, selects, chips, radios, checkboxes and
+    switches use the same border, radius and state colors.
+  - Result panel: uppercase label, one main value, row dividers, muted formula
+    block. Main result values are dark; only secondary accents are teal.
+*/
+
+:root {
+  --calc-accent: #0d9488;
+  --calc-accent-strong: #0f766e;
+  --calc-accent-soft: #ecfdf5;
+  --calc-text: #111827;
+  --calc-text-soft: #27364a;
+  --calc-muted: #526174;
+  --calc-muted-2: #64748b;
+  --calc-muted-3: #94a3b8;
+  --calc-border: #d7e3ea;
+  --calc-control-border: #cbd7e6;
+  --calc-surface: #fbfdff;
+  --calc-control: #ffffff;
+  --calc-note: #eef8f6;
+  --calc-warning-border: #facc15;
+  --calc-warning-bg: #fffbeb;
+  --calc-warning-text: #7c4a03;
+  --calc-radius: 8px;
+  --calc-control-height: 46px;
+  --calc-panel-pad: 24px;
+}
+
+.calculator-view--credit {
+  background: transparent !important;
+  width: min(80rem, 100%) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding: 2rem 1rem !important;
+}
+
+.calculator-view--credit :is(.calculator-view__breadcrumb, .calculator-view__breadcrumb a, .calculator-view__breadcrumb span) {
+  color: #64748b !important;
+}
+
+.calculator-view--credit .calculator-view__breadcrumb span[aria-current="page"] {
+  color: #27364a !important;
+}
+
+.calculator-view :is(
+  [class$="-page"],
+  .credit-page
+) {
+  display: grid !important;
+  gap: 24px !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--calc-text) !important;
+  box-sizing: border-box !important;
+}
+
+.calculator-view :is([class$="-heading"], .credit-hero) {
+  max-width: 760px !important;
+}
+
+.calculator-view :is([class$="-eyebrow"], [class$="-result__label"], .credit-hero > p:first-of-type, .credit-section-title span) {
+  margin: 0 0 10px !important;
+  color: var(--calc-accent) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.calculator-view :is([class$="-heading"], .credit-hero) h1 {
+  margin: 0 !important;
+  max-width: 900px !important;
+  color: var(--calc-text) !important;
+  font-size: 3.25rem !important;
+  line-height: 1.05 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+
+.calculator-view :is([class$="-heading"], .credit-hero) p:not([class$="-eyebrow"]):not(:first-of-type),
+.calculator-view .credit-intro {
+  margin: 14px 0 0 !important;
+  color: var(--calc-muted) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.45 !important;
+}
+
+.calculator-view :is([class$="-workspace"], .credit-top) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px) !important;
+  gap: 20px !important;
+  align-items: start !important;
+  margin: 0 !important;
+}
+
+.calculator-view .credit-top {
+  grid-template-columns: 1fr !important;
+}
+
+.calculator-view :is(.credit-workspace__main, .credit-workspace__summary) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 20px !important;
+  min-width: 0 !important;
+}
+
+.calculator-view .credit-workspace__summary {
+  position: sticky !important;
+  top: 88px !important;
+  align-self: start !important;
+  align-content: start !important;
+}
+
+.calculator-view :is(
+  form[class$="-form"],
+  [class$="-result"],
+  .credit-panel,
+  .credit-result-card,
+  .credit-print-actions
+) {
+  border: 1px solid var(--calc-border) !important;
+  border-radius: var(--calc-radius) !important;
+  background: var(--calc-surface) !important;
+  box-shadow: none !important;
+  color: var(--calc-text) !important;
+  backdrop-filter: none !important;
+}
+
+.calculator-view :is(form[class$="-form"], .credit-panel, .credit-print-actions) {
+  display: grid !important;
+  align-content: start !important;
+  gap: 20px !important;
+  padding: var(--calc-panel-pad) !important;
+}
+
+.calculator-view :is([class$="-result"]) {
+  position: sticky !important;
+  top: 88px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  min-height: 180px !important;
+  padding: var(--calc-panel-pad) !important;
+}
+
+.calculator-view .credit-result {
+  position: static !important;
+  top: auto !important;
+}
+
+.calculator-view :is([class$="-section"], [class$="-form__group"]) {
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.calculator-view :is([class$="-section"], [class$="-form__group"]) :is(h2, h3),
+.calculator-view :is(.credit-section-title h2, .credit-note h2) {
+  margin: 0 !important;
+  color: var(--calc-text) !important;
+  font-size: 1.08rem !important;
+  line-height: 1.2 !important;
+  font-weight: 750 !important;
+}
+
+.calculator-view :is([class$="-section__header"], [class$="-section__header--tight"]) p,
+.calculator-view :is([class$="-note"], .credit-muted, .credit-warning, .credit-note p) {
+  margin: 0 !important;
+  color: var(--calc-muted-2) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.45 !important;
+}
+
+.calculator-view :is([class$="-warning-note"], [class$="-warning"], .wallpaper-note) {
+  border: 1px solid var(--calc-warning-border) !important;
+  border-radius: var(--calc-radius) !important;
+  background: var(--calc-warning-bg) !important;
+  color: var(--calc-warning-text) !important;
+  padding: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.calculator-view :is(
+  [class$="-field"],
+  .credit-field,
+  .credit-early-item
+) {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  color: var(--calc-text-soft) !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+.calculator-view :is([class$="-field"], .credit-field) :is(label, [class$="-field__label"], .credit-field-heading) {
+  margin: 0 !important;
+  color: var(--calc-text-soft) !important;
+  font-size: 0.92rem !important;
+  font-weight: 750 !important;
+  line-height: 1.25 !important;
+}
+
+.calculator-view :is(
+  [class$="-field"] input:not([type="radio"]):not([type="checkbox"]),
+  [class$="-field"] select,
+  [class*="-input-wrap"],
+  .credit-field input,
+  .credit-field select,
+  .credit-early-item input,
+  .credit-early-item select
+) {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: var(--calc-control-height) !important;
+  height: auto !important;
+  border: 1px solid var(--calc-control-border) !important;
+  border-radius: var(--calc-radius) !important;
+  background: var(--calc-control) !important;
+  color: var(--calc-text) !important;
+  font: inherit !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s !important;
+}
+
+.calculator-view :is([class$="-field"] input:not([type="radio"]):not([type="checkbox"]), [class$="-field"] select, .credit-field input, .credit-field select, .credit-early-item input, .credit-early-item select) {
+  padding: 0 14px !important;
+  outline: none !important;
+}
+
+.calculator-view [class*="-input-wrap"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.calculator-view [class*="-input-wrap"] input {
+  width: 100% !important;
+  min-height: calc(var(--calc-control-height) - 2px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 14px !important;
+  outline: 0 !important;
+}
+
+.calculator-view [class*="-input-wrap"] span,
+.calculator-view :is([class$="-unit"], [class$="-currency"]) {
+  padding: 0 14px !important;
+  color: var(--calc-muted-2) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  user-select: none !important;
+}
+
+.calculator-view :is(
+  [class$="-field"] input:not([type="radio"]):not([type="checkbox"]):focus,
+  [class$="-field"] select:focus,
+  [class*="-input-wrap"]:focus-within,
+  .credit-field input:focus,
+  .credit-field select:focus,
+  .credit-early-item input:focus,
+  .credit-early-item select:focus
+) {
+  border-color: var(--calc-accent) !important;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12) !important;
+  outline: none !important;
+}
+
+.calculator-view :is(
+  input[aria-invalid="true"],
+  [class*="-input-wrap--error"],
+  [class*="-input-wrap"]:has(input[aria-invalid="true"])
+) {
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+}
+
+.calculator-view :is([class$="-error"], .credit-field small) {
+  margin: 0 !important;
+  color: #b91c1c !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+}
+
+.calculator-view :is([class$="-grid"], [class$="-unit-grid"], .credit-form-grid, .credit-result-grid, .credit-early-form, .credit-early-item) {
+  display: grid !important;
+  gap: 12px !important;
+  align-items: end !important;
+}
+
+.calculator-view :is([class$="-grid--two"], .credit-early-form) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.calculator-view :is([class$="-grid--three"], .credit-form-grid, .credit-result-grid) {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.calculator-view :is([class$="-unit-grid"], [class$="-openings__row"]) {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+}
+
+.calculator-view :is(
+  label[class*="-mode-option"],
+  label[class*="-rate-option"],
+  button[class$="-chip"],
+  button[class$="-swap"],
+  .credit-button,
+  .credit-icon-button
+) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 42px !important;
+  border: 1px solid var(--calc-control-border) !important;
+  border-radius: var(--calc-radius) !important;
+  background: var(--calc-control) !important;
+  color: var(--calc-text-soft) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s, background 0.15s, color 0.15s !important;
+}
+
+.calculator-view :is(
+  [class*="--active"],
+  label[class*="-mode-option"]:has(input:checked),
+  label[class*="-rate-option"]:has(input:checked)
+) {
+  border-color: var(--calc-accent) !important;
+  background: #ecfeff !important;
+  color: var(--calc-accent-strong) !important;
+}
+
+.calculator-view :is(button[class$="-swap"], .credit-icon-button) {
+  width: 46px !important;
+  min-width: 46px !important;
+  padding: 0 !important;
+}
+
+.calculator-view :is([class$="-toggle"], [class$="-toggle-row"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: var(--calc-text-soft) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+}
+
+.calculator-view :is([class$="-toggle"] input[type="checkbox"], [class$="-toggle-row"] input[type="checkbox"]) {
+  width: 1.08rem !important;
+  height: 1.08rem !important;
+  accent-color: var(--calc-accent) !important;
+}
+
+.calculator-view :is([class$="-toggle__control"], [class$="-toggle__mark"]) {
+  width: 42px !important;
+  height: 24px !important;
+  border: 1px solid var(--calc-control-border) !important;
+  border-radius: 999px !important;
+  background: #e2e8f0 !important;
+}
+
+.calculator-view [class$="-toggle__control"]::after,
+.calculator-view [class$="-toggle__mark"]::after {
+  width: 18px !important;
+  height: 18px !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18) !important;
+}
+
+.calculator-view :is([class$="-toggle"] input:checked + [class$="-toggle__control"], [class$="-toggle"] input:checked ~ [class$="-toggle__mark"]) {
+  border-color: var(--calc-accent) !important;
+  background: var(--calc-accent) !important;
+}
+
+.calculator-view :is([class$="-result__label"]) {
+  color: var(--calc-accent) !important;
+}
+
+.calculator-view [class$="-result__total"] {
+  display: grid !important;
+  gap: 6px !important;
+  margin: 0 0 14px !important;
+}
+
+.calculator-view [class$="-result__total"] span {
+  margin: 0 !important;
+  color: var(--calc-muted) !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+}
+
+.calculator-view :is([class$="-result__value"], [class$="-result__big"], [class$="-result__total"] strong, [class$="-result__hero"] strong) {
+  color: var(--calc-text) !important;
+  font-size: 2.5rem !important;
+  font-weight: 850 !important;
+  line-height: 1.08 !important;
+  overflow-wrap: anywhere !important;
+}
+
+.calculator-view :is([class$="-result__unit"], [class$="-result__summary"], [class$="-result__direction"], [class$="-result__empty"], [class$="-result__hero"] span, [class$="-result__hero"] p) {
+  margin: 10px 0 0 !important;
+  color: var(--calc-muted-2) !important;
+  font-size: 0.95rem !important;
+}
+
+.calculator-view :is([class$="-result__rows"], [class$="-breakdown"]) {
+  display: grid !important;
+  gap: 0 !important;
+  margin: 12px 0 0 !important;
+}
+
+.calculator-view :is([class$="-result__row"], [class$="-breakdown"] > div) {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  border-bottom: 1px solid #e2eaf2 !important;
+  padding: 10px 0 !important;
+}
+
+.calculator-view :is([class$="-result__row-label"], [class$="-breakdown"] dt, [class$="-result__row"] > span:first-child) {
+  color: var(--calc-muted) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+}
+
+.calculator-view :is([class$="-result__row-value"], [class$="-breakdown"] dd, [class$="-result__row"] strong, [class$="-result__row"] > span:last-child) {
+  margin: 0 !important;
+  color: var(--calc-text) !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+.calculator-view :is([class$="-formula"], [class$="-result__formula"]) {
+  display: grid !important;
+  gap: 0.4rem !important;
+  margin: 18px 0 0 !important;
+  border: 0 !important;
+  border-radius: var(--calc-radius) !important;
+  background: var(--calc-note) !important;
+  color: #31544f !important;
+  padding: 12px !important;
+  font-family: inherit !important;
+  font-size: 0.88rem !important;
+  line-height: 1.45 !important;
+}
+
+.calculator-view :is([class$="-popular"]) {
+  max-width: 760px !important;
+}
+
+.calculator-view :is([class$="-popular"]) h2 {
+  margin: 0 0 14px !important;
+  color: var(--calc-text-soft) !important;
+  font-size: 1.08rem !important;
+  font-weight: 750 !important;
+}
+
+.calculator-view :is([class$="-popular"]) ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.calculator-view :is([class$="-popular"]) li {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  background: #f8fafc !important;
+  color: #475569 !important;
+  padding: 8px 12px !important;
+  font-size: 0.9rem !important;
+}
+
+.calculator-view .credit-table-wrap {
+  border: 1px solid #e2eaf2 !important;
+  border-radius: var(--calc-radius) !important;
+  background: #fff !important;
+}
+
+.calculator-view .credit-table-wrap th,
+.calculator-view .credit-table-wrap td {
+  border-bottom: 1px solid #e2eaf2 !important;
+  color: var(--calc-text-soft) !important;
+  padding: 12px 10px !important;
+}
+
+.calculator-view .credit-table-wrap th {
+  color: var(--calc-muted-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+}
+
+.calculator-view .credit-schedule-toggle {
+  width: 100% !important;
+  margin-top: 12px !important;
+}
+
+.calculator-view .credit-home-link,
+.calculator-view .credit-side-column {
+  display: none !important;
+}
+
+@media (max-width: 960px) {
+  .calculator-view :is([class$="-workspace"], .credit-top) {
+    grid-template-columns: 1fr !important;
+  }
+
+  .calculator-view [class$="-result"] {
+    position: static !important;
+  }
+
+  .calculator-view .credit-workspace__summary {
+    position: static !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --calc-panel-pad: 18px;
+  }
+
+  .calculator-view :is([class$="-page"], .credit-page) {
+    gap: 20px !important;
+  }
+
+  .calculator-view--credit {
+    padding: 1.5rem 1rem 2.5rem !important;
+  }
+
+  .calculator-view :is([class$="-heading"], .credit-hero) h1 {
+    font-size: 2.15rem !important;
+  }
+
+  .calculator-view :is([class$="-heading"], .credit-hero) p:not([class$="-eyebrow"]):not(:first-of-type),
+  .calculator-view .credit-intro {
+    font-size: 1rem !important;
+  }
+
+  .calculator-view :is([class$="-grid--two"], [class$="-grid--three"], [class$="-unit-grid"], [class$="-openings__row"], .credit-form-grid, .credit-result-grid, .credit-early-form, .credit-early-item) {
+    grid-template-columns: 1fr !important;
+  }
+
+  .calculator-view :is(button[class$="-swap"], .credit-icon-button) {
+    justify-self: center !important;
+    transform: rotate(90deg) !important;
+  }
+
+  .calculator-view :is([class$="-result__value"], [class$="-result__big"], [class$="-result__total"] strong, [class$="-result__hero"] strong) {
+    font-size: 2rem !important;
+  }
+}

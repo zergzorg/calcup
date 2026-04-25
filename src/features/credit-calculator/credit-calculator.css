@@ -397,21 +397,41 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm;
+    margin: 10mm;
   }
 
+  html,
   body,
   #app {
     background: #fff !important;
     color: #111 !important;
     overflow: visible !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
   }
 
+  body:has(.credit-print-view) #app > div > header,
+  body:has(.credit-print-view) #app > div > footer,
+  body:has(.credit-print-view) .calculator-view > :not(.credit-page),
+  body:has(.credit-print-view) .calculator-view__breadcrumb,
+  body:has(.credit-print-view) .lang-container,
+  body:has(.credit-print-view) .desk-controls,
+  body:has(.credit-print-view) .credit-page > :not(.credit-print-view) {
+    display: none !important;
+  }
+
+  body:has(.credit-print-view) .calculator-view,
+  body:has(.credit-print-view) main,
   .desktop-layout,
   .desk-surface {
     width: auto !important;
     height: auto !important;
     min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: visible !important;
     background: #fff !important;
     box-shadow: none !important;
@@ -421,34 +441,26 @@
     transform: none !important;
   }
 
-  .lang-container,
-  .desk-controls,
-  .credit-page > :not(.credit-print-view) {
-    display: none !important;
-  }
-
   .credit-page {
-    width: auto;
-    margin: 0;
-    padding: 0;
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #111 !important;
   }
 
   .credit-print-view {
-    display: block;
-    position: relative;
-    color: #171717;
-    font: 10px/1.34 Arial, sans-serif;
+    display: block !important;
+    position: static !important;
+    box-sizing: border-box;
+    width: 100%;
+    color: #111;
+    font: 9px/1.28 Arial, sans-serif;
   }
 
   .print-watermark {
-    position: fixed;
-    inset: 38% auto auto 10%;
-    transform: rotate(-28deg);
-    color: rgba(0, 0, 0, 0.055);
-    font-size: 86px;
-    font-weight: 900;
-    letter-spacing: 0;
-    z-index: 0;
+    display: none !important;
   }
 
   .print-header,
@@ -462,14 +474,12 @@
 
   .print-header {
     display: flex;
-    gap: 14px;
+    justify-content: space-between;
+    gap: 12px;
     align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .print-header img {
-    width: 42px;
-    height: 42px;
+    margin: 0 0 9px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #111827;
   }
 
   .print-header p,
@@ -477,36 +487,98 @@
     margin: 0;
   }
 
+  .print-brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 84px;
+  }
+
+  .print-brand img {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .print-brand strong,
+  .print-brand span {
+    display: block;
+    line-height: 1.1;
+  }
+
+  .print-brand strong {
+    color: #111827;
+    font-size: 13px;
+  }
+
+  .print-brand span {
+    margin-top: 2px;
+    color: #667085;
+    font-size: 7.6px;
+    letter-spacing: 0;
+  }
+
+  .print-header-title {
+    text-align: right;
+  }
+
   .print-header h2 {
-    font-size: 20px;
+    font-size: 17px;
+    line-height: 1.12;
+  }
+
+  .print-header p {
+    margin-bottom: 2px;
+    color: #2f7f7a;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   .print-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-bottom: 12px;
+    gap: 5px;
+    margin-bottom: 10px;
   }
 
   .print-grid div {
-    border: 1px solid #d7d7d7;
-    padding: 6px;
+    min-width: 0;
+    border: 1px solid #d9dee8;
+    border-radius: 4px;
+    padding: 5px 6px;
+    break-inside: avoid;
   }
 
   .print-grid span {
     display: block;
-    color: #666;
+    margin-bottom: 2px;
+    color: #667085;
+    font-size: 7.5px;
+  }
+
+  .print-grid strong {
+    display: block;
+    color: #111827;
+    font-size: 10px;
+    line-height: 1.15;
+    white-space: nowrap;
   }
 
   .credit-print-view h3 {
-    margin: 12px 0 6px;
-    font-size: 13px;
+    margin: 9px 0 4px;
+    color: #111827;
+    font-size: 11px;
+    line-height: 1.2;
+    break-after: avoid;
   }
 
   .print-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
     page-break-inside: auto;
+    font-size: 7.6px;
   }
 
   .print-table.compact {
@@ -523,9 +595,34 @@
 
   .print-table th,
   .print-table td {
-    border: 1px solid #d7d7d7;
-    padding: 4px;
+    border: 1px solid #d9dee8;
+    padding: 3px 3.5px;
     text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  .print-table th {
+    color: #667085;
+    background: #f8fafc;
+    font-size: 6.8px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .print-table th:nth-child(1),
+  .print-table td:nth-child(1) {
+    width: 6%;
+  }
+
+  .print-table th:nth-child(2),
+  .print-table td:nth-child(2) {
+    width: 15%;
+  }
+
+  .print-table th:nth-child(n + 3),
+  .print-table td:nth-child(n + 3) {
+    width: 15.8%;
   }
 
   .print-table th:first-child,
@@ -538,5 +635,11 @@
   .print-muted,
   .print-disclaimer {
     color: #666;
+  }
+
+  .print-disclaimer {
+    margin: 8px 0 0;
+    font-size: 7.4px;
+    line-height: 1.35;
   }
 }

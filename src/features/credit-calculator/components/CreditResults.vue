@@ -1,39 +1,39 @@
 <template>
-  <section class="credit-panel credit-results" :aria-label="t('credit.results.title')">
-    <div class="credit-section-title">
-      <span>{{ t('credit.results.eyebrow') }}</span>
-      <h2>{{ t('credit.results.title') }}</h2>
-    </div>
+  <section class="credit-result" :aria-label="t('credit.results.title')" aria-live="polite">
+    <p class="credit-result__label">{{ t('credit.results.eyebrow') }}</p>
 
     <div v-if="hasIssues" class="credit-warning">
       {{ t('credit.results.fixErrors') }}
     </div>
 
-    <div v-else class="credit-result-grid">
-      <article class="credit-result-card primary">
+    <div v-else>
+      <div class="credit-result__total">
         <span>{{ paymentLabel }}</span>
         <strong>{{ money(result.monthlyPayment) }}</strong>
-      </article>
-      <article class="credit-result-card">
-        <span>{{ t('credit.results.overpayment') }}</span>
-        <strong>{{ money(result.overpayment) }}</strong>
-      </article>
-      <article class="credit-result-card">
-        <span>{{ t('credit.results.totalPayment') }}</span>
-        <strong>{{ money(result.totalPayment) }}</strong>
-      </article>
-      <article class="credit-result-card">
-        <span>{{ t('credit.results.payoffDate') }}</span>
-        <strong>{{ date(result.payoffDate) }}</strong>
-      </article>
-      <article class="credit-result-card">
-        <span>{{ t('credit.results.interestSavings') }}</span>
-        <strong>{{ money(result.interestSavings) }}</strong>
-      </article>
-      <article class="credit-result-card">
-        <span>{{ t('credit.results.paymentCount') }}</span>
-        <strong>{{ result.paymentCount }}</strong>
-      </article>
+      </div>
+
+      <div class="credit-result__rows">
+        <div class="credit-result__row">
+          <span>{{ t('credit.results.overpayment') }}</span>
+          <strong>{{ money(result.overpayment) }}</strong>
+        </div>
+        <div class="credit-result__row">
+          <span>{{ t('credit.results.totalPayment') }}</span>
+          <strong>{{ money(result.totalPayment) }}</strong>
+        </div>
+        <div class="credit-result__row">
+          <span>{{ t('credit.results.payoffDate') }}</span>
+          <strong>{{ date(result.payoffDate) }}</strong>
+        </div>
+        <div class="credit-result__row">
+          <span>{{ t('credit.results.interestSavings') }}</span>
+          <strong>{{ money(result.interestSavings) }}</strong>
+        </div>
+        <div class="credit-result__row">
+          <span>{{ t('credit.results.paymentCount') }}</span>
+          <strong>{{ result.paymentCount }}</strong>
+        </div>
+      </div>
     </div>
   </section>
 </template>

@@ -1,30 +1,26 @@
 <template>
-  <main class="credit-page">
-    <div class="credit-top">
-      <section class="credit-hero" aria-labelledby="credit-title">
-        <a class="credit-home-link" href="/">{{ t('credit.backHome') }}</a>
-        <p>{{ t('credit.eyebrow') }}</p>
-        <h1 id="credit-title">{{ t('credit.title') }}</h1>
-        <p class="credit-intro">{{ t('credit.intro') }}</p>
-      </section>
-      <aside class="credit-side-column">
-        <CreditPrintActions />
-        <div class="credit-panel credit-note">
-          <h2>{{ t('credit.note.title') }}</h2>
-          <p>{{ t('credit.note.body') }}</p>
-        </div>
-      </aside>
-    </div>
+  <main class="credit-page" aria-labelledby="credit-title">
+    <section class="credit-heading">
+      <p class="credit-eyebrow">{{ t('credit.eyebrow') }}</p>
+      <h1 id="credit-title">{{ t('credit.title') }}</h1>
+      <p>{{ t('credit.intro') }}</p>
+    </section>
 
-    <div class="credit-main-column">
-      <CreditLoanForm v-model="input" :issues="issues" />
-      <CreditResults :result="result" :has-issues="issues.length > 0" :payment-type="input.paymentType" />
-      <CreditEarlyRepayments
-        :repayments="input.earlyRepayments"
-        :first-payment-date="input.firstPaymentDate"
-        @change="setEarlyRepayments"
-      />
-      <CreditScheduleTable :items="result.schedule" />
+    <div class="credit-workspace">
+      <div class="credit-workspace__main">
+        <CreditLoanForm v-model="input" :issues="issues" />
+        <CreditEarlyRepayments
+          :repayments="input.earlyRepayments"
+          :first-payment-date="input.firstPaymentDate"
+          @change="setEarlyRepayments"
+        />
+        <CreditScheduleTable :items="result.schedule" :term-months="input.termMonths" />
+      </div>
+
+      <aside class="credit-workspace__summary">
+        <CreditResults :result="result" :has-issues="issues.length > 0" :payment-type="input.paymentType" />
+        <CreditPrintActions />
+      </aside>
     </div>
 
     <CreditPrintView :input="input" :result="result" />
@@ -45,6 +41,7 @@ import { defaultFirstPaymentDate, todayIsoDate } from '../lib/date';
 import { validateCreditInput } from '../lib/validation';
 import type { CreditInput, EarlyRepayment } from '../types/credit';
 import '../credit-calculator.css';
+import '../../calculator-design-system.css';
 
 const STORAGE_KEY = 'calcup_credit_calculator';
 
