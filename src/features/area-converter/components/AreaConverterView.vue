@@ -68,6 +68,9 @@
             {{ formatNumber(value) }} {{ t(`area.unitShort.${fromUnit}`) }}
             = {{ formatNumber(result) }} {{ t(`area.unitShort.${toUnit}`) }}
           </p>
+          <p v-if="squareSide" class="area-result__side">
+            {{ t('area.result.squareSide', { value: formatSide(squareSide.val), unit: squareSide.unit }) }}
+          </p>
         </template>
 
         <p v-else class="area-result__empty">{{ t('area.result.empty') }}</p>
@@ -95,6 +98,18 @@ import type { AreaUnit } from '../types/area'
 const { t, n } = useI18n()
 const { value, fromUnit, toUnit, units, issue, result, swapUnits } = useAreaConverter()
 
+// Сторона квадрата с данной площадью (всегда в метрах с авто-переводом единицы)
+const squareSide = computed(() => {
+  if (result.value === null || value.value === 0) return null
+  const sqMeters = convertArea(value.value, fromUnit.value, 'squareMeter')
+  if (sqMeters === null || sqMeters <= 0) return null
+  const sideM = Math.sqrt(sqMeters)
+  if (sideM < 0.001) return { val: sideM * 1000, unit: t('area.sideUnit.mm') }
+  if (sideM < 1) return { val: sideM * 100, unit: t('area.sideUnit.cm') }
+  if (sideM >= 1000) return { val: sideM / 1000, unit: t('area.sideUnit.km') }
+  return { val: sideM, unit: t('area.sideUnit.m') }
+})
+
 const popularPairs: Array<[number, AreaUnit, AreaUnit]> = [
   [1, 'squareMeter', 'squareFoot'],
   [1, 'hectare', 'squareMeter'],
@@ -120,6 +135,10 @@ const popularConversions = computed(() =>
 
 function formatNumber(v: number): string {
   return n(v, { maximumFractionDigits: 8, minimumFractionDigits: 0 })
+}
+
+function formatSide(v: number): string {
+  return n(v, { maximumFractionDigits: 4, minimumFractionDigits: 0 })
 }
 </script>
 
@@ -286,6 +305,14 @@ function formatNumber(v: number): string {
   font-size: 0.9rem;
   color: #526174;
   overflow-wrap: anywhere;
+}
+
+.area-result__side {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #64748b;
 }
 
 .area-result__empty {

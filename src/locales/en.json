@@ -694,7 +694,8 @@
     "result": {
       "label": "Result",
       "empty": "Enter an area value.",
-      "summary": "{value} {from} = {result} {to}"
+      "summary": "{value} {from} = {result} {to}",
+      "squareSide": "Side of a square with this area: {value} {unit}"
     },
     "popular": {
       "title": "Popular conversions",
@@ -705,6 +706,12 @@
         "required": "Enter an area value.",
         "nonNegative": "Area cannot be negative."
       }
+    },
+    "sideUnit": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "km": "km"
     }
   }
 }

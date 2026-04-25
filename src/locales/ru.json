@@ -694,7 +694,8 @@
     "result": {
       "label": "Результат",
       "empty": "Введите значение площади.",
-      "summary": "{value} {from} = {result} {to}"
+      "summary": "{value} {from} = {result} {to}",
+      "squareSide": "Сторона квадрата с такой площадью: {value} {unit}"
     },
     "popular": {
       "title": "Популярные значения",
@@ -705,6 +706,12 @@
         "required": "Введите значение площади.",
         "nonNegative": "Площадь не может быть отрицательной."
       }
+    },
+    "sideUnit": {
+      "mm": "мм",
+      "cm": "см",
+      "m": "м",
+      "km": "км"
     }
   }
 }
