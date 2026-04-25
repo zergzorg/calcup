@@ -657,3 +657,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/construction/insulation`, `/clothing/clothing-size` или `/transport/ev-range`.
+
+### Итерация 19: `/construction/insulation`
+
+Что выбрано:
+
+- Продолжить строительный P1 roadmap и реализовать `/construction/insulation`.
+
+Что изменено:
+
+- Создан `src/features/insulation-calculator/`.
+- Добавлен расчёт плит утеплителя, упаковок, покупаемой площади, объёма, остатка и стоимости.
+- Добавлены пресеты размеров плиты 1.2×0.6 / 1.0×0.6 / 1.2×0.5 м и толщины 50 / 100 / 150 мм.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/insulation/ /tmp/calcup-insulation-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/insulation/ /tmp/calcup-insulation-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/insulation/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 33 files / 366 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/insulation/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- d880d93
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/transport/ev-range`, `/clothing/clothing-size` или `/construction/concrete`.

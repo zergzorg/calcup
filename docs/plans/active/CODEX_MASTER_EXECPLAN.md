@@ -34,11 +34,11 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 32.
-- Soon после текущего milestone: 42.
+- Ready после текущего milestone: 33.
+- Soon после текущего milestone: 41.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
-- Категории с малым покрытием, но высоким потенциалом: `construction` (9 ready / 12 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
+- Категории с малым покрытием, но высоким потенциалом: `construction` (10 ready / 11 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
 - UI gap: часть старых калькуляторов содержит локальные стили, но shared design-system перекрывает основной контракт. Новые калькуляторы должны избегать локальных визуальных переопределений.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/putty`.
+Milestone: `construction/insulation`.
 Status: completed.
 
 Критерии готовности:
 
-- `putty` переведён из `soon` в `ready`.
-- Создан `src/features/putty-calculator/`.
+- `insulation` переведён из `soon` в `ready`.
+- Создан `src/features/insulation-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/putty/` добавлен в sitemap.
+- `/construction/insulation/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/putty-calculator/index.ts`
-- `src/features/putty-calculator/components/PuttyCalculatorView.vue`
-- `src/features/putty-calculator/composables/usePuttyCalculator.ts`
-- `src/features/putty-calculator/lib/calculations.ts`
-- `src/features/putty-calculator/lib/calculations.test.ts`
-- `src/features/putty-calculator/types/putty.ts`
+- `src/features/insulation-calculator/index.ts`
+- `src/features/insulation-calculator/components/InsulationCalculatorView.vue`
+- `src/features/insulation-calculator/composables/useInsulationCalculator.ts`
+- `src/features/insulation-calculator/lib/calculations.ts`
+- `src/features/insulation-calculator/lib/calculations.test.ts`
+- `src/features/insulation-calculator/types/insulation.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -109,6 +109,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/drywall`; каталог стал 30 ready / 44 soon, строительный раздел получил седьмой ready-инструмент.
 - 2026-04-26: Реализован `/construction/blocks`; каталог стал 31 ready / 43 soon, строительный раздел получил восьмой ready-инструмент.
 - 2026-04-26: Реализован `/construction/putty`; каталог стал 32 ready / 42 soon, строительный раздел получил девятый ready-инструмент.
+- 2026-04-26: Реализован `/construction/insulation`; каталог стал 33 ready / 41 soon, строительный раздел получил десятый ready-инструмент.
 
 ## Decisions Log
 
@@ -127,6 +128,7 @@ Status: completed.
 - 2026-04-26: Для `drywall` расчёт использует чистую площадь стены, количество слоёв и запас: `sheets = ceil(netArea * layers * (1 + waste / 100) / sheetArea)`. Профиль считается как две направляющие по длине стены и стойки по шагу, саморезы — настраиваемым количеством на лист.
 - 2026-04-26: Для `blocks` расчёт использует лицевую площадь блока: `blocks = ceil(netArea / (blockLength * blockHeight))`, затем добавляется запас. Объём кладки считается по толщине блока, клей — по настраиваемому расходу кг/м².
 - 2026-04-26: Для `putty` расчёт использует настраиваемый расход смеси: `mixKg = netArea * layerThicknessMm * consumptionKgPerM2Mm * (1 + waste / 100)`, затем покупка округляется до целых мешков.
+- 2026-04-26: Для `insulation` расчёт использует площадь плиты и целые упаковки: `boards = ceil(netArea * (1 + waste / 100) / boardArea)`, `packs = ceil(boards / boardsPerPack)`. Объём считается по толщине утеплителя.
 
 ## Risks / Blockers
 
@@ -220,6 +222,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/putty` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/putty/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/putty/` — поля, пресеты, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/insulation` `npm run test` — OK, 33 files / 366 tests.
+- 2026-04-26: Для `/construction/insulation` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/insulation` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/insulation/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/insulation/` — поля, пресеты, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -240,10 +247,21 @@ Status: completed.
 - 1e154e3 — `feat(construction): add drywall calculator`.
 - bcec9ce — `feat(construction): add blocks calculator`.
 - 9c37203 — `feat(construction): add putty calculator`.
+- d880d93 — `feat(construction): add insulation calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/construction/insulation`, `/clothing/clothing-size`, `/transport/ev-range`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/transport/ev-range`, `/clothing/clothing-size`, `/construction/concrete`.
+
+Завершённый milestone `construction/insulation`:
+
+- `insulation` переведён из `soon` в `ready`.
+- Создан `src/features/insulation-calculator/`.
+- Добавлены формулы и unit-тесты для плит, упаковок, площади покупки, объёма, остатка и стоимости.
+- Добавлены RU/EN локали.
+- `/construction/insulation/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Формула: `boards = ceil(netArea * (1 + waste / 100) / boardArea)`, `packs = ceil(boards / boardsPerPack)`.
 
 Завершённый milestone `construction/putty`:
 

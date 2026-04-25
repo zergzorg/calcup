@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.18 расширение строительного раздела
+## Текущая фаза: 5.19 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 32 ready-калькулятора.
-- 42 soon-карточки.
+- 33 ready-калькулятора.
+- 41 soon-карточка.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -47,6 +47,7 @@
 | 5.16 | Калькулятор гипсокартона | /construction/drywall | ✅ ready |
 | 5.17 | Калькулятор газоблока | /construction/blocks | ✅ ready |
 | 5.18 | Калькулятор шпатлёвки | /construction/putty | ✅ ready |
+| 5.19 | Калькулятор утеплителя | /construction/insulation | ✅ ready |
 
 ## Sitemap
 
@@ -56,7 +57,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -65,6 +66,40 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.19) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/insulation`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/insulation-calculator/`.
+- Добавлен расчёт:
+  - площадь работ с вычетом исключаемой зоны;
+  - количество плит утеплителя;
+  - количество упаковок;
+  - покупаемая площадь и остаток;
+  - покупаемый объём по толщине утеплителя;
+  - опциональная стоимость упаковок.
+- Добавлены пресеты размеров плиты 1.2×0.6 / 1.0×0.6 / 1.2×0.5 м.
+- Добавлены пресеты толщины 50 / 100 / 150 мм.
+- Добавлены RU/EN локали `insulation.*`.
+- Registry-запись `insulation` переведена в `ready`.
+- В sitemap добавлен `/construction/insulation/`.
+
+### Проверки
+
+- `npm run test` — OK, `366/366`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/insulation/` title, canonical со slash, `index,follow`;
+  - `/construction/insulation/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/insulation/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
