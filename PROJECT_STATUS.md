@@ -1,6 +1,6 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 4.9 завершена, ожидание Phase 4.10
+## Текущая фаза: 4.10 завершена, ожидание следующей фазы
 
 ## Готовые калькуляторы
 
@@ -16,6 +16,7 @@
 | 4.7 | Чаевые / разделение счёта | /everyday/tips | ✅ ready |
 | 4.8 | Конвертер температуры | /convert/temperature | ✅ ready |
 | 4.9 | Конвертер веса | /convert/weight | ✅ ready |
+| 4.10 | Калькулятор скидки | /everyday/discount | ✅ ready |
 
 ## Sitemap
 
@@ -27,7 +28,18 @@
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /transport/fuel/
 - /datetime/date-diff/
-- /everyday/tips/
+- /everyday/tips/ · /everyday/discount/
+
+---
+
+## Сделано (Фаза 4.10) — 2026-04-25
+
+- `src/features/discount-calculator/` — 4 режима: скидка, наценка, % изменения, исходная цена
+- Быстрые пресеты: 5/10/15/20/25/50% + свой%; side-by-side workspace layout
+- 35 unit-тестов (206/206 всего); Playwright 18/18
+- Registry: `discount` → `status: 'ready'`, `popularity: 80`
+- Sitemap: `/everyday/discount/`
+- Исправлен `v-model` с тернарным оператором (не поддерживается Vue) → два отдельных `v-if`-input
 
 ---
 
@@ -108,7 +120,6 @@
 
 ---
 
-## Ожидает (Phase 4.10)
+## Ожидает
 
-Следующий калькулятор не определён.
-Кандидаты: конвертер площади, объёма, скидка/наценка.
+Следующий калькулятор не определён — ожидание согласования.

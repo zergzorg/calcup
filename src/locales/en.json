@@ -594,5 +594,67 @@
       "pound": "lb",
       "stone": "st"
     }
+  },
+  "discount": {
+    "eyebrow": "Everyday life",
+    "title": "Discount Calculator",
+    "intro": "Calculate the final price after a discount or markup, find the percent change, or recover the original price.",
+    "modes": {
+      "label": "Calculation mode",
+      "discount": "Discount",
+      "markup": "Markup",
+      "findPercent": "Percent change",
+      "findOriginal": "Original price"
+    },
+    "form": {
+      "originalPrice": "Original price",
+      "finalPrice": "Final price",
+      "percent": "Percent",
+      "customPercent": "Custom",
+      "oldPrice": "Old price",
+      "newPrice": "New price"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid numbers.",
+      "discountAmount": "Discount",
+      "markupAmount": "Markup",
+      "finalPrice": "Final price",
+      "originalPrice": "Original price",
+      "direction": {
+        "discount": "decrease",
+        "markup": "increase",
+        "same": "no change"
+      }
+    },
+    "formula": {
+      "discount": "final = price − price × % / 100",
+      "markup": "final = price + price × % / 100",
+      "findPercent": "% = (new − old) / old × 100",
+      "findOriginal": "original = final / (1 − % / 100)"
+    },
+    "validation": {
+      "originalPrice": {
+        "required": "Enter original price.",
+        "nonNegative": "Price must be 0 or greater."
+      },
+      "percent": {
+        "required": "Enter percent.",
+        "nonNegative": "Percent must be 0 or greater.",
+        "lessThan100": "Percent must be less than 100."
+      },
+      "oldPrice": {
+        "required": "Enter old price.",
+        "positive": "Old price must be greater than 0."
+      },
+      "newPrice": {
+        "required": "Enter new price.",
+        "nonNegative": "Price must be 0 or greater."
+      },
+      "finalPrice": {
+        "required": "Enter final price.",
+        "nonNegative": "Price must be 0 or greater."
+      }
+    }
   }
 }
