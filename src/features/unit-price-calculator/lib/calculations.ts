@@ -100,15 +100,19 @@ export function findBestProduct(results: ProductResult[]): ProductResult | null 
 }
 
 export function calculateSavings(bestUnitPrice: number, otherUnitPrice: number): SavingsResult | null {
-  if (!isValidPrice(bestUnitPrice) || !isValidPrice(otherUnitPrice) || otherUnitPrice === 0) return null
+  if (!isValidPrice(bestUnitPrice) || !isValidPrice(otherUnitPrice) || bestUnitPrice === 0) return null
   const savingsPerBaseUnit = otherUnitPrice - bestUnitPrice
   return {
     savingsPerBaseUnit,
-    savingsPercent: savingsPerBaseUnit / otherUnitPrice * 100,
+    savingsPercent: savingsPerBaseUnit / bestUnitPrice * 100,
   }
 }
 
 export function calculateComparison(products: ProductInput[]): ComparisonResult {
+  if (products.some(product => !isValidPrice(toNumber(product.price)))) {
+    return emptyComparison()
+  }
+
   const results = products
     .map(product => calculateProductResult(product))
     .filter((result): result is ProductResult => result !== null)
@@ -138,7 +142,7 @@ export function isValidProduct(product: ProductInput): boolean {
 }
 
 export function isValidPrice(value: number): boolean {
-  return Number.isFinite(value) && value >= 0
+  return Number.isFinite(value) && value > 0
 }
 
 export function isValidAmount(value: number): boolean {
@@ -148,4 +152,14 @@ export function isValidAmount(value: number): boolean {
 function toNumber(value: number | string | null | undefined): number {
   if (value === '' || value === null || value === undefined) return Number.NaN
   return Number(value)
+}
+
+function emptyComparison(): ComparisonResult {
+  return {
+    results: [],
+    canCompare: true,
+    hasMixedGroups: false,
+    winner: null,
+    savingsByProductId: {},
+  }
 }

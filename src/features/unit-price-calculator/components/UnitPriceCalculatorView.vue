@@ -10,21 +10,32 @@
       <form class="unit-form" @submit.prevent>
         <div class="unit-form__top">
           <p>{{ t('unitPrice.form.hint') }}</p>
-          <button type="button" class="unit-add-main" @click="addProduct">
-            {{ t('unitPrice.form.addProduct') }}
-          </button>
+          <div class="unit-form__actions">
+            <label class="unit-common-choice">
+              <span>{{ t('unitPrice.form.comparePrice') }}</span>
+              <select v-model="selectedUnit">
+                <option v-for="unit in unitOptions" :key="unit" :value="unit">
+                  {{ t(`unitPrice.compareUnit.${unit}`) }}
+                </option>
+              </select>
+            </label>
+          </div>
         </div>
 
         <section
           v-for="(product, index) in products"
           :key="product.id"
           class="unit-product"
+          :class="{
+            'unit-product--best': result.winner?.id === product.id,
+            'unit-product--expensive': Boolean(result.savingsByProductId[product.id]),
+          }"
           :aria-labelledby="`unit-product-${product.id}`"
         >
           <div class="unit-product__header">
             <h2 :id="`unit-product-${product.id}`">{{ productTitle(product, index) }}</h2>
             <button
-              v-if="products.length > 1"
+              v-if="products.length > 2"
               type="button"
               class="unit-remove"
               :aria-label="t('unitPrice.form.removeProduct')"
@@ -34,7 +45,7 @@
           </div>
 
           <div class="unit-grid">
-            <div class="unit-field">
+            <div class="unit-field unit-field--name">
               <label :for="`unit-name-${product.id}`">{{ t('unitPrice.form.name') }}</label>
               <input
                 :id="`unit-name-${product.id}`"
@@ -44,7 +55,7 @@
               />
             </div>
 
-            <div class="unit-field">
+            <div class="unit-field unit-field--price">
               <label :for="`unit-price-${product.id}`">{{ t('unitPrice.form.price') }}</label>
               <div class="unit-input-wrap" :class="{ 'unit-input-wrap--error': getIssue(`product.${index}.price`) }">
                 <input
@@ -63,41 +74,45 @@
               </p>
             </div>
 
-            <div class="unit-field">
+            <div class="unit-field unit-field--amount">
               <label :for="`unit-amount-${product.id}`">{{ amountLabel(product.unit) }}</label>
-              <input
-                :id="`unit-amount-${product.id}`"
-                v-model.number="product.amount"
-                type="number"
-                min="0"
-                step="any"
-                inputmode="decimal"
-                :class="{ 'unit-input--error': getIssue(`product.${index}.amount`) }"
-                @blur="touch(`product.${index}.amount`)"
-              />
+              <div class="unit-input-wrap" :class="{ 'unit-input-wrap--error': getIssue(`product.${index}.amount`) }">
+                <input
+                  :id="`unit-amount-${product.id}`"
+                  v-model.number="product.amount"
+                  type="number"
+                  min="0"
+                  step="any"
+                  inputmode="decimal"
+                  @blur="touch(`product.${index}.amount`)"
+                />
+                <span>{{ amountUnitShort(product.unit) }}</span>
+              </div>
               <p v-if="getIssue(`product.${index}.amount`)" class="unit-error">
                 {{ t(getIssue(`product.${index}.amount`)!.messageKey) }}
               </p>
             </div>
 
-            <div class="unit-field">
-              <label :for="`unit-unit-${product.id}`">{{ t('unitPrice.form.unit') }}</label>
-              <select
-                :id="`unit-unit-${product.id}`"
-                v-model="product.unit"
-                :class="{ 'unit-input--error': getIssue(`product.${index}.unit`) }"
-                @blur="touch(`product.${index}.unit`)"
-              >
-                <option v-for="unit in unitOptions" :key="unit" :value="unit">
-                  {{ t(`unitPrice.unit.${unit}`) }}
-                </option>
-              </select>
-              <p v-if="getIssue(`product.${index}.unit`)" class="unit-error">
-                {{ t(getIssue(`product.${index}.unit`)!.messageKey) }}
-              </p>
+            <div class="unit-row-total" aria-live="polite">
+              <template v-if="productResult(product.id)">
+                <strong>{{ unitPriceText(productResult(product.id)!.unitPrice, productResult(product.id)!.displayBaseUnit) }}</strong>
+                <span v-if="result.winner?.id === product.id">{{ t('unitPrice.result.bestBadge') }}</span>
+                <span v-else-if="result.savingsByProductId[product.id]">
+                  {{ savingsText(result.savingsByProductId[product.id].savingsPercent) }}
+                </span>
+              </template>
             </div>
           </div>
         </section>
+
+        <div class="unit-form__footer">
+          <button type="button" class="unit-add-more" @click="addProduct">
+            {{ t('unitPrice.form.addMoreProduct') }}
+          </button>
+          <button type="button" class="unit-clear" @click="clearProducts">
+            {{ t('unitPrice.form.clear') }}
+          </button>
+        </div>
       </form>
 
       <section class="unit-result" aria-live="polite">
@@ -175,6 +190,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useUnitPriceCalculator } from '../composables/useUnitPriceCalculator'
 import type { ProductInput, ProductResult, SavingsResult, UnitPriceUnit } from '../types/unit-price'
@@ -182,13 +198,17 @@ import type { ProductInput, ProductResult, SavingsResult, UnitPriceUnit } from '
 const { t, n, locale } = useI18n()
 const {
   products,
+  selectedUnit,
   unitOptions,
   result,
   touch,
   getIssue,
   addProduct,
   removeProduct,
+  clearProducts,
 } = useUnitPriceCalculator()
+
+const resultsByProductId = computed(() => new Map(result.value.results.map(item => [item.id, item])))
 
 function productTitle(product: ProductInput, index: number): string {
   return product.name.trim() || t('unitPrice.productFallback', { number: index + 1 })
@@ -200,10 +220,18 @@ function amountLabel(unit: UnitPriceUnit): string {
   return t('unitPrice.form.amount')
 }
 
+function amountUnitShort(unit: UnitPriceUnit): string {
+  return t(`unitPrice.unitShort.${unit}`)
+}
+
 function resultTitle(id: string): string {
   const index = products.value.findIndex(product => product.id === id)
   if (index === -1) return t('unitPrice.productFallback', { number: 1 })
   return productTitle(products.value[index], index)
+}
+
+function productResult(id: string): ProductResult | undefined {
+  return resultsByProductId.value.get(id)
 }
 
 function money(value: number): string {
@@ -301,21 +329,79 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
 }
 
 .unit-form__top p {
-  margin: 0;
-  color: #64748b;
-  font-size: 13px;
+  display: none;
 }
 
-.unit-add-main {
-  flex: 0 0 auto;
-  border: 1.5px solid #0d9488;
-  border-radius: 8px;
-  background: #0d9488;
-  padding: 10px 14px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
+.unit-form__actions {
+  display: inline-flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.unit-common-choice {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+  color: #111827;
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.unit-common-choice span {
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+}
+
+.unit-common-choice select {
+  width: auto;
+  min-height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  padding: 0 24px 0 0;
+  color: #0d9488;
+  font: inherit;
   cursor: pointer;
+}
+
+.unit-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.unit-add-more,
+.unit-clear {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  padding: 2px 0;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.unit-add-more {
+  color: #0d9488;
+}
+
+.unit-add-more:hover {
+  color: #0f766e;
+}
+
+.unit-clear {
+  color: #64748b;
+}
+
+.unit-clear:hover {
+  color: #dc2626;
 }
 
 .unit-product {
@@ -325,6 +411,15 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
   border-radius: 8px;
   background: #fff;
   padding: 14px;
+}
+
+.unit-product--best {
+  border-color: #0d9488;
+  background: #eef8f6;
+}
+
+.unit-product--expensive {
+  border-color: #fecaca;
 }
 
 .unit-product__header {
@@ -371,7 +466,7 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
 
 .unit-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -434,6 +529,7 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
 
 .unit-field input:focus,
 .unit-field select:focus,
+.unit-common-choice select:focus,
 .unit-input-wrap:focus-within {
   outline: none;
   border-color: #0d9488;
@@ -562,6 +658,14 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
   font-weight: 800;
 }
 
+.unit-result-item:not(.unit-result-item--best) .unit-result-item__value span {
+  color: #dc2626;
+}
+
+.unit-row-total {
+  display: none;
+}
+
 .unit-formula {
   border-radius: 8px;
   background: #eef8f6;
@@ -625,30 +729,194 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
 }
 
 @media (max-width: 640px) {
+  .unit-page {
+    gap: 12px !important;
+  }
+
+  .unit-heading {
+    display: grid;
+    gap: 6px;
+  }
+
+  .unit-eyebrow {
+    display: none;
+  }
+
   .unit-heading h1 {
-    font-size: 2.1rem;
+    font-size: 1.55rem !important;
+    line-height: 1.02 !important;
   }
 
   .unit-heading p:last-child {
+    display: none;
+  }
+
+  .unit-workspace {
+    gap: 12px !important;
+  }
+
+  .unit-page .unit-form {
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+
+  .unit-page .unit-form__top {
+    display: flex !important;
+    justify-content: flex-end;
+  }
+
+  .unit-page .unit-form__top p {
+    display: none;
+  }
+
+  .unit-page .unit-form__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    align-items: center;
+  }
+
+  .unit-page .unit-common-choice {
+    min-width: 0;
+    gap: 6px;
+    width: 100%;
     font-size: 1rem;
   }
 
-  .unit-form,
-  .unit-result {
-    padding: 16px;
+  .unit-page .unit-common-choice span {
+    flex: 0 0 auto;
   }
 
-  .unit-form__top {
-    display: grid;
-  }
-
-  .unit-add-main {
+  .unit-page .unit-common-choice select {
+    flex: 1 1 auto;
     width: 100%;
+    min-width: 0;
+    min-height: 32px !important;
+    padding: 0 22px 0 0 !important;
+    font-size: 1rem !important;
   }
 
-  .unit-grid,
-  .unit-result-item,
-  .unit-install__grid {
+  .unit-page .unit-form__footer {
+    gap: 10px;
+  }
+
+  .unit-page .unit-add-more,
+  .unit-page .unit-clear {
+    justify-self: start;
+    font-size: 0.94rem;
+  }
+
+  .unit-page .unit-product {
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+
+  .unit-page .unit-product__header {
+    min-height: 30px;
+  }
+
+  .unit-page .unit-product h2 {
+    font-size: 0.95rem;
+  }
+
+  .unit-page .unit-remove {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .unit-page .unit-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr) !important;
+    gap: 7px !important;
+    align-items: start !important;
+  }
+
+  .unit-page .unit-field {
+    gap: 4px !important;
+  }
+
+  .unit-page .unit-field--name {
+    display: none !important;
+  }
+
+  .unit-page .unit-field--price {
+    grid-column: 1;
+  }
+
+  .unit-page .unit-field--amount {
+    grid-column: 2;
+  }
+
+  .unit-page .unit-field label {
+    font-size: 0.74rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .unit-page .unit-field input,
+  .unit-page .unit-field select,
+  .unit-page .unit-input-wrap {
+    min-height: 38px !important;
+    font-size: 1rem !important;
+  }
+
+  .unit-page .unit-field input,
+  .unit-page .unit-field select {
+    padding: 7px 9px !important;
+  }
+
+  .unit-page .unit-input-wrap input {
+    min-height: 36px !important;
+    padding: 0 8px !important;
+  }
+
+  .unit-page .unit-input-wrap span {
+    padding: 0 8px !important;
+  }
+
+  .unit-page .unit-row-total {
+    display: grid;
+    grid-column: 1 / -1;
+    min-height: 22px;
+    justify-items: end;
+    align-content: start;
+    margin-top: -2px;
+    text-align: right;
+  }
+
+  .unit-page .unit-row-total strong {
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 850;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  .unit-page .unit-row-total span {
+    color: #0f766e;
+    font-size: 0.82rem;
+    font-weight: 850;
+    line-height: 1.05;
+  }
+
+  .unit-page .unit-product--expensive .unit-row-total span {
+    color: #dc2626;
+  }
+
+  .unit-result {
+    display: none !important;
+  }
+
+  .unit-install {
+    display: none !important;
+  }
+
+  .unit-error {
+    grid-column: 1 / -1;
+    font-size: 0.76rem !important;
+  }
+
+  .unit-install__grid,
+  .unit-result-item {
     grid-template-columns: 1fr;
   }
 
@@ -659,6 +927,18 @@ function savingsText(value: SavingsResult['savingsPercent']): string {
 
   .unit-winner strong {
     font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .unit-page .unit-common-choice {
+    gap: 5px;
+    font-size: 0.88rem;
+  }
+
+  .unit-page .unit-common-choice select {
+    padding-right: 18px !important;
+    font-size: 0.88rem !important;
   }
 }
 </style>

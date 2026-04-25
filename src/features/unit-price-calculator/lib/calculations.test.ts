@@ -70,7 +70,7 @@ describe('unit price comparison', () => {
     ])
     expect(result.winner?.id).toBe('b')
     expect(result.savingsByProductId.a.savingsPerBaseUnit).toBeCloseTo(50)
-    expect(result.savingsByProductId.a.savingsPercent).toBeCloseTo(12.5)
+    expect(result.savingsByProductId.a.savingsPercent).toBeCloseTo(14.2857)
   })
 
   it('finds cheaper volume product', () => {
@@ -99,20 +99,19 @@ describe('unit price comparison', () => {
     expect(result.winner).toBeNull()
   })
 
-  it('does not choose a winner when only one product is valid', () => {
+  it('does not calculate when a product has an invalid price', () => {
     const result = calculateComparison([
       product({ id: 'a', price: 200, amount: 500, unit: 'gram' }),
       product({ id: 'b', price: -1, amount: 1, unit: 'kilogram' }),
     ])
-    expect(result.results).toHaveLength(1)
+    expect(result.results).toHaveLength(0)
     expect(result.winner).toBeNull()
-    expect(result.results[0].unitPrice).toBeCloseTo(400)
   })
 
   it('calculates savings against another unit price', () => {
     expect(calculateSavings(350, 400)).toEqual({
       savingsPerBaseUnit: 50,
-      savingsPercent: 12.5,
+      savingsPercent: 50 / 350 * 100,
     })
   })
 })
@@ -128,6 +127,11 @@ describe('unit price validation', () => {
     expect(isValidProduct(product({ price: -1 }))).toBe(false)
   })
 
+  it('rejects price = 0', () => {
+    expect(isValidPrice(0)).toBe(false)
+    expect(isValidProduct(product({ price: 0 }))).toBe(false)
+  })
+
   it('rejects NaN and Infinity', () => {
     expect(isValidPrice(Number.NaN)).toBe(false)
     expect(isValidPrice(Number.POSITIVE_INFINITY)).toBe(false)
@@ -137,13 +141,12 @@ describe('unit price validation', () => {
     expect(isValidProduct(product({ amount: Number.POSITIVE_INFINITY }))).toBe(false)
   })
 
-  it('does not break calculations with an empty product', () => {
+  it('does not calculate with an empty product price', () => {
     const result = calculateComparison([
       product({ id: 'a', price: '', amount: '' }),
       product({ id: 'b', price: 200, amount: 500, unit: 'gram' }),
     ])
-    expect(result.results).toHaveLength(1)
+    expect(result.results).toHaveLength(0)
     expect(result.winner).toBeNull()
-    expect(result.results[0].unitPrice).toBeCloseTo(400)
   })
 })

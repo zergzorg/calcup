@@ -1031,6 +1031,8 @@
     "form": {
       "hint": "The calculator converts price to one base unit: kilogram, liter, or piece. That makes different packages easier to compare.",
       "addProduct": "Add product",
+      "addMoreProduct": "Add another product",
+      "clear": "Clear",
       "removeProduct": "Remove product",
       "name": "Name",
       "namePlaceholder": "Product {number}",
@@ -1039,8 +1041,14 @@
       "amountVolume": "Volume",
       "amountCount": "Pieces",
       "unit": "Unit",
+      "comparePrice": "Compare price",
       "note": "Note",
       "notePlaceholder": "For example: promo, brand, store"
+    },
+    "compareUnit": {
+      "gram": "per kilogram",
+      "milliliter": "per liter",
+      "piece": "per unit"
     },
     "unit": {
       "gram": "g",
@@ -1091,7 +1099,8 @@
     "validation": {
       "price": {
         "required": "Enter price as a number.",
-        "nonNegative": "Price cannot be negative."
+        "nonNegative": "Price cannot be negative.",
+        "positive": "Price must be greater than 0."
       },
       "amount": {
         "required": "Enter amount as a number.",

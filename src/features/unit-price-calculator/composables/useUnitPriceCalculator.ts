@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { calculateComparison, isValidAmount, isValidPrice } from '../lib/calculations'
 import type {
   ProductInput,
@@ -6,14 +6,19 @@ import type {
   ValidationIssue,
 } from '../types/unit-price'
 
-const DEFAULT_UNITS: UnitPriceUnit[] = ['gram', 'kilogram', 'milliliter', 'liter', 'piece']
+const DEFAULT_UNITS: UnitPriceUnit[] = ['gram', 'milliliter', 'piece']
 
 export function useUnitPriceCalculator() {
+  const selectedUnit = ref<UnitPriceUnit>('gram')
   const products = ref<ProductInput[]>([
     { id: createProductId(), name: '', price: 200, amount: 500, unit: 'gram' },
-    { id: createProductId(), name: '', price: 350, amount: 1, unit: 'kilogram' },
+    { id: createProductId(), name: '', price: 350, amount: 1000, unit: 'gram' },
   ])
   const touched = ref(new Set<ValidationIssue['field']>())
+
+  watch(selectedUnit, (unit) => {
+    products.value = products.value.map(product => ({ ...product, unit }))
+  })
 
   function touch(field: ValidationIssue['field']) {
     touched.value = new Set(touched.value).add(field)
@@ -22,13 +27,21 @@ export function useUnitPriceCalculator() {
   function addProduct() {
     products.value = [
       ...products.value,
-      { id: createProductId(), name: '', price: 0, amount: 1, unit: 'gram' },
+      createEmptyProduct(selectedUnit.value),
     ]
   }
 
   function removeProduct(index: number) {
     if (products.value.length <= 1) return
     products.value = products.value.filter((_, currentIndex) => currentIndex !== index)
+  }
+
+  function clearProducts() {
+    products.value = [
+      createEmptyProduct(selectedUnit.value),
+      createEmptyProduct(selectedUnit.value),
+    ]
+    touched.value = new Set()
   }
 
   const allIssues = computed<ValidationIssue[]>(() => {
@@ -41,7 +54,7 @@ export function useUnitPriceCalculator() {
       if (!Number.isFinite(price)) {
         issues.push({ field: `product.${index}.price`, messageKey: 'unitPrice.validation.price.required' })
       } else if (!isValidPrice(price)) {
-        issues.push({ field: `product.${index}.price`, messageKey: 'unitPrice.validation.price.nonNegative' })
+        issues.push({ field: `product.${index}.price`, messageKey: 'unitPrice.validation.price.positive' })
       }
 
       if (!Number.isFinite(amount)) {
@@ -67,6 +80,7 @@ export function useUnitPriceCalculator() {
 
   return {
     products,
+    selectedUnit,
     unitOptions: DEFAULT_UNITS,
     allIssues,
     result,
@@ -74,11 +88,16 @@ export function useUnitPriceCalculator() {
     getIssue,
     addProduct,
     removeProduct,
+    clearProducts,
   }
 }
 
 function createProductId(): string {
   return `product-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+}
+
+function createEmptyProduct(unit: UnitPriceUnit): ProductInput {
+  return { id: createProductId(), name: '', price: '', amount: '', unit }
 }
 
 function toNumber(value: number | string | null | undefined): number {
