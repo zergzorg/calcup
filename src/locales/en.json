@@ -1141,6 +1141,87 @@
       "roundTo": "Choose a rounding step above 0."
     }
   },
+  "roomArea": {
+    "eyebrow": "Everyday life",
+    "title": "Room Area Calculator",
+    "intro": "Calculate floor, ceiling and wall area for a room, including windows, doors and extra openings.",
+    "form": {
+      "roomTitle": "Room size",
+      "roomHint": "The room is treated as rectangular: floor area = length × width.",
+      "length": "Length",
+      "width": "Width",
+      "height": "Height",
+      "heightPresets": "Height presets",
+      "openingsTitle": "Windows and doors",
+      "openingsHint": "Openings are subtracted from wall area only.",
+      "windowsCount": "Windows",
+      "windowWidth": "Window width",
+      "windowHeight": "Window height",
+      "doorsCount": "Doors",
+      "doorWidth": "Door width",
+      "doorHeight": "Door height",
+      "extraOpeningsArea": "Extra openings"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "metersValue": "{value} m"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the room dimensions with valid values.",
+      "finishWallArea": "Wall area to finish",
+      "floorArea": "Floor area",
+      "ceilingArea": "Ceiling area",
+      "perimeter": "Perimeter",
+      "grossWallArea": "Walls before openings",
+      "openingsArea": "Windows and doors",
+      "baseboardLength": "Baseboard length"
+    },
+    "formula": "Floor area = length × width. Walls = 2 × (length + width) × height − openings. If openings exceed wall area, finish area is shown as 0.",
+    "validation": {
+      "length": {
+        "required": "Enter length as a number.",
+        "positive": "Length must be greater than 0."
+      },
+      "width": {
+        "required": "Enter width as a number.",
+        "positive": "Width must be greater than 0."
+      },
+      "height": {
+        "required": "Enter height as a number.",
+        "positive": "Height must be greater than 0."
+      },
+      "windowsCount": {
+        "integer": "Window count must be an integer.",
+        "nonNegative": "Window count cannot be negative."
+      },
+      "windowWidth": {
+        "required": "Enter window width as a number.",
+        "nonNegative": "Window width cannot be negative."
+      },
+      "windowHeight": {
+        "required": "Enter window height as a number.",
+        "nonNegative": "Window height cannot be negative."
+      },
+      "doorsCount": {
+        "integer": "Door count must be an integer.",
+        "nonNegative": "Door count cannot be negative."
+      },
+      "doorWidth": {
+        "required": "Enter door width as a number.",
+        "nonNegative": "Door width cannot be negative."
+      },
+      "doorHeight": {
+        "required": "Enter door height as a number.",
+        "nonNegative": "Door height cannot be negative."
+      },
+      "extraOpeningsArea": {
+        "required": "Enter openings area as a number.",
+        "nonNegative": "Openings area cannot be negative."
+      }
+    }
+  },
   "discount": {
     "eyebrow": "Everyday life",
     "title": "Discount Calculator",
