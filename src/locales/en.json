@@ -1913,6 +1913,57 @@
       }
     }
   },
+  "metronome": {
+    "eyebrow": "Sport",
+    "title": "Metronome",
+    "intro": "Set BPM, rhythm and cadence reference for running, walking, warm-ups or drills.",
+    "cadenceModes": {
+      "everyStep": "Beat every step",
+      "everyOtherStep": "Beat every other step"
+    },
+    "form": {
+      "rhythmTitle": "Rhythm",
+      "rhythmHint": "Sound starts only after a click, so the browser does not block audio.",
+      "bpm": "Tempo",
+      "beatsPerBar": "Beats per bar",
+      "duration": "Duration",
+      "cadenceMode": "Cadence mode",
+      "start": "Start",
+      "stop": "Stop",
+      "audioHint": "The first start may require allowing sound on the device."
+    },
+    "units": {
+      "bpm": "BPM",
+      "beats": "beats",
+      "minutes": "min"
+    },
+    "result": {
+      "label": "Rhythm",
+      "empty": "Enter whole values: BPM 30-260, bar 1-12, duration 1-180 minutes.",
+      "interval": "Beat interval",
+      "bpm": "Tempo",
+      "cadence": "Cadence reference",
+      "beatInterval": "Between beats",
+      "barLength": "Bar length",
+      "totalBeats": "Beats in block",
+      "msValue": "{value} ms",
+      "bpmValue": "{value} BPM",
+      "spmValue": "{value} spm",
+      "secondsValue": "{value} sec"
+    },
+    "formula": "Interval = 60,000 / BPM. If each beat marks every other step, target cadence is BPM × 2.",
+    "validation": {
+      "bpm": {
+        "range": "BPM must be a whole number from 30 to 260."
+      },
+      "beatsPerBar": {
+        "range": "Beats per bar must be from 1 to 12."
+      },
+      "durationMinutes": {
+        "range": "Duration must be from 1 to 180 minutes."
+      }
+    }
+  },
   "heartRateZones": {
     "eyebrow": "Sport",
     "title": "Heart Rate Zones",
