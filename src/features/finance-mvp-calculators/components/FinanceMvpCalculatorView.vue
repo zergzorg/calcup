@@ -64,6 +64,7 @@ import type { FinanceMvpCalculatorId, FinanceMvpResultRow } from '../lib/calcula
 
 type Lang = 'ru' | 'en'
 type Text = Record<Lang, string>
+type NumericInputValue = number | ''
 
 interface FieldConfig {
   key: string
@@ -197,7 +198,7 @@ const configs: Record<FinanceMvpCalculatorId, Config> = {
 
 const route = useRoute()
 const { locale, n } = useI18n()
-const values = reactive<Record<string, number>>({})
+const values = reactive<Record<string, NumericInputValue>>({})
 
 const calculatorId = computed(() => route.meta.toolSlug as FinanceMvpCalculatorId)
 const config = computed(() => configs[calculatorId.value])
@@ -207,14 +208,22 @@ watchEffect(() => {
   const current = config.value
   if (!current) return
   for (const field of current.fields) {
-    if (!Number.isFinite(values[field.key])) values[field.key] = field.defaultValue
+    if (values[field.key] === undefined) values[field.key] = field.defaultValue
   }
+})
+
+const numericValues = computed<Record<string, number>>(() => {
+  const normalized: Record<string, number> = {}
+  for (const [key, value] of Object.entries(values)) {
+    normalized[key] = value === '' ? Number.NaN : Number(value)
+  }
+  return normalized
 })
 
 const result = computed(() => {
   const current = config.value
   if (!current) return null
-  return calculateFinanceMvp(current.id, values)
+  return calculateFinanceMvp(current.id, numericValues.value)
 })
 
 function label(key: string): string {

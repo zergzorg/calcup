@@ -68,6 +68,7 @@ import { calculateWorkMvp } from '../lib/calculations'
 import type { WorkMvpCalculatorId, WorkMvpResultRow } from '../lib/calculations'
 
 type Lang = 'ru' | 'en'
+type NumericInputValue = number | ''
 
 interface WorkMvpField {
   key: string
@@ -247,7 +248,7 @@ const configs: Record<WorkMvpCalculatorId, WorkMvpConfig> = {
 
 const route = useRoute()
 const { locale, n } = useI18n()
-const values = reactive<Record<string, number>>({})
+const values = reactive<Record<string, NumericInputValue>>({})
 
 const calculatorId = computed(() => route.meta.toolSlug as WorkMvpCalculatorId)
 const config = computed(() => configs[calculatorId.value])
@@ -275,16 +276,24 @@ watchEffect(() => {
   if (!current) return
 
   for (const field of current.fields) {
-    if (!Number.isFinite(values[field.key])) {
+    if (values[field.key] === undefined) {
       values[field.key] = field.defaultValue
     }
   }
 })
 
+const numericValues = computed<Record<string, number>>(() => {
+  const normalized: Record<string, number> = {}
+  for (const [key, value] of Object.entries(values)) {
+    normalized[key] = value === '' ? Number.NaN : Number(value)
+  }
+  return normalized
+})
+
 const result = computed(() => {
   const current = config.value
   if (!current) return null
-  return calculateWorkMvp(current.id, values)
+  return calculateWorkMvp(current.id, numericValues.value)
 })
 
 function label(key: string): string {
