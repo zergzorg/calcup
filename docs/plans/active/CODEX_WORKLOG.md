@@ -1100,3 +1100,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему low-risk milestone: `/convert/volume`.
+
+### Итерация 28: `/convert/volume`
+
+Выбранный milestone:
+
+- `/convert/volume`.
+
+Почему выбран именно он:
+
+- Низкорисковый справочный конвертер.
+- Закрывает базовую `soon`-карточку в категории `/convert`.
+- Не требует внешнего API или актуальных данных.
+
+Что изменено:
+
+- Создан `src/features/volume-converter/`.
+- Добавлены чистые функции перевода объёма через литры.
+- Поддержаны metric units и US liquid units.
+- Registry-запись `volume` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/convert/speed`.
+
+Затронутые файлы:
+
+- `src/features/volume-converter/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Конвертер объёма|Volume Converter|canonical|robots|convert/volume" dist/convert/volume.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/volume/ /tmp/calcup-volume-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/volume/ /tmp/calcup-volume-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 41 files / 400 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/convert/volume/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: unit-grid, result rows и popular conversions без overflow и наложений.
+
+Commit hash:
+
+- 4d9567d
+
+Следующий шаг:
+
+- Перейти к следующему low-risk milestone: `/convert/speed`.

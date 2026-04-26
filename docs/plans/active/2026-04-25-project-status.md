@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.26 расширение бытовых калькуляторов
+## Текущая фаза: 5.27 расширение конвертеров
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 40 ready-калькуляторов.
-- 34 soon-карточек.
+- 41 ready-калькуляторов.
+- 33 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -55,6 +55,7 @@
 | 5.24 | Калькулятор времени | /datetime/time-duration | ✅ ready |
 | 5.25 | Калькулятор дней до даты | /datetime/countdown | ✅ ready |
 | 5.26 | Калькулятор разделения счёта | /everyday/bill-split | ✅ ready |
+| 5.27 | Конвертер объёма | /convert/volume | ✅ ready |
 
 ## Sitemap
 
@@ -70,9 +71,39 @@
 - /clothing/shoe-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/
-- /convert/area/
+- /convert/area/ · /convert/volume/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.27) — 2026-04-26
+
+Реализован конвертер `/convert/volume`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/volume-converter/`.
+- Добавлен расчёт:
+  - литров, миллилитров, кубических метров и сантиметров;
+  - US liquid gallons, quarts, pints, cups, tablespoons, teaspoons;
+  - перевода через базовую единицу `liter`;
+  - популярных конверсий.
+- Добавлены RU/EN локали `volume.*`.
+- Registry-запись `volume` переведена в `ready`.
+- В sitemap добавлен `/convert/volume/`.
+
+### Проверки
+
+- `npm run test` — OK, `400/400`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/convert/volume/` title, canonical со slash, `index,follow`;
+  - `/convert/volume/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/convert/volume/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

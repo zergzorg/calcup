@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 40 ready-калькуляторов в `src/data/calculators.ts`;
-- 34 `soon`-карточек для будущего наполнения;
+- 41 ready-калькуляторов в `src/data/calculators.ts`;
+- 33 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -69,7 +69,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Финансы | `/finance` | credit, vat, salary, project-price | mortgage, deposit, compound-interest, refinance |
 | Математика | `/math` | percentage | fraction, average, proportion, equation |
 | Здоровье | `/health` | bmi | calorie, ideal-weight, body-fat, pregnancy-due-date |
-| Конвертеры | `/convert` | length, temperature, weight, area | volume, speed, currency, data-size |
+| Конвертеры | `/convert` | length, temperature, weight, area, volume | speed, currency, data-size |
 | Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete | strip-foundation, slab-foundation, rebar, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
 | Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed, ev-range | — |
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones, race-split | metronome |
@@ -91,6 +91,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/convert/temperature` | Конвертер температуры |
 | `/convert/weight` | Конвертер веса |
 | `/convert/area` | Конвертер площади |
+| `/convert/volume` | Конвертер объёма |
 | `/construction/wallpaper` | Калькулятор обоев |
 | `/construction/paint` | Калькулятор краски |
 | `/construction/tile` | Калькулятор плитки |
@@ -136,7 +137,6 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
-   - `/convert/volume`;
    - `/convert/speed`;
    - `/clothing/clothing-size`;
    - `/construction/strip-foundation`.
