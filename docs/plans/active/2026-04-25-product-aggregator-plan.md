@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 44 ready-калькулятора в `src/data/calculators.ts`;
-- 30 `soon`-карточек для будущего наполнения;
+- 45 ready-калькуляторов в `src/data/calculators.ts`;
+- 29 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -70,7 +70,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Математика | `/math` | percentage | fraction, average, proportion, equation |
 | Здоровье | `/health` | bmi | calorie, ideal-weight, body-fat, pregnancy-due-date |
 | Конвертеры | `/convert` | length, temperature, weight, area, volume, speed | currency, data-size |
-| Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete | strip-foundation, slab-foundation, rebar, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
+| Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete, strip-foundation | slab-foundation, rebar, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
 | Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed, ev-range | — |
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones, race-split, metronome | — |
 | Одежда и обувь | `/clothing` | shoe-size, clothing-size | sneaker-size, jeans-size, brand-size-compare |
@@ -104,6 +104,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/construction/putty` | Калькулятор шпатлёвки |
 | `/construction/insulation` | Калькулятор утеплителя |
 | `/construction/concrete` | Калькулятор бетона |
+| `/construction/strip-foundation` | Калькулятор ленточного фундамента |
 | `/transport/fuel` | Калькулятор расхода топлива |
 | `/transport/trip-cost` | Калькулятор стоимости поездки |
 | `/transport/fuel-price` | Калькулятор цены топлива |
@@ -140,7 +141,8 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
-   - `/construction/strip-foundation`.
+   - `/convert/data-size`.
+   - `/construction/rebar`.
 
 ## Non-Goals
 

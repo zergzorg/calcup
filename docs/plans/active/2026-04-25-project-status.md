@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.30 расширение спорта
+## Текущая фаза: 5.31 расширение строительства
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 44 ready-калькулятора.
-- 30 soon-карточек.
+- 45 ready-калькуляторов.
+- 29 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -59,6 +59,7 @@
 | 5.28 | Конвертер скорости | /convert/speed | ✅ ready |
 | 5.29 | Конвертер размеров одежды | /clothing/clothing-size | ✅ ready |
 | 5.30 | Метроном | /sport/metronome | ✅ ready |
+| 5.31 | Ленточный фундамент | /construction/strip-foundation | ✅ ready |
 
 ## Sitemap
 
@@ -68,7 +69,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
@@ -77,6 +78,38 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.31) — 2026-04-26
+
+Реализован калькулятор `/construction/strip-foundation`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/strip-foundation-calculator/`.
+- Добавлен ориентировочный расчёт:
+  - объёма бетона для ленты;
+  - объёма песчаной подушки;
+  - площади опалубки по двум сторонам;
+  - длины и веса продольной арматуры;
+  - стоимости бетона и арматуры при заполненных ценах.
+- Добавлен warning-note: расчёт справочный и не заменяет проект/нормы.
+- Добавлены RU/EN локали `stripFoundation.*`.
+- Registry-запись `strip-foundation` переведена в `ready`.
+- В sitemap добавлен `/construction/strip-foundation/`.
+
+### Проверки
+
+- `npm run test` — OK, `417/417`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/strip-foundation/` title, canonical со slash, `index,follow`;
+  - `/construction/strip-foundation/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/strip-foundation/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

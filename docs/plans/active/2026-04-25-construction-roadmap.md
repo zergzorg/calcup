@@ -70,18 +70,18 @@ Material calculators for renovation, finishing, construction and engineering wor
 
 | Путь | Название | Ценность | Риск |
 |------|----------|----------|------|
-| `/construction/brick` | Калькулятор кирпича | Кирпичи, объём кладки, раствор и запас | Средний |
-| `/construction/blocks` | Калькулятор газоблока / пеноблока | Блоки, объём, клей, стоимость | Средний |
-| `/construction/drywall` | Калькулятор гипсокартона | Листы, профиль, крепёж, запас | Средний |
-| `/construction/putty` | Калькулятор шпатлёвки / штукатурки | Смесь, мешки, толщина слоя, стоимость | Низкий |
-| `/construction/insulation` | Калькулятор утеплителя | Плиты, упаковки, объём, стоимость | Средний |
+| `/construction/brick` | Калькулятор кирпича | Кирпичи, объём кладки, раствор и запас | Средний, ready |
+| `/construction/blocks` | Калькулятор газоблока / пеноблока | Блоки, объём, клей, стоимость | Средний, ready |
+| `/construction/drywall` | Калькулятор гипсокартона | Листы, профиль, крепёж, запас | Средний, ready |
+| `/construction/putty` | Калькулятор шпатлёвки / штукатурки | Смесь, мешки, толщина слоя, стоимость | Низкий, ready |
+| `/construction/insulation` | Калькулятор утеплителя | Плиты, упаковки, объём, стоимость | Средний, ready |
 
 ### P2: Бетон и несущие конструкции
 
 | Путь | Название | Ценность | Риск |
 |------|----------|----------|------|
-| `/construction/concrete` | Калькулятор бетона | Объём бетона, простые формы, стоимость | Средний |
-| `/construction/strip-foundation` | Ленточный фундамент | Бетон, арматура, опалубка, подушка | Высокий |
+| `/construction/concrete` | Калькулятор бетона | Объём бетона, простые формы, стоимость | Средний, ready |
+| `/construction/strip-foundation` | Ленточный фундамент | Бетон, арматура, опалубка, подушка | Высокий, ready |
 | `/construction/slab-foundation` | Плитный фундамент | Бетон, арматурная сетка, подушка | Высокий |
 | `/construction/rebar` | Калькулятор арматуры | Прутки, длина, вес, стоимость | Средний |
 | `/construction/roof` | Калькулятор кровли | Площадь скатов, листы, нахлёст, запас | Высокий |
@@ -173,6 +173,8 @@ Material calculators for renovation, finishing, construction and engineering wor
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/tile`.
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/laminate`.
 - [x] Реализовать следующий строительный ready-калькулятор: `/construction/floor-screed`.
+- [x] Реализовать P1/P2 ready-калькуляторы: `/construction/brick`, `/construction/blocks`, `/construction/drywall`, `/construction/putty`, `/construction/insulation`, `/construction/concrete`.
+- [x] Реализовать ориентировочный P2 ready-калькулятор: `/construction/strip-foundation`.
 
 ## Post-Completion
 
@@ -187,4 +189,4 @@ Material calculators for renovation, finishing, construction and engineering wor
 
 ## Current Notes
 
-На 2026-04-26 готова первая P0-волна строительных калькуляторов: `/construction/wallpaper`, `/construction/paint`, `/construction/tile`, `/construction/laminate` и `/construction/floor-screed`. Остальные строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.
+На 2026-04-26 готовы P0/P1-материальные калькуляторы и часть P2: `/construction/wallpaper`, `/construction/paint`, `/construction/tile`, `/construction/laminate`, `/construction/floor-screed`, `/construction/brick`, `/construction/blocks`, `/construction/drywall`, `/construction/putty`, `/construction/insulation`, `/construction/concrete`, `/construction/strip-foundation`. Оставшиеся строительные инструменты опубликованы как `soon`, чтобы категория читалась как дорожная карта, но они не должны попадать в sitemap ready-страниц.

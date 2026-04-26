@@ -1380,3 +1380,73 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/construction/strip-foundation`.
+
+### Итерация 32: `/construction/strip-foundation`
+
+Выбранный milestone:
+
+- `/construction/strip-foundation`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Закрывает важную construction-карточку после стабилизации базовых строительных материалов.
+- High-risk scope ограничен ориентировочным материальным расчётом с явным дисклеймером.
+
+Что изменено:
+
+- Создан `src/features/strip-foundation-calculator/`.
+- Добавлены чистые функции расчёта объёма бетона, песчаной подушки, площади опалубки, длины и веса продольной арматуры.
+- Добавлены optional-стоимости бетона и арматуры.
+- Добавлен warning-note: расчёт справочный и не заменяет проектирование, нормы и проверку специалистом.
+- Registry-запись `strip-foundation` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/convert/data-size`.
+
+Затронутые файлы:
+
+- `src/features/strip-foundation-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-25-construction-roadmap.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Ленточный фундамент|Strip Foundation|canonical|robots|construction/strip-foundation" dist/construction/strip-foundation.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/strip-foundation/ /tmp/calcup-strip-foundation-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/strip-foundation/ /tmp/calcup-strip-foundation-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 45 files / 417 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/construction/strip-foundation/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: warning note, поля, quick buttons и result rows без overflow и наложений.
+
+Commit hash:
+
+- 4755799
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/convert/data-size`.

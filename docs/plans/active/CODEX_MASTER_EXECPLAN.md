@@ -51,40 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 44.
-- Soon: 30.
+- Ready: 45.
+- Soon: 29.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`.
-- Низкорисковые next candidates: нет; следующий pending содержит high risk construction-задачу.
+- Низкорисковые next candidates: `/convert/data-size`, `/everyday/cooking-units`, `/everyday/room-area`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `strip-foundation`
-- category: `construction`
-- goal: перевести `/construction/strip-foundation` из `soon` в `ready` и добавить ориентировочный расчёт ленточного фундамента.
-- reason: следующий pending milestone; high-risk construction-задача требует чётких assumptions и дисклеймера.
+- slug: `data-size`
+- category: `convert`
+- goal: перевести `/convert/data-size` из `soon` в `ready` и добавить конвертер единиц объёма данных.
+- reason: низкорисковый конвертер из актуального `soon`; закрывает ещё одну базовую карточку категории `/convert`.
 - acceptance criteria:
-  - registry-запись `strip-foundation` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/strip-foundation-calculator/`;
-  - чистые функции считают объём бетона, песчаную подушку, площадь опалубки и ориентир арматуры по явным вводам;
-  - есть unit-тесты на формулы и invalid input;
+  - registry-запись `data-size` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/data-size-converter/`;
+  - чистые функции конвертируют bytes, KB, MB, GB, TB и различают decimal/binary режимы;
+  - есть unit-тесты на decimal/binary формулы, форматирование и invalid input;
   - RU/EN локали заполнены;
-  - `/construction/strip-foundation/` добавлен в sitemap;
+  - `/convert/data-size/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
-  - UI содержит заметный дисклеймер про ориентировочность и необходимость проекта/норм;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
-  - active-планы, construction roadmap и README синхронизированы.
+  - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/strip-foundation-calculator/index.ts`
-  - `src/features/strip-foundation-calculator/components/StripFoundationCalculatorView.vue`
-  - `src/features/strip-foundation-calculator/composables/useStripFoundationCalculator.ts`
-  - `src/features/strip-foundation-calculator/lib/calculations.ts`
-  - `src/features/strip-foundation-calculator/lib/calculations.test.ts`
-  - `src/features/strip-foundation-calculator/types/strip-foundation.ts`
+  - `src/features/data-size-converter/index.ts`
+  - `src/features/data-size-converter/components/DataSizeConverterView.vue`
+  - `src/features/data-size-converter/composables/useDataSizeConverter.ts`
+  - `src/features/data-size-converter/lib/calculations.ts`
+  - `src/features/data-size-converter/lib/calculations.test.ts`
+  - `src/features/data-size-converter/types/data-size.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,11 +97,11 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Ленточный фундамент|Strip Foundation|canonical|robots|construction/strip-foundation" dist/construction/strip-foundation.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Конвертер данных|Data Size Converter|canonical|robots|convert/data-size" dist/convert/data-size.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/strip-foundation/ /tmp/calcup-strip-foundation-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/strip-foundation/ /tmp/calcup-strip-foundation-mobile-full.png`
-- risk level: high
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/data-size/ /tmp/calcup-data-size-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/data-size/ /tmp/calcup-data-size-mobile-full.png`
+- risk level: low
 - status: planned
 
 ## Pending
@@ -140,6 +139,7 @@ Owner: Codex
 - slug: `speed`; category: `convert`; сделано: конвертер скорости через м/с, включая mph, knots и pace min/km; проверки: test/type-check/build/mobile/static smoke; commit hash: `decfac2`.
 - slug: `clothing-size`; category: `clothing`; сделано: ориентировочный конвертер размеров одежды INT/RU/EU/US/UK с дисклеймером; проверки: test/type-check/build/mobile/static smoke; commit hash: `507bfe4`.
 - slug: `metronome`; category: `sport`; сделано: BPM, интервал удара, каденс и Web Audio click по действию пользователя; проверки: test/type-check/build/mobile/static smoke; commit hash: `8741b2d`.
+- slug: `strip-foundation`; category: `construction`; сделано: бетон, песчаная подушка, опалубка и ориентир арматуры для ленточного фундамента; проверки: test/type-check/build/mobile/static smoke; commit hash: `4755799`.
 
 ## Deferred
 
@@ -164,6 +164,7 @@ Owner: Codex
 - 2026-04-26: `clothing-size` выбран следующим milestone по порядку pending; scope будет generic adult sizes с дисклеймером, без обещания брендовой точности.
 - 2026-04-26: После `clothing-size` следующим выбран `metronome`, чтобы закрыть последний sport `soon` перед high-risk construction milestone.
 - 2026-04-26: После `metronome` следующим выбран `strip-foundation`; task high-risk, поэтому первая версия будет только ориентировочной и с явным строительным дисклеймером.
+- 2026-04-26: После `strip-foundation` следующим выбран `data-size`, потому что это низкорисковый converter milestone без внешних данных и нормативных источников.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -182,6 +183,7 @@ Owner: Codex
 - `clothing-size`: размеры одежды будут ориентировочными; бренды, посадка, gender-specific и country-specific таблицы могут отличаться.
 - `metronome`: браузерный звук должен запускаться только после пользовательского действия; autoplay не используется.
 - `strip-foundation`: расчёт будет ориентировочным; грунты, несущая способность, промерзание, нагрузки, армирование и бетон должны проверяться по проекту и нормам.
+- `data-size`: decimal mode использует 1000 bytes per step, binary mode использует 1024 bytes per step; `KB/MB/GB/TB` и `KiB/MiB/GiB/TiB` показываются явно.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -232,9 +234,15 @@ Owner: Codex
 - 2026-04-26: Для `/sport/metronome` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/sport/metronome.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/sport/metronome/` — inputs, cadence chips, start button и result rows без overflow и наложений.
+- 2026-04-26: Для `/construction/strip-foundation` `npm run test` — OK, 45 files / 417 tests.
+- 2026-04-26: Для `/construction/strip-foundation` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/strip-foundation` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/strip-foundation.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/strip-foundation/` — warning note, fields, quick buttons и result rows без overflow и наложений.
 
 ## Commit Log
 
+- `4755799` — `feat(construction): add strip foundation calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -253,4 +261,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/construction/strip-foundation`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/convert/data-size`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
