@@ -148,7 +148,7 @@ Tasks:
 
 - `vacation-pay`: отпускные — completed 2026-04-26;
 - `sick-leave`: больничный;
-- `self-employed-tax`: налог самозанятого;
+- `self-employed-tax`: налог самозанятого — completed 2026-04-26;
 - `usn-tax`: УСН доходы / доходы минус расходы;
 - `ip-insurance`: страховые взносы ИП;
 - `penalty-interest`: пени по ключевой ставке;

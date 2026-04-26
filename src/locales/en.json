@@ -2360,6 +2360,51 @@
       }
     }
   },
+  "selfEmployedTax": {
+    "eyebrow": "Taxes & Work",
+    "title": "Self-Employed Tax Calculator",
+    "intro": "Calculate Russian professional income tax: 4% from individuals and 6% from businesses.",
+    "form": {
+      "incomeTitle": "Monthly income",
+      "individualIncome": "Income from individuals",
+      "businessIncome": "Income from businesses and sole proprietors",
+      "bonusBalance": "Remaining tax bonus"
+    },
+    "units": {
+      "currency": "₽",
+      "currencyValue": "₽{value}"
+    },
+    "warning": {
+      "title": "Actuality and assumptions",
+      "body": "Current as of 2026-04-26 based on Russian Federal Tax Service materials for professional income tax. Rates are 4% for payments from individuals and 6% for payments from businesses and sole proprietors. The annual income limit is ₽2.4M. The bonus of up to ₽10,000 reduces tax automatically. The calculation is informational and is not tax advice."
+    },
+    "result": {
+      "label": "Calculation",
+      "empty": "Fill income fields with valid values.",
+      "taxToPay": "Tax to pay",
+      "totalIncome": "Total income",
+      "taxBeforeBonus": "Tax before bonus",
+      "bonusUsed": "Bonus used",
+      "netIncome": "After tax",
+      "remainingLimit": "Remaining annual limit",
+      "limitExceededBy": "Limit exceeded by"
+    },
+    "formula": "Tax = individual income × 4% + business income × 6%. The bonus reduces the effective rates by 1 p.p. and 2 p.p. respectively until it is used up.",
+    "validation": {
+      "individualIncome": {
+        "required": "Enter income as a number.",
+        "nonNegative": "Income cannot be negative."
+      },
+      "businessIncome": {
+        "required": "Enter income as a number.",
+        "nonNegative": "Income cannot be negative."
+      },
+      "bonusBalance": {
+        "required": "Enter bonus balance as a number.",
+        "nonNegative": "Bonus cannot be negative."
+      }
+    }
+  },
   "projectPrice": {
     "eyebrow": "Finance",
     "title": "Project Price Calculator",
