@@ -560,20 +560,21 @@
   font-size: 0.9rem !important;
 }
 
-.calculator-view .credit-table-wrap {
+.calculator-view :is([class$="-table-wrap"], .credit-table-wrap) {
+  overflow: auto !important;
   border: 1px solid #e2eaf2 !important;
   border-radius: var(--calc-radius) !important;
   background: #fff !important;
 }
 
-.calculator-view .credit-table-wrap th,
-.calculator-view .credit-table-wrap td {
+.calculator-view :is([class$="-table-wrap"], .credit-table-wrap) th,
+.calculator-view :is([class$="-table-wrap"], .credit-table-wrap) td {
   border-bottom: 1px solid #e2eaf2 !important;
   color: var(--calc-text-soft) !important;
   padding: 12px 10px !important;
 }
 
-.calculator-view .credit-table-wrap th {
+.calculator-view :is([class$="-table-wrap"], .credit-table-wrap) th {
   color: var(--calc-muted-2) !important;
   font-size: 0.78rem !important;
   font-weight: 800 !important;

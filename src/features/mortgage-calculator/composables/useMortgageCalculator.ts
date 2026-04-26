@@ -7,6 +7,11 @@ const FIELD_RANGES: Record<MortgageInputField, { min: number; max: number }> = {
   downPaymentPercent: { min: 0, max: 99 },
   annualRate: { min: 0, max: 100 },
   termYears: { min: 1, max: 40 },
+  additionalContribution: { min: 0, max: 1_000_000_000 },
+  monthlyCosts: { min: 0, max: 10_000_000 },
+  oneTimeFees: { min: 0, max: 100_000_000 },
+  earlyPayment: { min: 0, max: 1_000_000_000 },
+  extraMonthlyPayment: { min: 0, max: 10_000_000 },
 }
 
 function validateNumber(field: MortgageInputField, value: number): MortgageValidationIssue | null {
@@ -27,6 +32,11 @@ export function useMortgageCalculator() {
   const downPaymentPercent = ref(20)
   const annualRate = ref(12)
   const termYears = ref(20)
+  const additionalContribution = ref(0)
+  const monthlyCosts = ref(0)
+  const oneTimeFees = ref(0)
+  const earlyPayment = ref(0)
+  const extraMonthlyPayment = ref(0)
 
   const issues = computed<MortgageValidationIssue[]>(() =>
     ([
@@ -34,6 +44,11 @@ export function useMortgageCalculator() {
       ['downPaymentPercent', downPaymentPercent.value],
       ['annualRate', annualRate.value],
       ['termYears', termYears.value],
+      ['additionalContribution', additionalContribution.value],
+      ['monthlyCosts', monthlyCosts.value],
+      ['oneTimeFees', oneTimeFees.value],
+      ['earlyPayment', earlyPayment.value],
+      ['extraMonthlyPayment', extraMonthlyPayment.value],
     ] satisfies Array<[MortgageInputField, number]>)
       .map(([field, value]) => validateNumber(field, value))
       .filter((issue): issue is MortgageValidationIssue => Boolean(issue)),
@@ -47,6 +62,11 @@ export function useMortgageCalculator() {
       downPaymentPercent: downPaymentPercent.value,
       annualRate: annualRate.value,
       termYears: termYears.value,
+      additionalContribution: additionalContribution.value,
+      monthlyCosts: monthlyCosts.value,
+      oneTimeFees: oneTimeFees.value,
+      earlyPayment: earlyPayment.value,
+      extraMonthlyPayment: extraMonthlyPayment.value,
     })
   })
 
@@ -59,6 +79,11 @@ export function useMortgageCalculator() {
     downPaymentPercent,
     annualRate,
     termYears,
+    additionalContribution,
+    monthlyCosts,
+    oneTimeFees,
+    earlyPayment,
+    extraMonthlyPayment,
     issues,
     result,
     getIssue,

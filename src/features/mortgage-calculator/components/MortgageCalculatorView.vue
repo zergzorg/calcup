@@ -73,6 +73,68 @@
           </div>
         </section>
 
+        <section class="mortgage-section">
+          <div class="mortgage-section__header">
+            <h2>{{ t('mortgage.form.scenarioTitle') }}</h2>
+            <p>{{ t('mortgage.form.scenarioHelp') }}</p>
+          </div>
+
+          <MortgageField
+            id="mortgage-additional-contribution"
+            v-model="additionalContribution"
+            :label="t('mortgage.form.additionalContribution')"
+            :unit="t('mortgage.units.currency')"
+            :issue="getIssue('additionalContribution')"
+            :min="0"
+            :max="1000000000"
+            :step="10000"
+          />
+
+          <div class="mortgage-grid--three">
+            <MortgageField
+              id="mortgage-monthly-costs"
+              v-model="monthlyCosts"
+              :label="t('mortgage.form.monthlyCosts')"
+              :unit="t('mortgage.units.currency')"
+              :issue="getIssue('monthlyCosts')"
+              :min="0"
+              :max="10000000"
+              :step="1000"
+            />
+            <MortgageField
+              id="mortgage-one-time-fees"
+              v-model="oneTimeFees"
+              :label="t('mortgage.form.oneTimeFees')"
+              :unit="t('mortgage.units.currency')"
+              :issue="getIssue('oneTimeFees')"
+              :min="0"
+              :max="100000000"
+              :step="1000"
+            />
+            <MortgageField
+              id="mortgage-early-payment"
+              v-model="earlyPayment"
+              :label="t('mortgage.form.earlyPayment')"
+              :unit="t('mortgage.units.currency')"
+              :issue="getIssue('earlyPayment')"
+              :min="0"
+              :max="1000000000"
+              :step="10000"
+            />
+          </div>
+
+          <MortgageField
+            id="mortgage-extra-monthly-payment"
+            v-model="extraMonthlyPayment"
+            :label="t('mortgage.form.extraMonthlyPayment')"
+            :unit="t('mortgage.units.currency')"
+            :issue="getIssue('extraMonthlyPayment')"
+            :min="0"
+            :max="10000000"
+            :step="1000"
+          />
+        </section>
+
         <aside class="mortgage-warning-note">
           <strong>{{ t('mortgage.warning.title') }}</strong>
           <span>{{ t('mortgage.warning.body') }}</span>
@@ -102,17 +164,57 @@
               <strong>{{ formatMoney(result.totalPayment) }}</strong>
             </div>
             <div class="mortgage-result__row">
+              <span>{{ t('mortgage.result.monthlyCashOut') }}</span>
+              <strong>{{ formatMoney(result.monthlyCashOut) }}</strong>
+            </div>
+            <div class="mortgage-result__row">
+              <span>{{ t('mortgage.result.totalCashOut') }}</span>
+              <strong>{{ formatMoney(result.totalCashOut) }}</strong>
+            </div>
+            <div class="mortgage-result__row">
               <span>{{ t('mortgage.result.overpayment') }}</span>
               <strong>{{ formatMoney(result.overpayment) }}</strong>
             </div>
             <div class="mortgage-result__row">
+              <span>{{ t('mortgage.result.savedInterest') }}</span>
+              <strong>{{ formatMoney(result.savedInterest) }}</strong>
+            </div>
+            <div class="mortgage-result__row">
               <span>{{ t('mortgage.result.termMonths') }}</span>
-              <strong>{{ t('mortgage.units.monthsValue', { value: result.termMonths }) }}</strong>
+              <strong>{{ t('mortgage.units.monthsValue', { value: result.actualTermMonths }) }}</strong>
             </div>
             <div class="mortgage-result__row">
               <span>{{ t('mortgage.result.loanToValue') }}</span>
               <strong>{{ formatPercent(result.loanToValuePercent) }}</strong>
             </div>
+          </div>
+
+          <div class="mortgage-schedule" v-if="result.schedulePreview.length">
+            <div class="mortgage-section__header mortgage-section__header--tight">
+              <h2>{{ t('mortgage.schedule.title') }}</h2>
+              <p>{{ t('mortgage.schedule.help') }}</p>
+            </div>
+            <div class="mortgage-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>{{ t('mortgage.schedule.month') }}</th>
+                    <th>{{ t('mortgage.schedule.payment') }}</th>
+                    <th>{{ t('mortgage.schedule.interest') }}</th>
+                    <th>{{ t('mortgage.schedule.balance') }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in result.schedulePreview" :key="row.month">
+                    <td>{{ row.month }}</td>
+                    <td>{{ formatMoney(row.payment) }}</td>
+                    <td>{{ formatMoney(row.interest) }}</td>
+                    <td>{{ formatMoney(row.balance) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="mortgage-chip" @click="printPage">{{ t('mortgage.schedule.print') }}</button>
           </div>
 
           <p class="mortgage-formula">{{ t('mortgage.formula') }}</p>
@@ -181,6 +283,11 @@ const {
   downPaymentPercent,
   annualRate,
   termYears,
+  additionalContribution,
+  monthlyCosts,
+  oneTimeFees,
+  earlyPayment,
+  extraMonthlyPayment,
   result,
   getIssue,
 } = useMortgageCalculator()
@@ -195,5 +302,9 @@ function formatPercent(value: number): string {
   return t('mortgage.units.percentValue', {
     value: n(value, { maximumFractionDigits: 1 }),
   })
+}
+
+function printPage() {
+  window.print()
 }
 </script>

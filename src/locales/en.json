@@ -208,7 +208,14 @@
       "downPaymentPercent": "Down payment",
       "annualRate": "Rate",
       "termYears": "Term",
-      "downPaymentPresets": "Down payment presets"
+      "downPaymentPresets": "Down payment presets",
+      "scenarioTitle": "Scenario and costs",
+      "scenarioHelp": "Add grants or extra contribution, insurance, fees, and early payments.",
+      "additionalContribution": "Grant / extra contribution",
+      "monthlyCosts": "Monthly insurance and costs",
+      "oneTimeFees": "One-time fees",
+      "earlyPayment": "One-time early payment",
+      "extraMonthlyPayment": "Extra monthly payment"
     },
     "units": {
       "currency": "$",
@@ -223,16 +230,28 @@
       "principal": "Loan amount",
       "downPaymentAmount": "Down payment",
       "totalPayment": "Total paid",
+      "monthlyCashOut": "Payment with costs",
+      "totalCashOut": "Total cash out",
       "overpayment": "Interest paid",
+      "savedInterest": "Interest saved",
       "termMonths": "Term in months",
       "loanToValue": "Loan share",
       "empty": "Fill property price, down payment, rate, and term with valid values."
     },
     "warning": {
       "title": "Informational estimate",
-      "body": "The calculator uses an annuity payment and does not include fees, insurance, appraisal, subsidies, early repayments, or lender-specific terms."
+      "body": "The calculator uses an annuity payment plus simplified extra costs and early payments. Lender-specific terms, subsidies, floating rates, taxes, and exact payment dates are not included."
     },
-    "formula": "Payment uses the annuity formula. Loan amount = property price − down payment. Interest paid = all payments − loan amount.",
+    "schedule": {
+      "title": "First 12 payments",
+      "help": "The schedule shows the beginning of the scenario with early payments.",
+      "month": "Month",
+      "payment": "Payment",
+      "interest": "Interest",
+      "balance": "Balance",
+      "print": "Print"
+    },
+    "formula": "Payment uses the annuity formula. Loan amount = price − down payment − extra contribution − one-time early payment. Savings are compared with the base scenario without extra payments.",
     "validation": {
       "propertyPrice": {
         "required": "Enter property price as a number.",
@@ -249,6 +268,26 @@
       "termYears": {
         "required": "Enter term as a number.",
         "range": "Term must be from 1 to 40 years."
+      },
+      "additionalContribution": {
+        "required": "Enter extra contribution as a number.",
+        "range": "Extra contribution cannot be negative."
+      },
+      "monthlyCosts": {
+        "required": "Enter costs as a number.",
+        "range": "Costs cannot be negative."
+      },
+      "oneTimeFees": {
+        "required": "Enter fees as a number.",
+        "range": "Fees cannot be negative."
+      },
+      "earlyPayment": {
+        "required": "Enter early payment as a number.",
+        "range": "Early payment cannot be negative."
+      },
+      "extraMonthlyPayment": {
+        "required": "Enter extra monthly payment as a number.",
+        "range": "Extra monthly payment cannot be negative."
       }
     }
   },

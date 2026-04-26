@@ -184,6 +184,15 @@ Scope:
 
 Risk: medium.
 
+Implementation note 2026-04-26:
+
+- added additional contribution / maternity-capital style input;
+- added monthly insurance/costs and one-time fees;
+- added one-time and monthly early repayment scenario;
+- added base-vs-scenario interest savings and actual term;
+- added first 12 payment rows and print action;
+- formula tests updated for schedule and early-payment regression.
+
 ### Task P1-3: Бюджет, инфляция, вычеты
 
 Category: `finance`
