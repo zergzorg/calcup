@@ -49,13 +49,14 @@ Owner: Codex
 
 Дата аудита: 2026-04-26.
 
-- Категорий: 11.
-- Всего карточек: 80.
-- Ready: 71.
-- Soon: 9.
+- Категорий: 13.
+- Всего карточек: 121.
+- Ready: 113.
+- Soon: 8.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
 - Next candidates: `/animals/dog-size`, `/animals/cat-growth`.
+- Недавняя стабилизация: P1 math/tools закрыты, tools перенесены в `/informatics` без legacy `/tools` редиректов, для math/finance/work MVP исправлен баг очистки number-полей.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
@@ -489,7 +490,22 @@ Owner: Codex
 - `d71c549` — `feat(construction): add slab foundation calculator`.
 - `15aaf75` — `feat(construction): add roof calculator`.
 - `524046b` — `feat(construction): add stairs calculator`.
+- `e7281a3` — `refactor: centralize calculator reference configs`.
+- `0bb5cf8` — `feat: complete p1 math and tools clusters`.
+- `c107bb9` — `refactor: move tools into informatics category`.
+- `3663da4` — `refactor: drop legacy tools routes`.
+- `7c3bcf3` — `fix: allow clearing math number inputs`.
+- `3641fb9` — `fix: allow clearing mvp calculator inputs`.
 
 ## Next Action
 
-Закоммитить `/construction/stairs` и приступить к Current Milestone `/animals/dog-size`.
+Лучший следующий продуктовый ход: приступить к Current Milestone `/animals/dog-size`.
+
+Почему:
+
+- animal-раздел уже имеет 6 ready-калькуляторов, но пока без P1 growth/size-сценария;
+- `dog-size` был выбран в master plan и Omni expansion registry как следующий high-value animal candidate;
+- риск ниже, чем у construction norms, brand clothing sizes и health-like dosage;
+- после `dog-size` логично сразу закрывать парный `/animals/cat-growth`, чтобы новый раздел получил связный кластер.
+
+Перед стартом проверить, что незакоммиченные `src/features/text-dev-tools/components/TextDevToolsView.vue` и `docs/plans/active/MAIN_PLAN.MD` не относятся к dog-size и не попадают в commit случайно.

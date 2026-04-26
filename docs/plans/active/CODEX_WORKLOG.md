@@ -3187,3 +3187,26 @@ Commit hash:
 Следующий шаг:
 
 - Закоммитить `/construction/stairs` и перейти к `/animals/dog-size`.
+
+### Итерация 58: актуализация статусов и стабилизация ввода
+
+Контекст:
+
+- После закрытия P1 math/informatics и серии bugfix нужно синхронизировать master/backlog с фактическим состоянием реестра.
+- В worktree есть несвязанные незакоммиченные изменения: `src/features/text-dev-tools/components/TextDevToolsView.vue` и untracked `docs/plans/active/MAIN_PLAN.MD`; их нельзя случайно включать в коммиты статусов или следующих фич.
+
+Фактический snapshot на 2026-04-26:
+
+- Категорий: 13.
+- Ready-калькуляторов: 113.
+- Soon-карточек: 8.
+- P0 backlog закрыт.
+- P1 закрыт по основным волнам: налоги/работа, ипотека, финансы planning, учебная математика, информатика.
+- `/tools/*` legacy route удалён полностью; актуальная категория — `/informatics`.
+- Исправлен класс багов с очисткой number-input в math education, finance MVP и work MVP.
+
+Рекомендация:
+
+- Следующим делать `/animals/dog-size`, затем `/animals/cat-growth`.
+- Причина: это продолжает уже запущенный animal-раздел, даёт новый полезный сценарий с меньшим риском, чем строительные нормы, brand-size и health/dosage.
+- После пары animal growth/size можно вернуться к `sneaker-size` / `jeans-size` или `one-rep-max`.
