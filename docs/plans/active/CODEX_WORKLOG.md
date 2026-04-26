@@ -735,3 +735,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/concrete` или `/datetime/age`.
+
+### Итерация 21: `/construction/concrete`
+
+Что выбрано:
+
+- Продолжить строительный roadmap и реализовать `/construction/concrete`.
+
+Что изменено:
+
+- Создан `src/features/concrete-calculator/`.
+- Добавлен расчёт площади заливки, объёма бетона без запаса и с запасом, литров, мешков сухой смеси, остатка и стоимости.
+- Добавлены пресеты толщины 80 / 120 / 150 мм и запаса 5 / 10 / 15%.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/concrete/ /tmp/calcup-concrete-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/concrete/ /tmp/calcup-concrete-mobile-full.png`
+- Static smoke через `rg` по `dist/construction/concrete/index.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 35 files / 372 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/construction/concrete/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, пресеты, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 45c9836
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/datetime/age` или `/construction/strip-foundation`.

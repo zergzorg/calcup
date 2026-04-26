@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.20 расширение транспортного раздела
+## Текущая фаза: 5.21 расширение строительного раздела
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 34 ready-калькулятора.
-- 40 soon-карточек.
+- 35 ready-калькуляторов.
+- 39 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -49,6 +49,7 @@
 | 5.18 | Калькулятор шпатлёвки | /construction/putty | ✅ ready |
 | 5.19 | Калькулятор утеплителя | /construction/insulation | ✅ ready |
 | 5.20 | Калькулятор запаса хода EV | /transport/ev-range | ✅ ready |
+| 5.21 | Калькулятор бетона | /construction/concrete | ✅ ready |
 
 ## Sitemap
 
@@ -58,7 +59,7 @@
 - /math/percentage/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
@@ -67,6 +68,40 @@
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.21) — 2026-04-26
+
+Реализован строительный калькулятор `/construction/concrete`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/concrete-calculator/`.
+- Добавлен расчёт:
+  - площади прямоугольной заливки;
+  - объёма бетона без запаса и с запасом;
+  - объёма в литрах;
+  - количества мешков сухой смеси;
+  - покупаемого объёма и остатка;
+  - опциональной стоимости по цене за м³.
+- Добавлены пресеты толщины 80 / 120 / 150 мм.
+- Добавлены пресеты запаса 5 / 10 / 15%.
+- Добавлены RU/EN локали `concrete.*`.
+- Registry-запись `concrete` переведена в `ready`.
+- В sitemap добавлен `/construction/concrete/`.
+
+### Проверки
+
+- `npm run test` — OK, `372/372`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/construction/concrete/` title, canonical со slash, `index,follow`;
+  - `/construction/concrete/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/construction/concrete/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
