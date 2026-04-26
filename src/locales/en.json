@@ -1821,6 +1821,44 @@
       }
     }
   },
+  "clothingSize": {
+    "eyebrow": "Clothing & Shoes",
+    "title": "Clothing Size Converter",
+    "intro": "Compare approximate clothing sizes across INT, RU, EU, US and UK systems.",
+    "systems": {
+      "international": "INT",
+      "ru": "RU",
+      "eu": "EU",
+      "us": "US",
+      "uk": "UK"
+    },
+    "form": {
+      "knownTitle": "Known size",
+      "knownHint": "Choose a system and size from a basic adult chart.",
+      "system": "Sizing system",
+      "value": "Size"
+    },
+    "assumptions": {
+      "title": "Approximate chart",
+      "body": "This is a basic reference for adult everyday clothing. Brands, fits and garment categories can use different charts.",
+      "fit": "Before buying, compare your measurements with the specific brand chart."
+    },
+    "result": {
+      "label": "Sizes",
+      "empty": "Choose a size.",
+      "primary": "Estimate",
+      "international": "International",
+      "ru": "RU",
+      "eu": "EU",
+      "us": "US",
+      "uk": "UK",
+      "chest": "Chest",
+      "waist": "Waist",
+      "hips": "Hips",
+      "cmRange": "{value} cm"
+    },
+    "formula": "The size is selected from a fixed approximate row; measurements are shown as centimeter ranges."
+  },
   "raceSplit": {
     "eyebrow": "Sport",
     "title": "Race Split Calculator",

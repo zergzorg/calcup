@@ -186,6 +186,8 @@
 }
 
 .calculator-view :is([class$="-warning-note"], [class$="-warning"], .wallpaper-note) {
+  display: grid !important;
+  gap: 6px !important;
   border: 1px solid var(--calc-warning-border) !important;
   border-radius: var(--calc-radius) !important;
   background: var(--calc-warning-bg) !important;
