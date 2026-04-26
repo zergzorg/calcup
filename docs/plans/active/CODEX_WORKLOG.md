@@ -1864,3 +1864,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/math/proportion`.
+
+### Итерация 39: `/math/proportion`
+
+Выбранный milestone:
+
+- `/math/proportion`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый P1 math-инструмент.
+- Продолжает закрывать math-кластер после дробей и среднего.
+
+Что изменено:
+
+- Создан `src/features/proportion-calculator/`.
+- Добавлены чистые функции для правила трёх, упрощения integer ratio и GCD.
+- Добавлены результат X, коэффициент B/A, отношение A:B и C как процент от A.
+- Добавлена валидация finite input и запрет A = 0.
+- Registry-запись `proportion` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/math/equation`.
+
+Затронутые файлы:
+
+- `src/features/proportion-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор пропорций|Proportion Calculator|canonical|robots|math/proportion" dist/math/proportion.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/proportion/ /tmp/calcup-proportion-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/proportion/ /tmp/calcup-proportion-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 52 files / 454 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/math/proportion/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: fields, result rows, examples и related cards без overflow и наложений.
+
+Commit hash:
+
+- 69aea4d
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/math/equation`.

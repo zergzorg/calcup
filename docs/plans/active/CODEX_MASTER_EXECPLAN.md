@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 51.
-- Soon: 23.
+- Ready: 52.
+- Soon: 22.
 - Planned: 0.
-- Категории с одним ready-калькулятором: `math`, `health`.
-- Низкорисковые next candidates: `/math/proportion`.
+- Категории с одним ready-калькулятором: `health`.
+- Низкорисковые next candidates: `/math/equation`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `proportion`
+- slug: `equation`
 - category: `math`
-- goal: перевести `/math/proportion` из `soon` в `ready` и добавить калькулятор пропорций, отношения и правила трёх.
-- reason: низкорисковый P1 math milestone; продолжает закрывать math-кластер после дробей и среднего.
+- goal: перевести `/math/equation` из `soon` в `ready` и добавить калькулятор линейных и квадратных уравнений.
+- reason: последний math `soon`; закрывает базовый math-кластер перед переходом к более рискованным health/finance/construction задачам.
 - acceptance criteria:
-  - registry-запись `proportion` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/proportion-calculator/`;
-  - чистые функции решают `a / b = c / x`, считают ratio и percent relation;
+  - registry-запись `equation` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/equation-calculator/`;
+  - чистые функции решают линейное `ax + b = 0` и квадратное `ax² + bx + c = 0`;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - `/math/proportion/` добавлен в sitemap;
+  - `/math/equation/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/proportion-calculator/index.ts`
-  - `src/features/proportion-calculator/components/ProportionCalculatorView.vue`
-  - `src/features/proportion-calculator/composables/useProportionCalculator.ts`
-  - `src/features/proportion-calculator/lib/calculations.ts`
-  - `src/features/proportion-calculator/lib/calculations.test.ts`
-  - `src/features/proportion-calculator/types/proportion.ts`
+  - `src/features/equation-calculator/index.ts`
+  - `src/features/equation-calculator/components/EquationCalculatorView.vue`
+  - `src/features/equation-calculator/composables/useEquationCalculator.ts`
+  - `src/features/equation-calculator/lib/calculations.ts`
+  - `src/features/equation-calculator/lib/calculations.test.ts`
+  - `src/features/equation-calculator/types/equation.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,10 +97,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор пропорций|Proportion Calculator|canonical|robots|math/proportion" dist/math/proportion.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор уравнений|Equation Calculator|canonical|robots|math/equation" dist/math/equation.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/proportion/ /tmp/calcup-proportion-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/proportion/ /tmp/calcup-proportion-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/equation/ /tmp/calcup-equation-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/equation/ /tmp/calcup-equation-mobile-full.png`
 - risk level: low
 - status: planned
 
@@ -146,6 +146,7 @@ Owner: Codex
 - slug: `cooking-units`; category: `everyday`; сделано: конвертер кухонных объёмных мер через миллилитры; проверки: test/type-check/build/mobile/static smoke; commit hash: `15328d1`.
 - slug: `fraction`; category: `math`; сделано: операции над дробями, сокращение, смешанное число и десятичное приближение; проверки: test/type-check/build/mobile/static smoke; commit hash: `424f442`.
 - slug: `average`; category: `math`; сделано: среднее, сумма, медиана, минимум, максимум и размах по списку чисел; проверки: test/type-check/build/mobile/static smoke; commit hash: `eba45a8`.
+- slug: `proportion`; category: `math`; сделано: правило трёх, коэффициент, отношение и процентная связь; проверки: test/type-check/build/mobile/static smoke; commit hash: `69aea4d`.
 
 ## Deferred
 
@@ -177,6 +178,7 @@ Owner: Codex
 - 2026-04-26: После `cooking-units` следующим выбран `fraction`, потому что это низкорисковый P1 math milestone и категория `/math` нуждается в расширении ready-инструментов.
 - 2026-04-26: После `fraction` следующим выбран `average`, потому что это низкорисковая статистика по списку чисел и логичное продолжение math-кластера.
 - 2026-04-26: После `average` следующим выбран `proportion`, потому что это низкорисковое правило трёх и продолжение math-кластера.
+- 2026-04-26: После `proportion` следующим выбран `equation`, потому что это последний math `soon`; scope ограничен линейными и квадратными уравнениями.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -202,6 +204,7 @@ Owner: Codex
 - `fraction`: знаменатель не может быть 0; результат всегда нормализуется по знаку и сокращается через GCD.
 - `average`: первая версия парсит числа из многострочного/разделённого запятыми ввода; пустые элементы игнорируются только если есть хотя бы одно число.
 - `proportion`: первая версия решает одну неизвестную `x` в пропорции; деление на 0 валидируется явно.
+- `equation`: первая версия решает только действительные корни; комплексные корни показываются как отсутствие real roots.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -287,6 +290,11 @@ Owner: Codex
 - 2026-04-26: Для `/math/average` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/math/average.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/math/average/` — textarea, example chips, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/math/proportion` `npm run test` — OK, 52 files / 454 tests.
+- 2026-04-26: Для `/math/proportion` `npm run type-check` — OK.
+- 2026-04-26: Для `/math/proportion` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/math/proportion.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/math/proportion/` — fields, result rows, examples и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -297,6 +305,7 @@ Owner: Codex
 - `15328d1` — `feat(everyday): add cooking units calculator`.
 - `424f442` — `feat(math): add fraction calculator`.
 - `eba45a8` — `feat(math): add average calculator`.
+- `69aea4d` — `feat(math): add proportion calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -315,4 +324,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/math/proportion`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/math/equation`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
