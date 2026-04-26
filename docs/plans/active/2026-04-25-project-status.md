@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.39 завершение базового math-кластера
+## Текущая фаза: 5.40 расширение health-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 53 ready-калькулятора.
-- 21 soon-карточка.
+- 54 ready-калькулятора.
+- 20 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -68,6 +68,7 @@
 | 5.37 | Калькулятор среднего | /math/average | ✅ ready |
 | 5.38 | Калькулятор пропорций | /math/proportion | ✅ ready |
 | 5.39 | Калькулятор уравнений | /math/equation | ✅ ready |
+| 5.40 | Калькулятор калорий | /health/calorie | ✅ ready |
 
 ## Sitemap
 
@@ -75,7 +76,7 @@
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
-- /health/bmi/
+- /health/bmi/ · /health/calorie/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
@@ -86,6 +87,37 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.40) — 2026-04-26
+
+Реализован калькулятор `/health/calorie`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/calorie-calculator/`.
+- Добавлен расчёт:
+  - BMR по формуле Mifflin-St Jeor;
+  - TDEE через коэффициент активности;
+  - целевых калорий через дневной delta для цели.
+- Добавлены варианты пола, активности и цели.
+- Добавлен health warning-note: результат ориентировочный и не является персональным планом питания.
+- Добавлены RU/EN локали `calorie.*`.
+- Registry-запись `calorie` переведена в `ready`.
+- В sitemap добавлен `/health/calorie/`.
+
+### Проверки
+
+- `npm run test` — OK, `467/467`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/health/calorie/` title, canonical со slash, `index,follow`;
+  - `/health/calorie/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/health/calorie/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

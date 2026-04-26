@@ -2002,3 +2002,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/health/calorie`.
+
+### Итерация 41: `/health/calorie`
+
+Выбранный milestone:
+
+- `/health/calorie`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Health оставался категорией с одним ready-инструментом.
+- P1-карточка с понятным scope: BMR, TDEE и цель по дневному delta.
+
+Что изменено:
+
+- Создан `src/features/calorie-calculator/`.
+- Добавлены чистые функции для BMR по Mifflin-St Jeor, TDEE через activity factor и целевых калорий.
+- Добавлены activity chips, goal chips, профиль пользователя и health warning-note.
+- Registry-запись `calorie` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/health/ideal-weight`.
+
+Затронутые файлы:
+
+- `src/features/calorie-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор калорий|Calorie Calculator|canonical|robots|health/calorie" dist/health/calorie.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/calorie/ /tmp/calcup-calorie-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/calorie/ /tmp/calcup-calorie-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 54 files / 467 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/health/calorie/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: profile/activity/goal chips, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 38748f4
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/health/ideal-weight`.
