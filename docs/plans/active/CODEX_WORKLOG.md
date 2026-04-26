@@ -853,3 +853,47 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/strip-foundation` или `/datetime/time-duration`.
+
+### Итерация 24: sync MAIN_PLAN v2 и старт `/datetime/time-duration`
+
+Что выбрано:
+
+- Перечитать обновлённый `MAIN_PLAN.MD`.
+- Синхронизировать `CODEX_MASTER_EXECPLAN.md` с новым обязательным backlog-форматом.
+- Выбрать следующий низкорисковый milestone: `/datetime/time-duration`.
+
+Почему выбран именно он:
+
+- Категория `/datetime` уже открыта и хорошо масштабируется.
+- Формулы длительностей общеизвестные, не требуют внешних нормативных источников.
+- Риск ниже, чем у clothing sizes, construction P2/P3 и health/finance задач.
+
+Что изменено:
+
+- `CODEX_MASTER_EXECPLAN.md` приведён к новому формату: `Current Milestone`, `Pending`, `Completed`, `Deferred`, `Assumptions Log`.
+- Current Milestone установлен в `datetime/time-duration` со статусом `in_progress`.
+
+Затронутые файлы:
+
+- `docs/plans/active/MAIN_PLAN.MD` прочитан как входной план, в commit не добавляется.
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`.
+
+Команды:
+
+- `git status --short`
+- `sed -n ... docs/plans/active/MAIN_PLAN.MD`
+- `rg --files docs/plans/active`
+- `rg "status: 'ready'"`
+- `rg "status: 'soon'"`
+
+Результат проверок:
+
+- Проверки кода не запускались: это подготовительный docs-sync перед реализацией калькулятора.
+
+Commit hash:
+
+- pending
+
+Следующий шаг:
+
+- Реализовать `/datetime/time-duration`.
