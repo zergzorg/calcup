@@ -404,6 +404,70 @@
       }
     }
   },
+  "dataSize": {
+    "eyebrow": "Converters",
+    "title": "Data Size Converter",
+    "intro": "Convert bytes, kilobytes, megabytes, gigabytes and terabytes in decimal and binary systems.",
+    "modes": {
+      "decimal": "Decimal",
+      "binary": "Binary"
+    },
+    "form": {
+      "modeTitle": "Unit system",
+      "modeHint": {
+        "decimal": "Decimal uses 1000 bytes per kilobyte: KB, MB, GB, TB.",
+        "binary": "Binary uses 1024 bytes per kibibyte: KiB, MiB, GiB, TiB."
+      },
+      "value": "Data size",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "units": {
+      "byte": "Byte",
+      "kilobyte": "Kilobyte",
+      "megabyte": "Megabyte",
+      "gigabyte": "Gigabyte",
+      "terabyte": "Terabyte",
+      "kibibyte": "Kibibyte",
+      "mebibyte": "Mebibyte",
+      "gibibyte": "Gibibyte",
+      "tebibyte": "Tebibyte"
+    },
+    "unitShort": {
+      "byte": "B",
+      "kilobyte": "KB",
+      "megabyte": "MB",
+      "gigabyte": "GB",
+      "terabyte": "TB",
+      "kibibyte": "KiB",
+      "mebibyte": "MiB",
+      "gibibyte": "GiB",
+      "tebibyte": "TiB"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a data size.",
+      "converted": "Converted size",
+      "source": "Source value",
+      "bytes": "In bytes",
+      "mode": "System"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "formula": {
+      "decimal": "Decimal: 1 KB = 1000 B, 1 MB = 1000 KB, 1 GB = 1000 MB.",
+      "binary": "Binary: 1 KiB = 1024 B, 1 MiB = 1024 KiB, 1 GiB = 1024 MiB."
+    },
+    "validation": {
+      "value": {
+        "required": "Enter data size as a number.",
+        "nonNegative": "Data size cannot be negative."
+      }
+    }
+  },
   "speed": {
     "eyebrow": "Converters",
     "title": "Speed Converter",

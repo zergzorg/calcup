@@ -404,6 +404,70 @@
       }
     }
   },
+  "dataSize": {
+    "eyebrow": "Конвертеры",
+    "title": "Конвертер данных",
+    "intro": "Переводите байты, килобайты, мегабайты, гигабайты и терабайты в decimal и binary системах.",
+    "modes": {
+      "decimal": "Decimal",
+      "binary": "Binary"
+    },
+    "form": {
+      "modeTitle": "Система единиц",
+      "modeHint": {
+        "decimal": "Decimal использует 1000 байт в килобайте: KB, MB, GB, TB.",
+        "binary": "Binary использует 1024 байта в кибибайте: KiB, MiB, GiB, TiB."
+      },
+      "value": "Объём данных",
+      "from": "Из единицы",
+      "to": "В единицу",
+      "swap": "Поменять единицы местами"
+    },
+    "units": {
+      "byte": "Байт",
+      "kilobyte": "Килобайт",
+      "megabyte": "Мегабайт",
+      "gigabyte": "Гигабайт",
+      "terabyte": "Терабайт",
+      "kibibyte": "Кибибайт",
+      "mebibyte": "Мебибайт",
+      "gibibyte": "Гибибайт",
+      "tebibyte": "Тебибайт"
+    },
+    "unitShort": {
+      "byte": "Б",
+      "kilobyte": "KB",
+      "megabyte": "MB",
+      "gigabyte": "GB",
+      "terabyte": "TB",
+      "kibibyte": "KiB",
+      "mebibyte": "MiB",
+      "gibibyte": "GiB",
+      "tebibyte": "TiB"
+    },
+    "result": {
+      "label": "Результат",
+      "empty": "Введите объём данных.",
+      "converted": "Переведённый объём",
+      "source": "Исходное значение",
+      "bytes": "В байтах",
+      "mode": "Система"
+    },
+    "popular": {
+      "title": "Популярные конверсии",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "formula": {
+      "decimal": "Decimal: 1 KB = 1000 B, 1 MB = 1000 KB, 1 GB = 1000 MB.",
+      "binary": "Binary: 1 KiB = 1024 B, 1 MiB = 1024 KiB, 1 GiB = 1024 MiB."
+    },
+    "validation": {
+      "value": {
+        "required": "Введите объём данных числом.",
+        "nonNegative": "Объём данных не может быть отрицательным."
+      }
+    }
+  },
   "speed": {
     "eyebrow": "Конвертеры",
     "title": "Конвертер скорости",
