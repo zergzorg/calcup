@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.38 расширение математических калькуляторов
+## Текущая фаза: 5.39 завершение базового math-кластера
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 52 ready-калькулятора.
-- 22 soon-карточки.
+- 53 ready-калькулятора.
+- 21 soon-карточка.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -67,13 +67,14 @@
 | 5.36 | Калькулятор дробей | /math/fraction | ✅ ready |
 | 5.37 | Калькулятор среднего | /math/average | ✅ ready |
 | 5.38 | Калькулятор пропорций | /math/proportion | ✅ ready |
+| 5.39 | Калькулятор уравнений | /math/equation | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
-- /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/
+- /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
@@ -85,6 +86,37 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.39) — 2026-04-26
+
+Реализован калькулятор `/math/equation`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/equation-calculator/`.
+- Добавлен расчёт:
+  - линейного уравнения `ax + b = 0`;
+  - квадратного уравнения `ax² + bx + c = 0`;
+  - дискриминанта и действительных корней;
+  - вырожденных случаев без решений, с бесконечным числом решений и с `a = 0`.
+- Добавлена валидация конечных чисел и разумного диапазона коэффициентов.
+- Добавлены RU/EN локали `equation.*`.
+- Registry-запись `equation` переведена в `ready`.
+- В sitemap добавлен `/math/equation/`.
+
+### Проверки
+
+- `npm run test` — OK, `461/461`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/math/equation/` title, canonical со slash, `index,follow`;
+  - `/math/equation/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/math/equation/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

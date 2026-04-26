@@ -1933,3 +1933,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/math/equation`.
+
+### Итерация 40: `/math/equation`
+
+Выбранный milestone:
+
+- `/math/equation`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Последняя `soon`-карточка в категории `/math`.
+- Низкорисковый математический сценарий без внешних источников.
+
+Что изменено:
+
+- Создан `src/features/equation-calculator/`.
+- Добавлены чистые функции для линейного `ax + b = 0` и квадратного `ax² + bx + c = 0`.
+- Добавлены вырожденные случаи: нет решений, бесконечно много решений, квадратное с `a = 0`.
+- Добавлены дискриминант, действительные корни и формула решения.
+- Registry-запись `equation` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/health/calorie`.
+
+Затронутые файлы:
+
+- `src/features/equation-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор уравнений|Equation Calculator|canonical|robots|math/equation" dist/math/equation.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/equation/ /tmp/calcup-equation-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/equation/ /tmp/calcup-equation-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 53 files / 461 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/math/equation/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: mode chips, fields, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 14ae2ed
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/health/calorie`.
