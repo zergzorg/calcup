@@ -2277,3 +2277,73 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/finance/compound-interest`.
+
+### Итерация 45: `/finance/compound-interest`
+
+Выбранный milestone:
+
+- `/finance/compound-interest`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Продолжает накопительные finance-сценарии после вклада.
+- Добавляет отдельный сценарий с регулярными пополнениями, не дублируя депозит.
+
+Что изменено:
+
+- Создан `src/features/compound-interest-calculator/`.
+- Добавлены чистые функции для собственных взносов, будущей стоимости, процентного дохода и роста к взносам.
+- Использована ежемесячная капитализация с пополнением в конце месяца.
+- Добавлены быстрые пресеты срока 1 / 3 / 5 / 10 лет.
+- Добавлен finance warning-note про налоги, комиссии, инфляцию, риск, изменение ставки и фактическую доходность.
+- Registry-запись `compound-interest` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/finance/refinance`.
+
+Затронутые файлы:
+
+- `src/features/compound-interest-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор сложного процента|Compound Interest Calculator|canonical|robots|finance/compound-interest" dist/finance/compound-interest.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/compound-interest/ /tmp/calcup-compound-interest-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/compound-interest/ /tmp/calcup-compound-interest-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 58 files / 487 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/finance/compound-interest/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: initial/contribution/rate/term fields, term chips, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- c314a72
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/finance/refinance`.

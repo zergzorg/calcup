@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.43 расширение finance-категории
+## Текущая фаза: 5.44 расширение finance-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 57 ready-калькуляторов.
-- 17 soon-карточек.
+- 58 ready-калькуляторов.
+- 16 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -72,12 +72,13 @@
 | 5.41 | Калькулятор идеального веса | /health/ideal-weight | ✅ ready |
 | 5.42 | Ипотечный калькулятор | /finance/mortgage | ✅ ready |
 | 5.43 | Калькулятор вклада | /finance/deposit | ✅ ready |
+| 5.44 | Калькулятор сложного процента | /finance/compound-interest | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
-- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/
+- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
@@ -92,6 +93,42 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.44) — 2026-04-26
+
+Реализован калькулятор `/finance/compound-interest`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/compound-interest-calculator/`.
+- Добавлен расчёт:
+  - собственных взносов;
+  - будущей стоимости;
+  - дохода от процентов;
+  - роста к взносам.
+- Использована ежемесячная капитализация с пополнением в конце месяца.
+- Добавлены быстрые пресеты срока 1 / 3 / 5 / 10 лет.
+- Добавлен finance warning-note: расчёт не учитывает налоги, комиссии, инфляцию, риск, изменение ставки и фактическую доходность.
+- Добавлены RU/EN локали `compoundInterest.*`.
+- Registry-запись `compound-interest` переведена в `ready`.
+- В sitemap добавлен `/finance/compound-interest/`.
+- README обновлён до 58 ready / 16 soon.
+
+### Проверки
+
+- `npm run test` — OK, 58 files / 487 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/finance/compound-interest/` title, canonical со slash, `index,follow`;
+  - `/finance/compound-interest/` есть в sitemap.
+- Mobile smoke:
+  - `/finance/compound-interest/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `c314a72 feat(finance): add compound interest calculator`
 
 ## Сделано (Фаза 5.43) — 2026-04-26
 
