@@ -113,15 +113,15 @@ export const CATEGORIES: CategoryMeta[] = [
     path: '/everyday',
   },
   {
-    slug: 'tools',
-    title: { ru: 'Инструменты', en: 'Tools' },
+    slug: 'informatics',
+    title: { ru: 'Информатика', en: 'Informatics' },
     description: {
-      ru: 'Текстовые, developer и маркетинговые утилиты',
-      en: 'Text, developer and marketing utilities',
+      ru: 'Текст, данные, кодирование и developer-утилиты',
+      en: 'Text, data, encoding and developer utilities',
     },
     icon: '🛠️',
     color: '#0ea5e9',
-    path: '/tools',
+    path: '/informatics',
   },
 ]
 

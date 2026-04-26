@@ -19,6 +19,16 @@ const staticRoutes: RouteRecordRaw[] = [
     path: '/credit-calc',
     redirect: '/finance/credit',
   },
+  {
+    path: '/tools',
+    redirect: '/informatics',
+    meta: { layout: 'site', noindex: true },
+  },
+  {
+    path: '/tools/:slug',
+    redirect: to => `/informatics/${to.params.slug}`,
+    meta: { layout: 'site', noindex: true },
+  },
 ]
 
 const categoryRoutes: RouteRecordRaw[] = CATEGORIES.map(category => ({

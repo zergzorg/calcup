@@ -2416,7 +2416,7 @@ export const CALCULATORS: CalculatorMeta[] = [
   ].map(([id, titleRu, titleEn, descriptionRu, descriptionEn, icon, tags], index) => ({
     id: id as string,
     slug: id as string,
-    categorySlug: 'tools' as const,
+    categorySlug: 'informatics' as const,
     title: { ru: titleRu as string, en: titleEn as string },
     description: { ru: descriptionRu as string, en: descriptionEn as string },
     icon: icon as string,
@@ -2424,7 +2424,7 @@ export const CALCULATORS: CalculatorMeta[] = [
     priority: 'P1' as const,
     isPopular: index < 5,
     popularity: 82 - index,
-    path: `/tools/${id}`,
+    path: `/informatics/${id}`,
     tags: tags as string[],
     aliases: tags as string[],
     componentLoader: () => import('../features/text-dev-tools'),

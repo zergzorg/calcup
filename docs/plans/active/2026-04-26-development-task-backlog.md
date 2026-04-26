@@ -246,9 +246,9 @@ Risk: low/medium. Хороший кандидат для быстрой сери
 
 ## P1 Tasks: IT / Text Tools
 
-### Task P1-5: Новый раздел “Инструменты”
+### Task P1-5: Новый раздел “Информатика”
 
-Category: new `tools` or split into `text` and `dev`
+Category: `informatics`
 Type: новая категория
 Goal: добавить быстрые рабочие инструменты без регистрации.
 Status: done on 2026-04-26.
@@ -281,7 +281,7 @@ Marketing tools:
 
 Implementation note:
 
-- Added category `/tools` and ready routes for all listed text tools, developer tools and marketing tools through `text-dev-tools`.
+- Added category `/informatics` and ready routes for all listed text tools, developer tools and marketing tools through `text-dev-tools`.
 - QR generation uses the `qrcode` package and renders SVG locally in the browser.
 - YAML support is intentionally scoped to safe basic `key: value` conversion plus JSON → YAML, not full YAML spec execution.
 
@@ -456,8 +456,8 @@ Hubs:
 - `/construction/materials`
 - `/math/geometry`
 - `/math/statistics`
-- `/tools/text`
-- `/tools/developer`
+- `/informatics/text`
+- `/informatics/developer`
 - `/everyday/recipes`
 - `/animals`
 

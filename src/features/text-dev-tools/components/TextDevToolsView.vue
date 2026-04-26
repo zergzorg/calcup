@@ -1,7 +1,7 @@
 <template>
   <main v-if="config" class="tools-page" :aria-labelledby="`${config.id}-title`">
     <section class="tools-heading">
-      <p class="tools-eyebrow">{{ lang === 'ru' ? 'Инструменты' : 'Tools' }}</p>
+      <p class="tools-eyebrow">{{ lang === 'ru' ? 'Информатика' : 'Informatics' }}</p>
       <h1 :id="`${config.id}-title`">{{ text(config.title) }}</h1>
       <p>{{ text(config.intro) }}</p>
     </section>
