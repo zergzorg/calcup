@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.35 расширение бытовых калькуляторов
+## Текущая фаза: 5.36 расширение математических калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 49 ready-калькуляторов.
-- 25 soon-карточек.
+- 50 ready-калькуляторов.
+- 24 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -64,13 +64,14 @@
 | 5.33 | Калькулятор площади комнаты | /everyday/room-area | ✅ ready |
 | 5.34 | Калькулятор электроэнергии | /everyday/electricity | ✅ ready |
 | 5.35 | Калькулятор мер для кухни | /everyday/cooking-units | ✅ ready |
+| 5.36 | Калькулятор дробей | /math/fraction | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
-- /math/percentage/
+- /math/percentage/ · /math/fraction/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
@@ -82,6 +83,38 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.36) — 2026-04-26
+
+Реализован калькулятор `/math/fraction`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/fraction-calculator/`.
+- Добавлены операции над дробями:
+  - сложение, вычитание, умножение и деление;
+  - сокращение через НОД;
+  - нормализация знака;
+  - смешанное число для неправильной дроби;
+  - десятичное приближение.
+- Добавлена валидация целых чисел, нулевого знаменателя и деления на нулевую дробь.
+- Добавлены RU/EN локали `fraction.*`.
+- Registry-запись `fraction` переведена в `ready`.
+- В sitemap добавлен `/math/fraction/`.
+
+### Проверки
+
+- `npm run test` — OK, `443/443`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/math/fraction/` title, canonical со slash, `index,follow`;
+  - `/math/fraction/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/math/fraction/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

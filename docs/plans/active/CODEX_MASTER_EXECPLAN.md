@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 49.
-- Soon: 25.
+- Ready: 50.
+- Soon: 24.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`.
-- Низкорисковые next candidates: `/math/fraction`, `/math/average`, `/math/proportion`.
+- Низкорисковые next candidates: `/math/average`, `/math/proportion`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `fraction`
+- slug: `average`
 - category: `math`
-- goal: перевести `/math/fraction` из `soon` в `ready` и добавить калькулятор дробей для сложения, вычитания, умножения, деления и сокращения.
-- reason: низкорисковый P1 math milestone; усиливает категорию `/math`, где пока был только процентный калькулятор.
+- goal: перевести `/math/average` из `soon` в `ready` и добавить калькулятор среднего, суммы, минимума, максимума и медианы по списку чисел.
+- reason: низкорисковый P1 math milestone; продолжает расширение категории `/math` после дробей.
 - acceptance criteria:
-  - registry-запись `fraction` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/fraction-calculator/`;
-  - чистые функции считают операции над дробями, сокращают результат и выделяют mixed number;
+  - registry-запись `average` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/average-calculator/`;
+  - чистые функции парсят список чисел и считают mean, sum, min, max, count, median;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - `/math/fraction/` добавлен в sitemap;
+  - `/math/average/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/fraction-calculator/index.ts`
-  - `src/features/fraction-calculator/components/FractionCalculatorView.vue`
-  - `src/features/fraction-calculator/composables/useFractionCalculator.ts`
-  - `src/features/fraction-calculator/lib/calculations.ts`
-  - `src/features/fraction-calculator/lib/calculations.test.ts`
-  - `src/features/fraction-calculator/types/fraction.ts`
+  - `src/features/average-calculator/index.ts`
+  - `src/features/average-calculator/components/AverageCalculatorView.vue`
+  - `src/features/average-calculator/composables/useAverageCalculator.ts`
+  - `src/features/average-calculator/lib/calculations.ts`
+  - `src/features/average-calculator/lib/calculations.test.ts`
+  - `src/features/average-calculator/types/average.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,10 +97,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор дробей|Fraction Calculator|canonical|robots|math/fraction" dist/math/fraction.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор среднего|Average Calculator|canonical|robots|math/average" dist/math/average.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/fraction/ /tmp/calcup-fraction-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/fraction/ /tmp/calcup-fraction-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/average/ /tmp/calcup-average-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/average/ /tmp/calcup-average-mobile-full.png`
 - risk level: low
 - status: planned
 
@@ -144,6 +144,7 @@ Owner: Codex
 - slug: `room-area`; category: `everyday`; сделано: площадь пола, потолка, стен, проёмов и периметр комнаты; проверки: test/type-check/build/mobile/static smoke; commit hash: `3c38f5a`.
 - slug: `electricity`; category: `everyday`; сделано: расход кВт⋅ч и стоимость прибора по мощности, времени и тарифу; проверки: test/type-check/build/mobile/static smoke; commit hash: `432bbab`.
 - slug: `cooking-units`; category: `everyday`; сделано: конвертер кухонных объёмных мер через миллилитры; проверки: test/type-check/build/mobile/static smoke; commit hash: `15328d1`.
+- slug: `fraction`; category: `math`; сделано: операции над дробями, сокращение, смешанное число и десятичное приближение; проверки: test/type-check/build/mobile/static smoke; commit hash: `424f442`.
 
 ## Deferred
 
@@ -173,6 +174,7 @@ Owner: Codex
 - 2026-04-26: После `room-area` следующим выбран `electricity`, потому что это P1 everyday-сценарий с простыми расчётами мощности, времени и тарифа.
 - 2026-04-26: После `electricity` следующим выбран `cooking-units`; scope ограничить объёмными kitchen units, чтобы не обещать точную конверсию граммов без плотности продукта.
 - 2026-04-26: После `cooking-units` следующим выбран `fraction`, потому что это низкорисковый P1 math milestone и категория `/math` нуждается в расширении ready-инструментов.
+- 2026-04-26: После `fraction` следующим выбран `average`, потому что это низкорисковая статистика по списку чисел и логичное продолжение math-кластера.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -196,6 +198,7 @@ Owner: Codex
 - `electricity`: пользователь сам вводит тариф; расчёт не пытается учитывать зоны тарифа, льготы, сетевые надбавки или реальные измерения счётчика.
 - `cooking-units`: граммы не конвертировать в объём без выбора продукта/плотности; первая версия работает с объёмом.
 - `fraction`: знаменатель не может быть 0; результат всегда нормализуется по знаку и сокращается через GCD.
+- `average`: первая версия парсит числа из многострочного/разделённого запятыми ввода; пустые элементы игнорируются только если есть хотя бы одно число.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -271,6 +274,11 @@ Owner: Codex
 - 2026-04-26: Для `/everyday/cooking-units` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/everyday/cooking-units.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/everyday/cooking-units/` — selects, swap button, result rows и popular conversions без overflow и наложений.
+- 2026-04-26: Для `/math/fraction` `npm run test` — OK, 50 files / 443 tests.
+- 2026-04-26: Для `/math/fraction` `npm run type-check` — OK.
+- 2026-04-26: Для `/math/fraction` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/math/fraction.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/math/fraction/` — fraction fields, operation chips, result rows и popular examples без overflow и наложений.
 
 ## Commit Log
 
@@ -279,6 +287,7 @@ Owner: Codex
 - `3c38f5a` — `feat(everyday): add room area calculator`.
 - `432bbab` — `feat(everyday): add electricity calculator`.
 - `15328d1` — `feat(everyday): add cooking units calculator`.
+- `424f442` — `feat(math): add fraction calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -297,4 +306,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/math/fraction`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/math/average`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

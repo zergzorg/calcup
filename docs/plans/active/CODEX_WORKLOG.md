@@ -1725,3 +1725,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/math/fraction`.
+
+### Итерация 37: `/math/fraction`
+
+Выбранный milestone:
+
+- `/math/fraction`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый P1 math-инструмент без внешних данных.
+- Усиливает категорию `/math`, где до этого был один ready-калькулятор.
+
+Что изменено:
+
+- Создан `src/features/fraction-calculator/`.
+- Добавлены чистые функции GCD, нормализации дроби и операций add/subtract/multiply/divide.
+- Добавлены сокращённая дробь, смешанное число для неправильной дроби и десятичное значение.
+- Добавлена валидация целых чисел, нулевого знаменателя и деления на нулевую дробь.
+- Registry-запись `fraction` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/math/average`.
+
+Затронутые файлы:
+
+- `src/features/fraction-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор дробей|Fraction Calculator|canonical|robots|math/fraction" dist/math/fraction.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/fraction/ /tmp/calcup-fraction-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/fraction/ /tmp/calcup-fraction-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 50 files / 443 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/math/fraction/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: fraction fields, operation chips, result rows и popular examples без overflow и наложений.
+
+Commit hash:
+
+- 424f442
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/math/average`.
