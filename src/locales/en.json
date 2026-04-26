@@ -361,6 +361,73 @@
       }
     }
   },
+  "refinance": {
+    "eyebrow": "Finance",
+    "title": "Refinance Calculator",
+    "intro": "Compare your current loan with a new offer: payment, total paid, savings, and payback of refinancing costs.",
+    "form": {
+      "balanceTitle": "Outstanding balance",
+      "balanceHelp": "Enter the current loan balance. The comparison calculates payments from this amount.",
+      "outstandingBalance": "Loan balance",
+      "oldLoanTitle": "Current loan",
+      "oldAnnualRate": "Old rate",
+      "oldTermMonths": "Months left",
+      "newLoanTitle": "New loan",
+      "newAnnualRate": "New rate",
+      "newTermMonths": "New term",
+      "refinancingCost": "One-time costs"
+    },
+    "units": {
+      "currency": "$",
+      "months": "mo.",
+      "currencyValue": "${value}",
+      "monthsValue": "{value} mo."
+    },
+    "result": {
+      "label": "Comparison",
+      "savings": "Savings",
+      "loss": "Extra cost",
+      "oldMonthlyPayment": "Old payment",
+      "newMonthlyPayment": "New payment",
+      "monthlySavings": "Monthly difference",
+      "oldTotalPayment": "Old total paid",
+      "newTotalPayment": "New total with costs",
+      "paybackMonths": "Cost payback",
+      "noPayback": "none",
+      "empty": "Fill balance, rates, terms, and costs with valid values."
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "The calculator compares annuity scenarios and does not include penalties, insurance, schedule changes, early repayments, or lender-specific terms."
+    },
+    "formula": "Payments use the annuity formula. New total includes one-time refinancing costs. Payback = costs / monthly savings.",
+    "validation": {
+      "outstandingBalance": {
+        "required": "Enter loan balance as a number.",
+        "range": "Balance must be from 1,000 to 1,000,000,000."
+      },
+      "oldAnnualRate": {
+        "required": "Enter old rate as a number.",
+        "range": "Rate must be from 0 to 100%."
+      },
+      "oldTermMonths": {
+        "required": "Enter remaining term as a number.",
+        "range": "Term must be from 1 to 600 months."
+      },
+      "newAnnualRate": {
+        "required": "Enter new rate as a number.",
+        "range": "Rate must be from 0 to 100%."
+      },
+      "newTermMonths": {
+        "required": "Enter new term as a number.",
+        "range": "Term must be from 1 to 600 months."
+      },
+      "refinancingCost": {
+        "required": "Enter costs as a number.",
+        "range": "Costs must be from 0 to 100,000,000."
+      }
+    }
+  },
   "bmi": {
     "eyebrow": "Health",
     "title": "BMI Calculator",
