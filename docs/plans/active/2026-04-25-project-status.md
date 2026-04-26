@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.25 расширение раздела даты и времени
+## Текущая фаза: 5.26 расширение бытовых калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 39 ready-калькуляторов.
-- 35 soon-карточек.
+- 40 ready-калькуляторов.
+- 34 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -54,6 +54,7 @@
 | 5.23 | Калькулятор рабочих дней | /datetime/workdays | ✅ ready |
 | 5.24 | Калькулятор времени | /datetime/time-duration | ✅ ready |
 | 5.25 | Калькулятор дней до даты | /datetime/countdown | ✅ ready |
+| 5.26 | Калькулятор разделения счёта | /everyday/bill-split | ✅ ready |
 
 ## Sitemap
 
@@ -68,10 +69,42 @@
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
-- /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
+- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.26) — 2026-04-26
+
+Реализован бытовой калькулятор `/everyday/bill-split`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/bill-split-calculator/`.
+- Добавлен расчёт:
+  - суммы чаевых по проценту;
+  - фиксированного сервисного сбора;
+  - итога с доплатами;
+  - точной доли на человека;
+  - округления доли вверх до выбранного шага;
+  - запаса от округления.
+- Добавлены RU/EN локали `billSplit.*`.
+- Registry-запись `bill-split` переведена в `ready`.
+- В sitemap добавлен `/everyday/bill-split/`.
+
+### Проверки
+
+- `npm run test` — OK, `395/395`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/everyday/bill-split/` title, canonical со slash, `index,follow`;
+  - `/everyday/bill-split/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/everyday/bill-split/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

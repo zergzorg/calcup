@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 39.
-- Soon: 35.
+- Ready: 40.
+- Soon: 34.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`.
-- Низкорисковые next candidates: `/everyday/bill-split`, `/convert/volume`, `/convert/speed`.
+- Низкорисковые next candidates: `/convert/volume`, `/convert/speed`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `bill-split`
-- category: `everyday`
-- goal: перевести `/everyday/bill-split` из `soon` в `ready` и добавить калькулятор разделения счёта между участниками.
-- reason: низкорисковый бытовой high-value сценарий; усиливает `/everyday` после `tips`, `discount` и `unit-price`.
+- slug: `volume`
+- category: `convert`
+- goal: перевести `/convert/volume` из `soon` в `ready` и добавить конвертер объёма.
+- reason: низкорисковый справочный конвертер; усиливает базовую категорию `/convert`.
 - acceptance criteria:
-  - registry-запись `bill-split` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/bill-split-calculator/`;
-  - чистые функции считают общий счёт, сервисный сбор/чаевые, сумму на человека и остаток округления;
-  - есть unit-тесты на равное деление, чаевые/сбор, округление и invalid input;
+  - registry-запись `volume` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/volume-converter/` или согласованный feature-модуль;
+  - чистые функции переводят литры, миллилитры, кубометры, галлоны и чашки через базовую единицу;
+  - есть unit-тесты на метрические и imperial-конверсии, округление и invalid input;
   - RU/EN локали заполнены;
-  - `/everyday/bill-split/` добавлен в sitemap;
+  - `/convert/volume/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, тематические roadmaps и README синхронизированы.
 - expected files:
-  - `src/features/bill-split-calculator/index.ts`
-  - `src/features/bill-split-calculator/components/BillSplitCalculatorView.vue`
-  - `src/features/bill-split-calculator/composables/useBillSplitCalculator.ts`
-  - `src/features/bill-split-calculator/lib/calculations.ts`
-  - `src/features/bill-split-calculator/lib/calculations.test.ts`
-  - `src/features/bill-split-calculator/types/bill-split.ts`
+  - `src/features/volume-converter/index.ts`
+  - `src/features/volume-converter/components/VolumeConverterView.vue`
+  - `src/features/volume-converter/composables/useVolumeConverter.ts`
+  - `src/features/volume-converter/lib/calculations.ts`
+  - `src/features/volume-converter/lib/calculations.test.ts`
+  - `src/features/volume-converter/types/volume.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,16 +97,15 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор разделения счёта|Bill Split Calculator|canonical|robots|everyday/bill-split" dist/everyday/bill-split.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Конвертер объёма|Volume Converter|canonical|robots|convert/volume" dist/convert/volume.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/volume/ /tmp/calcup-volume-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/volume/ /tmp/calcup-volume-mobile-full.png`
 - risk level: low
 - status: planned
 
 ## Pending
 
-- slug: `volume`; category: `convert`; цель: конвертер объёма; причина приоритета: базовая конвертерная категория; expected scope: liters, ml, m3, gallons, cups; риск: low.
 - slug: `speed`; category: `convert`; цель: конвертер скорости; причина приоритета: простой справочный инструмент; expected scope: km/h, mph, m/s, min/km optional; риск: low.
 - slug: `clothing-size`; category: `clothing`; цель: базовый конвертер размеров одежды; причина приоритета: категория `clothing` пока с одним ready; expected scope: generic RU/EU/US/UK/XS-XXL with disclaimer; риск: high.
 - slug: `strip-foundation`; category: `construction`; цель: ориентировочный расчёт ленточного фундамента; причина приоритета: roadmap construction P2; expected scope: concrete volume, sand cushion, formwork, disclaimer; риск: high.
@@ -138,6 +137,7 @@ Owner: Codex
 - slug: `workdays`; category: `datetime`; сделано: рабочие/выходные дни; проверки: test/type-check/build/mobile/static smoke; commit hash: `b05e876`.
 - slug: `time-duration`; category: `datetime`; сделано: сложение и вычитание длительностей в часах, минутах и секундах; проверки: test/type-check/build/mobile/static smoke; commit hash: `22935a2`.
 - slug: `countdown`; category: `datetime`; сделано: дни до события, прошедшие дни, опциональное включение даты отсчёта; проверки: test/type-check/build/mobile/static smoke; commit hash: `a057264`.
+- slug: `bill-split`; category: `everyday`; сделано: разделение счёта с чаевыми, сервисным сбором и округлением на человека; проверки: test/type-check/build/mobile/static smoke; commit hash: `80c4117`.
 
 ## Deferred
 
@@ -154,6 +154,8 @@ Owner: Codex
 - 2026-04-26: `countdown` выбран следующим milestone, потому что это низкорисковый date-only сценарий без нормативных источников.
 - 2026-04-26: Для `countdown` расчёт выполняется по date-only значениям через UTC; опция включения даты отсчёта добавляет 1 день только к ненулевой разнице.
 - 2026-04-26: `bill-split` выбран следующим milestone, потому что это низкорисковый бытовой сценарий и расширяет категорию `/everyday`.
+- 2026-04-26: Для `bill-split` первая версия считает равное деление общего счёта, фиксированный сервисный сбор, чаевые процентом и округление доли вверх.
+- 2026-04-26: `volume` выбран следующим milestone, потому что это низкорисковый unit-converter и закрывает базовую `soon`-карточку `/convert/volume`.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -167,6 +169,7 @@ Owner: Codex
 - `countdown`: date-only расчёт выполняется через UTC; пользовательская временная зона не влияет на количество календарных дней.
 - `countdown`: для одинаковых дат опция включения даты отсчёта не превращает результат в 1 день, чтобы не ломать статус `today`.
 - `bill-split`: первая версия будет считать равное деление счёта; индивидуальные позиции участников не входят в initial scope.
+- `volume`: конверсия будет идти через литры как базовую единицу; US liquid gallon = 3.785411784 л, US cup = 0.2365882365 л.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -192,9 +195,15 @@ Owner: Codex
 - 2026-04-26: Для `/datetime/countdown` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/datetime/countdown.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/datetime/countdown/` — date inputs, toggle, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/everyday/bill-split` `npm run test` — OK, 40 files / 395 tests.
+- 2026-04-26: Для `/everyday/bill-split` `npm run type-check` — OK.
+- 2026-04-26: Для `/everyday/bill-split` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/everyday/bill-split.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/everyday/bill-split/` — inputs, chips, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
+- `80c4117` — `feat(everyday): add bill split calculator`.
 - `a057264` — `feat(datetime): add countdown calculator`.
 - `22935a2` — `feat(datetime): add time duration calculator`.
 - `ff6df26` — `docs(plans): record workdays milestone`.
@@ -208,4 +217,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/everyday/bill-split`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/convert/volume`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

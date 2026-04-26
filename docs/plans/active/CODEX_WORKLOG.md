@@ -1032,3 +1032,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему low-risk milestone: `/everyday/bill-split`.
+
+### Итерация 27: `/everyday/bill-split`
+
+Выбранный milestone:
+
+- `/everyday/bill-split`.
+
+Почему выбран именно он:
+
+- Низкорисковый бытовой high-value сценарий.
+- Усиливает категорию `/everyday`, где уже есть `tips`, `discount` и `unit-price`.
+- Не требует внешних нормативных источников.
+
+Что изменено:
+
+- Создан `src/features/bill-split-calculator/`.
+- Добавлены чистые функции расчёта чаевых, сервисного сбора, общей суммы и доли на человека.
+- Добавлено округление доли вверх до выбранного шага с расчётом запаса от округления.
+- Registry-запись `bill-split` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/convert/volume`.
+
+Затронутые файлы:
+
+- `src/features/bill-split-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор разделения счёта|Bill Split Calculator|canonical|robots|everyday/bill-split" dist/everyday/bill-split.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 40 files / 395 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/everyday/bill-split/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: inputs, chips, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 80c4117
+
+Следующий шаг:
+
+- Перейти к следующему low-risk milestone: `/convert/volume`.
