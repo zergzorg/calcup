@@ -197,6 +197,61 @@
       "body": "The print button opens the browser system dialog. You can choose a printer or save the report as a PDF there."
     }
   },
+  "mortgage": {
+    "eyebrow": "Finance",
+    "title": "Mortgage Calculator",
+    "intro": "Estimate down payment, loan amount, monthly payment, and total interest for a mortgage.",
+    "form": {
+      "termsTitle": "Mortgage terms",
+      "termsHelp": "Enter property price, down payment, rate, and term. Use your own scenario for the rate.",
+      "propertyPrice": "Property price",
+      "downPaymentPercent": "Down payment",
+      "annualRate": "Rate",
+      "termYears": "Term",
+      "downPaymentPresets": "Down payment presets"
+    },
+    "units": {
+      "currency": "$",
+      "years": "yrs",
+      "currencyValue": "${value}",
+      "percentValue": "{value}%",
+      "monthsValue": "{value} mo."
+    },
+    "result": {
+      "label": "Estimate",
+      "monthlyPayment": "Monthly payment",
+      "principal": "Loan amount",
+      "downPaymentAmount": "Down payment",
+      "totalPayment": "Total paid",
+      "overpayment": "Interest paid",
+      "termMonths": "Term in months",
+      "loanToValue": "Loan share",
+      "empty": "Fill property price, down payment, rate, and term with valid values."
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "The calculator uses an annuity payment and does not include fees, insurance, appraisal, subsidies, early repayments, or lender-specific terms."
+    },
+    "formula": "Payment uses the annuity formula. Loan amount = property price − down payment. Interest paid = all payments − loan amount.",
+    "validation": {
+      "propertyPrice": {
+        "required": "Enter property price as a number.",
+        "range": "Price must be from 100,000 to 1,000,000,000."
+      },
+      "downPaymentPercent": {
+        "required": "Enter down payment as a number.",
+        "range": "Down payment must be from 0 to 99%."
+      },
+      "annualRate": {
+        "required": "Enter rate as a number.",
+        "range": "Rate must be from 0 to 100%."
+      },
+      "termYears": {
+        "required": "Enter term as a number.",
+        "range": "Term must be from 1 to 40 years."
+      }
+    }
+  },
   "bmi": {
     "eyebrow": "Health",
     "title": "BMI Calculator",
