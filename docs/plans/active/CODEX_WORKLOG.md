@@ -2836,3 +2836,74 @@ Commit hash:
 Следующий шаг:
 
 - После зелёных проверок закоммитить `/animals/cat-calorie` и перейти к `/animals/dog-pregnancy`.
+
+### Итерация 53: `/animals/dog-pregnancy`
+
+Выбранный milestone:
+
+- `/animals/dog-pregnancy`.
+
+Почему выбран именно он:
+
+- Это следующий P0 из OmniCalculator expansion registry после age/food animal-блока.
+- Калькулятор date-based и не требует дозировок, поэтому его можно безопасно подать как ориентир с ветеринарным warning-note.
+- Источники по срокам сверены перед реализацией: Merck Veterinary Manual указывает около 62-64 дней, VCA — 57-65 дней со средним 63, Cornell — среднее около 63 дней от овуляции.
+
+Что изменено:
+
+- Создан `src/features/dog-pregnancy-calculator/`.
+- Добавлены date-only функции для ISO-дат, прибавления дней и расчёта разницы в UTC.
+- Добавлены режимы: дата вязки и дата подтверждённой овуляции.
+- Добавлен расчёт средней даты родов, окна щенения, дня от выбранной даты, дней до средней даты и этапа timeline.
+- Для даты вязки используется окно 57-65 дней; для овуляции — 62-64 дня.
+- Добавлен animal-care warning-note с признаками срочного обращения к ветеринару.
+- Registry-запись `dog-pregnancy` добавлена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий animal milestone `/animals/cat-pregnancy`.
+
+Затронутые файлы:
+
+- `src/features/dog-pregnancy-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- dog-pregnancy registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат тестов:
+
+- Точечный `npm run test -- dog-pregnancy registry` — OK, 2 files / 11 tests.
+- `npm run test` — OK, 67 files / 533 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 93 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/animals/dog-pregnancy/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: mode chips, date fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- this commit
+
+Следующий шаг:
+
+- После зелёных проверок закоммитить `/animals/dog-pregnancy` и перейти к `/animals/cat-pregnancy`.

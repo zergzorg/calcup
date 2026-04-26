@@ -5,11 +5,11 @@
 Фактическое состояние на 2026-04-26:
 
 - 11 категорий в реестре.
-- 66 ready-калькуляторов.
+- 67 ready-калькуляторов.
 - 12 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
-- `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food` и `/animals/cat-calorie`.
+- `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food`, `/animals/cat-calorie` и `/animals/dog-pregnancy`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
 
 ## Готовые калькуляторы
@@ -82,6 +82,7 @@
 | 5.49 | Калькулятор возраста кошки | /animals/cat-age | ✅ ready |
 | 5.50 | Калькулятор корма для собаки | /animals/dog-food | ✅ ready |
 | 5.51 | Калькулятор калорий для кошки | /animals/cat-calorie | ✅ ready |
+| 5.52 | Калькулятор беременности собаки | /animals/dog-pregnancy | ✅ ready |
 
 ## Sitemap
 
@@ -94,13 +95,46 @@
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/rebar/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
-- /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/
+- /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/ · /animals/dog-pregnancy/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/ · /everyday/cooking-units/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.52) — 2026-04-26
+
+Реализован калькулятор `/animals/dog-pregnancy`.
+
+### Реализовано
+
+- Создан feature-модуль `src/features/dog-pregnancy-calculator/`.
+- Добавлен расчёт:
+  - средней даты родов как выбранная дата + 63 дня;
+  - окна щенения 57-65 дней от даты вязки;
+  - более узкого окна 62-64 дня от подтверждённой овуляции;
+  - дня от выбранной даты, дней до средней даты и этапа timeline.
+- Добавлены режимы: дата вязки и дата овуляции.
+- Добавлен animal-care warning-note с признаками, при которых нужна срочная ветеринарная помощь.
+- Добавлены RU/EN локали `dogPregnancy.*`.
+- Registry-запись `dog-pregnancy` добавлена в `ready`.
+- В sitemap добавлен `/animals/dog-pregnancy/`.
+- README обновлён до 67 ready / 12 soon.
+
+### Проверки
+
+- `npm run test -- dog-pregnancy registry` — OK, 2 files / 11 tests.
+- `npm run test` — OK, 67 files / 533 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 93 pages.
+- Static smoke:
+  - `/animals/dog-pregnancy/` title, canonical со slash, `index,follow`;
+  - `/animals/dog-pregnancy/` есть в sitemap.
+- Mobile smoke:
+  - `/animals/dog-pregnancy/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

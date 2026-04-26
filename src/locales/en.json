@@ -4047,5 +4047,64 @@
         "range": "Treat share must be between 0 and 20%."
       }
     }
+  },
+  "dogPregnancy": {
+    "eyebrow": "Animals",
+    "title": "Dog Pregnancy Calculator",
+    "intro": "Estimate a dog's due date and whelping window from the mating date or confirmed ovulation date.",
+    "form": {
+      "methodTitle": "Calculation basis",
+      "methodHelp": "Ovulation date is usually more precise when confirmed by a veterinarian with progesterone testing or exam.",
+      "mode": "Calculation method",
+      "matingDate": "Mating date",
+      "ovulationDate": "Ovulation date",
+      "todayDate": "Today"
+    },
+    "modes": {
+      "mating": "Mating date",
+      "ovulation": "Ovulation date"
+    },
+    "units": {
+      "dayValue": "day {value}",
+      "today": "today",
+      "daysLeft": "in {count} days",
+      "daysPast": "{count} days ago"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Choose a date to see the estimate.",
+      "dueDate": "Average due date",
+      "window": "Whelping window",
+      "dayOfPregnancy": "Day from selected date",
+      "daysUntilDue": "Until average date",
+      "phase": "Stage"
+    },
+    "phase": {
+      "beforeStart": "Date is in the future",
+      "early": "Early pregnancy",
+      "mid": "Mid pregnancy",
+      "late": "Late pregnancy",
+      "whelpingWindow": "Whelping window",
+      "pastWindow": "Past usual window"
+    },
+    "warning": {
+      "title": "Estimate, not a diagnosis",
+      "body": "Pregnancy, litter size and readiness for whelping should be confirmed by a veterinarian. Seek urgent care for weakness, bleeding, green discharge before a puppy, severe pain or prolonged contractions."
+    },
+    "formula": {
+      "mating": "Average date = mating date + 63 days. The mating-date window is wider: about 57-65 days.",
+      "ovulation": "Average date = ovulation date + 63 days. With confirmed ovulation the usual window is narrower: about 62-64 days."
+    },
+    "validation": {
+      "matingDate": {
+        "required": "Enter mating date."
+      },
+      "ovulationDate": {
+        "required": "Enter ovulation date."
+      },
+      "todayDate": {
+        "required": "Enter today's date."
+      }
+    }
   }
 }
