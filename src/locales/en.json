@@ -306,6 +306,61 @@
       }
     }
   },
+  "compoundInterest": {
+    "eyebrow": "Finance",
+    "title": "Compound Interest Calculator",
+    "intro": "Estimate capital growth with monthly compounding, regular contributions, and a selected term.",
+    "form": {
+      "termsTitle": "Savings parameters",
+      "termsHelp": "Enter starting amount, monthly contribution, rate, and term. Contributions are added at the end of each month.",
+      "initialAmount": "Starting amount",
+      "monthlyContribution": "Monthly contribution",
+      "annualRate": "Rate",
+      "termYears": "Term",
+      "termPresets": "Term presets"
+    },
+    "units": {
+      "currency": "$",
+      "years": "yrs",
+      "currencyValue": "${value}",
+      "percentValue": "{value}%",
+      "yearsValue": "{value} yrs",
+      "monthsValue": "{value} mo."
+    },
+    "result": {
+      "label": "Estimate",
+      "finalAmount": "Final capital",
+      "ownContributions": "Own contributions",
+      "interestEarned": "Interest earned",
+      "effectiveGrowth": "Growth vs contributions",
+      "term": "Term",
+      "monthlyContribution": "Monthly contribution",
+      "empty": "Fill amount, contribution, rate, and term with valid values. Starting amount and contribution cannot both be zero."
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "The calculator is not investment advice and does not include taxes, fees, inflation, risk, rate changes, or actual instrument performance."
+    },
+    "formula": "Interest compounds monthly. The contribution is added at the end of the month after interest for that month is applied.",
+    "validation": {
+      "initialAmount": {
+        "required": "Enter starting amount as a number.",
+        "range": "Starting amount must be from 0 to 1,000,000,000."
+      },
+      "monthlyContribution": {
+        "required": "Enter monthly contribution as a number.",
+        "range": "Contribution must be from 0 to 100,000,000."
+      },
+      "annualRate": {
+        "required": "Enter rate as a number.",
+        "range": "Rate must be from 0 to 100%."
+      },
+      "termYears": {
+        "required": "Enter term as a number.",
+        "range": "Term must be from 1 to 60 years."
+      }
+    }
+  },
   "bmi": {
     "eyebrow": "Health",
     "title": "BMI Calculator",
