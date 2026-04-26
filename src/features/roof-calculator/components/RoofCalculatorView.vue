@@ -180,6 +180,7 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useRoofCalculator } from '../composables/useRoofCalculator'
 import type { RoofInputField, RoofType } from '../types/roof'
 
@@ -191,13 +192,9 @@ const roofTypeOptions: Array<{ value: RoofType; labelKey: string }> = [
   { value: 'hip', labelKey: 'roof.types.hip' },
   { value: 'shed', labelKey: 'roof.types.shed' },
 ]
-const pitchPresets = [15, 30, 45]
-const wastePresets = [5, 10, 15]
-const sheetPresets = [
-  { label: '3×1.1 м', length: 3, width: 1.1 },
-  { label: '2×1 м', length: 2, width: 1 },
-  { label: '6×1.1 м', length: 6, width: 1.1 },
-]
+const pitchPresets = CALCULATOR_PRESETS_CONFIG.construction.roof.pitchDegrees
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
+const sheetPresets = CALCULATOR_PRESETS_CONFIG.construction.roof.sheetSizes
 
 const NumberField = defineComponent<{
   field: RoofInputField

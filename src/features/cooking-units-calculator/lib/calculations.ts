@@ -1,26 +1,12 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { CookingUnit } from '../types/cooking-units'
 
-export const COOKING_UNITS: CookingUnit[] = [
-  'milliliter',
-  'liter',
-  'teaspoon',
-  'tablespoon',
-  'cup',
-  'fluidOunce',
-  'pint',
-  'quart',
-]
+export const COOKING_UNITS = CONVERSION_UNITS_CONFIG.cooking.units.map(item => item.unit as CookingUnit)
 
-export const MILLILITERS_PER_COOKING_UNIT: Record<CookingUnit, number> = {
-  milliliter: 1,
-  liter: 1000,
-  teaspoon: 5,
-  tablespoon: 15,
-  cup: 240,
-  fluidOunce: 29.5735295625,
-  pint: 473.176473,
-  quart: 946.352946,
-}
+export const MILLILITERS_PER_COOKING_UNIT = CONVERSION_UNITS_CONFIG.cooking.units.reduce<Record<CookingUnit, number>>((acc, item) => {
+  acc[item.unit as CookingUnit] = item.factor
+  return acc
+}, {} as Record<CookingUnit, number>)
 
 export function convertCookingUnit(value: number, from: CookingUnit, to: CookingUnit): number | null {
   if (!Number.isFinite(value) || value < 0) {

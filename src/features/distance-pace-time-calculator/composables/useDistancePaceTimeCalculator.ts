@@ -1,4 +1,5 @@
 import { computed, ref } from 'vue'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import {
   calculateDistanceByTimeAndPace,
   calculatePaceByDistanceAndTime,
@@ -6,7 +7,7 @@ import {
 } from '../lib/calculations'
 import type { DistancePaceTimeMode, DistancePaceTimeValidationIssue } from '../types/distance-pace-time'
 
-export const DISTANCE_PRESETS = [3, 5, 10, 15, 21.1, 42.2] as const
+export const DISTANCE_PRESETS = CALCULATOR_PRESETS_CONFIG.distancePaceTime.distancePresetsKm
 
 export function useDistancePaceTimeCalculator() {
   const mode = ref<DistancePaceTimeMode>('time')

@@ -1,15 +1,16 @@
 import { computed, ref } from 'vue'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { calculateWallpaper, isValidNonNegativeInteger, isValidNonNegativeNumber, isValidPositiveNumber } from '../lib/calculations'
 import type { RollPreset, RollPresetId, WallpaperInput, WallpaperValidationIssue } from '../types/wallpaper'
 
-export const ROLL_PRESETS: RollPreset[] = [
-  { id: 'standard', width: 0.53, length: 10 },
-  { id: 'medium', width: 0.7, length: 10 },
-  { id: 'wide', width: 1.06, length: 10 },
-]
+export const ROLL_PRESETS: RollPreset[] = CALCULATOR_PRESETS_CONFIG.wallpaper.rollSizes
+  .filter((item): item is { id: RollPreset['id']; width: number; length: number } =>
+    typeof item.id === 'string' && ['standard', 'medium', 'wide'].includes(item.id),
+  )
+  .map(item => ({ id: item.id, width: item.width, length: item.length }))
 
-export const ROLL_LENGTH_PRESETS = [10.05, 15, 25] as const
-export const PATTERN_REPEAT_PRESETS = [0, 0.32, 0.64, 0.75] as const
+export const ROLL_LENGTH_PRESETS = CALCULATOR_PRESETS_CONFIG.wallpaper.rollLengths
+export const PATTERN_REPEAT_PRESETS = CALCULATOR_PRESETS_CONFIG.wallpaper.patternRepeats
 
 export function useWallpaperCalculator() {
   const input = ref<WallpaperInput>({

@@ -1,25 +1,23 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { TemperatureUnit } from '../types/temperature'
 
-const ABSOLUTE_ZERO: Record<TemperatureUnit, number> = {
-  celsius: -273.15,
-  fahrenheit: -459.67,
-  kelvin: 0,
-}
+const ABSOLUTE_ZERO = CONVERSION_UNITS_CONFIG.temperature.absoluteZero as Record<TemperatureUnit, number>
+const { celsiusKelvin, fahrenheitOffset, fahrenheitRatioNumerator, fahrenheitRatioDenominator } = CONVERSION_UNITS_CONFIG.temperature.offsets
 
 function celsiusToFahrenheit(celsius: number): number {
-  return celsius * (9 / 5) + 32
+  return celsius * (fahrenheitRatioNumerator / fahrenheitRatioDenominator) + fahrenheitOffset
 }
 
 function fahrenheitToCelsius(fahrenheit: number): number {
-  return (fahrenheit - 32) * (5 / 9)
+  return (fahrenheit - fahrenheitOffset) * (fahrenheitRatioDenominator / fahrenheitRatioNumerator)
 }
 
 function celsiusToKelvin(celsius: number): number {
-  return celsius + 273.15
+  return celsius + celsiusKelvin
 }
 
 function kelvinToCelsius(kelvin: number): number {
-  return kelvin - 273.15
+  return kelvin - celsiusKelvin
 }
 
 function toCelsius(value: number, unit: TemperatureUnit): number {

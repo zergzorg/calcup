@@ -106,17 +106,14 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useBrickCalculator } from '../composables/useBrickCalculator'
 import type { BrickInputField } from '../types/brick'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setBrickSize } = useBrickCalculator()
 
-const brickPresets = [
-  { label: '250×120×65', length: 250, width: 120, height: 65 },
-  { label: '250×120×88', length: 250, width: 120, height: 88 },
-  { label: '250×120×138', length: 250, width: 120, height: 138 },
-]
+const brickPresets = CALCULATOR_PRESETS_CONFIG.construction.brick.brickSizes
 
 const NumberField = defineComponent<{ field: BrickInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

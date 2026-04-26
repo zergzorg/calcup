@@ -1,30 +1,12 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { VolumeUnit } from '../types/volume'
 
-export const VOLUME_UNITS: VolumeUnit[] = [
-  'milliliter',
-  'liter',
-  'cubicMeter',
-  'cubicCentimeter',
-  'gallon',
-  'quart',
-  'pint',
-  'cup',
-  'tablespoon',
-  'teaspoon',
-]
+export const VOLUME_UNITS = CONVERSION_UNITS_CONFIG.volume.units.map(item => item.unit as VolumeUnit)
 
-export const LITERS_PER_UNIT: Record<VolumeUnit, number> = {
-  milliliter: 0.001,
-  liter: 1,
-  cubicMeter: 1000,
-  cubicCentimeter: 0.001,
-  gallon: 3.785411784,
-  quart: 0.946352946,
-  pint: 0.473176473,
-  cup: 0.2365882365,
-  tablespoon: 0.01478676478125,
-  teaspoon: 0.00492892159375,
-}
+export const LITERS_PER_UNIT = CONVERSION_UNITS_CONFIG.volume.units.reduce<Record<VolumeUnit, number>>((acc, item) => {
+  acc[item.unit as VolumeUnit] = item.factor
+  return acc
+}, {} as Record<VolumeUnit, number>)
 
 export function convertVolume(value: number, from: VolumeUnit, to: VolumeUnit): number | null {
   if (!Number.isFinite(value) || value < 0) {

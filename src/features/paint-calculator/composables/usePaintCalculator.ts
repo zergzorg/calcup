@@ -1,4 +1,5 @@
 import { computed, ref } from 'vue'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import {
   calculatePaint,
   isValidNonNegativeInteger,
@@ -8,8 +9,8 @@ import {
 } from '../lib/calculations'
 import type { PaintInput, PaintValidationIssue } from '../types/paint'
 
-export const PAINT_CAN_PRESETS = [0.9, 2.5, 5, 10] as const
-export const PAINT_COVERAGE_PRESETS = [7, 10, 12] as const
+export const PAINT_CAN_PRESETS = CALCULATOR_PRESETS_CONFIG.paint.canLiters
+export const PAINT_COVERAGE_PRESETS = CALCULATOR_PRESETS_CONFIG.paint.coveragePerLiter
 
 export function usePaintCalculator() {
   const input = ref<PaintInput>({

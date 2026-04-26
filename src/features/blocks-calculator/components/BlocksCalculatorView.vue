@@ -115,18 +115,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useBlocksCalculator } from '../composables/useBlocksCalculator'
 import type { BlocksInputField } from '../types/blocks'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setBlockSize, setWastePercent } = useBlocksCalculator()
 
-const blockPresets = [
-  { label: '600×250×300', length: 600, height: 250, width: 300 },
-  { label: '600×200×300', length: 600, height: 200, width: 300 },
-  { label: '600×250×200', length: 600, height: 250, width: 200 },
-]
-const wastePresets = [3, 5, 10]
+const blockPresets = CALCULATOR_PRESETS_CONFIG.construction.blocks.blockSizes
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.blocks.wastePercents
 
 const NumberField = defineComponent<{ field: BlocksInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

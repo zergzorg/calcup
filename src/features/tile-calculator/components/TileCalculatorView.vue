@@ -100,18 +100,14 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useTileCalculator } from '../composables/useTileCalculator'
 import type { TileInputField } from '../types/tile'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setTileSize } = useTileCalculator()
 
-const tilePresets = [
-  { label: '20×20 см', length: 20, width: 20 },
-  { label: '30×30 см', length: 30, width: 30 },
-  { label: '60×60 см', length: 60, width: 60 },
-  { label: '60×120 см', length: 60, width: 120 },
-]
+const tilePresets = CALCULATOR_PRESETS_CONFIG.construction.tile.tileSizes
 
 const NumberField = defineComponent<{ field: TileInputField; label: string; suffix?: string; step?: number }>({
   props: ['field', 'label', 'suffix', 'step'],

@@ -58,6 +58,7 @@
 import { computed, reactive, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { FINANCE_ASSUMPTIONS_CONFIG, TAX_2026_CONFIG } from '../../../config'
 import { calculateFinanceMvp } from '../lib/calculations'
 import type { FinanceMvpCalculatorId, FinanceMvpResultRow } from '../lib/calculations'
 
@@ -118,9 +119,9 @@ const configs: Record<FinanceMvpCalculatorId, Config> = {
     formula: { ru: 'Будущая цена = сумма × (1 + инфляция)^лет. Реальная доходность считается по формуле Фишера.', en: 'Future cost = amount × (1 + inflation)^years. Real return uses the Fisher equation.' },
     fields: [
       { key: 'amount', label: { ru: 'Сумма сегодня', en: 'Amount today' }, unit: { ru: '₽', en: '₽' }, defaultValue: 100_000, min: 0, step: 1000 },
-      { key: 'inflationRate', label: { ru: 'Инфляция в год', en: 'Annual inflation' }, unit: { ru: '%', en: '%' }, defaultValue: 7, min: 0, step: 0.1 },
+      { key: 'inflationRate', label: { ru: 'Инфляция в год', en: 'Annual inflation' }, unit: { ru: '%', en: '%' }, defaultValue: FINANCE_ASSUMPTIONS_CONFIG.inflation.defaultAnnualRatePercent, min: 0, step: 0.1 },
       { key: 'years', label: { ru: 'Лет', en: 'Years' }, unit: { ru: 'лет', en: 'yr' }, defaultValue: 3, min: 0, step: 1 },
-      { key: 'nominalReturn', label: { ru: 'Номинальная доходность', en: 'Nominal return' }, unit: { ru: '%', en: '%' }, defaultValue: 10, min: 0, step: 0.1 },
+      { key: 'nominalReturn', label: { ru: 'Номинальная доходность', en: 'Nominal return' }, unit: { ru: '%', en: '%' }, defaultValue: FINANCE_ASSUMPTIONS_CONFIG.inflation.defaultNominalReturnPercent, min: 0, step: 0.1 },
     ],
     labels: {
       futureCost: { ru: 'Будущая цена', en: 'Future cost' },
@@ -140,7 +141,7 @@ const configs: Record<FinanceMvpCalculatorId, Config> = {
     fields: [
       { key: 'expenses', label: { ru: 'Расходы', en: 'Expenses' }, unit: { ru: '₽', en: '₽' }, defaultValue: 200_000, min: 0, step: 1000 },
       { key: 'limit', label: { ru: 'Лимит вычета', en: 'Deduction limit' }, unit: { ru: '₽', en: '₽' }, defaultValue: 150_000, min: 0, step: 1000 },
-      { key: 'ratePercent', label: { ru: 'Ставка НДФЛ', en: 'Tax rate' }, unit: { ru: '%', en: '%' }, defaultValue: 13, min: 0, max: 100, step: 0.1 },
+      { key: 'ratePercent', label: { ru: 'Ставка НДФЛ', en: 'Tax rate' }, unit: { ru: '%', en: '%' }, defaultValue: TAX_2026_CONFIG.personalIncomeTax.defaultRatePercent, min: 0, max: 100, step: 0.1 },
       { key: 'taxPaid', label: { ru: 'Уплачено НДФЛ', en: 'Tax paid' }, unit: { ru: '₽', en: '₽' }, defaultValue: 100_000, min: 0, step: 1000 },
     ],
     labels: {

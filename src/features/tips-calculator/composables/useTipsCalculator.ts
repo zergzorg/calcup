@@ -1,13 +1,14 @@
 import { ref, computed } from 'vue'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { calculateTips } from '../lib/calculations'
 import type { TipValidationIssue } from '../types/tips'
 
-export const PRESET_RATES = [0, 5, 10, 15, 20] as const
+export const PRESET_RATES = CALCULATOR_PRESETS_CONFIG.tips.presetRates
 
 export function useTipsCalculator() {
   const billAmount = ref<number>(1000)
-  const presetRate = ref<number | 'custom'>(10)
-  const customRate = ref<number>(12)
+  const presetRate = ref<number | 'custom'>(CALCULATOR_PRESETS_CONFIG.tips.defaultRate)
+  const customRate = ref<number>(CALCULATOR_PRESETS_CONFIG.tips.customRate)
   const peopleCount = ref<number>(2)
 
   const touched = new Set<string>()

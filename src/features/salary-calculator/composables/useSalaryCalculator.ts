@@ -1,4 +1,5 @@
 import { computed, ref } from 'vue'
+import { TAX_2026_CONFIG } from '../../../config'
 import {
   calculateSalary,
   isValidNonNegativeNumber,
@@ -13,9 +14,9 @@ import type {
 export function useSalaryCalculator() {
   const monthlySalary = ref(120_000)
   const salaryTaxMode = ref<'russiaProgressive' | 'custom'>('russiaProgressive')
-  const customSalaryTaxPercent = ref(13)
+  const customSalaryTaxPercent = ref(TAX_2026_CONFIG.personalIncomeTax.defaultRatePercent)
   const additionalIncomes = ref<AdditionalIncomeInput[]>([
-    { amount: 0, taxPercent: 13 },
+    { amount: 0, taxPercent: TAX_2026_CONFIG.personalIncomeTax.defaultRatePercent },
   ])
   const scheduleType = ref<ScheduleType>('fiveTwo')
   const hoursPerWorkDay = ref(8)

@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import type { DiscountMode, DiscountValidationIssue } from '../types/discount'
 import { calcDiscount, calcMarkup, calcFindPercent, calcFindOriginal } from '../lib/calculations'
 
-export const QUICK_PERCENTS = [5, 10, 15, 20, 25, 50] as const
+export const QUICK_PERCENTS = CALCULATOR_PRESETS_CONFIG.discount.quickPercents
 
 export function useDiscountCalculator() {
   const mode = ref<DiscountMode>('discount')

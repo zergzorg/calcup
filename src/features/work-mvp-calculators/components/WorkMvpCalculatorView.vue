@@ -63,6 +63,7 @@
 import { computed, reactive, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { FINANCE_ASSUMPTIONS_CONFIG, TAX_2026_CONFIG } from '../../../config'
 import { calculateWorkMvp } from '../lib/calculations'
 import type { WorkMvpCalculatorId, WorkMvpResultRow } from '../lib/calculations'
 
@@ -157,8 +158,8 @@ const configs: Record<WorkMvpCalculatorId, WorkMvpConfig> = {
     fields: [
       { key: 'debt', label: { ru: 'Сумма долга', en: 'Debt amount' }, unit: { ru: '₽', en: '₽' }, defaultValue: 100_000, min: 0, step: 1000 },
       { key: 'days', label: { ru: 'Дней просрочки', en: 'Overdue days' }, unit: { ru: 'дн.', en: 'days' }, defaultValue: 30, min: 1, step: 1 },
-      { key: 'keyRate', label: { ru: 'Ключевая ставка', en: 'Key rate' }, unit: { ru: '%', en: '%' }, defaultValue: 16, min: 0, step: 0.1 },
-      { key: 'divisor', label: { ru: 'Делитель', en: 'Divisor' }, unit: { ru: '', en: '' }, defaultValue: 300, min: 1, step: 1 },
+      { key: 'keyRate', label: { ru: 'Ключевая ставка', en: 'Key rate' }, unit: { ru: '%', en: '%' }, defaultValue: FINANCE_ASSUMPTIONS_CONFIG.penalty.defaultKeyRatePercent, min: 0, step: 0.1 },
+      { key: 'divisor', label: { ru: 'Делитель', en: 'Divisor' }, unit: { ru: '', en: '' }, defaultValue: FINANCE_ASSUMPTIONS_CONFIG.penalty.defaultDivisor, min: 1, step: 1 },
     ],
     labels: {
       penalty: { ru: 'Пени', en: 'Penalty' },
@@ -183,7 +184,7 @@ const configs: Record<WorkMvpCalculatorId, WorkMvpConfig> = {
       { key: 'unusedVacationDays', label: { ru: 'Неиспользованных дней отпуска', en: 'Unused vacation days' }, unit: { ru: 'дн.', en: 'days' }, defaultValue: 10, min: 0, step: 1 },
       { key: 'severanceAverageMonthly', label: { ru: 'Средний месячный заработок', en: 'Average monthly earnings' }, unit: { ru: '₽', en: '₽' }, defaultValue: 90_000, min: 0, step: 1000 },
       { key: 'severanceMonths', label: { ru: 'Месяцев пособия', en: 'Severance months' }, unit: { ru: 'мес.', en: 'mo' }, defaultValue: 1, min: 0, step: 0.5 },
-      { key: 'taxPercent', label: { ru: 'НДФЛ', en: 'Tax' }, unit: { ru: '%', en: '%' }, defaultValue: 13, min: 0, max: 100, step: 0.1 },
+      { key: 'taxPercent', label: { ru: 'НДФЛ', en: 'Tax' }, unit: { ru: '%', en: '%' }, defaultValue: TAX_2026_CONFIG.personalIncomeTax.defaultRatePercent, min: 0, max: 100, step: 0.1 },
     ],
     labels: {
       net: { ru: 'К выплате', en: 'Net amount' },

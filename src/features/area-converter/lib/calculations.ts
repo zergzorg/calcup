@@ -1,17 +1,10 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { AreaUnit, AreaUnitMeta } from '../types/area'
 
-export const AREA_UNITS: AreaUnitMeta[] = [
-  { unit: 'squareMillimeter', squareMeters: 0.000001 },
-  { unit: 'squareCentimeter', squareMeters: 0.0001 },
-  { unit: 'squareMeter', squareMeters: 1 },
-  { unit: 'are', squareMeters: 100 },
-  { unit: 'hectare', squareMeters: 10_000 },
-  { unit: 'squareKilometer', squareMeters: 1_000_000 },
-  { unit: 'squareInch', squareMeters: 0.00064516 },
-  { unit: 'squareFoot', squareMeters: 0.09290304 },
-  { unit: 'squareYard', squareMeters: 0.83612736 },
-  { unit: 'acre', squareMeters: 4046.8564224 },
-]
+export const AREA_UNITS: AreaUnitMeta[] = CONVERSION_UNITS_CONFIG.area.units.map(item => ({
+  unit: item.unit as AreaUnit,
+  squareMeters: item.factor,
+}))
 
 const SQ_METERS: Record<AreaUnit, number> = AREA_UNITS.reduce<Record<AreaUnit, number>>(
   (acc, item) => { acc[item.unit] = item.squareMeters; return acc },

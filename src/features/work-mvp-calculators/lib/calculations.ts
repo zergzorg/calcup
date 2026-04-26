@@ -1,3 +1,5 @@
+import { TAX_2026_CONFIG } from '../../../config'
+
 export type WorkMvpCalculatorId =
   | 'usn-tax'
   | 'ip-insurance'
@@ -19,9 +21,9 @@ export interface WorkMvpResult {
   rows: WorkMvpResultRow[]
 }
 
-export const IP_FIXED_INSURANCE_2026 = 57_390
-export const IP_EXTRA_THRESHOLD = 300_000
-export const IP_EXTRA_MAX_2026 = 321_818
+export const IP_FIXED_INSURANCE_2026 = TAX_2026_CONFIG.ipInsurance.fixedPayment
+export const IP_EXTRA_THRESHOLD = TAX_2026_CONFIG.ipInsurance.extraThreshold
+export const IP_EXTRA_MAX_2026 = TAX_2026_CONFIG.ipInsurance.extraMax
 
 export function roundMoney(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100
@@ -42,11 +44,11 @@ export function calculateUsnTax(input: WorkMvpInput): WorkMvpResult | null {
   const contributions = input.contributions
   if (![income, expenses, contributions].every(value => isValidNumber(value) && value >= 0)) return null
 
-  const incomeTaxBeforeContributions = roundMoney(income * 0.06)
+  const incomeTaxBeforeContributions = roundMoney(income * TAX_2026_CONFIG.usn.incomeRate)
   const incomeTax = roundMoney(Math.max(0, incomeTaxBeforeContributions - contributions))
   const profit = Math.max(0, income - expenses)
-  const profitTax = roundMoney(profit * 0.15)
-  const minTax = roundMoney(income * 0.01)
+  const profitTax = roundMoney(profit * TAX_2026_CONFIG.usn.incomeMinusExpensesRate)
+  const minTax = roundMoney(income * TAX_2026_CONFIG.usn.minimumTaxRate)
   const incomeMinusExpensesTax = roundMoney(Math.max(profitTax, minTax))
 
   return {
@@ -67,7 +69,7 @@ export function calculateIpInsurance(input: WorkMvpInput): WorkMvpResult | null 
   if (!isValidNumber(activeMonths) || activeMonths <= 0 || activeMonths > 12) return null
 
   const fixed = roundMoney(IP_FIXED_INSURANCE_2026 * activeMonths / 12)
-  const extra = roundMoney(Math.min(Math.max(0, income - IP_EXTRA_THRESHOLD) * 0.01, IP_EXTRA_MAX_2026))
+  const extra = roundMoney(Math.min(Math.max(0, income - IP_EXTRA_THRESHOLD) * TAX_2026_CONFIG.ipInsurance.extraRate, IP_EXTRA_MAX_2026))
   const total = roundMoney(fixed + extra)
 
   return {

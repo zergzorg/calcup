@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { TemperatureUnit, TemperatureValidationIssue } from '../types/temperature'
 import { convertTemperature, isValidTemperature, formatTemperature, getFormula } from '../lib/calculations'
 
-export const UNITS: TemperatureUnit[] = ['celsius', 'fahrenheit', 'kelvin']
+export const UNITS = CONVERSION_UNITS_CONFIG.temperature.units as TemperatureUnit[]
 
 export function useTemperatureCalculator() {
   const value = ref<number | ''>(36.6)

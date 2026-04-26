@@ -123,14 +123,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useStripFoundationCalculator } from '../composables/useStripFoundationCalculator'
 import type { StripFoundationInputField } from '../types/strip-foundation'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setWidth, setWaste } = useStripFoundationCalculator()
 
-const widthPresets = [300, 400, 500]
-const wastePresets = [5, 10, 15]
+const widthPresets = CALCULATOR_PRESETS_CONFIG.construction.stripFoundation.widthMillimeters
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{ field: StripFoundationInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

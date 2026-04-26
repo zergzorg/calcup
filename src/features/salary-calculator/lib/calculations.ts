@@ -1,3 +1,4 @@
+import { TAX_2026_CONFIG } from '../../../config'
 import type {
   SalaryInput,
   SalaryResult,
@@ -6,21 +7,15 @@ import type {
   ScheduleType,
 } from '../types/salary'
 
-export const WORK_DAYS_PER_YEAR: Record<Exclude<ScheduleType, 'custom'>, number> = {
-  fiveTwo: 247,
-  twoTwo: 183,
-  dayThree: 92,
-}
+export const WORK_DAYS_PER_YEAR: Record<Exclude<ScheduleType, 'custom'>, number> =
+  TAX_2026_CONFIG.salary.workDaysPerYear
 
-const MONTHS_PER_YEAR = 12
+const MONTHS_PER_YEAR = TAX_2026_CONFIG.salary.monthsPerYear
 
-export const RUSSIA_NDFL_BRACKETS = [
-  { limit: 2_400_000, rate: 0.13 },
-  { limit: 5_000_000, rate: 0.15 },
-  { limit: 20_000_000, rate: 0.18 },
-  { limit: 50_000_000, rate: 0.20 },
-  { limit: Number.POSITIVE_INFINITY, rate: 0.22 },
-]
+export const RUSSIA_NDFL_BRACKETS = TAX_2026_CONFIG.salary.russiaNdflBrackets.map(bracket => ({
+  limit: bracket.limit ?? Number.POSITIVE_INFINITY,
+  rate: bracket.rate,
+}))
 
 export function isValidPositiveNumber(value: number): boolean {
   return Number.isFinite(value) && value > 0

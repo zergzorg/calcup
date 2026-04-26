@@ -103,14 +103,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useEvRangeCalculator } from '../composables/useEvRangeCalculator'
 import type { EvRangeInputField } from '../types/ev-range'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setCurrentCharge, setReserve } = useEvRangeCalculator()
 
-const chargePresets = [30, 50, 80]
-const reservePresets = [5, 10, 15]
+const chargePresets = CALCULATOR_PRESETS_CONFIG.evRange.chargePercents
+const reservePresets = CALCULATOR_PRESETS_CONFIG.evRange.reservePercents
 
 const NumberField = defineComponent<{ field: EvRangeInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

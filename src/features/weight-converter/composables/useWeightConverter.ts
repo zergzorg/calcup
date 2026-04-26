@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { WeightUnit, WeightValidationIssue } from '../types/weight'
 import { convertWeight, isValidWeightValue, formatWeight, getFormula } from '../lib/calculations'
 
-export const UNITS: WeightUnit[] = ['milligram', 'gram', 'kilogram', 'ton', 'ounce', 'pound', 'stone']
+export const UNITS = CONVERSION_UNITS_CONFIG.weight.units.map(item => item.unit as WeightUnit)
 
 export function useWeightConverter() {
   const value = ref<number | ''>(1)

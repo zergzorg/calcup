@@ -1,13 +1,14 @@
+import { TAX_2026_CONFIG } from '../../../config'
 import type { SickLeaveExperience, SickLeaveInput, SickLeaveResult } from '../types/sick-leave'
 
-export const MROT_2026 = 27_093
-export const MIN_DAILY_BENEFIT_2026 = 890.73
-export const MAX_AVERAGE_DAILY_2026 = 6_827.40
+export const MROT_2026 = TAX_2026_CONFIG.sickLeave.mrot
+export const MIN_DAILY_BENEFIT_2026 = TAX_2026_CONFIG.sickLeave.minDailyBenefit
+export const MAX_AVERAGE_DAILY_2026 = TAX_2026_CONFIG.sickLeave.maxAverageDaily
 
 export const EXPERIENCE_RATES: Record<SickLeaveExperience, number> = {
-  under5: 0.6,
-  from5to8: 0.8,
-  over8: 1,
+  under5: TAX_2026_CONFIG.sickLeave.experienceRates.under5,
+  from5to8: TAX_2026_CONFIG.sickLeave.experienceRates.from5to8,
+  over8: TAX_2026_CONFIG.sickLeave.experienceRates.over8,
 }
 
 export function roundMoney(value: number): number {

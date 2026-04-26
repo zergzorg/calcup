@@ -104,14 +104,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useLaminateCalculator } from '../composables/useLaminateCalculator'
 import type { LaminateInputField } from '../types/laminate'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setWastePercent, setPackCoverage } = useLaminateCalculator()
 
-const coveragePresets = [1.8, 2.13, 2.5]
-const wastePresets = [5, 10, 15]
+const coveragePresets = CALCULATOR_PRESETS_CONFIG.laminate.packCoverage
+const wastePresets = CALCULATOR_PRESETS_CONFIG.laminate.wastePercent
 
 const NumberField = defineComponent<{ field: LaminateInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

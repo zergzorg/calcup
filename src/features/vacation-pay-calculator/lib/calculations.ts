@@ -1,6 +1,7 @@
+import { TAX_2026_CONFIG } from '../../../config'
 import type { VacationPayInput, VacationPayResult } from '../types/vacation-pay'
 
-export const AVERAGE_CALENDAR_DAYS_PER_MONTH = 29.3
+export const AVERAGE_CALENDAR_DAYS_PER_MONTH = TAX_2026_CONFIG.vacationPay.averageCalendarDaysPerMonth
 
 export function roundMoney(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100

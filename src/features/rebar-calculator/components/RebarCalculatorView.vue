@@ -131,15 +131,16 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useRebarCalculator } from '../composables/useRebarCalculator'
 import type { RebarInputField } from '../types/rebar'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setDiameter, setSpacing, setWaste } = useRebarCalculator()
 
-const spacingPresets = [150, 200, 250]
-const diameterPresets = [8, 10, 12, 14, 16]
-const wastePresets = [5, 10, 15]
+const spacingPresets = CALCULATOR_PRESETS_CONFIG.construction.rebar.spacingMillimeters
+const diameterPresets = CALCULATOR_PRESETS_CONFIG.construction.rebar.diameterMillimeters
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{ field: RebarInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

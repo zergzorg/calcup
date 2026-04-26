@@ -1,6 +1,7 @@
+import { CONSTRUCTION_MATERIALS_CONFIG } from '../../../config'
 import type { RebarInput, RebarResult } from '../types/rebar'
 
-const STEEL_DENSITY_KG_M3 = 7850
+const STEEL_DENSITY_KG_M3 = CONSTRUCTION_MATERIALS_CONFIG.rebar.steelDensityKgM3
 
 function roundTo(value: number, precision: number): number {
   if (!Number.isFinite(value)) return Number.NaN

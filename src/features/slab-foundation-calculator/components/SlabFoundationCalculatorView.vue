@@ -169,15 +169,16 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useSlabFoundationCalculator } from '../composables/useSlabFoundationCalculator'
 import type { SlabFoundationInputField } from '../types/slab-foundation'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setThickness, setSpacing, setWaste } = useSlabFoundationCalculator()
 
-const thicknessPresets = [150, 200, 250]
-const spacingPresets = [150, 200, 250]
-const wastePresets = [5, 10, 15]
+const thicknessPresets = CALCULATOR_PRESETS_CONFIG.construction.slabFoundation.thicknessMillimeters
+const spacingPresets = CALCULATOR_PRESETS_CONFIG.construction.slabFoundation.spacingMillimeters
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{
   field: SlabFoundationInputField

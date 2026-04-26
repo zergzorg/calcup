@@ -262,12 +262,13 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useRoomAreaCalculator } from '../composables/useRoomAreaCalculator'
 
 const { t, n } = useI18n()
 const { form, result, setHeight, getFieldIssue } = useRoomAreaCalculator()
 
-const heightPresets = [2.5, 2.7, 3]
+const heightPresets = CALCULATOR_PRESETS_CONFIG.roomArea.heightMeters
 
 function formatNumber(value: number): string {
   return n(value, {

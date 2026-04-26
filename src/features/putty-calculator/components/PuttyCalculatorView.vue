@@ -106,14 +106,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { usePuttyCalculator } from '../composables/usePuttyCalculator'
 import type { PuttyInputField } from '../types/putty'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setLayerThickness, setBagWeight } = usePuttyCalculator()
 
-const thicknessPresets = [1, 2, 3]
-const bagPresets = [5, 20, 25]
+const thicknessPresets = CALCULATOR_PRESETS_CONFIG.construction.putty.thicknessMillimeters
+const bagPresets = CALCULATOR_PRESETS_CONFIG.construction.putty.bagKilograms
 
 const NumberField = defineComponent<{ field: PuttyInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

@@ -133,6 +133,7 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useDepositCalculator } from '../composables/useDepositCalculator'
 import type { DepositInterestMode, DepositValidationIssue } from '../types/deposit'
 
@@ -180,7 +181,7 @@ const DepositField = defineComponent({
 })
 
 const { t, n } = useI18n()
-const termPresets = [3, 6, 12, 24]
+const termPresets = CALCULATOR_PRESETS_CONFIG.deposit.termMonths
 const modeOptions: DepositInterestMode[] = ['simple', 'monthlyCapitalization']
 
 const {

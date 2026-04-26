@@ -121,18 +121,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useDrywallCalculator } from '../composables/useDrywallCalculator'
 import type { DrywallInputField } from '../types/drywall'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setSheetSize, setWastePercent } = useDrywallCalculator()
 
-const sheetPresets = [
-  { label: '1.2×2.5 м', width: 1.2, height: 2.5 },
-  { label: '1.2×3.0 м', width: 1.2, height: 3 },
-  { label: '1.2×2.7 м', width: 1.2, height: 2.7 },
-]
-const wastePresets = [5, 10, 15]
+const sheetPresets = CALCULATOR_PRESETS_CONFIG.construction.drywall.sheetSizes
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{ field: DrywallInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

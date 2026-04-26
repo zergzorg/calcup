@@ -1,0 +1,9 @@
+{
+  "metadata": {
+    "actualAsOf": "2026-04-26",
+    "scope": "Common reference constants for material MVP calculators"
+  },
+  "rebar": {
+    "steelDensityKgM3": 7850
+  }
+}

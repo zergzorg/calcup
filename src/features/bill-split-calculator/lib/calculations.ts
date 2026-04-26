@@ -1,7 +1,8 @@
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import type { BillSplitInput, BillSplitResult } from '../types/bill-split'
 
-export const TIP_PRESETS = [0, 10, 15] as const
-export const ROUNDING_PRESETS = [0.01, 1, 10] as const
+export const TIP_PRESETS = CALCULATOR_PRESETS_CONFIG.billSplit.tipPercents
+export const ROUNDING_PRESETS = CALCULATOR_PRESETS_CONFIG.billSplit.roundingSteps
 
 const EPSILON = 1e-9
 

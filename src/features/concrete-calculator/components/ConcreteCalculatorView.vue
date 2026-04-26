@@ -103,14 +103,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useConcreteCalculator } from '../composables/useConcreteCalculator'
 import type { ConcreteInputField } from '../types/concrete'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setThickness, setWastePercent } = useConcreteCalculator()
 
-const thicknessPresets = [80, 120, 150]
-const wastePresets = [5, 10, 15]
+const thicknessPresets = CALCULATOR_PRESETS_CONFIG.construction.concrete.thicknessMillimeters
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{ field: ConcreteInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

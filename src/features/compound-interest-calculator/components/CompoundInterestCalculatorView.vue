@@ -124,6 +124,7 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useCompoundInterestCalculator } from '../composables/useCompoundInterestCalculator'
 import type { CompoundInterestValidationIssue } from '../types/compoundInterest'
 
@@ -171,7 +172,7 @@ const CompoundInterestField = defineComponent({
 })
 
 const { t, n } = useI18n()
-const termPresets = [1, 3, 5, 10]
+const termPresets = CALCULATOR_PRESETS_CONFIG.compoundInterest.termYears
 
 const {
   initialAmount,

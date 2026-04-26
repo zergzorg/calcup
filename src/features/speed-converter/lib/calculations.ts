@@ -1,21 +1,9 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { SpeedUnit } from '../types/speed'
 
-export const SPEED_UNITS: SpeedUnit[] = [
-  'kilometerPerHour',
-  'meterPerSecond',
-  'milePerHour',
-  'knot',
-  'footPerSecond',
-  'minutePerKilometer',
-]
+export const SPEED_UNITS = CONVERSION_UNITS_CONFIG.speed.units as SpeedUnit[]
 
-const METERS_PER_SECOND: Record<Exclude<SpeedUnit, 'minutePerKilometer'>, number> = {
-  kilometerPerHour: 1000 / 3600,
-  meterPerSecond: 1,
-  milePerHour: 0.44704,
-  knot: 0.5144444444444445,
-  footPerSecond: 0.3048,
-}
+const METERS_PER_SECOND = CONVERSION_UNITS_CONFIG.speed.metersPerSecond as Record<Exclude<SpeedUnit, 'minutePerKilometer'>, number>
 
 function toMetersPerSecond(value: number, unit: SpeedUnit): number | null {
   if (unit === 'minutePerKilometer') {

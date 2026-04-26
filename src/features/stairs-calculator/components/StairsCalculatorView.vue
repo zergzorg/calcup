@@ -127,14 +127,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useStairsCalculator } from '../composables/useStairsCalculator'
 import type { StairsInputField } from '../types/stairs'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setRise, setWaste, updateNumber } = useStairsCalculator()
 
-const risePresets = [260, 280, 300]
-const wastePresets = [5, 10, 15]
+const risePresets = CALCULATOR_PRESETS_CONFIG.construction.stairs.riseMillimeters
+const wastePresets = CALCULATOR_PRESETS_CONFIG.construction.commonWastePercents
 
 const NumberField = defineComponent<{
   field: StairsInputField

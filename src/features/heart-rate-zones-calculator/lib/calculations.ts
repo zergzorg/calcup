@@ -1,12 +1,7 @@
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import type { HeartRateZone, HeartRateZoneMethod, HeartRateZonesResult } from '../types/heart-rate-zones'
 
-export const HEART_RATE_ZONE_DEFINITIONS: Array<Pick<HeartRateZone, 'key' | 'minPercent' | 'maxPercent'>> = [
-  { key: 'z1', minPercent: 60, maxPercent: 70 },
-  { key: 'z2', minPercent: 70, maxPercent: 75 },
-  { key: 'z3', minPercent: 75, maxPercent: 85 },
-  { key: 'z4', minPercent: 85, maxPercent: 95 },
-  { key: 'z5', minPercent: 95, maxPercent: 100 },
-]
+export const HEART_RATE_ZONE_DEFINITIONS = CALCULATOR_PRESETS_CONFIG.heartRateZones.definitions as Array<Pick<HeartRateZone, 'key' | 'minPercent' | 'maxPercent'>>
 
 export function estimateMaxHeartRate(age: number): number | null {
   if (!Number.isFinite(age) || age < 10 || age > 100) return null

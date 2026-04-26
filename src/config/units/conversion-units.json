@@ -1,0 +1,109 @@
+{
+  "length": {
+    "baseUnit": "meter",
+    "units": [
+      { "unit": "millimeter", "factor": 0.001 },
+      { "unit": "centimeter", "factor": 0.01 },
+      { "unit": "meter", "factor": 1 },
+      { "unit": "kilometer", "factor": 1000 },
+      { "unit": "inch", "factor": 0.0254 },
+      { "unit": "foot", "factor": 0.3048 },
+      { "unit": "yard", "factor": 0.9144 },
+      { "unit": "mile", "factor": 1609.344 }
+    ]
+  },
+  "area": {
+    "baseUnit": "squareMeter",
+    "units": [
+      { "unit": "squareMillimeter", "factor": 0.000001 },
+      { "unit": "squareCentimeter", "factor": 0.0001 },
+      { "unit": "squareMeter", "factor": 1 },
+      { "unit": "are", "factor": 100 },
+      { "unit": "hectare", "factor": 10000 },
+      { "unit": "squareKilometer", "factor": 1000000 },
+      { "unit": "squareInch", "factor": 0.00064516 },
+      { "unit": "squareFoot", "factor": 0.09290304 },
+      { "unit": "squareYard", "factor": 0.83612736 },
+      { "unit": "acre", "factor": 4046.8564224 }
+    ]
+  },
+  "volume": {
+    "baseUnit": "liter",
+    "units": [
+      { "unit": "milliliter", "factor": 0.001 },
+      { "unit": "liter", "factor": 1 },
+      { "unit": "cubicMeter", "factor": 1000 },
+      { "unit": "cubicCentimeter", "factor": 0.001 },
+      { "unit": "gallon", "factor": 3.785411784 },
+      { "unit": "quart", "factor": 0.946352946 },
+      { "unit": "pint", "factor": 0.473176473 },
+      { "unit": "cup", "factor": 0.2365882365 },
+      { "unit": "tablespoon", "factor": 0.01478676478125 },
+      { "unit": "teaspoon", "factor": 0.00492892159375 }
+    ]
+  },
+  "weight": {
+    "baseUnit": "kilogram",
+    "units": [
+      { "unit": "milligram", "factor": 0.000001 },
+      { "unit": "gram", "factor": 0.001 },
+      { "unit": "kilogram", "factor": 1 },
+      { "unit": "ton", "factor": 1000 },
+      { "unit": "ounce", "factor": 0.028349523125 },
+      { "unit": "pound", "factor": 0.45359237 },
+      { "unit": "stone", "factor": 6.35029318 }
+    ]
+  },
+  "dataSize": {
+    "decimalUnits": ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte"],
+    "binaryUnits": ["byte", "kibibyte", "mebibyte", "gibibyte", "tebibyte"],
+    "bytesPerUnit": {
+      "byte": 1,
+      "kilobyte": 1000,
+      "megabyte": 1000000,
+      "gigabyte": 1000000000,
+      "terabyte": 1000000000000,
+      "kibibyte": 1024,
+      "mebibyte": 1048576,
+      "gibibyte": 1073741824,
+      "tebibyte": 1099511627776
+    }
+  },
+  "speed": {
+    "units": ["kilometerPerHour", "meterPerSecond", "milePerHour", "knot", "footPerSecond", "minutePerKilometer"],
+    "metersPerSecond": {
+      "kilometerPerHour": 0.2777777777777778,
+      "meterPerSecond": 1,
+      "milePerHour": 0.44704,
+      "knot": 0.5144444444444445,
+      "footPerSecond": 0.3048
+    }
+  },
+  "temperature": {
+    "units": ["celsius", "fahrenheit", "kelvin"],
+    "absoluteZero": {
+      "celsius": -273.15,
+      "fahrenheit": -459.67,
+      "kelvin": 0
+    },
+    "offsets": {
+      "celsiusKelvin": 273.15,
+      "fahrenheitOffset": 32,
+      "fahrenheitRatioNumerator": 9,
+      "fahrenheitRatioDenominator": 5
+    }
+  },
+  "cooking": {
+    "baseUnit": "milliliter",
+    "units": [
+      { "unit": "milliliter", "factor": 1 },
+      { "unit": "liter", "factor": 1000 },
+      { "unit": "teaspoon", "factor": 5 },
+      { "unit": "tablespoon", "factor": 15 },
+      { "unit": "cup", "factor": 240 },
+      { "unit": "fluidOunce", "factor": 29.5735295625 },
+      { "unit": "pint", "factor": 473.176473 },
+      { "unit": "quart", "factor": 946.352946 }
+    ]
+  }
+}

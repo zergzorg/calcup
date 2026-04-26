@@ -183,13 +183,14 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useElectricityCalculator } from '../composables/useElectricityCalculator'
 
 const { t, n } = useI18n()
 const { form, result, setPower, setHours, getFieldIssue } = useElectricityCalculator()
 
-const powerPresets = [60, 1000, 2000]
-const hourPresets = [1, 4, 8]
+const powerPresets = CALCULATOR_PRESETS_CONFIG.electricity.powerWatts
+const hourPresets = CALCULATOR_PRESETS_CONFIG.electricity.hours
 
 function formatNumber(value: number): string {
   return n(value, {

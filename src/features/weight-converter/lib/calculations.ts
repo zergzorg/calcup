@@ -1,14 +1,10 @@
+import { CONVERSION_UNITS_CONFIG } from '../../../config'
 import type { WeightUnit } from '../types/weight'
 
-const TO_KG: Record<WeightUnit, number> = {
-  milligram: 0.000001,
-  gram: 0.001,
-  kilogram: 1,
-  ton: 1000,
-  ounce: 0.028349523125,
-  pound: 0.45359237,
-  stone: 6.35029318,
-}
+const TO_KG = CONVERSION_UNITS_CONFIG.weight.units.reduce<Record<WeightUnit, number>>((acc, item) => {
+  acc[item.unit as WeightUnit] = item.factor
+  return acc
+}, {} as Record<WeightUnit, number>)
 
 function toKilogram(value: number, unit: WeightUnit): number {
   return value * TO_KG[unit]

@@ -229,6 +229,7 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useMortgageCalculator } from '../composables/useMortgageCalculator'
 import type { MortgageValidationIssue } from '../types/mortgage'
 
@@ -276,7 +277,7 @@ const MortgageField = defineComponent({
 })
 
 const { t, n } = useI18n()
-const downPaymentPresets = [10, 15, 20, 30]
+const downPaymentPresets = CALCULATOR_PRESETS_CONFIG.mortgage.downPaymentPercents
 
 const {
   propertyPrice,

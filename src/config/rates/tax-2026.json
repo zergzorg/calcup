@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "country": "RU",
+    "actualAsOf": "2026-04-26",
+    "source": "ФНС/СФР public materials, calculator MVP assumptions"
+  },
+  "vat": {
+    "presetRates": [22, 10, 7, 5, 0],
+    "defaultRate": 22
+  },
+  "professionalIncomeTax": {
+    "individualRate": 0.04,
+    "businessRate": 0.06,
+    "individualBonusRate": 0.01,
+    "businessBonusRate": 0.02,
+    "annualIncomeLimit": 2400000
+  },
+  "ipInsurance": {
+    "fixedPayment": 57390,
+    "extraThreshold": 300000,
+    "extraRate": 0.01,
+    "extraMax": 321818
+  },
+  "sickLeave": {
+    "mrot": 27093,
+    "minDailyBenefit": 890.73,
+    "maxAverageDaily": 6827.4,
+    "experienceRates": {
+      "under5": 0.6,
+      "from5to8": 0.8,
+      "over8": 1
+    }
+  },
+  "vacationPay": {
+    "averageCalendarDaysPerMonth": 29.3
+  },
+  "usn": {
+    "incomeRate": 0.06,
+    "incomeMinusExpensesRate": 0.15,
+    "minimumTaxRate": 0.01
+  },
+  "personalIncomeTax": {
+    "defaultRatePercent": 13
+  },
+  "salary": {
+    "monthsPerYear": 12,
+    "workDaysPerYear": {
+      "fiveTwo": 247,
+      "twoTwo": 183,
+      "dayThree": 92
+    },
+    "russiaNdflBrackets": [
+      { "limit": 2400000, "rate": 0.13 },
+      { "limit": 5000000, "rate": 0.15 },
+      { "limit": 20000000, "rate": 0.18 },
+      { "limit": 50000000, "rate": 0.20 },
+      { "limit": null, "rate": 0.22 }
+    ]
+  }
+}

@@ -1,10 +1,11 @@
+import { TAX_2026_CONFIG } from '../../../config'
 import type { SelfEmployedTaxInput, SelfEmployedTaxResult } from '../types/self-employed-tax'
 
-export const INDIVIDUAL_RATE = 0.04
-export const BUSINESS_RATE = 0.06
-export const INDIVIDUAL_BONUS_RATE = 0.01
-export const BUSINESS_BONUS_RATE = 0.02
-export const ANNUAL_INCOME_LIMIT = 2_400_000
+export const INDIVIDUAL_RATE = TAX_2026_CONFIG.professionalIncomeTax.individualRate
+export const BUSINESS_RATE = TAX_2026_CONFIG.professionalIncomeTax.businessRate
+export const INDIVIDUAL_BONUS_RATE = TAX_2026_CONFIG.professionalIncomeTax.individualBonusRate
+export const BUSINESS_BONUS_RATE = TAX_2026_CONFIG.professionalIncomeTax.businessBonusRate
+export const ANNUAL_INCOME_LIMIT = TAX_2026_CONFIG.professionalIncomeTax.annualIncomeLimit
 
 export function roundMoney(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100

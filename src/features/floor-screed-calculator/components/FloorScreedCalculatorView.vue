@@ -114,14 +114,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useFloorScreedCalculator } from '../composables/useFloorScreedCalculator'
 import type { FloorScreedInputField } from '../types/floor-screed'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setThickness, setBagWeight } = useFloorScreedCalculator()
 
-const thicknessPresets = [30, 50, 70]
-const bagPresets = [20, 25, 40]
+const thicknessPresets = CALCULATOR_PRESETS_CONFIG.construction.floorScreed.thicknessMillimeters
+const bagPresets = CALCULATOR_PRESETS_CONFIG.construction.floorScreed.bagKilograms
 
 const NumberField = defineComponent<{ field: FloorScreedInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

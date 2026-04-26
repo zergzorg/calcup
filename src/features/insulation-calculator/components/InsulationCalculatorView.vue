@@ -115,18 +115,15 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { CALCULATOR_PRESETS_CONFIG } from '../../../config'
 import { useInsulationCalculator } from '../composables/useInsulationCalculator'
 import type { InsulationInputField } from '../types/insulation'
 
 const { t, n } = useI18n()
 const { input, result, getIssue, setBoardSize, setThickness } = useInsulationCalculator()
 
-const boardPresets = [
-  { label: '1.2×0.6 м', length: 1.2, width: 0.6 },
-  { label: '1.0×0.6 м', length: 1, width: 0.6 },
-  { label: '1.2×0.5 м', length: 1.2, width: 0.5 },
-]
-const thicknessPresets = [50, 100, 150]
+const boardPresets = CALCULATOR_PRESETS_CONFIG.construction.insulation.boardSizes
+const thicknessPresets = CALCULATOR_PRESETS_CONFIG.construction.insulation.thicknessMillimeters
 
 const NumberField = defineComponent<{ field: InsulationInputField; label: string; suffix?: string; step?: number; min?: number }>({
   props: ['field', 'label', 'suffix', 'step', 'min'],

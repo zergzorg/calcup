@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "actualAsOf": "2026-04-26",
+    "source": "Calculator MVP assumptions"
+  },
+  "inflation": {
+    "defaultAnnualRatePercent": 7,
+    "defaultNominalReturnPercent": 10
+  },
+  "penalty": {
+    "defaultKeyRatePercent": 16,
+    "defaultDivisor": 300
+  }
+}
