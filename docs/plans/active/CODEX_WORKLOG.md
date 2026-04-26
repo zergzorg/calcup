@@ -2696,3 +2696,73 @@ Commit hash:
 Следующий шаг:
 
 - После зелёных проверок закоммитить запуск `animals` и перейти к `/animals/dog-food`.
+
+### Итерация 51: `/animals/dog-food`
+
+Выбранный milestone:
+
+- `/animals/dog-food`.
+
+Почему выбран именно он:
+
+- Это следующий P0 из OmniCalculator expansion registry после запуска `dog-age` и `cat-age`.
+- Делает раздел `/animals` практичным: не только "интересный возраст", но и ежедневный pet-care расчёт.
+- Формулы можно держать прозрачными и тестируемыми без назначения лечебного питания.
+
+Что изменено:
+
+- Создан `src/features/dog-food-calculator/`.
+- Добавлены чистые функции для RER, множителя профиля, дневных калорий и граммов корма.
+- Добавлены профили активности/возраста: weight loss, neutered adult, intact adult, active, puppies and senior.
+- Добавлен вычет доли лакомств из калорий основного корма.
+- Добавлен animal-care warning-note.
+- Registry-запись `dog-food` добавлена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий animal milestone `/animals/cat-calorie`.
+
+Затронутые файлы:
+
+- `src/features/dog-food-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- dog-food registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат тестов:
+
+- Точечный `npm run test -- dog-food registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 65 files / 520 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 91 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/animals/dog-food/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: profile chips, food fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- this commit
+
+Следующий шаг:
+
+- После зелёных проверок закоммитить `/animals/dog-food` и перейти к `/animals/cat-calorie`.

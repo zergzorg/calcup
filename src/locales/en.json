@@ -3881,6 +3881,65 @@
       }
     }
   },
+  "dogFood": {
+    "eyebrow": "Animals",
+    "title": "Dog Food Calculator",
+    "intro": "Estimate daily calories and grams of food from your dog's weight, activity profile and food calories.",
+    "form": {
+      "profileTitle": "Dog",
+      "profileHelp": "Choose the scenario that best matches your dog's age, activity and condition.",
+      "weightKg": "Dog weight",
+      "profile": "Profile",
+      "foodTitle": "Food",
+      "caloriesPer100g": "Food calories",
+      "treatPercent": "Treat share"
+    },
+    "profile": {
+      "weightLoss": "Weight loss",
+      "neuteredAdult": "Neutered adult",
+      "intactAdult": "Intact adult",
+      "active": "Active",
+      "puppyUnder4": "Puppy under 4 mo",
+      "puppyOver4": "Puppy 4-12 mo",
+      "senior": "Senior"
+    },
+    "units": {
+      "kg": "kg",
+      "kcal100g": "kcal/100 g",
+      "percent": "%",
+      "kcalValue": "{value} kcal",
+      "gramsValue": "{value} g"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Fill in your dog and food details to see the estimate.",
+      "gramsPerDay": "Food per day",
+      "dailyCalories": "Daily energy",
+      "foodCalories": "Calories from main food",
+      "twoMeals": "If feeding twice",
+      "rer": "Resting RER",
+      "multiplier": "Profile multiplier"
+    },
+    "warning": {
+      "title": "Estimate, not a prescription",
+      "body": "Actual feeding needs depend on breed, weight, health, neuter status, food composition and the manufacturer's guide. Change diets gradually and discuss therapeutic feeding with a veterinarian."
+    },
+    "formula": "RER = 70 × weight^0.75. Daily energy = RER × profile multiplier. Food grams = main-food calories / calories per gram.",
+    "validation": {
+      "weightKg": {
+        "required": "Enter dog weight.",
+        "range": "Weight must be between 0.5 and 120 kg."
+      },
+      "caloriesPer100g": {
+        "required": "Enter food calories.",
+        "range": "Food calories must be between 150 and 650 kcal per 100 g."
+      },
+      "treatPercent": {
+        "required": "Enter treat share.",
+        "range": "Treat share must be between 0 and 30%."
+      }
+    }
+  },
   "catAge": {
     "eyebrow": "Animals",
     "title": "Cat Age Calculator",

@@ -50,41 +50,41 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Категорий: 11.
-- Всего карточек: 76.
-- Ready: 64.
+- Всего карточек: 77.
+- Ready: 65.
 - Soon: 12.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/animals/dog-food`, `/animals/cat-calorie`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
+- Next candidates: `/animals/cat-calorie`, `/animals/dog-pregnancy`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `dog-food`
+- slug: `cat-calorie`
 - category: `animals`
-- goal: добавить `/animals/dog-food` как следующий практический калькулятор нового animal-кластера.
-- reason: после запуска `/animals/dog-age` и `/animals/cat-age` разделу нужен регулярный pet-care сценарий; dog food можно строить на прозрачной RER/MER модели с warning-note.
+- goal: добавить `/animals/cat-calorie` как парный food/calorie-калькулятор для кошек.
+- reason: после `/animals/dog-food` нужен симметричный практический инструмент для владельцев кошек; формула RER/MER проще, но требует animal-care warning-note.
 - acceptance criteria:
-  - registry-запись `dog-food` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/dog-food-calculator/`;
+  - registry-запись `cat-calorie` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/cat-calorie-calculator/`;
   - чистые функции считают RER, MER и дневную порцию корма по калорийности;
   - есть unit-тесты на формулы, множители и invalid input;
   - RU/EN локали заполнены;
   - есть animal-care warning-note: расчёт ориентировочный и не заменяет ветеринара;
-  - `/animals/dog-food/` добавлен в sitemap;
+  - `/animals/cat-calorie/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/dog-food-calculator/index.ts`
-  - `src/features/dog-food-calculator/components/DogFoodCalculatorView.vue`
-  - `src/features/dog-food-calculator/composables/useDogFoodCalculator.ts`
-  - `src/features/dog-food-calculator/lib/calculations.ts`
-  - `src/features/dog-food-calculator/lib/calculations.test.ts`
-  - `src/features/dog-food-calculator/types/dog-food.ts`
+  - `src/features/cat-calorie-calculator/index.ts`
+  - `src/features/cat-calorie-calculator/components/CatCalorieCalculatorView.vue`
+  - `src/features/cat-calorie-calculator/composables/useCatCalorieCalculator.ts`
+  - `src/features/cat-calorie-calculator/lib/calculations.ts`
+  - `src/features/cat-calorie-calculator/lib/calculations.test.ts`
+  - `src/features/cat-calorie-calculator/types/cat-calorie.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор корма для собаки|Dog Food Calculator|canonical|robots|animals/dog-food" dist/animals/dog-food.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор калорий для кошки|Cat Calorie Calculator|canonical|robots|animals/cat-calorie" dist/animals/cat-calorie.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/dog-food/ /tmp/calcup-dog-food-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/dog-food/ /tmp/calcup-dog-food-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/cat-calorie/ /tmp/calcup-cat-calorie-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/cat-calorie/ /tmp/calcup-cat-calorie-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -385,6 +385,12 @@ Owner: Codex
 - 2026-04-26: После запуска `/animals` `npm run build` — OK, Vite SSG rendered 90 pages.
 - 2026-04-26: Static smoke по `dist/animals/dog-age.html`, `dist/animals/cat-age.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entries OK.
 - 2026-04-26: Mobile Playwright full-page screenshots 430px по `/animals/dog-age/` и `/animals/cat-age/` — chips, age fields, warning notes, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/animals/dog-food` точечный `npm run test -- dog-food registry` — OK, 2 files / 8 tests.
+- 2026-04-26: После `/animals/dog-food` полный `npm run test` — OK, 65 files / 520 tests.
+- 2026-04-26: После `/animals/dog-food` `npm run type-check` — OK.
+- 2026-04-26: После `/animals/dog-food` `npm run build` — OK, Vite SSG rendered 91 pages.
+- 2026-04-26: Static smoke по `dist/animals/dog-food.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/dog-food/` — profile chips, food fields, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -425,4 +431,4 @@ Owner: Codex
 
 ## Next Action
 
-Закоммитить запуск `/animals` и перейти к Current Milestone `/animals/dog-food`.
+Завершить проверки для `/animals/dog-food`, закоммитить milestone и перейти к Current Milestone `/animals/cat-calorie`.
