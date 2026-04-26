@@ -252,6 +252,60 @@
       }
     }
   },
+  "deposit": {
+    "eyebrow": "Finance",
+    "title": "Deposit Calculator",
+    "intro": "Estimate deposit interest, final balance, and the effect of capitalization over a selected term.",
+    "form": {
+      "termsTitle": "Deposit terms",
+      "termsHelp": "Enter amount, annual rate, and term. Use the rate from your own bank offer.",
+      "initialAmount": "Deposit amount",
+      "annualRate": "Rate",
+      "termMonths": "Term",
+      "termPresets": "Term presets",
+      "modeTitle": "Interest accrual"
+    },
+    "modes": {
+      "simple": "No capitalization",
+      "monthlyCapitalization": "Monthly capitalization"
+    },
+    "units": {
+      "currency": "$",
+      "months": "mo.",
+      "currencyValue": "${value}",
+      "percentValue": "{value}%",
+      "monthsValue": "{value} mo."
+    },
+    "result": {
+      "label": "Estimate",
+      "finalAmount": "Final balance",
+      "initialAmount": "Deposit amount",
+      "income": "Interest income",
+      "effectiveGrowth": "Growth over term",
+      "term": "Term",
+      "mode": "Accrual mode",
+      "empty": "Fill amount, rate, and term with valid values."
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "The calculator does not include taxes, fees, additional contributions, partial withdrawals, bonus rates, or bank-specific terms."
+    },
+    "formula": "Without capitalization, income is proportional to the term. With monthly capitalization, interest is added to the deposit balance each month.",
+    "validation": {
+      "initialAmount": {
+        "required": "Enter deposit amount as a number.",
+        "range": "Amount must be from 1,000 to 1,000,000,000."
+      },
+      "annualRate": {
+        "required": "Enter rate as a number.",
+        "range": "Rate must be from 0 to 100%."
+      },
+      "termMonths": {
+        "required": "Enter term as a number.",
+        "range": "Term must be from 1 to 600 months."
+      }
+    }
+  },
   "bmi": {
     "eyebrow": "Health",
     "title": "BMI Calculator",
