@@ -892,8 +892,75 @@ Commit hash:
 
 Commit hash:
 
-- pending
+- 71ffcea
 
 Следующий шаг:
 
 - Реализовать `/datetime/time-duration`.
+
+### Итерация 25: `/datetime/time-duration`
+
+Выбранный milestone:
+
+- `/datetime/time-duration`.
+
+Почему выбран именно он:
+
+- Низкорисковая арифметика длительностей без внешних источников.
+- Усиливает категорию `/datetime`.
+- Хорошо покрывается unit-тестами на total seconds и нормализацию.
+
+Что изменено:
+
+- Создан `src/features/time-duration-calculator/`.
+- Добавлены чистые функции сложения/вычитания длительностей, нормализации и форматирования `HH:MM:SS`.
+- Добавлена поддержка отрицательного результата для вычитания.
+- Registry-запись `time-duration` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+
+Затронутые файлы:
+
+- `src/features/time-duration-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор времени|Time Duration Calculator|canonical|robots|datetime/time-duration" dist/datetime/time-duration.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/time-duration/ /tmp/calcup-time-duration-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/time-duration/ /tmp/calcup-time-duration-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 38 files / 386 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/datetime/time-duration/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, operation chips, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 22935a2
+
+Следующий шаг:
+
+- Перейти к следующему low-risk milestone: `/datetime/countdown`.

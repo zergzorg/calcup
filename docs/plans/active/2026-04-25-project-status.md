@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.23 расширение раздела даты и времени
+## Текущая фаза: 5.24 расширение раздела даты и времени
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 37 ready-калькуляторов.
-- 37 soon-карточек.
+- 38 ready-калькуляторов.
+- 36 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -52,6 +52,7 @@
 | 5.21 | Калькулятор бетона | /construction/concrete | ✅ ready |
 | 5.22 | Калькулятор возраста | /datetime/age | ✅ ready |
 | 5.23 | Калькулятор рабочих дней | /datetime/workdays | ✅ ready |
+| 5.24 | Калькулятор времени | /datetime/time-duration | ✅ ready |
 
 ## Sitemap
 
@@ -65,11 +66,42 @@
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
-- /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/
+- /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.24) — 2026-04-26
+
+Реализован калькулятор даты и времени `/datetime/time-duration`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/time-duration-calculator/`.
+- Добавлен расчёт:
+  - сложения двух длительностей;
+  - вычитания двух длительностей;
+  - нормализации часов, минут и секунд через total seconds;
+  - отрицательного результата с явным знаком;
+  - итоговых часов, минут и секунд.
+- Добавлены RU/EN локали `timeDuration.*`.
+- Registry-запись `time-duration` переведена в `ready`.
+- В sitemap добавлен `/datetime/time-duration/`.
+
+### Проверки
+
+- `npm run test` — OK, `386/386`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/datetime/time-duration/` title, canonical со slash, `index,follow`;
+  - `/datetime/time-duration/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/datetime/time-duration/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

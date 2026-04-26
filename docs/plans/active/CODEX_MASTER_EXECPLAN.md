@@ -51,8 +51,8 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 37.
-- Soon: 37.
+- Ready: 38.
+- Soon: 36.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`.
 - Низкорисковые next candidates: `/datetime/time-duration`, `/datetime/countdown`, `/everyday/bill-split`, `/convert/volume`, `/convert/speed`.
@@ -62,28 +62,28 @@ Owner: Codex
 
 ## Current Milestone
 
-- slug: `time-duration`
+- slug: `countdown`
 - category: `datetime`
-- goal: перевести `/datetime/time-duration` из `soon` в `ready` и добавить калькулятор сложения/вычитания длительностей в часах, минутах и секундах.
-- reason: низкорисковая общеизвестная формула, усиливает уже открытую категорию `/datetime`, хорошо проверяется unit-тестами и не требует внешних нормативных источников.
+- goal: перевести `/datetime/countdown` из `soon` в `ready` и добавить калькулятор дней до события или дедлайна.
+- reason: низкорисковая date-only арифметика, логичное продолжение datetime-линейки после `date-diff`, `age`, `workdays` и `time-duration`.
 - acceptance criteria:
-  - registry-запись `time-duration` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/time-duration-calculator/`;
-  - чистые функции складывают и вычитают длительности, нормализуют часы/минуты/секунды и обрабатывают отрицательный результат;
-  - есть unit-тесты на сложение, вычитание, нормализацию, нули и отрицательный результат;
+  - registry-запись `countdown` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/countdown-calculator/`;
+  - чистые функции считают календарные дни до события, прошедшие дни после события и статус направления;
+  - есть unit-тесты на будущую дату, прошедшую дату, текущую дату, включение текущего дня и invalid date;
   - RU/EN локали заполнены;
-  - `/datetime/time-duration/` добавлен в sitemap;
+  - `/datetime/countdown/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, тематические roadmaps и README синхронизированы.
 - expected files:
-  - `src/features/time-duration-calculator/index.ts`
-  - `src/features/time-duration-calculator/components/TimeDurationCalculatorView.vue`
-  - `src/features/time-duration-calculator/composables/useTimeDurationCalculator.ts`
-  - `src/features/time-duration-calculator/lib/calculations.ts`
-  - `src/features/time-duration-calculator/lib/calculations.test.ts`
-  - `src/features/time-duration-calculator/types/time-duration.ts`
+  - `src/features/countdown-calculator/index.ts`
+  - `src/features/countdown-calculator/components/CountdownCalculatorView.vue`
+  - `src/features/countdown-calculator/composables/useCountdownCalculator.ts`
+  - `src/features/countdown-calculator/lib/calculations.ts`
+  - `src/features/countdown-calculator/lib/calculations.test.ts`
+  - `src/features/countdown-calculator/types/countdown.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,16 +97,15 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор времени|Time Duration Calculator|canonical|robots|datetime/time-duration" dist/datetime/time-duration.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор дней до даты|Countdown Calculator|canonical|robots|datetime/countdown" dist/datetime/countdown.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/time-duration/ /tmp/calcup-time-duration-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/time-duration/ /tmp/calcup-time-duration-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile-full.png`
 - risk level: low
-- status: in_progress
+- status: planned
 
 ## Pending
 
-- slug: `countdown`; category: `datetime`; цель: дни до события или дедлайна; причина приоритета: низкий риск и продолжение datetime-линейки; expected scope: date input, include/exclude today, result days/weeks; риск: low.
 - slug: `bill-split`; category: `everyday`; цель: разделить счёт между людьми с доплатами; причина приоритета: бытовой high-value сценарий; expected scope: сумма, люди, сервисный сбор/чаевые optional; риск: low.
 - slug: `volume`; category: `convert`; цель: конвертер объёма; причина приоритета: базовая конвертерная категория; expected scope: liters, ml, m3, gallons, cups; риск: low.
 - slug: `speed`; category: `convert`; цель: конвертер скорости; причина приоритета: простой справочный инструмент; expected scope: km/h, mph, m/s, min/km optional; риск: low.
@@ -138,6 +137,7 @@ Owner: Codex
 - slug: `concrete`; category: `construction`; сделано: бетон, мешки, запас; проверки: test/type-check/build/mobile/static smoke; commit hash: `45c9836`.
 - slug: `age`; category: `datetime`; сделано: возраст, прожитые дни, день рождения; проверки: test/type-check/build/mobile/static smoke; commit hash: `0bbdcfc`.
 - slug: `workdays`; category: `datetime`; сделано: рабочие/выходные дни; проверки: test/type-check/build/mobile/static smoke; commit hash: `b05e876`.
+- slug: `time-duration`; category: `datetime`; сделано: сложение и вычитание длительностей в часах, минутах и секундах; проверки: test/type-check/build/mobile/static smoke; commit hash: `22935a2`.
 
 ## Deferred
 
@@ -151,6 +151,7 @@ Owner: Codex
 
 - 2026-04-26: `time-duration` выбран следующим milestone, потому что это низкорисковый datetime-калькулятор на общеизвестной арифметике длительностей.
 - 2026-04-26: Для `time-duration` первая версия использует две длительности и операцию add/subtract; результат может быть отрицательным и показывается с явным знаком.
+- 2026-04-26: `countdown` выбран следующим milestone, потому что это низкорисковый date-only сценарий без нормативных источников.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -161,6 +162,7 @@ Owner: Codex
 - `time-duration`: часы, минуты и секунды вводятся как неотрицательные числа; минуты и секунды нормализуются через общий total seconds.
 - `time-duration`: отрицательный результат допустим только для вычитания и отображается как `−HH:MM:SS`.
 - `time-duration`: расчёт не зависит от часовых поясов, календарных дат и DST.
+- `countdown`: date-only расчёт выполняется через UTC; пользовательская временная зона не влияет на количество календарных дней.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -174,11 +176,17 @@ Owner: Codex
 ## Verification Log
 
 - 2026-04-26: До старта `time-duration` `git status --short` показывает только untracked `docs/plans/active/MAIN_PLAN.MD`.
-- 2026-04-26: Фактические счётчики после `/datetime/workdays`: 37 ready / 37 soon / 0 planned.
+- 2026-04-26: Фактические счётчики после `/datetime/time-duration`: 38 ready / 36 soon / 0 planned.
 - 2026-04-26: Последний полный milestone `/datetime/workdays`: `npm run test`, `npm run type-check`, `npm run build`, static smoke и mobile Playwright smoke прошли.
+- 2026-04-26: Для `/datetime/time-duration` `npm run test` — OK, 38 files / 386 tests.
+- 2026-04-26: Для `/datetime/time-duration` `npm run type-check` — OK.
+- 2026-04-26: Для `/datetime/time-duration` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/datetime/time-duration.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/datetime/time-duration/` — поля, operation chips, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
+- `22935a2` — `feat(datetime): add time duration calculator`.
 - `ff6df26` — `docs(plans): record workdays milestone`.
 - `b05e876` — `feat(datetime): add workdays calculator`.
 - `13aff52` — `docs(plans): record age milestone`.
@@ -190,4 +198,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/datetime/time-duration`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/datetime/countdown`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
