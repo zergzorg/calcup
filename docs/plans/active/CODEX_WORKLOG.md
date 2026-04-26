@@ -2070,3 +2070,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/health/ideal-weight`.
+
+### Итерация 42: `/health/ideal-weight`
+
+Выбранный milestone:
+
+- `/health/ideal-weight`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- P1 health-инструмент и логичное продолжение после `/health/calorie`.
+- Scope ограничен справочными формулами и BMI-диапазоном с дисклеймером.
+
+Что изменено:
+
+- Создан `src/features/ideal-weight-calculator/`.
+- Добавлены чистые функции для Devine, Robinson, Miller, Hamwi и BMI-диапазона 18.5-24.9.
+- Добавлены среднее по формулам, диапазон формул и health warning-note.
+- Registry-запись `ideal-weight` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/finance/mortgage`.
+
+Затронутые файлы:
+
+- `src/features/ideal-weight-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор идеального веса|Ideal Weight Calculator|canonical|robots|health/ideal-weight" dist/health/ideal-weight.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/ideal-weight/ /tmp/calcup-ideal-weight-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/ideal-weight/ /tmp/calcup-ideal-weight-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 55 files / 472 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/health/ideal-weight/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: sex chips, height field, warning note, formula rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- fce19d8
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/finance/mortgage`.

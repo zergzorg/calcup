@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.40 расширение health-категории
+## Текущая фаза: 5.41 расширение health-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 54 ready-калькулятора.
-- 20 soon-карточек.
+- 55 ready-калькуляторов.
+- 19 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -69,6 +69,7 @@
 | 5.38 | Калькулятор пропорций | /math/proportion | ✅ ready |
 | 5.39 | Калькулятор уравнений | /math/equation | ✅ ready |
 | 5.40 | Калькулятор калорий | /health/calorie | ✅ ready |
+| 5.41 | Калькулятор идеального веса | /health/ideal-weight | ✅ ready |
 
 ## Sitemap
 
@@ -76,7 +77,7 @@
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
-- /health/bmi/ · /health/calorie/
+- /health/bmi/ · /health/calorie/ · /health/ideal-weight/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
@@ -87,6 +88,37 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.41) — 2026-04-26
+
+Реализован калькулятор `/health/ideal-weight`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/ideal-weight-calculator/`.
+- Добавлен расчёт:
+  - формул Devine, Robinson, Miller и Hamwi;
+  - среднего по формулам;
+  - диапазона между минимальной и максимальной формулой;
+  - BMI-диапазона 18.5-24.9.
+- Добавлен health warning-note: результат справочный и не является медицинской нормой.
+- Добавлены RU/EN локали `idealWeight.*`.
+- Registry-запись `ideal-weight` переведена в `ready`.
+- В sitemap добавлен `/health/ideal-weight/`.
+
+### Проверки
+
+- `npm run test` — OK, `472/472`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/health/ideal-weight/` title, canonical со slash, `index,follow`;
+  - `/health/ideal-weight/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/health/ideal-weight/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

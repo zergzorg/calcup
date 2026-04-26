@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 54.
-- Soon: 20.
+- Ready: 55.
+- Soon: 19.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/health/ideal-weight`, `/construction/rebar`, `/finance/mortgage`.
+- Next candidates: `/finance/mortgage`, `/construction/rebar`, `/health/body-fat`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `ideal-weight`
-- category: `health`
-- goal: перевести `/health/ideal-weight` из `soon` в `ready` и добавить ориентировочный калькулятор идеального веса.
-- reason: после `/health/calorie` категория health стала живее; `ideal-weight` — следующий P1 health-инструмент с понятным формульным scope и обязательным дисклеймером.
+- slug: `mortgage`
+- category: `finance`
+- goal: перевести `/finance/mortgage` из `soon` в `ready` и добавить ипотечный калькулятор.
+- reason: после двух health-инструментов логично вернуться к high-value finance-карточкам; mortgage — P1-сценарий на уже знакомой аннуитетной математике.
 - acceptance criteria:
-  - registry-запись `ideal-weight` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/ideal-weight-calculator/`;
-  - чистые функции считают несколько ориентиров веса по росту и полу;
+  - registry-запись `mortgage` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/mortgage-calculator/`;
+  - чистые функции считают первоначальный взнос, сумму кредита, аннуитетный платёж, переплату и общую выплату;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть health warning-note: расчёт ориентировочный и не заменяет медицинскую оценку;
-  - `/health/ideal-weight/` добавлен в sitemap;
+  - есть finance warning-note: расчёт ориентировочный и не учитывает комиссии, страховки и условия банка;
+  - `/finance/mortgage/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/ideal-weight-calculator/index.ts`
-  - `src/features/ideal-weight-calculator/components/IdealWeightCalculatorView.vue`
-  - `src/features/ideal-weight-calculator/composables/useIdealWeightCalculator.ts`
-  - `src/features/ideal-weight-calculator/lib/calculations.ts`
-  - `src/features/ideal-weight-calculator/lib/calculations.test.ts`
-  - `src/features/ideal-weight-calculator/types/ideal-weight.ts`
+  - `src/features/mortgage-calculator/index.ts`
+  - `src/features/mortgage-calculator/components/MortgageCalculatorView.vue`
+  - `src/features/mortgage-calculator/composables/useMortgageCalculator.ts`
+  - `src/features/mortgage-calculator/lib/calculations.ts`
+  - `src/features/mortgage-calculator/lib/calculations.test.ts`
+  - `src/features/mortgage-calculator/types/mortgage.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор идеального веса|Ideal Weight Calculator|canonical|robots|health/ideal-weight" dist/health/ideal-weight.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Ипотечный калькулятор|Mortgage Calculator|canonical|robots|finance/mortgage" dist/finance/mortgage.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/ideal-weight/ /tmp/calcup-ideal-weight-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/ideal-weight/ /tmp/calcup-ideal-weight-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/mortgage/ /tmp/calcup-mortgage-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/mortgage/ /tmp/calcup-mortgage-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -150,6 +150,7 @@ Owner: Codex
 - slug: `proportion`; category: `math`; сделано: правило трёх, коэффициент, отношение и процентная связь; проверки: test/type-check/build/mobile/static smoke; commit hash: `69aea4d`.
 - slug: `equation`; category: `math`; сделано: линейные и квадратные уравнения, дискриминант, действительные корни и вырожденные случаи; проверки: test/type-check/build/mobile/static smoke; commit hash: `14ae2ed`.
 - slug: `calorie`; category: `health`; сделано: BMR по Mifflin-St Jeor, TDEE, цель по дневному delta и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `38748f4`.
+- slug: `ideal-weight`; category: `health`; сделано: Devine/Robinson/Miller/Hamwi, среднее по формулам, BMI-диапазон и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `fce19d8`.
 
 ## Deferred
 
@@ -184,6 +185,7 @@ Owner: Codex
 - 2026-04-26: После `proportion` следующим выбран `equation`, потому что это последний math `soon`; scope ограничен линейными и квадратными уравнениями.
 - 2026-04-26: После `equation` следующим выбран `calorie`, потому что math-кластер закрыт, а health остаётся категорией с одним ready-инструментом.
 - 2026-04-26: После `calorie` следующим выбран `ideal-weight`, потому что это P1 health-карточка и логичное продолжение health-кластера.
+- 2026-04-26: После `ideal-weight` следующим выбран `mortgage`, потому что это high-value finance-карточка с низким формульным риском при ручном вводе ставки.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -212,6 +214,7 @@ Owner: Codex
 - `equation`: первая версия решает только действительные корни; комплексные корни показываются как отсутствие real roots.
 - `calorie`: первая версия будет считать BMR по Mifflin-St Jeor, TDEE через activity factor и цель через фиксированный дневной delta; результат является ориентиром, не медицинской рекомендацией.
 - `ideal-weight`: первая версия должна показывать диапазон/несколько формул как справочный ориентир, не как медицинскую норму.
+- `mortgage`: первая версия будет считать аннуитетный платёж по ручной ставке, цене недвижимости, первоначальному взносу и сроку; комиссии, страховки, субсидии и требования банка не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -312,6 +315,11 @@ Owner: Codex
 - 2026-04-26: Для `/health/calorie` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/health/calorie.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/health/calorie/` — profile/activity/goal chips, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/health/ideal-weight` `npm run test` — OK, 55 files / 472 tests.
+- 2026-04-26: Для `/health/ideal-weight` `npm run type-check` — OK.
+- 2026-04-26: Для `/health/ideal-weight` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/health/ideal-weight.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/health/ideal-weight/` — sex chips, height field, warning note, formula rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -325,6 +333,7 @@ Owner: Codex
 - `69aea4d` — `feat(math): add proportion calculator`.
 - `14ae2ed` — `feat(math): add equation calculator`.
 - `38748f4` — `feat(health): add calorie calculator`.
+- `fce19d8` — `feat(health): add ideal weight calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -343,4 +352,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/health/ideal-weight`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/finance/mortgage`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
