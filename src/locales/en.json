@@ -782,6 +782,46 @@
       "nonNegativeInteger": "Enter a whole number from 0."
     }
   },
+  "countdown": {
+    "eyebrow": "Date & Time",
+    "title": "Countdown Calculator",
+    "intro": "Calculate how many days are left until an event or how many days have passed since it.",
+    "form": {
+      "title": "Event",
+      "description": "The calculation uses calendar dates and ignores time of day.",
+      "startDate": "Start date",
+      "targetDate": "Event date",
+      "includeStartDate": "Include start date"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter valid dates.",
+      "directionTitle": {
+        "future": "Until event",
+        "past": "Since event",
+        "today": "Event is today"
+      },
+      "daysValue": "{count} days",
+      "exactDays": "Without including start date",
+      "fullWeeks": "Full weeks",
+      "remainingDays": "Remaining days",
+      "direction": "Status",
+      "directionValue": {
+        "future": "ahead",
+        "past": "already passed",
+        "today": "today"
+      }
+    },
+    "formula": "The difference is calculated between calendar dates. If start date is included, 1 day is added to a non-zero difference.",
+    "validation": {
+      "startDate": {
+        "invalid": "Enter a valid start date."
+      },
+      "targetDate": {
+        "invalid": "Enter a valid event date."
+      }
+    }
+  },
   "tips": {
     "eyebrow": "Everyday life",
     "title": "Tip Calculator",
