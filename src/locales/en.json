@@ -1170,6 +1170,58 @@
       }
     }
   },
+  "currency": {
+    "eyebrow": "Converters",
+    "title": "Currency Converter",
+    "intro": "Convert amounts between ruble, dollar, euro and yuan with an exchange rate you enter manually.",
+    "codes": {
+      "RUB": "RUB — Russian ruble",
+      "USD": "USD — US dollar",
+      "EUR": "EUR — euro",
+      "CNY": "CNY — Chinese yuan"
+    },
+    "form": {
+      "conversionTitle": "Conversion",
+      "amount": "Amount",
+      "from": "From currency",
+      "to": "To currency",
+      "swap": "Swap currencies",
+      "rate": "Rate: 1 {from}",
+      "updatedAt": "Rate date"
+    },
+    "presets": {
+      "title": "Quick pairs",
+      "help": "Pairs fill the direction and a starter example rate. Check and replace the rate with the current one before calculating.",
+      "usd-rub": "USD → RUB",
+      "eur-rub": "EUR → RUB",
+      "cny-rub": "CNY → RUB",
+      "rub-usd": "RUB → USD"
+    },
+    "warning": {
+      "title": "Manual exchange rate",
+      "body": "The calculator does not fetch exchange, central bank or broker data automatically. Use the bank, central bank or contract rate that fits your transaction."
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter an amount and a positive exchange rate.",
+      "converted": "Converted amount",
+      "source": "Source amount",
+      "rate": "Used rate",
+      "updatedAt": "Rate date",
+      "noDate": "date not set"
+    },
+    "formula": "Target amount = source amount × exchange rate.",
+    "validation": {
+      "amount": {
+        "required": "Enter amount as a number.",
+        "nonNegative": "Amount cannot be negative."
+      },
+      "rate": {
+        "required": "Enter rate as a number.",
+        "positive": "Rate must be greater than 0."
+      }
+    }
+  },
   "fuel": {
     "eyebrow": "Transport",
     "title": "Fuel Consumption",

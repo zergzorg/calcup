@@ -77,6 +77,8 @@ Implementation notes:
 
 ### Task P0-2: Конвертер валют MVP
 
+Status: completed 2026-04-26
+
 Category: `convert`
 Type: новая ready-фича из `soon`
 Goal: выпустить `/convert/currency` без внешних секретов/API.
@@ -96,6 +98,13 @@ Acceptance:
 - есть тесты конверсии и invalid input.
 
 Risk: medium, если обещать live-курсы. MVP должен быть manual-rate.
+
+Implementation notes:
+
+- released `/convert/currency` as a ready manual-rate calculator;
+- added RUB/USD/EUR/CNY, swap, rate date, quick pairs and explicit no-live-rate warning;
+- search tags cover `курс доллара`, `курс евро`, `курс юаня`, `доллары в рубли`, `usd rub`, `eur rub`, `cny rub`;
+- formulas and invalid input are covered by unit tests.
 
 ### Task P0-3: Workspace / legacy product cleanup
 
