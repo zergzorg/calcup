@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 55 ready-калькуляторов в `src/data/calculators.ts`;
-- 19 `soon`-карточек для будущего наполнения;
+- 56 ready-калькуляторов в `src/data/calculators.ts`;
+- 18 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -66,7 +66,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 
 | Категория | Путь | Ready | Soon / roadmap |
 |-----------|------|-------|----------------|
-| Финансы | `/finance` | credit, vat, salary, project-price | mortgage, deposit, compound-interest, refinance |
+| Финансы | `/finance` | credit, vat, salary, project-price, mortgage | deposit, compound-interest, refinance |
 | Математика | `/math` | percentage, fraction, average, proportion, equation | — |
 | Здоровье | `/health` | bmi, calorie, ideal-weight | body-fat, pregnancy-due-date |
 | Конвертеры | `/convert` | length, temperature, weight, area, volume, speed, data-size | currency |
@@ -85,6 +85,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/finance/vat` | Калькулятор НДС |
 | `/finance/salary` | Калькулятор зарплаты |
 | `/finance/project-price` | Калькулятор стоимости проекта |
+| `/finance/mortgage` | Ипотечный калькулятор |
 | `/math/percentage` | Калькулятор процентов |
 | `/math/fraction` | Калькулятор дробей |
 | `/math/average` | Калькулятор среднего |
@@ -151,7 +152,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
-   - `/finance/mortgage`.
+   - `/finance/deposit`.
    - `/health/body-fat`.
    - `/construction/rebar`.
 

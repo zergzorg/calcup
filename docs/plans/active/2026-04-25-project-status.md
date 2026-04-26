@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.41 расширение health-категории
+## Текущая фаза: 5.42 расширение finance-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 55 ready-калькуляторов.
-- 19 soon-карточек.
+- 56 ready-калькуляторов.
+- 18 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -70,12 +70,13 @@
 | 5.39 | Калькулятор уравнений | /math/equation | ✅ ready |
 | 5.40 | Калькулятор калорий | /health/calorie | ✅ ready |
 | 5.41 | Калькулятор идеального веса | /health/ideal-weight | ✅ ready |
+| 5.42 | Ипотечный калькулятор | /finance/mortgage | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
-- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
+- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
@@ -88,6 +89,38 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.42) — 2026-04-26
+
+Реализован калькулятор `/finance/mortgage`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/mortgage-calculator/`.
+- Добавлен расчёт:
+  - первоначального взноса;
+  - суммы кредита;
+  - аннуитетного ежемесячного платежа;
+  - общей выплаты, переплаты и доли кредита.
+- Добавлены быстрые пресеты первоначального взноса 10 / 15 / 20 / 30%.
+- Добавлен finance warning-note: расчёт не учитывает комиссии, страховки, субсидии и условия банка.
+- Добавлены RU/EN локали `mortgage.*`.
+- Registry-запись `mortgage` переведена в `ready`.
+- В sitemap добавлен `/finance/mortgage/`.
+
+### Проверки
+
+- `npm run test` — OK, `477/477`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/finance/mortgage/` title, canonical со slash, `index,follow`;
+  - `/finance/mortgage/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/finance/mortgage/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

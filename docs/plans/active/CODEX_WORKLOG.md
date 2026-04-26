@@ -2138,3 +2138,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/finance/mortgage`.
+
+### Итерация 43: `/finance/mortgage`
+
+Выбранный milestone:
+
+- `/finance/mortgage`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- High-value finance-карточка.
+- Формула аннуитетного платежа уже соответствует существующей кредитной математике.
+
+Что изменено:
+
+- Создан `src/features/mortgage-calculator/`.
+- Добавлены чистые функции для первоначального взноса, суммы кредита, аннуитетного платежа, общей выплаты и переплаты.
+- Добавлены быстрые пресеты первоначального взноса 10 / 15 / 20 / 30%.
+- Добавлен finance warning-note про комиссии, страховки, субсидии и условия банка.
+- Registry-запись `mortgage` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/finance/deposit`.
+
+Затронутые файлы:
+
+- `src/features/mortgage-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Ипотечный калькулятор|Mortgage Calculator|canonical|robots|finance/mortgage" dist/finance/mortgage.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/mortgage/ /tmp/calcup-mortgage-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/mortgage/ /tmp/calcup-mortgage-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 56 files / 477 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/finance/mortgage/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: fields, down-payment chips, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- a5cd618
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/finance/deposit`.
