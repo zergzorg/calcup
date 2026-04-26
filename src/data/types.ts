@@ -8,6 +8,7 @@ export type CategorySlug =
   | 'construction'
   | 'health'
   | 'datetime'
+  | 'work'
   | 'transport'
   | 'sport'
   | 'animals'

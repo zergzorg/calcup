@@ -2301,6 +2301,65 @@
       }
     }
   },
+  "vacationPay": {
+    "eyebrow": "Taxes & Work",
+    "title": "Vacation Pay Calculator",
+    "intro": "Estimate vacation pay from average daily earnings, vacation days, and income tax.",
+    "form": {
+      "periodTitle": "Calculation period",
+      "vacationTitle": "Vacation and tax",
+      "earnings": "Eligible earnings for the period",
+      "fullMonths": "Fully worked months",
+      "partialMonthDays": "Days in partial months",
+      "vacationDays": "Vacation days",
+      "taxPercent": "Income tax"
+    },
+    "units": {
+      "currency": "₽",
+      "months": "mo",
+      "days": "d",
+      "currencyValue": "₽{value}"
+    },
+    "warning": {
+      "title": "Actuality and assumptions",
+      "body": "Current as of 2026-04-26. This simplified calculation uses 29.3 calendar days for a fully worked month and the average daily earnings formula for vacation pay. Enter only payments included in average earnings; sick leave, vacations and social payments are usually excluded. The calculation is informational and is not accounting or tax advice."
+    },
+    "result": {
+      "label": "Calculation",
+      "empty": "Fill in the fields with valid values.",
+      "net": "Net payout after tax",
+      "gross": "Vacation pay before tax",
+      "averageDaily": "Average daily earnings",
+      "accountingDays": "Accounting calendar days",
+      "tax": "Income tax"
+    },
+    "formula": "Vacation pay = earnings / (full months × 29.3 + partial month days) × vacation days.",
+    "validation": {
+      "earnings": {
+        "required": "Enter earnings as a number.",
+        "positive": "Earnings must be greater than 0."
+      },
+      "fullMonths": {
+        "required": "Enter month count.",
+        "range": "Months must be from 0 to 12."
+      },
+      "partialMonthDays": {
+        "required": "Enter days as a number.",
+        "range": "Partial month days must be from 0 to 31."
+      },
+      "accountingDays": {
+        "positive": "The calculation period must contain at least one accounting day."
+      },
+      "vacationDays": {
+        "required": "Enter vacation days.",
+        "positive": "Vacation days must be greater than 0."
+      },
+      "taxPercent": {
+        "required": "Enter tax as a number.",
+        "range": "Tax must be from 0 to 100%."
+      }
+    }
+  },
   "projectPrice": {
     "eyebrow": "Finance",
     "title": "Project Price Calculator",

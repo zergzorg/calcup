@@ -45,6 +45,17 @@ export const CATEGORIES: CategoryMeta[] = [
     path: '/datetime',
   },
   {
+    slug: 'work',
+    title: { ru: 'Налоги и работа', en: 'Taxes & Work' },
+    description: {
+      ru: 'Отпускные, рабочие расчёты, налоги и справочные выплаты',
+      en: 'Vacation pay, work calculations, taxes and reference payouts',
+    },
+    icon: '🧾',
+    color: '#0f766e',
+    path: '/work',
+  },
+  {
     slug: 'transport',
     title: { ru: 'Транспорт', en: 'Transport' },
     description: { ru: 'Расход топлива, стоимость поездки', en: 'Fuel consumption, trip cost' },
