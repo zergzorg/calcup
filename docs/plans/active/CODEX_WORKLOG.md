@@ -2972,7 +2972,7 @@ Commit hash:
 
 Commit hash:
 
-- this commit
+- `475f787`
 
 Следующий шаг:
 
