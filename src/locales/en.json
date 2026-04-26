@@ -305,6 +305,63 @@
       }
     }
   },
+  "fraction": {
+    "eyebrow": "Math",
+    "title": "Fraction Calculator",
+    "intro": "Add, subtract, multiply, divide and simplify common fractions.",
+    "form": {
+      "leftTitle": "First fraction",
+      "rightTitle": "Second fraction",
+      "numerator": "Numerator",
+      "denominator": "Denominator",
+      "operation": "Operation"
+    },
+    "operators": {
+      "add": "Add",
+      "subtract": "Subtract",
+      "multiply": "Multiply",
+      "divide": "Divide"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill fractions with whole numbers. Denominator cannot be 0.",
+      "simplified": "Simplified fraction",
+      "expression": "Expression",
+      "mixed": "Mixed number",
+      "decimal": "Decimal value"
+    },
+    "popular": {
+      "title": "Popular examples",
+      "item": "{left} {operator} {right} = {result}"
+    },
+    "formula": "Fractions use a common denominator for addition and subtraction. The result is sign-normalized and reduced with GCD.",
+    "validation": {
+      "leftNumerator": {
+        "required": "Enter the first numerator.",
+        "integer": "Numerator must be a whole number.",
+        "range": "The value is too large to calculate."
+      },
+      "leftDenominator": {
+        "required": "Enter the first denominator.",
+        "integer": "Denominator must be a whole number.",
+        "range": "The value is too large to calculate."
+      },
+      "rightNumerator": {
+        "required": "Enter the second numerator.",
+        "integer": "Numerator must be a whole number.",
+        "range": "The value is too large to calculate."
+      },
+      "rightDenominator": {
+        "required": "Enter the second denominator.",
+        "integer": "Denominator must be a whole number.",
+        "range": "The value is too large to calculate."
+      },
+      "denominator": {
+        "nonZero": "Denominator cannot be 0."
+      },
+      "divisionByZero": "Cannot divide by a zero fraction."
+    }
+  },
   "length": {
     "eyebrow": "Converters",
     "title": "Length Converter",
