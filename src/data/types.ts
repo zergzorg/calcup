@@ -10,6 +10,7 @@ export type CategorySlug =
   | 'datetime'
   | 'transport'
   | 'sport'
+  | 'animals'
   | 'clothing'
   | 'convert'
   | 'everyday'

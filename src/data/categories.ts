@@ -64,6 +64,17 @@ export const CATEGORIES: CategoryMeta[] = [
     path: '/sport',
   },
   {
+    slug: 'animals',
+    title: { ru: 'Животные', en: 'Animals' },
+    description: {
+      ru: 'Возраст, питание, уход и безопасные оценки для питомцев',
+      en: 'Age, food, care and safe estimates for pets',
+    },
+    icon: '🐾',
+    color: '#f97316',
+    path: '/animals',
+  },
+  {
     slug: 'clothing',
     title: { ru: 'Одежда и обувь', en: 'Clothing & Shoes' },
     description: {

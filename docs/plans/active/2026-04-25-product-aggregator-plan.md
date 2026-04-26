@@ -9,8 +9,8 @@ Scope: продуктовая модель Calcup как каталога онл
 
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
-- 10 категорий в `src/data/categories.ts`;
-- 62 ready-калькулятора в `src/data/calculators.ts`;
+- 11 категорий в `src/data/categories.ts`;
+- 64 ready-калькулятора в `src/data/calculators.ts`;
 - 12 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
@@ -73,6 +73,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete, strip-foundation, rebar | slab-foundation, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
 | Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed, ev-range | — |
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones, race-split, metronome | — |
+| Животные | `/animals` | dog-age, cat-age | dog-food, cat-calorie, dog-pregnancy, cat-pregnancy |
 | Одежда и обувь | `/clothing` | shoe-size, clothing-size | sneaker-size, jeans-size, brand-size-compare |
 | Дата и время | `/datetime` | date-diff, age, workdays, time-duration, countdown | — |
 | Быт | `/everyday` | discount, tips, unit-price, bill-split, room-area, electricity, cooking-units | — |
@@ -129,6 +130,8 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/sport/distance-pace-time` | Калькулятор дистанция/темп/время |
 | `/sport/race-split` | Калькулятор сплитов |
 | `/sport/metronome` | Метроном |
+| `/animals/dog-age` | Калькулятор возраста собаки |
+| `/animals/cat-age` | Калькулятор возраста кошки |
 | `/clothing/shoe-size` | Конвертер размера обуви |
 | `/clothing/clothing-size` | Конвертер размеров одежды |
 | `/datetime/date-diff` | Разница между датами |
@@ -157,10 +160,12 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 1. Закрыть текущий большой коммит каталога: README, планы, реестр, related calculators, sport/clothing roadmap.
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
-4. Следующий ready-калькулятор выбрать из:
+4. Для расширения за пределы текущих категорий использовать `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`.
+5. Следующий ready-калькулятор выбрать из:
    - `/construction/slab-foundation`.
    - `/construction/roof`.
    - `/construction/stairs`.
+   - `/animals/dog-food` и `/animals/cat-calorie`, если приоритет смещается на развитие нового раздела `animals`.
 
 ## Non-Goals
 

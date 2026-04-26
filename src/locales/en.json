@@ -3822,5 +3822,113 @@
         "required": "Select a unit."
       }
     }
+  },
+  "dogAge": {
+    "eyebrow": "Animals",
+    "title": "Dog Age Calculator",
+    "intro": "Convert your dog's age to human years with a size-adjusted estimate and a simple life-stage note.",
+    "form": {
+      "title": "Age and size",
+      "description": "Enter your dog's full age. Size affects the aging rate after the first two years.",
+      "years": "Full years",
+      "months": "Months",
+      "size": "Dog size"
+    },
+    "size": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "giant": "Giant"
+    },
+    "stage": {
+      "puppy": "Puppy",
+      "young": "Young dog",
+      "adult": "Adult dog",
+      "senior": "Senior dog",
+      "geriatric": "Geriatric dog"
+    },
+    "units": {
+      "years": "yr",
+      "months": "mo"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter your dog's age to see the estimate.",
+      "humanAge": "Roughly like a human",
+      "humanYears": "{value} years",
+      "dogAge": "Dog age",
+      "dogYears": "{value} years",
+      "stage": "Life stage",
+      "rate": "After 2 years",
+      "rateValue": "+{value} human years per year"
+    },
+    "warning": {
+      "title": "Estimate, not a diagnosis",
+      "body": "Breed, weight, diet and health can change aging pace a lot. Ask a veterinarian for medical decisions."
+    },
+    "formula": "Model: year one ≈ 15 human years, year two brings the estimate to 24, then 4/5/6/7 years are added per year for small, medium, large and giant dogs.",
+    "validation": {
+      "years": {
+        "required": "Enter years as a number.",
+        "range": "Age must be between 0 and 30 years."
+      },
+      "months": {
+        "required": "Enter months as a number.",
+        "range": "Months must be between 0 and 11."
+      },
+      "age": {
+        "positive": "Age must be greater than zero."
+      }
+    }
+  },
+  "catAge": {
+    "eyebrow": "Animals",
+    "title": "Cat Age Calculator",
+    "intro": "Convert your cat's age to human years and get a rough life-stage estimate.",
+    "form": {
+      "title": "Cat age",
+      "description": "Enter full years and months. The estimate uses the common 15/24/+4 approximation.",
+      "years": "Full years",
+      "months": "Months"
+    },
+    "stage": {
+      "kitten": "Kitten",
+      "young": "Young cat",
+      "adult": "Adult cat",
+      "mature": "Mature cat",
+      "senior": "Senior cat",
+      "geriatric": "Geriatric cat"
+    },
+    "units": {
+      "years": "yr",
+      "months": "mo"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter your cat's age to see the estimate.",
+      "humanAge": "Roughly like a human",
+      "humanYears": "{value} years",
+      "catAge": "Cat age",
+      "catYears": "{value} years",
+      "stage": "Life stage"
+    },
+    "warning": {
+      "title": "Estimate, not a diagnosis",
+      "body": "Cats age differently: lifestyle, diet and health matter more than any universal table. Ask a veterinarian when in doubt."
+    },
+    "formula": "Model: year one ≈ 15 human years, year two brings the estimate to 24, and each following year adds about 4 human years.",
+    "validation": {
+      "years": {
+        "required": "Enter years as a number.",
+        "range": "Age must be between 0 and 35 years."
+      },
+      "months": {
+        "required": "Enter months as a number.",
+        "range": "Months must be between 0 and 11."
+      },
+      "age": {
+        "positive": "Age must be greater than zero."
+      }
+    }
   }
 }

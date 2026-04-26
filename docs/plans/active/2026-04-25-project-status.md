@@ -1,14 +1,15 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.48 расширение construction-категории
+## Текущая фаза: 5.49 запуск animals-категории
 
 Фактическое состояние на 2026-04-26:
 
-- 10 категорий в реестре.
-- 62 ready-калькулятора.
+- 11 категорий в реестре.
+- 64 ready-калькулятора.
 - 12 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
+- `/animals` открыт ready-калькуляторами `/animals/dog-age` и `/animals/cat-age`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
 
 ## Готовые калькуляторы
@@ -77,11 +78,13 @@
 | 5.46 | Калькулятор процента жира | /health/body-fat | ✅ ready |
 | 5.47 | Калькулятор срока беременности | /health/pregnancy-due-date | ✅ ready |
 | 5.48 | Калькулятор арматуры | /construction/rebar | ✅ ready |
+| 5.49 | Калькулятор возраста собаки | /animals/dog-age | ✅ ready |
+| 5.49 | Калькулятор возраста кошки | /animals/cat-age | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
-- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
+- /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /animals/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/ · /finance/refinance/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
@@ -89,12 +92,45 @@
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/rebar/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
+- /animals/dog-age/ · /animals/cat-age/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/ · /everyday/cooking-units/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
-Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.49) — 2026-04-26
+
+Реализованы первые калькуляторы нового раздела `/animals`.
+
+### Реализовано
+
+- Добавлена категория `animals` / «Животные».
+- Создан feature-модуль `src/features/dog-age-calculator/`.
+- Создан feature-модуль `src/features/cat-age-calculator/`.
+- Добавлены расчёты:
+  - возраст собаки в человеческих годах: 15/24 и размерные коэффициенты после 2 лет;
+  - возраст кошки в человеческих годах: 15/24/+4;
+  - жизненный этап питомца.
+- Добавлены RU/EN локали `dogAge.*` и `catAge.*`.
+- В sitemap добавлены `/animals/`, `/animals/dog-age/`, `/animals/cat-age/`.
+- README обновлён до 64 ready / 12 soon.
+
+### Проверки
+
+- `npm run test -- dog-age cat-age registry` — OK, 3 files / 10 tests.
+- `npm run test` — OK, 64 files / 515 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 90 pages.
+- Static smoke:
+  - `/animals/dog-age/` title, canonical со slash, `index,follow`;
+  - `/animals/cat-age/` title, canonical со slash, `index,follow`;
+  - `/animals/`, `/animals/dog-age/`, `/animals/cat-age/` есть в sitemap.
+- Mobile smoke:
+  - `/animals/dog-age/` и `/animals/cat-age/` 430px full-page screenshots без overflow и наложений.
 
 ---
 

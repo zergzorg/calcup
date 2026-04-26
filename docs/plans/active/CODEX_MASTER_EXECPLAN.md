@@ -49,42 +49,42 @@ Owner: Codex
 
 Дата аудита: 2026-04-26.
 
-- Категорий: 10.
-- Всего карточек: 74.
-- Ready: 62.
+- Категорий: 11.
+- Всего карточек: 76.
+- Ready: 64.
 - Soon: 12.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
+- Next candidates: `/animals/dog-food`, `/animals/cat-calorie`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `slab-foundation`
-- category: `construction`
-- goal: перевести `/construction/slab-foundation` из `soon` в `ready` и добавить ориентировочный расчёт бетона, арматурной сетки и подушки плитного фундамента.
-- reason: продолжает construction-кластер после rebar; P2-сценарий уже частично опирается на готовые concrete/rebar формулы, но требует строительного warning-note.
+- slug: `dog-food`
+- category: `animals`
+- goal: добавить `/animals/dog-food` как следующий практический калькулятор нового animal-кластера.
+- reason: после запуска `/animals/dog-age` и `/animals/cat-age` разделу нужен регулярный pet-care сценарий; dog food можно строить на прозрачной RER/MER модели с warning-note.
 - acceptance criteria:
-  - registry-запись `slab-foundation` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/slab-foundation-calculator/`;
-  - чистые функции считают объём плиты, подушку, арматурную сетку, массу и стоимость материалов;
-  - есть unit-тесты на формулы, округления и invalid input;
+  - registry-запись `dog-food` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/dog-food-calculator/`;
+  - чистые функции считают RER, MER и дневную порцию корма по калорийности;
+  - есть unit-тесты на формулы, множители и invalid input;
   - RU/EN локали заполнены;
-  - есть construction warning-note: расчёт ориентировочный и не заменяет проект/нормы;
-  - `/construction/slab-foundation/` добавлен в sitemap;
+  - есть animal-care warning-note: расчёт ориентировочный и не заменяет ветеринара;
+  - `/animals/dog-food/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/slab-foundation-calculator/index.ts`
-  - `src/features/slab-foundation-calculator/components/SlabFoundationCalculatorView.vue`
-  - `src/features/slab-foundation-calculator/composables/useSlabFoundationCalculator.ts`
-  - `src/features/slab-foundation-calculator/lib/calculations.ts`
-  - `src/features/slab-foundation-calculator/lib/calculations.test.ts`
-  - `src/features/slab-foundation-calculator/types/slabFoundation.ts`
+  - `src/features/dog-food-calculator/index.ts`
+  - `src/features/dog-food-calculator/components/DogFoodCalculatorView.vue`
+  - `src/features/dog-food-calculator/composables/useDogFoodCalculator.ts`
+  - `src/features/dog-food-calculator/lib/calculations.ts`
+  - `src/features/dog-food-calculator/lib/calculations.test.ts`
+  - `src/features/dog-food-calculator/types/dog-food.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Плитный фундамент|Slab Foundation Calculator|canonical|robots|construction/slab-foundation" dist/construction/slab-foundation.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор корма для собаки|Dog Food Calculator|canonical|robots|animals/dog-food" dist/animals/dog-food.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/dog-food/ /tmp/calcup-dog-food-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/dog-food/ /tmp/calcup-dog-food-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -379,6 +379,12 @@ Owner: Codex
 - 2026-04-26: Для `/construction/rebar` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/rebar.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/rebar/` — spacing/diameter/waste chips, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/animals/dog-age` и `/animals/cat-age` точечный `npm run test -- dog-age cat-age registry` — OK, 3 files / 10 tests.
+- 2026-04-26: После запуска `/animals` полный `npm run test` — OK, 64 files / 515 tests.
+- 2026-04-26: После запуска `/animals` `npm run type-check` — OK.
+- 2026-04-26: После запуска `/animals` `npm run build` — OK, Vite SSG rendered 90 pages.
+- 2026-04-26: Static smoke по `dist/animals/dog-age.html`, `dist/animals/cat-age.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entries OK.
+- 2026-04-26: Mobile Playwright full-page screenshots 430px по `/animals/dog-age/` и `/animals/cat-age/` — chips, age fields, warning notes, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -415,7 +421,8 @@ Owner: Codex
 - `45c9836` — `feat(construction): add concrete calculator`.
 - `cd35d79` — `docs(plans): record ev range milestone`.
 - `f665b29` — `feat(transport): add ev range calculator`.
+- `this commit` — `feat(animals): add pet age calculators`.
 
 ## Next Action
 
-Реализовать Current Milestone `/construction/slab-foundation`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Закоммитить запуск `/animals` и перейти к Current Milestone `/animals/dog-food`.

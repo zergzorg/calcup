@@ -2620,3 +2620,79 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/construction/slab-foundation`.
+
+### Итерация 50: `/animals/dog-age` + `/animals/cat-age`
+
+Выбранный milestone:
+
+- Запуск нового раздела `/animals` через первые два безопасных age-калькулятора.
+
+Почему выбран именно он:
+
+- Пользователь попросил приступить к реализации реестра OmniCalculator expansion.
+- В новом плане `2026-04-26-omnicalculator-expansion-registry.md` первыми стоят `/animals/dog-age` и `/animals/cat-age`.
+- Age-калькуляторы дают разделу реальную пользу без ветеринарных рисков дозировок и экстренных рекомендаций.
+
+Что изменено:
+
+- Добавлена категория `animals` / «Животные».
+- Создан `src/features/dog-age-calculator/`.
+- Создан `src/features/cat-age-calculator/`.
+- Добавлены формулы:
+  - dog age: 15/24 и +4/+5/+6/+7 человеческих лет за год после 2 лет в зависимости от размера;
+  - cat age: 15/24/+4.
+- Добавлен life stage для собаки и кошки.
+- Добавлены animal-care warning notes.
+- Registry получил `dog-age` и `cat-age` в статусе `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий animal milestone `/animals/dog-food`.
+
+Затронутые файлы:
+
+- `src/features/dog-age-calculator/**`
+- `src/features/cat-age-calculator/**`
+- `src/data/types.ts`
+- `src/data/categories.ts`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- dog-age cat-age registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат тестов:
+
+- Точечный `npm run test -- dog-age cat-age registry` — OK, 3 files / 10 tests.
+- `npm run test` — OK, 64 files / 515 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 90 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/animals/dog-age/` и `/animals/cat-age/` canonical, robots и sitemap entries checked.
+- Mobile full-page screenshots — OK: dog size chips, age fields, warning notes, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- this commit
+
+Следующий шаг:
+
+- После зелёных проверок закоммитить запуск `animals` и перейти к `/animals/dog-food`.
