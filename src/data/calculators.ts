@@ -412,11 +412,14 @@ export const CALCULATORS: CalculatorMeta[] = [
       en: 'Estimated due date and pregnancy term',
     },
     icon: '🍼',
-    status: 'soon',
+    status: 'ready',
     priority: 'P2',
+    popularity: 74,
     isPopular: false,
     path: '/health/pregnancy-due-date',
-    tags: ['беременность', 'дата родов', 'pregnancy', 'due date'],
+    tags: ['беременность', 'срок беременности', 'дата родов', 'триместр', 'pregnancy', 'due date', 'gestational age'],
+    aliases: ['рассчитать дату родов', 'пдр', 'pregnancy calculator', 'gestational age calculator'],
+    componentLoader: () => import('../features/pregnancy-due-date-calculator'),
   },
   // ===== CONVERT =====
   {

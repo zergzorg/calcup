@@ -653,6 +653,65 @@
       }
     }
   },
+  "pregnancyDueDate": {
+    "eyebrow": "Health",
+    "title": "Pregnancy Due Date Calculator",
+    "intro": "Estimate the due date, current gestational age, and trimester from the last menstrual period or conception date.",
+    "modes": {
+      "lmp": "Last menstrual period",
+      "conception": "Conception date"
+    },
+    "form": {
+      "methodTitle": "Calculation data",
+      "methodHelp": "The common estimate starts from the first day of the last menstrual period. Conception date is an alternate estimate.",
+      "mode": "Calculation method",
+      "lmpDate": "First day of last menstrual period",
+      "conceptionDate": "Conception date",
+      "todayDate": "Calculation date"
+    },
+    "units": {
+      "weeksDays": "{weeks} wk {days} d",
+      "daysLeft": "{count} days left",
+      "daysPast": "{count} days past",
+      "today": "today"
+    },
+    "result": {
+      "label": "Estimate",
+      "dueDate": "Estimated due date",
+      "gestationalAge": "Gestational age",
+      "trimester": "Trimester",
+      "daysUntilDue": "Until due date",
+      "status": "Status",
+      "empty": "Enter valid calendar dates."
+    },
+    "trimesters": {
+      "first": "First",
+      "second": "Second",
+      "third": "Third"
+    },
+    "status": {
+      "beforeStart": "calculation date is before start",
+      "inProgress": "pregnancy is in progress",
+      "dueToday": "estimated due date is today",
+      "pastDue": "date has passed"
+    },
+    "warning": {
+      "title": "Medical disclaimer",
+      "body": "This calculator provides an estimate only. Ultrasound dating, cycle length, individual medical factors, and clinician care can change gestational age and the estimated due date."
+    },
+    "formula": "From LMP, due date = first cycle day + 280 days. From conception, due date = conception date + 266 days; gestational age is counted from an estimated date 14 days before conception.",
+    "validation": {
+      "lmpDate": {
+        "invalid": "Enter a valid last menstrual period date."
+      },
+      "conceptionDate": {
+        "invalid": "Enter a valid conception date."
+      },
+      "todayDate": {
+        "invalid": "Enter a valid calculation date."
+      }
+    }
+  },
   "percentage": {
     "eyebrow": "Math",
     "title": "Percentage Calculator",
