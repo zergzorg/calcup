@@ -2552,3 +2552,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/construction/rebar`.
+
+### Итерация 49: `/construction/rebar`
+
+Выбранный milestone:
+
+- `/construction/rebar`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Health `soon` закрыт, поэтому работа вернулась к самому большому construction backlog.
+- Rebar полезен как отдельный закупочный ориентир и как база для плитного фундамента.
+
+Что изменено:
+
+- Создан `src/features/rebar-calculator/`.
+- Добавлены чистые функции для подсчёта линий прямоугольной сетки, длины, закупочных прутков, массы и стоимости.
+- Масса считается через площадь круга и плотность стали 7850 кг/м³.
+- Добавлен construction warning-note: расчёт не заменяет проект, нормы, анкеровку, нахлёсты, защитный слой и инженерную проверку.
+- Registry-запись `rebar` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/construction/slab-foundation`.
+
+Затронутые файлы:
+
+- `src/features/rebar-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор арматуры|Rebar Calculator|canonical|robots|construction/rebar" dist/construction/rebar.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/rebar/ /tmp/calcup-rebar-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 62 files / 508 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/construction/rebar/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: spacing/diameter/waste chips, fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- c13fdf5
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/construction/slab-foundation`.

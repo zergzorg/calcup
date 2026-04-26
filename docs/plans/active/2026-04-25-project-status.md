@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.47 закрытие health soon-кластера
+## Текущая фаза: 5.48 расширение construction-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 61 ready-калькулятор.
-- 13 soon-карточек.
+- 62 ready-калькулятора.
+- 12 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -76,6 +76,7 @@
 | 5.45 | Калькулятор рефинансирования | /finance/refinance | ✅ ready |
 | 5.46 | Калькулятор процента жира | /health/body-fat | ✅ ready |
 | 5.47 | Калькулятор срока беременности | /health/pregnancy-due-date | ✅ ready |
+| 5.48 | Калькулятор арматуры | /construction/rebar | ✅ ready |
 
 ## Sitemap
 
@@ -85,7 +86,7 @@
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/rebar/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
@@ -96,6 +97,41 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.48) — 2026-04-26
+
+Реализован калькулятор `/construction/rebar`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/rebar-calculator/`.
+- Добавлен расчёт:
+  - количества линий прямоугольной сетки в двух направлениях;
+  - длины без запаса и с запасом;
+  - количества закупочных прутков по длине прутка;
+  - массы по диаметру и плотности стали 7850 кг/м³;
+  - стоимости по цене за кг.
+- Добавлен construction warning-note: расчёт не заменяет проект, нормы, анкеровку, нахлёсты и инженерную проверку.
+- Добавлены RU/EN локали `rebar.*`.
+- Registry-запись `rebar` переведена в `ready`.
+- В sitemap добавлен `/construction/rebar/`.
+- README обновлён до 62 ready / 12 soon.
+
+### Проверки
+
+- `npm run test` — OK, 62 files / 508 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/construction/rebar/` title, canonical со slash, `index,follow`;
+  - `/construction/rebar/` есть в sitemap.
+- Mobile smoke:
+  - `/construction/rebar/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `c13fdf5 feat(construction): add rebar calculator`
 
 ## Сделано (Фаза 5.47) — 2026-04-26
 

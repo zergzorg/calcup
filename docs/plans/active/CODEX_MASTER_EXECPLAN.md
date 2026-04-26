@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 61.
-- Soon: 13.
+- Ready: 62.
+- Soon: 12.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/construction/rebar`, `/construction/slab-foundation`, `/construction/roof`.
+- Next candidates: `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `rebar`
+- slug: `slab-foundation`
 - category: `construction`
-- goal: перевести `/construction/rebar` из `soon` в `ready` и добавить расчёт количества, длины, веса и стоимости арматуры.
-- reason: после закрытия health `soon` возвращаемся к construction-кластеру; rebar — P2-сценарий с понятной геометрией и умеренным строительным риском.
+- goal: перевести `/construction/slab-foundation` из `soon` в `ready` и добавить ориентировочный расчёт бетона, арматурной сетки и подушки плитного фундамента.
+- reason: продолжает construction-кластер после rebar; P2-сценарий уже частично опирается на готовые concrete/rebar формулы, но требует строительного warning-note.
 - acceptance criteria:
-  - registry-запись `rebar` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/rebar-calculator/`;
-  - чистые функции считают количество продольных/поперечных прутков по сетке, общую длину, вес по диаметру и стоимость;
+  - registry-запись `slab-foundation` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/slab-foundation-calculator/`;
+  - чистые функции считают объём плиты, подушку, арматурную сетку, массу и стоимость материалов;
   - есть unit-тесты на формулы, округления и invalid input;
   - RU/EN локали заполнены;
   - есть construction warning-note: расчёт ориентировочный и не заменяет проект/нормы;
-  - `/construction/rebar/` добавлен в sitemap;
+  - `/construction/slab-foundation/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/rebar-calculator/index.ts`
-  - `src/features/rebar-calculator/components/RebarCalculatorView.vue`
-  - `src/features/rebar-calculator/composables/useRebarCalculator.ts`
-  - `src/features/rebar-calculator/lib/calculations.ts`
-  - `src/features/rebar-calculator/lib/calculations.test.ts`
-  - `src/features/rebar-calculator/types/rebar.ts`
+  - `src/features/slab-foundation-calculator/index.ts`
+  - `src/features/slab-foundation-calculator/components/SlabFoundationCalculatorView.vue`
+  - `src/features/slab-foundation-calculator/composables/useSlabFoundationCalculator.ts`
+  - `src/features/slab-foundation-calculator/lib/calculations.ts`
+  - `src/features/slab-foundation-calculator/lib/calculations.test.ts`
+  - `src/features/slab-foundation-calculator/types/slabFoundation.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор арматуры|Rebar Calculator|canonical|robots|construction/rebar" dist/construction/rebar.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Плитный фундамент|Slab Foundation Calculator|canonical|robots|construction/slab-foundation" dist/construction/slab-foundation.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/rebar/ /tmp/calcup-rebar-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/rebar/ /tmp/calcup-rebar-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -157,6 +157,7 @@ Owner: Codex
 - slug: `refinance`; category: `finance`; сделано: сравнение старого и нового аннуитетного кредита, экономия, месячная разница и окупаемость расходов; проверки: test/type-check/build/mobile/static smoke; commit hash: `d2f9d4a`.
 - slug: `body-fat`; category: `health`; сделано: оценка процента жира по US Navy circumference method, категория, жировая/безжировая масса и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `6107642`.
 - slug: `pregnancy-due-date`; category: `health`; сделано: ориентировочная дата родов по LMP/дате зачатия, срок беременности, триместр, статус и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `f2d4795`.
+- slug: `rebar`; category: `construction`; сделано: расчёт линий прямоугольной сетки, закупочных прутков, длины, массы, стоимости и construction warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `c13fdf5`.
 
 ## Deferred
 
@@ -198,6 +199,7 @@ Owner: Codex
 - 2026-04-26: После `refinance` следующим выбран `body-fat`, потому что finance-кластер закрыт, а health всё ещё имеет `soon`-карточки.
 - 2026-04-26: После `body-fat` следующим выбран `pregnancy-due-date`, чтобы закрыть health `soon` перед возвратом к construction.
 - 2026-04-26: После `pregnancy-due-date` следующим выбран `rebar`, потому что health `soon` закрыт и construction остаётся самым крупным backlog-кластером.
+- 2026-04-26: После `rebar` следующим выбран `slab-foundation`, потому что это соседний construction-сценарий и может переиспользовать подходы concrete/rebar.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -235,6 +237,8 @@ Owner: Codex
 - `pregnancy-due-date`: LMP mode использует +280 дней от первого дня последней менструации; conception mode использует +266 дней от даты зачатия и условный gestational start за 14 дней до зачатия.
 - `pregnancy-due-date`: триместры делятся как 0-13w6d, 14-27w6d, 28w+; расчёты date-only идут через UTC.
 - `rebar`: первая версия будет ориентировочной; защитный слой бетона, анкеровки, нахлёсты, выпуски, класс стали и расчёт несущей способности не входят в scope.
+- `rebar`: масса считается через площадь круга и плотность стали 7850 кг/м³; закупочные прутки округляются вверх по стандартной длине, стоимость считается от закупочной длины.
+- `slab-foundation`: первая версия будет ориентировочной; грунты, нагрузки, морозное пучение, гидроизоляция, класс бетона и инженерный расчёт армирования не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -370,6 +374,11 @@ Owner: Codex
 - 2026-04-26: Для `/health/pregnancy-due-date` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/health/pregnancy-due-date.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/health/pregnancy-due-date/` — method chips, date fields, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/rebar` `npm run test` — OK, 62 files / 508 tests.
+- 2026-04-26: Для `/construction/rebar` `npm run type-check` — OK.
+- 2026-04-26: Для `/construction/rebar` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/construction/rebar.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/rebar/` — spacing/diameter/waste chips, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -390,6 +399,7 @@ Owner: Codex
 - `d2f9d4a` — `feat(finance): add refinance calculator`.
 - `6107642` — `feat(health): add body fat calculator`.
 - `f2d4795` — `feat(health): add pregnancy due date calculator`.
+- `c13fdf5` — `feat(construction): add rebar calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -408,4 +418,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/construction/rebar`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/construction/slab-foundation`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
