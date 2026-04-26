@@ -246,6 +246,74 @@
       "body": "BMI is an informational metric and does not account for age, sex, pregnancy, muscle mass, or medical context. Consult a clinician for diagnosis or personal recommendations."
     }
   },
+  "calorie": {
+    "eyebrow": "Health",
+    "title": "Calorie Calculator",
+    "intro": "Estimate basal metabolic rate, daily energy expenditure, and a calorie target for your selected goal.",
+    "sex": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "activity": {
+      "sedentary": "Mostly sedentary",
+      "light": "Light activity",
+      "moderate": "Training 3-5 times",
+      "active": "Active most days",
+      "athlete": "Very high activity"
+    },
+    "goals": {
+      "lose": "Weight loss",
+      "mildLose": "Mild deficit",
+      "maintain": "Maintain",
+      "gain": "Gain weight"
+    },
+    "form": {
+      "profileTitle": "Profile",
+      "profileHelp": "The Mifflin-St Jeor formula uses sex, age, height, and weight.",
+      "sex": "Sex",
+      "age": "Age",
+      "height": "Height",
+      "weight": "Weight",
+      "activityTitle": "Activity",
+      "activityHelp": "Choose your usual week, not the hardest single day.",
+      "goalTitle": "Goal",
+      "goalHelp": "The goal adds or subtracts an approximate daily calorie difference."
+    },
+    "units": {
+      "years": "yrs",
+      "cm": "cm",
+      "kg": "kg",
+      "kcalValue": "{value} kcal"
+    },
+    "result": {
+      "label": "Estimate",
+      "target": "Daily target",
+      "bmr": "Basal metabolic rate",
+      "tdee": "With activity",
+      "activityFactor": "Activity factor",
+      "dailyDelta": "Goal difference",
+      "empty": "Enter age 10-100, height 100-230 cm, and weight 30-300 kg."
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "This calculator does not account for medical conditions, pregnancy, body composition, or clinician guidance. Do not use it as a diagnosis or personal nutrition plan."
+    },
+    "formula": "BMR uses the Mifflin-St Jeor equation. TDEE = BMR × activity factor. The goal changes the total by -500, -250, 0, or +300 kcal per day.",
+    "validation": {
+      "age": {
+        "required": "Enter age as a number.",
+        "range": "Age must be from 10 to 100."
+      },
+      "heightCm": {
+        "required": "Enter height as a number.",
+        "range": "Height must be from 100 to 230 cm."
+      },
+      "weightKg": {
+        "required": "Enter weight as a number.",
+        "range": "Weight must be from 30 to 300 kg."
+      }
+    }
+  },
   "percentage": {
     "eyebrow": "Math",
     "title": "Percentage Calculator",
