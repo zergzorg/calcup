@@ -3989,5 +3989,63 @@
         "positive": "Age must be greater than zero."
       }
     }
+  },
+  "catCalorie": {
+    "eyebrow": "Animals",
+    "title": "Cat Calorie Calculator",
+    "intro": "Estimate daily calories and grams of food for a cat from weight, age, activity and food calories.",
+    "form": {
+      "profileTitle": "Cat",
+      "profileHelp": "Choose the profile that best describes your cat.",
+      "weightKg": "Cat weight",
+      "profile": "Profile",
+      "foodTitle": "Food",
+      "caloriesPer100g": "Food calories",
+      "treatPercent": "Treat share"
+    },
+    "profile": {
+      "weightLoss": "Weight loss",
+      "neuteredAdult": "Neutered adult",
+      "intactAdult": "Intact adult",
+      "active": "Active",
+      "kittenUnder4": "Kitten under 4 mo",
+      "kittenOver4": "Kitten 4-12 mo",
+      "senior": "Senior"
+    },
+    "units": {
+      "kg": "kg",
+      "kcal100g": "kcal/100 g",
+      "percent": "%",
+      "kcalValue": "{value} kcal",
+      "gramsValue": "{value} g"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Fill in your cat and food details to see the estimate.",
+      "gramsPerDay": "Food per day",
+      "dailyCalories": "Daily energy",
+      "foodCalories": "Calories from main food",
+      "threeMeals": "If feeding three times",
+      "rer": "Resting RER"
+    },
+    "warning": {
+      "title": "Estimate, not a prescription",
+      "body": "Cats are sensitive to sudden diet changes and excess weight. Use this estimate as a starting point and compare it with your veterinarian's advice and the package guide."
+    },
+    "formula": "RER = 70 × weight^0.75. Daily energy = RER × profile multiplier. Food grams = main-food calories / calories per gram.",
+    "validation": {
+      "weightKg": {
+        "required": "Enter cat weight.",
+        "range": "Weight must be between 0.5 and 15 kg."
+      },
+      "caloriesPer100g": {
+        "required": "Enter food calories.",
+        "range": "Food calories must be between 120 and 650 kcal per 100 g."
+      },
+      "treatPercent": {
+        "required": "Enter treat share.",
+        "range": "Treat share must be between 0 and 20%."
+      }
+    }
   }
 }

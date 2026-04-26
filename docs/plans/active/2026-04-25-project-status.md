@@ -5,11 +5,11 @@
 Фактическое состояние на 2026-04-26:
 
 - 11 категорий в реестре.
-- 65 ready-калькуляторов.
+- 66 ready-калькуляторов.
 - 12 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
-- `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age` и `/animals/dog-food`.
+- `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food` и `/animals/cat-calorie`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
 
 ## Готовые калькуляторы
@@ -81,6 +81,7 @@
 | 5.49 | Калькулятор возраста собаки | /animals/dog-age | ✅ ready |
 | 5.49 | Калькулятор возраста кошки | /animals/cat-age | ✅ ready |
 | 5.50 | Калькулятор корма для собаки | /animals/dog-food | ✅ ready |
+| 5.51 | Калькулятор калорий для кошки | /animals/cat-calorie | ✅ ready |
 
 ## Sitemap
 
@@ -93,13 +94,46 @@
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/rebar/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
-- /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/
+- /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/ · /everyday/cooking-units/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.51) — 2026-04-26
+
+Реализован калькулятор `/animals/cat-calorie`.
+
+### Реализовано
+
+- Создан feature-модуль `src/features/cat-calorie-calculator/`.
+- Добавлен расчёт:
+  - RER по формуле `70 × weight^0.75`;
+  - дневной энергии через множитель профиля;
+  - калорий основного корма с вычетом доли лакомств;
+  - граммов корма в день и порции при трёх кормлениях.
+- Добавлены профили: снижение веса, стерилизованная взрослая, нестерилизованная взрослая, активная, котёнок до 4 месяцев, котёнок 4-12 месяцев, пожилая.
+- Добавлен animal-care warning-note: расчёт не заменяет ветеринара и рекомендации производителя корма.
+- Добавлены RU/EN локали `catCalorie.*`.
+- Registry-запись `cat-calorie` добавлена в `ready`.
+- В sitemap добавлен `/animals/cat-calorie/`.
+- README обновлён до 66 ready / 12 soon.
+
+### Проверки
+
+- `npm run test -- cat-calorie registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 66 files / 525 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 92 pages.
+- Static smoke:
+  - `/animals/cat-calorie/` title, canonical со slash, `index,follow`;
+  - `/animals/cat-calorie/` есть в sitemap.
+- Mobile smoke:
+  - `/animals/cat-calorie/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

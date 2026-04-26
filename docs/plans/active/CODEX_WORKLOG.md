@@ -2691,7 +2691,7 @@ Commit hash:
 
 Commit hash:
 
-- this commit
+- `0c435fa`
 
 Следующий шаг:
 
@@ -2761,8 +2761,78 @@ Commit hash:
 
 Commit hash:
 
-- this commit
+- `69192b5`
 
 Следующий шаг:
 
 - После зелёных проверок закоммитить `/animals/dog-food` и перейти к `/animals/cat-calorie`.
+
+### Итерация 52: `/animals/cat-calorie`
+
+Выбранный milestone:
+
+- `/animals/cat-calorie`.
+
+Почему выбран именно он:
+
+- Это следующий P0 из OmniCalculator expansion registry после `/animals/dog-food`.
+- Закрывает симметричную pet-care пару для кошек: калории и граммы корма по весу, профилю и калорийности.
+- Формула RER прозрачна, легко тестируется и может быть подана как ориентир без лечебных назначений.
+
+Что изменено:
+
+- Создан `src/features/cat-calorie-calculator/`.
+- Добавлены чистые функции для RER, множителя профиля, дневных калорий и граммов корма.
+- Добавлены профили: снижение веса, стерилизованная взрослая, нестерилизованная взрослая, активная, котёнок до 4 месяцев, котёнок 4-12 месяцев, пожилая.
+- Добавлен вычет доли лакомств из калорий основного корма.
+- Добавлен animal-care warning-note про плавные изменения рациона и сверку с ветеринаром.
+- Registry-запись `cat-calorie` добавлена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий animal milestone `/animals/dog-pregnancy`.
+
+Затронутые файлы:
+
+- `src/features/cat-calorie-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- cat-calorie registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат тестов:
+
+- Точечный `npm run test -- cat-calorie registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 66 files / 525 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 92 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/animals/cat-calorie/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: profile chips, food fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- `8deaae0`
+
+Следующий шаг:
+
+- После зелёных проверок закоммитить `/animals/cat-calorie` и перейти к `/animals/dog-pregnancy`.

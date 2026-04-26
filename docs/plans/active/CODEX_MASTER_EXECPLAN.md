@@ -50,41 +50,41 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Категорий: 11.
-- Всего карточек: 77.
-- Ready: 65.
+- Всего карточек: 78.
+- Ready: 66.
 - Soon: 12.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/animals/cat-calorie`, `/animals/dog-pregnancy`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
+- Next candidates: `/animals/dog-pregnancy`, `/animals/cat-pregnancy`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `cat-calorie`
+- slug: `dog-pregnancy`
 - category: `animals`
-- goal: добавить `/animals/cat-calorie` как парный food/calorie-калькулятор для кошек.
-- reason: после `/animals/dog-food` нужен симметричный практический инструмент для владельцев кошек; формула RER/MER проще, но требует animal-care warning-note.
+- goal: добавить `/animals/dog-pregnancy` как первый pregnancy-калькулятор animal-кластера.
+- reason: OmniCalculator явно выделяет animal pregnancy; после age/food блока логично открыть безопасный date-based сценарий без дозировок.
 - acceptance criteria:
-  - registry-запись `cat-calorie` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/cat-calorie-calculator/`;
-  - чистые функции считают RER, MER и дневную порцию корма по калорийности;
-  - есть unit-тесты на формулы, множители и invalid input;
+  - registry-запись `dog-pregnancy` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/dog-pregnancy-calculator/`;
+  - чистые функции считают предполагаемую дату родов, диапазон и текущий день беременности;
+  - есть unit-тесты на date-only формулы и invalid input;
   - RU/EN локали заполнены;
   - есть animal-care warning-note: расчёт ориентировочный и не заменяет ветеринара;
-  - `/animals/cat-calorie/` добавлен в sitemap;
+  - `/animals/dog-pregnancy/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/cat-calorie-calculator/index.ts`
-  - `src/features/cat-calorie-calculator/components/CatCalorieCalculatorView.vue`
-  - `src/features/cat-calorie-calculator/composables/useCatCalorieCalculator.ts`
-  - `src/features/cat-calorie-calculator/lib/calculations.ts`
-  - `src/features/cat-calorie-calculator/lib/calculations.test.ts`
-  - `src/features/cat-calorie-calculator/types/cat-calorie.ts`
+  - `src/features/dog-pregnancy-calculator/index.ts`
+  - `src/features/dog-pregnancy-calculator/components/DogPregnancyCalculatorView.vue`
+  - `src/features/dog-pregnancy-calculator/composables/useDogPregnancyCalculator.ts`
+  - `src/features/dog-pregnancy-calculator/lib/calculations.ts`
+  - `src/features/dog-pregnancy-calculator/lib/calculations.test.ts`
+  - `src/features/dog-pregnancy-calculator/types/dog-pregnancy.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор калорий для кошки|Cat Calorie Calculator|canonical|robots|animals/cat-calorie" dist/animals/cat-calorie.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор беременности собаки|Dog Pregnancy Calculator|canonical|robots|animals/dog-pregnancy" dist/animals/dog-pregnancy.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/cat-calorie/ /tmp/calcup-cat-calorie-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/cat-calorie/ /tmp/calcup-cat-calorie-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/dog-pregnancy/ /tmp/calcup-dog-pregnancy-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/dog-pregnancy/ /tmp/calcup-dog-pregnancy-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -158,6 +158,10 @@ Owner: Codex
 - slug: `body-fat`; category: `health`; сделано: оценка процента жира по US Navy circumference method, категория, жировая/безжировая масса и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `6107642`.
 - slug: `pregnancy-due-date`; category: `health`; сделано: ориентировочная дата родов по LMP/дате зачатия, срок беременности, триместр, статус и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `f2d4795`.
 - slug: `rebar`; category: `construction`; сделано: расчёт линий прямоугольной сетки, закупочных прутков, длины, массы, стоимости и construction warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `c13fdf5`.
+- slug: `dog-age`; category: `animals`; сделано: возраст собаки в человеческих годах с учётом размера и life stage; проверки: test/type-check/build/mobile/static smoke; commit hash: `0c435fa`.
+- slug: `cat-age`; category: `animals`; сделано: возраст кошки в человеческих годах и life stage; проверки: test/type-check/build/mobile/static smoke; commit hash: `0c435fa`.
+- slug: `dog-food`; category: `animals`; сделано: RER, дневные калории и граммы корма для собаки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `69192b5`.
+- slug: `cat-calorie`; category: `animals`; сделано: RER, дневные калории и граммы корма для кошки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `8deaae0`.
 
 ## Deferred
 
@@ -391,6 +395,12 @@ Owner: Codex
 - 2026-04-26: После `/animals/dog-food` `npm run build` — OK, Vite SSG rendered 91 pages.
 - 2026-04-26: Static smoke по `dist/animals/dog-food.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/dog-food/` — profile chips, food fields, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/animals/cat-calorie` точечный `npm run test -- cat-calorie registry` — OK, 2 files / 8 tests.
+- 2026-04-26: После `/animals/cat-calorie` полный `npm run test` — OK, 66 files / 525 tests.
+- 2026-04-26: После `/animals/cat-calorie` `npm run type-check` — OK.
+- 2026-04-26: После `/animals/cat-calorie` `npm run build` — OK, Vite SSG rendered 92 pages.
+- 2026-04-26: Static smoke по `dist/animals/cat-calorie.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/cat-calorie/` — profile chips, food fields, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -427,8 +437,10 @@ Owner: Codex
 - `45c9836` — `feat(construction): add concrete calculator`.
 - `cd35d79` — `docs(plans): record ev range milestone`.
 - `f665b29` — `feat(transport): add ev range calculator`.
-- `this commit` — `feat(animals): add pet age calculators`.
+- `0c435fa` — `feat(animals): add pet age calculators`.
+- `69192b5` — `feat(animals): add dog food calculator`.
+- `8deaae0` — `feat(animals): add cat calorie calculator`.
 
 ## Next Action
 
-Завершить проверки для `/animals/dog-food`, закоммитить milestone и перейти к Current Milestone `/animals/cat-calorie`.
+Закоммитить `/animals/cat-calorie` и приступить к Current Milestone `/animals/dog-pregnancy`.
