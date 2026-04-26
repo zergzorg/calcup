@@ -404,6 +404,52 @@
       }
     }
   },
+  "speed": {
+    "eyebrow": "Converters",
+    "title": "Speed Converter",
+    "intro": "Convert km/h, m/s, miles per hour, knots and running pace in min/km.",
+    "form": {
+      "value": "Speed or pace",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "units": {
+      "kilometerPerHour": "Kilometer per hour",
+      "meterPerSecond": "Meter per second",
+      "milePerHour": "Mile per hour",
+      "knot": "Knot",
+      "footPerSecond": "Foot per second",
+      "minutePerKilometer": "Minute per kilometer"
+    },
+    "unitShort": {
+      "kilometerPerHour": "km/h",
+      "meterPerSecond": "m/s",
+      "milePerHour": "mph",
+      "knot": "kn",
+      "footPerSecond": "ft/s",
+      "minutePerKilometer": "min/km"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a valid speed or pace.",
+      "converted": "Converted value",
+      "source": "Source value",
+      "metersPerSecond": "In meters per second"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "formula": "Regular speeds are converted through m/s. Pace in min/km is the inverse of speed, so it must be greater than 0.",
+    "validation": {
+      "value": {
+        "required": "Enter value as a number.",
+        "nonNegative": "Speed cannot be negative.",
+        "positiveForPace": "Pace conversion needs a value greater than 0."
+      }
+    }
+  },
   "fuel": {
     "eyebrow": "Transport",
     "title": "Fuel Consumption",
