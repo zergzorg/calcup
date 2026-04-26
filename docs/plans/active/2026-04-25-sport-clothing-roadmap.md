@@ -157,8 +157,9 @@ Sneaker, shoe, clothing and brand size converters.
 - [x] Оформить активный roadmap для дальнейшего наполнения.
 - [x] Реализовать `/sport/pace-speed`.
 - [x] Реализовать `/sport/distance-pace-time`.
-- [ ] Реализовать `/sport/heart-rate-zones`.
-- [ ] Реализовать `/clothing/shoe-size`.
+- [x] Реализовать `/sport/heart-rate-zones`.
+- [x] Реализовать `/clothing/shoe-size`.
+- [x] Реализовать `/clothing/clothing-size`.
 - [ ] Реализовать `/clothing/sneaker-size`.
 
 ## Risks / Open Questions
@@ -179,4 +180,4 @@ Sneaker, shoe, clothing and brand size converters.
 
 ## Completion Notes
 
-План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. На 2026-04-26 `/sport/pace-speed` переведён в ready, поэтому `/sport/` и `/sport/pace-speed/` добавлены в sitemap. `/clothing` пока не имеет ready-инструментов и не должен появляться в sitemap как категория с готовым содержимым.
+План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. На 2026-04-26 `/sport/pace-speed`, `/sport/distance-pace-time`, `/sport/heart-rate-zones`, `/clothing/shoe-size` и `/clothing/clothing-size` переведены в ready, поэтому соответствующие страницы добавлены в sitemap.

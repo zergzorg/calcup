@@ -1237,3 +1237,75 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/clothing/clothing-size`.
+
+### Итерация 30: `/clothing/clothing-size`
+
+Выбранный milestone:
+
+- `/clothing/clothing-size`.
+
+Почему выбран именно он:
+
+- Следующий milestone из активного execplan.
+- Усиливает категорию `/clothing`, где был только один готовый инструмент.
+- High-risk часть ограничена: без брендов, с generic adult table и явным дисклеймером.
+
+Что изменено:
+
+- Создан `src/features/clothing-size-converter/`.
+- Добавлена ориентировочная таблица INT, RU, EU, US, UK для XS-XXL.
+- Добавлены диапазоны базовых мерок: грудь, талия, бёдра.
+- Добавлен заметный warning-note про различия брендов, посадок и категорий изделий.
+- Registry-запись `clothing-size` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- Shared `calculator-design-system.css` получил небольшой grid-gap для warning notes, чтобы текст предупреждений не слипался.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/sport/metronome`.
+
+Затронутые файлы:
+
+- `src/features/clothing-size-converter/**`
+- `src/features/calculator-design-system.css`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-25-sport-clothing-roadmap.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Конвертер размеров одежды|Clothing Size Converter|canonical|robots|clothing/clothing-size" dist/clothing/clothing-size.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/clothing/clothing-size/ /tmp/calcup-clothing-size-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/clothing/clothing-size/ /tmp/calcup-clothing-size-mobile-full-2.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 43 files / 409 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/clothing/clothing-size/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: system chips, select, warning note и result rows без overflow и наложений.
+
+Commit hash:
+
+- 507bfe4
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/sport/metronome`.
