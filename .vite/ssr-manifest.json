@@ -1,349 +1,499 @@
 {
+  "\u0000/home/runner/work/calcup/calcup/node_modules/dijkstrajs/dijkstra.js?commonjs-module": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/browser.js?commonjs-es-import": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/browser.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/alignment-pattern.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/error-correction-code.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/error-correction-level.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/finder-pattern.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/format-info.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/galois-field.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/mask-pattern.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/mode.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/polynomial.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/qrcode.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/regex.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/segments.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/utils.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/version-check.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/core/version.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/renderer/canvas.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/renderer/svg-tag.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000/home/runner/work/calcup/calcup/node_modules/qrcode/lib/renderer/utils.js?commonjs-exports": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "\u0000commonjsHelpers.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
   "\u0000plugin-vue:export-helper": [],
   "\u0000vite/modulepreload-polyfill.js": [],
   "\u0000vite/preload-helper.js": [],
   "../../../../../calcup.svg": [],
   "index.html": [],
   "node_modules/@intlify/core-base/dist/core-base.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@intlify/message-compiler/dist/message-compiler.esm-browser.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@intlify/shared/dist/shared.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/styled/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/styles/dist/base/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/classnames/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/dom/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/eventbus/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/mergeprops/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/object/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/uuid/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primeuix/utils/dist/zindex/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primevue/core/api/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primevue/core/base/style/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primevue/core/config/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primevue/core/service/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@primevue/core/usestyle/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/client.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/server.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.BM998iwd.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.CVf9mpRR.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.Cr7xSEtD.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/shared/vue.N9zWjxoK.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@unhead/vue/dist/utils.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/api.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/app.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/component.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/context.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/hooks.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/index.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/api/util.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/const.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/env.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/index.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/plugin.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/proxy.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/devtools-api/lib/esm/time.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/@vue/shared/dist/shared.esm-bundler.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/dijkstrajs/dijkstra.js": [
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/hookable/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/primevue/config/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/browser.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/can-promise.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/alignment-pattern.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/alphanumeric-data.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/bit-buffer.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/bit-matrix.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/byte-data.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/error-correction-code.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/error-correction-level.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/finder-pattern.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/format-info.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/galois-field.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/kanji-data.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/mask-pattern.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/mode.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/numeric-data.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/polynomial.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/qrcode.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/reed-solomon-encoder.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/regex.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/segments.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/utils.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/version-check.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/core/version.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/renderer/canvas.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/renderer/svg-tag.js": [
+    "/assets/vendor-B-cICaxi.js"
+  ],
+  "node_modules/qrcode/lib/renderer/utils.js": [
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/client.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/parser.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/plugins.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/scripts.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/server.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.B5FWS6X0.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.BYvz9V1x.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.BnoAbrHA.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.CbpEuj3y.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.Ct24BOby.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.D4vSFytZ.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.DQc16pHI.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.Dh1cQCTe.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.TxTMM7cM.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/shared/unhead.yem5I2v_.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/unhead/dist/utils.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vite-ssg/dist/index.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vite-ssg/dist/shared/vite-ssg.C6pK7rvr.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vite-ssg/dist/shared/vite-ssg.ETIvV-80.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vue-i18n/dist/vue-i18n.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vue-router/dist/vue-router.mjs": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "node_modules/vue/dist/vue.runtime.esm-bundler.js": [
-    "/assets/vendor-CLApZ1Fm.js"
+    "/assets/vendor-B-cICaxi.js"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/DateTimerWidget.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DateTimerWidget.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DateTimerWidget.vue?vue&type=style&index=0&scoped=fa686d15&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/DesktopLayout.vue?vue&type=style&index=0&scoped=b2cefb20&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/LanguageSwitcher.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/SessionDots.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SessionDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SessionDots.vue?vue&type=style&index=0&scoped=d49f40f7&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SettingsMenu.vue?vue&type=style&index=0&scoped=0fe64d04&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SnakeGame.vue?vue&type=style&index=0&scoped=0a0131a0&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/SoundMachine.vue?vue&type=style&index=0&scoped=cd39d18f&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TaskPlanner.vue?vue&type=style&index=0&scoped=7da104ed&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerControls.vue?vue&type=style&index=0&scoped=aac41b4f&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerDisplay.vue?vue&type=style&index=0&scoped=988b3ca1&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerSettings.vue?vue&type=style&index=0&scoped=5c6438fb&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/TimerWidget.vue?vue&type=style&index=0&scoped=652a12e0&lang.css": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/components/layout/AppBreadcrumb.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/AppBreadcrumb.vue_vue_type_script_setup_true_lang-BrIM7XJa.js"
+    "/assets/AppBreadcrumb.vue_vue_type_script_setup_true_lang-DGo9YIfx.js"
   ],
   "src/components/layout/AppFooter.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/layout/AppHeader.vue": [],
@@ -351,72 +501,72 @@
   "src/components/layout/AppHeader.vue?vue&type=style&index=0&scoped=aef95e61&lang.css": [],
   "src/components/layout/SiteLayout.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ui/CalculatorCard.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorCard.vue_vue_type_script_setup_true_lang-D7TQnYfp.js"
+    "/assets/CalculatorCard.vue_vue_type_script_setup_true_lang-WMgs7qUF.js"
   ],
   "src/components/ui/CategoryCard.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/HomeView-B7fjaO2y.js"
+    "/assets/HomeView-C85jJKwn.js"
   ],
   "src/components/ui/RelatedCalculators.vue": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/components/ui/RelatedCalculators.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/components/ui/RelatedCalculators.vue?vue&type=style&index=0&scoped=21c73202&lang.css": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/components/ui/SearchModal.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ui/SoonPlaceholder.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/composables/useAudioContext.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDateCalculator.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDesktopSettings.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useDraggable.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useMobileLayout.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useNow.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/usePomodoro.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/usePomodoroSounds.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useScale.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useSearch.ts": [],
   "src/composables/useSeo.ts": [],
   "src/composables/useTaskPomodoro.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/composables/useWidgets.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/config/catalogs/construction-materials.json": [
@@ -440,1365 +590,1383 @@
   "src/data/calculators.ts": [],
   "src/data/categories.ts": [],
   "src/features/age-calculator/components/AgeCalculatorView.vue": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/age-calculator/components/AgeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/age-calculator/components/AgeCalculatorView.vue?vue&type=style&index=0&scoped=9616b294&lang.css": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/age-calculator/composables/useAgeCalculator.ts": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/age-calculator/index.ts": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/age-calculator/lib/calculations.ts": [
-    "/assets/index-DNHURkXd.js",
+    "/assets/index-CJvb_Xs4.js",
     "/assets/index-D2NyeUqt.css"
   ],
   "src/features/area-converter/components/AreaConverterView.vue": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/area-converter/components/AreaConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/area-converter/components/AreaConverterView.vue?vue&type=style&index=0&scoped=7be7df90&lang.css": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/area-converter/composables/useAreaConverter.ts": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/area-converter/index.ts": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/area-converter/lib/calculations.ts": [
-    "/assets/index-DGtGehVp.js",
+    "/assets/index-B8I6fTLA.js",
     "/assets/index-DMgpeQ_u.css"
   ],
   "src/features/average-calculator/components/AverageCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-Cybb4NYb.js"
+    "/assets/index-iVkyRV0q.js"
   ],
   "src/features/average-calculator/composables/useAverageCalculator.ts": [
-    "/assets/index-Cybb4NYb.js"
+    "/assets/index-iVkyRV0q.js"
   ],
   "src/features/average-calculator/index.ts": [
-    "/assets/index-Cybb4NYb.js"
+    "/assets/index-iVkyRV0q.js"
   ],
   "src/features/average-calculator/lib/calculations.ts": [
-    "/assets/index-Cybb4NYb.js"
+    "/assets/index-iVkyRV0q.js"
   ],
   "src/features/average-speed-calculator/components/AverageSpeedCalculatorView.vue": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/average-speed-calculator/components/AverageSpeedCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/average-speed-calculator/components/AverageSpeedCalculatorView.vue?vue&type=style&index=0&scoped=90b03547&lang.css": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/average-speed-calculator/composables/useAverageSpeedCalculator.ts": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/average-speed-calculator/index.ts": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/average-speed-calculator/lib/calculations.ts": [
-    "/assets/index-Ba_nvk0P.js",
+    "/assets/index-Dfj21MSN.js",
     "/assets/index-CBdewORf.css"
   ],
   "src/features/bill-split-calculator/components/BillSplitCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CejHLlYy.js"
+    "/assets/index-Cu1tQ8_8.js"
   ],
   "src/features/bill-split-calculator/composables/useBillSplitCalculator.ts": [
-    "/assets/index-CejHLlYy.js"
+    "/assets/index-Cu1tQ8_8.js"
   ],
   "src/features/bill-split-calculator/index.ts": [
-    "/assets/index-CejHLlYy.js"
+    "/assets/index-Cu1tQ8_8.js"
   ],
   "src/features/bill-split-calculator/lib/calculations.ts": [
-    "/assets/index-CejHLlYy.js"
+    "/assets/index-Cu1tQ8_8.js"
   ],
   "src/features/blocks-calculator/components/BlocksCalculatorView.vue": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/blocks-calculator/components/BlocksCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/blocks-calculator/components/BlocksCalculatorView.vue?vue&type=style&index=0&scoped=3a544e63&lang.css": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/blocks-calculator/composables/useBlocksCalculator.ts": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/blocks-calculator/index.ts": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/blocks-calculator/lib/calculations.ts": [
-    "/assets/index-ChKDijpP.js",
+    "/assets/index-BMidfwF5.js",
     "/assets/index-D7TpZQfT.css"
   ],
   "src/features/body-fat-calculator/components/BodyFatCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BqdIoViR.js"
+    "/assets/index--DlRitdJ.js"
   ],
   "src/features/body-fat-calculator/composables/useBodyFatCalculator.ts": [
-    "/assets/index-BqdIoViR.js"
+    "/assets/index--DlRitdJ.js"
   ],
   "src/features/body-fat-calculator/index.ts": [
-    "/assets/index-BqdIoViR.js"
+    "/assets/index--DlRitdJ.js"
   ],
   "src/features/body-fat-calculator/lib/calculations.ts": [
-    "/assets/index-BqdIoViR.js"
+    "/assets/index--DlRitdJ.js"
   ],
   "src/features/brick-calculator/components/BrickCalculatorView.vue": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/brick-calculator/components/BrickCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/brick-calculator/components/BrickCalculatorView.vue?vue&type=style&index=0&scoped=b857b848&lang.css": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/brick-calculator/composables/useBrickCalculator.ts": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/brick-calculator/index.ts": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/brick-calculator/lib/calculations.ts": [
-    "/assets/index-B6B3YvKl.js",
+    "/assets/index-C5ELaF3C.js",
     "/assets/index-qtkTUlT0.css"
   ],
   "src/features/calculator-design-system.css": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/calorie-calculator/components/CalorieCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-EDmnLtCr.js"
+    "/assets/index-CRorGP3a.js"
   ],
   "src/features/calorie-calculator/composables/useCalorieCalculator.ts": [
-    "/assets/index-EDmnLtCr.js"
+    "/assets/index-CRorGP3a.js"
   ],
   "src/features/calorie-calculator/index.ts": [
-    "/assets/index-EDmnLtCr.js"
+    "/assets/index-CRorGP3a.js"
   ],
   "src/features/calorie-calculator/lib/calculations.ts": [
-    "/assets/index-EDmnLtCr.js"
+    "/assets/index-CRorGP3a.js"
   ],
   "src/features/cat-age-calculator/components/CatAgeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-B3DzRFxl.js"
+    "/assets/index-DUhOsaEN.js"
   ],
   "src/features/cat-age-calculator/composables/useCatAgeCalculator.ts": [
-    "/assets/index-B3DzRFxl.js"
+    "/assets/index-DUhOsaEN.js"
   ],
   "src/features/cat-age-calculator/index.ts": [
-    "/assets/index-B3DzRFxl.js"
+    "/assets/index-DUhOsaEN.js"
   ],
   "src/features/cat-age-calculator/lib/calculations.ts": [
-    "/assets/index-B3DzRFxl.js"
+    "/assets/index-DUhOsaEN.js"
   ],
   "src/features/cat-calorie-calculator/components/CatCalorieCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DOFEwzAA.js"
+    "/assets/index-B5JNycG9.js"
   ],
   "src/features/cat-calorie-calculator/composables/useCatCalorieCalculator.ts": [
-    "/assets/index-DOFEwzAA.js"
+    "/assets/index-B5JNycG9.js"
   ],
   "src/features/cat-calorie-calculator/index.ts": [
-    "/assets/index-DOFEwzAA.js"
+    "/assets/index-B5JNycG9.js"
   ],
   "src/features/cat-calorie-calculator/lib/calculations.ts": [
-    "/assets/index-DOFEwzAA.js"
+    "/assets/index-B5JNycG9.js"
   ],
   "src/features/cat-pregnancy-calculator/components/CatPregnancyCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-lE466hxJ.js"
+    "/assets/index-CNyGj_ju.js"
   ],
   "src/features/cat-pregnancy-calculator/composables/useCatPregnancyCalculator.ts": [
-    "/assets/index-lE466hxJ.js"
+    "/assets/index-CNyGj_ju.js"
   ],
   "src/features/cat-pregnancy-calculator/index.ts": [
-    "/assets/index-lE466hxJ.js"
+    "/assets/index-CNyGj_ju.js"
   ],
   "src/features/cat-pregnancy-calculator/lib/calculations.ts": [
-    "/assets/index-lE466hxJ.js"
+    "/assets/index-CNyGj_ju.js"
   ],
   "src/features/clothing-size-converter/components/ClothingSizeConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-D_JlJLHP.js"
+    "/assets/index-ku9i29uw.js"
   ],
   "src/features/clothing-size-converter/composables/useClothingSizeConverter.ts": [
-    "/assets/index-D_JlJLHP.js"
+    "/assets/index-ku9i29uw.js"
   ],
   "src/features/clothing-size-converter/index.ts": [
-    "/assets/index-D_JlJLHP.js"
+    "/assets/index-ku9i29uw.js"
   ],
   "src/features/clothing-size-converter/lib/calculations.ts": [
-    "/assets/index-D_JlJLHP.js"
+    "/assets/index-ku9i29uw.js"
   ],
   "src/features/compound-interest-calculator/components/CompoundInterestCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-RP3cX4Q6.js"
+    "/assets/index-DKX2HFJp.js"
   ],
   "src/features/compound-interest-calculator/composables/useCompoundInterestCalculator.ts": [
-    "/assets/index-RP3cX4Q6.js"
+    "/assets/index-DKX2HFJp.js"
   ],
   "src/features/compound-interest-calculator/index.ts": [
-    "/assets/index-RP3cX4Q6.js"
+    "/assets/index-DKX2HFJp.js"
   ],
   "src/features/compound-interest-calculator/lib/calculations.ts": [
-    "/assets/index-RP3cX4Q6.js"
+    "/assets/index-DKX2HFJp.js"
   ],
   "src/features/concrete-calculator/components/ConcreteCalculatorView.vue": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/concrete-calculator/components/ConcreteCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/concrete-calculator/components/ConcreteCalculatorView.vue?vue&type=style&index=0&scoped=3bc37e7b&lang.css": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/concrete-calculator/composables/useConcreteCalculator.ts": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/concrete-calculator/index.ts": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/concrete-calculator/lib/calculations.ts": [
-    "/assets/index-BBi7D-1y.js",
+    "/assets/index-1oxDCF6_.js",
     "/assets/index-D5vGfDUE.css"
   ],
   "src/features/cooking-units-calculator/components/CookingUnitsCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-fD6_8P2T.js"
+    "/assets/index-sUw6Tobm.js"
   ],
   "src/features/cooking-units-calculator/composables/useCookingUnitsCalculator.ts": [
-    "/assets/index-fD6_8P2T.js"
+    "/assets/index-sUw6Tobm.js"
   ],
   "src/features/cooking-units-calculator/index.ts": [
-    "/assets/index-fD6_8P2T.js"
+    "/assets/index-sUw6Tobm.js"
   ],
   "src/features/cooking-units-calculator/lib/calculations.ts": [
-    "/assets/index-fD6_8P2T.js"
+    "/assets/index-sUw6Tobm.js"
   ],
   "src/features/countdown-calculator/components/CountdownCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BBdseO9j.js"
+    "/assets/index-t1-Oeo9V.js"
   ],
   "src/features/countdown-calculator/composables/useCountdownCalculator.ts": [
-    "/assets/index-BBdseO9j.js"
+    "/assets/index-t1-Oeo9V.js"
   ],
   "src/features/countdown-calculator/index.ts": [
-    "/assets/index-BBdseO9j.js"
+    "/assets/index-t1-Oeo9V.js"
   ],
   "src/features/countdown-calculator/lib/calculations.ts": [
-    "/assets/index-BBdseO9j.js"
+    "/assets/index-t1-Oeo9V.js"
   ],
   "src/features/credit-calculator/components/CreditCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditEarlyRepayments.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditLoanForm.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditPrintActions.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditPrintView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditResults.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/components/CreditScheduleTable.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/credit-calculator.css": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/index.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/lib/annuity.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/lib/calculateCreditSchedule.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/lib/date.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/lib/money.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/credit-calculator/lib/validation.ts": [
-    "/assets/index-BZXFXTOo.js",
+    "/assets/index-C-8h4EL7.js",
     "/assets/index-BviatlLR.css"
   ],
   "src/features/currency-converter/components/CurrencyConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-Cs7G0zeL.js"
+    "/assets/index-Dzm1Dkr0.js"
   ],
   "src/features/currency-converter/composables/useCurrencyConverter.ts": [
-    "/assets/index-Cs7G0zeL.js"
+    "/assets/index-Dzm1Dkr0.js"
   ],
   "src/features/currency-converter/index.ts": [
-    "/assets/index-Cs7G0zeL.js"
+    "/assets/index-Dzm1Dkr0.js"
   ],
   "src/features/currency-converter/lib/calculations.ts": [
-    "/assets/index-Cs7G0zeL.js"
+    "/assets/index-Dzm1Dkr0.js"
   ],
   "src/features/data-size-converter/components/DataSizeConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DPqdcIAz.js"
+    "/assets/index-B3_6dItY.js"
   ],
   "src/features/data-size-converter/composables/useDataSizeConverter.ts": [
-    "/assets/index-DPqdcIAz.js"
+    "/assets/index-B3_6dItY.js"
   ],
   "src/features/data-size-converter/index.ts": [
-    "/assets/index-DPqdcIAz.js"
+    "/assets/index-B3_6dItY.js"
   ],
   "src/features/data-size-converter/lib/calculations.ts": [
-    "/assets/index-DPqdcIAz.js"
+    "/assets/index-B3_6dItY.js"
   ],
   "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/date-diff-calculator/components/DateDiffCalculatorView.vue?vue&type=style&index=0&scoped=4b9bd1b3&lang.css": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/date-diff-calculator/composables/useDateDiffCalculator.ts": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/date-diff-calculator/index.ts": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/date-diff-calculator/lib/calculations.ts": [
-    "/assets/index-BEof8Qsq.js",
+    "/assets/index-CJVr6pgu.js",
     "/assets/index-CC_215_F.css"
   ],
   "src/features/deposit-calculator/components/DepositCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BRlJYk1V.js"
+    "/assets/index-Ccb5gynq.js"
   ],
   "src/features/deposit-calculator/composables/useDepositCalculator.ts": [
-    "/assets/index-BRlJYk1V.js"
+    "/assets/index-Ccb5gynq.js"
   ],
   "src/features/deposit-calculator/index.ts": [
-    "/assets/index-BRlJYk1V.js"
+    "/assets/index-Ccb5gynq.js"
   ],
   "src/features/deposit-calculator/lib/calculations.ts": [
-    "/assets/index-BRlJYk1V.js"
+    "/assets/index-Ccb5gynq.js"
   ],
   "src/features/discount-calculator/components/DiscountCalculatorView.vue": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/discount-calculator/components/DiscountCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/discount-calculator/components/DiscountCalculatorView.vue?vue&type=style&index=0&scoped=23050f7b&lang.css": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/discount-calculator/composables/useDiscountCalculator.ts": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/discount-calculator/index.ts": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/discount-calculator/lib/calculations.ts": [
-    "/assets/index-CNpsgDTz.js",
+    "/assets/index-B2oRwTRX.js",
     "/assets/index-B1GujtBH.css"
   ],
   "src/features/distance-pace-time-calculator/components/DistancePaceTimeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-dLD62KaX.js"
+    "/assets/index-CFmH0Vsm.js"
   ],
   "src/features/distance-pace-time-calculator/composables/useDistancePaceTimeCalculator.ts": [
-    "/assets/index-dLD62KaX.js"
+    "/assets/index-CFmH0Vsm.js"
   ],
   "src/features/distance-pace-time-calculator/index.ts": [
-    "/assets/index-dLD62KaX.js"
+    "/assets/index-CFmH0Vsm.js"
   ],
   "src/features/distance-pace-time-calculator/lib/calculations.ts": [
-    "/assets/index-dLD62KaX.js"
+    "/assets/index-CFmH0Vsm.js"
   ],
   "src/features/dog-age-calculator/components/DogAgeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BmP336Nz.js"
+    "/assets/index-Chka7M1w.js"
   ],
   "src/features/dog-age-calculator/composables/useDogAgeCalculator.ts": [
-    "/assets/index-BmP336Nz.js"
+    "/assets/index-Chka7M1w.js"
   ],
   "src/features/dog-age-calculator/index.ts": [
-    "/assets/index-BmP336Nz.js"
+    "/assets/index-Chka7M1w.js"
   ],
   "src/features/dog-age-calculator/lib/calculations.ts": [
-    "/assets/index-BmP336Nz.js"
+    "/assets/index-Chka7M1w.js"
   ],
   "src/features/dog-food-calculator/components/DogFoodCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-sRt8KlL_.js"
+    "/assets/index-JxyMVlfr.js"
   ],
   "src/features/dog-food-calculator/composables/useDogFoodCalculator.ts": [
-    "/assets/index-sRt8KlL_.js"
+    "/assets/index-JxyMVlfr.js"
   ],
   "src/features/dog-food-calculator/index.ts": [
-    "/assets/index-sRt8KlL_.js"
+    "/assets/index-JxyMVlfr.js"
   ],
   "src/features/dog-food-calculator/lib/calculations.ts": [
-    "/assets/index-sRt8KlL_.js"
+    "/assets/index-JxyMVlfr.js"
   ],
   "src/features/dog-pregnancy-calculator/components/DogPregnancyCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-Dsko4Fhg.js"
+    "/assets/index-D21GrsKO.js"
   ],
   "src/features/dog-pregnancy-calculator/composables/useDogPregnancyCalculator.ts": [
-    "/assets/index-Dsko4Fhg.js"
+    "/assets/index-D21GrsKO.js"
   ],
   "src/features/dog-pregnancy-calculator/index.ts": [
-    "/assets/index-Dsko4Fhg.js"
+    "/assets/index-D21GrsKO.js"
   ],
   "src/features/dog-pregnancy-calculator/lib/calculations.ts": [
-    "/assets/index-Dsko4Fhg.js"
+    "/assets/index-D21GrsKO.js"
   ],
   "src/features/drywall-calculator/components/DrywallCalculatorView.vue": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/drywall-calculator/components/DrywallCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/drywall-calculator/components/DrywallCalculatorView.vue?vue&type=style&index=0&scoped=d9499636&lang.css": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/drywall-calculator/composables/useDrywallCalculator.ts": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/drywall-calculator/index.ts": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/drywall-calculator/lib/calculations.ts": [
-    "/assets/index-DDJhgLIP.js",
+    "/assets/index-CAeFZ_yR.js",
     "/assets/index-C19W7Pyt.css"
   ],
   "src/features/electricity-calculator/components/ElectricityCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-sXB8ga03.js"
+    "/assets/index-jas0Qg44.js"
   ],
   "src/features/electricity-calculator/composables/useElectricityCalculator.ts": [
-    "/assets/index-sXB8ga03.js"
+    "/assets/index-jas0Qg44.js"
   ],
   "src/features/electricity-calculator/index.ts": [
-    "/assets/index-sXB8ga03.js"
+    "/assets/index-jas0Qg44.js"
   ],
   "src/features/electricity-calculator/lib/calculations.ts": [
-    "/assets/index-sXB8ga03.js"
+    "/assets/index-jas0Qg44.js"
   ],
   "src/features/equation-calculator/components/EquationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-OmOyBxQZ.js"
+    "/assets/index-CkibklZb.js"
   ],
   "src/features/equation-calculator/composables/useEquationCalculator.ts": [
-    "/assets/index-OmOyBxQZ.js"
+    "/assets/index-CkibklZb.js"
   ],
   "src/features/equation-calculator/index.ts": [
-    "/assets/index-OmOyBxQZ.js"
+    "/assets/index-CkibklZb.js"
   ],
   "src/features/equation-calculator/lib/calculations.ts": [
-    "/assets/index-OmOyBxQZ.js"
+    "/assets/index-CkibklZb.js"
   ],
   "src/features/ev-range-calculator/components/EvRangeCalculatorView.vue": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/ev-range-calculator/components/EvRangeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/ev-range-calculator/components/EvRangeCalculatorView.vue?vue&type=style&index=0&scoped=3dd70e3b&lang.css": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/ev-range-calculator/composables/useEvRangeCalculator.ts": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/ev-range-calculator/index.ts": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/ev-range-calculator/lib/calculations.ts": [
-    "/assets/index-naaPPpJ0.js",
+    "/assets/index-zV6G0sPq.js",
     "/assets/index-wJt1cGYD.css"
   ],
   "src/features/finance-mvp-calculators/components/FinanceMvpCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-bb0KTM-Q.js"
+    "/assets/index-Dj5Kbj1I.js"
   ],
   "src/features/finance-mvp-calculators/index.ts": [
-    "/assets/index-bb0KTM-Q.js"
+    "/assets/index-Dj5Kbj1I.js"
   ],
   "src/features/finance-mvp-calculators/lib/calculations.ts": [
-    "/assets/index-bb0KTM-Q.js"
+    "/assets/index-Dj5Kbj1I.js"
   ],
   "src/features/floor-screed-calculator/components/FloorScreedCalculatorView.vue": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/floor-screed-calculator/components/FloorScreedCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/floor-screed-calculator/components/FloorScreedCalculatorView.vue?vue&type=style&index=0&scoped=bdbccacf&lang.css": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/floor-screed-calculator/composables/useFloorScreedCalculator.ts": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/floor-screed-calculator/index.ts": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/floor-screed-calculator/lib/calculations.ts": [
-    "/assets/index-7Fb3tFmi.js",
+    "/assets/index--S8Ug3ke.js",
     "/assets/index-CBcmRojp.css"
   ],
   "src/features/fraction-calculator/components/FractionCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-B4zc8tu8.js"
+    "/assets/index-uF2JO6LL.js"
   ],
   "src/features/fraction-calculator/composables/useFractionCalculator.ts": [
-    "/assets/index-B4zc8tu8.js"
+    "/assets/index-uF2JO6LL.js"
   ],
   "src/features/fraction-calculator/index.ts": [
-    "/assets/index-B4zc8tu8.js"
+    "/assets/index-uF2JO6LL.js"
   ],
   "src/features/fraction-calculator/lib/calculations.ts": [
-    "/assets/index-B4zc8tu8.js"
+    "/assets/index-uF2JO6LL.js"
   ],
   "src/features/fuel-calculator/components/FuelCalculatorView.vue": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-calculator/components/FuelCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-calculator/components/FuelCalculatorView.vue?vue&type=style&index=0&scoped=0e5b4557&lang.css": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-calculator/composables/useFuelCalculator.ts": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-calculator/index.ts": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-calculator/lib/calculations.ts": [
-    "/assets/index-DBeUnspt.js",
+    "/assets/index-BzhxNSHL.js",
     "/assets/index-cJ8DdhiT.css"
   ],
   "src/features/fuel-price-calculator/components/FuelPriceCalculatorView.vue": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/fuel-price-calculator/components/FuelPriceCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/fuel-price-calculator/components/FuelPriceCalculatorView.vue?vue&type=style&index=0&scoped=a32b77a3&lang.css": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/fuel-price-calculator/composables/useFuelPriceCalculator.ts": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/fuel-price-calculator/index.ts": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/fuel-price-calculator/lib/calculations.ts": [
-    "/assets/index-DA1jOBXw.js",
+    "/assets/index-Cb_ql1Nf.js",
     "/assets/index-DgRp2wtr.css"
   ],
   "src/features/health-bmi/components/BmiCalculatorView.vue": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/components/BmiCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/components/BmiCalculatorView.vue?vue&type=style&index=0&scoped=a6405402&lang.css": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/composables/useBmiCalculator.ts": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/index.ts": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/health-bmi/lib/calculations.ts": [
-    "/assets/index-C6YftJ3K.js",
+    "/assets/index-CNv2q6ZK.js",
     "/assets/index-BUjJU6o6.css"
   ],
   "src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/heart-rate-zones-calculator/components/HeartRateZonesCalculatorView.vue?vue&type=style&index=0&scoped=fa0e7476&lang.css": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/heart-rate-zones-calculator/composables/useHeartRateZonesCalculator.ts": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/heart-rate-zones-calculator/index.ts": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/heart-rate-zones-calculator/lib/calculations.ts": [
-    "/assets/index-BOZGRqV5.js",
+    "/assets/index-lG2gxcM7.js",
     "/assets/index-D9zzk-_T.css"
   ],
   "src/features/ideal-weight-calculator/components/IdealWeightCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-hfzKLz6C.js"
+    "/assets/index-CagauccR.js"
   ],
   "src/features/ideal-weight-calculator/composables/useIdealWeightCalculator.ts": [
-    "/assets/index-hfzKLz6C.js"
+    "/assets/index-CagauccR.js"
   ],
   "src/features/ideal-weight-calculator/index.ts": [
-    "/assets/index-hfzKLz6C.js"
+    "/assets/index-CagauccR.js"
   ],
   "src/features/ideal-weight-calculator/lib/calculations.ts": [
-    "/assets/index-hfzKLz6C.js"
+    "/assets/index-CagauccR.js"
   ],
   "src/features/insulation-calculator/components/InsulationCalculatorView.vue": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/insulation-calculator/components/InsulationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/insulation-calculator/components/InsulationCalculatorView.vue?vue&type=style&index=0&scoped=5abd6de4&lang.css": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/insulation-calculator/composables/useInsulationCalculator.ts": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/insulation-calculator/index.ts": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/insulation-calculator/lib/calculations.ts": [
-    "/assets/index-CelJXc0e.js",
+    "/assets/index-DAhXpva7.js",
     "/assets/index-Mbg4IJYf.css"
   ],
   "src/features/laminate-calculator/components/LaminateCalculatorView.vue": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/laminate-calculator/components/LaminateCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/laminate-calculator/components/LaminateCalculatorView.vue?vue&type=style&index=0&scoped=aa2f10ac&lang.css": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/laminate-calculator/composables/useLaminateCalculator.ts": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/laminate-calculator/index.ts": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/laminate-calculator/lib/calculations.ts": [
-    "/assets/index-CT8ECB0V.js",
+    "/assets/index-8Ro1CE-7.js",
     "/assets/index-CaJG74Bw.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/components/LengthConverterView.vue?vue&type=style&index=0&scoped=3f764401&lang.css": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/composables/useLengthConverter.ts": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/index.ts": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
   "src/features/length-converter/lib/calculations.ts": [
-    "/assets/index-COFRll5M.js",
+    "/assets/index-D9rrKO_C.js",
     "/assets/index-B6qe8gvY.css"
   ],
+  "src/features/math-education-calculators/components/MathEducationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/index-DGZ2flza.js"
+  ],
+  "src/features/math-education-calculators/index.ts": [
+    "/assets/index-DGZ2flza.js"
+  ],
+  "src/features/math-education-calculators/lib/calculations.ts": [
+    "/assets/index-DGZ2flza.js"
+  ],
   "src/features/metronome-calculator/components/MetronomeCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DxmVkc4O.js"
+    "/assets/index-CyFxwb3T.js"
   ],
   "src/features/metronome-calculator/composables/useMetronomeCalculator.ts": [
-    "/assets/index-DxmVkc4O.js"
+    "/assets/index-CyFxwb3T.js"
   ],
   "src/features/metronome-calculator/index.ts": [
-    "/assets/index-DxmVkc4O.js"
+    "/assets/index-CyFxwb3T.js"
   ],
   "src/features/metronome-calculator/lib/calculations.ts": [
-    "/assets/index-DxmVkc4O.js"
+    "/assets/index-CyFxwb3T.js"
   ],
   "src/features/mortgage-calculator/components/MortgageCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BvtvkRIR.js"
+    "/assets/index-Cemhcrxm.js"
   ],
   "src/features/mortgage-calculator/composables/useMortgageCalculator.ts": [
-    "/assets/index-BvtvkRIR.js"
+    "/assets/index-Cemhcrxm.js"
   ],
   "src/features/mortgage-calculator/index.ts": [
-    "/assets/index-BvtvkRIR.js"
+    "/assets/index-Cemhcrxm.js"
   ],
   "src/features/mortgage-calculator/lib/calculations.ts": [
-    "/assets/index-BvtvkRIR.js"
+    "/assets/index-Cemhcrxm.js"
   ],
   "src/features/pace-speed-calculator/components/PaceSpeedCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-jige72D3.js"
+    "/assets/index-ByPGTVgK.js"
   ],
   "src/features/pace-speed-calculator/composables/usePaceSpeedCalculator.ts": [
-    "/assets/index-jige72D3.js"
+    "/assets/index-ByPGTVgK.js"
   ],
   "src/features/pace-speed-calculator/index.ts": [
-    "/assets/index-jige72D3.js"
+    "/assets/index-ByPGTVgK.js"
   ],
   "src/features/pace-speed-calculator/lib/calculations.ts": [
-    "/assets/index-jige72D3.js"
+    "/assets/index-ByPGTVgK.js"
   ],
   "src/features/paint-calculator/components/PaintCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BLnKQYpK.js"
+    "/assets/index-CNFjtWEq.js"
   ],
   "src/features/paint-calculator/composables/usePaintCalculator.ts": [
-    "/assets/index-BLnKQYpK.js"
+    "/assets/index-CNFjtWEq.js"
   ],
   "src/features/paint-calculator/index.ts": [
-    "/assets/index-BLnKQYpK.js"
+    "/assets/index-CNFjtWEq.js"
   ],
   "src/features/paint-calculator/lib/calculations.ts": [
-    "/assets/index-BLnKQYpK.js"
+    "/assets/index-CNFjtWEq.js"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/components/PercentageCalculatorView.vue?vue&type=style&index=0&scoped=172caabc&lang.css": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/composables/usePercentageCalculator.ts": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/index.ts": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/percentage-calculator/lib/calculations.ts": [
-    "/assets/index-Bc7zHvrM.js",
+    "/assets/index-BOih2x3q.js",
     "/assets/index-CZE_tQ01.css"
   ],
   "src/features/pregnancy-due-date-calculator/components/PregnancyDueDateCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BVlv6LQS.js"
+    "/assets/index-CPi6DapM.js"
   ],
   "src/features/pregnancy-due-date-calculator/composables/usePregnancyDueDateCalculator.ts": [
-    "/assets/index-BVlv6LQS.js"
+    "/assets/index-CPi6DapM.js"
   ],
   "src/features/pregnancy-due-date-calculator/index.ts": [
-    "/assets/index-BVlv6LQS.js"
+    "/assets/index-CPi6DapM.js"
   ],
   "src/features/pregnancy-due-date-calculator/lib/calculations.ts": [
-    "/assets/index-BVlv6LQS.js"
+    "/assets/index-CPi6DapM.js"
   ],
   "src/features/project-price-calculator/components/ProjectPriceCalculatorView.vue": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/project-price-calculator/components/ProjectPriceCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/project-price-calculator/components/ProjectPriceCalculatorView.vue?vue&type=style&index=0&scoped=d7ac22ff&lang.css": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/project-price-calculator/composables/useProjectPriceCalculator.ts": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/project-price-calculator/index.ts": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/project-price-calculator/lib/calculations.ts": [
-    "/assets/index-1-VU4QDo.js",
+    "/assets/index-DO6tpq36.js",
     "/assets/index-D555-sYG.css"
   ],
   "src/features/proportion-calculator/components/ProportionCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-D5Ukp38h.js"
+    "/assets/index-CUWmUEKc.js"
   ],
   "src/features/proportion-calculator/composables/useProportionCalculator.ts": [
-    "/assets/index-D5Ukp38h.js"
+    "/assets/index-CUWmUEKc.js"
   ],
   "src/features/proportion-calculator/index.ts": [
-    "/assets/index-D5Ukp38h.js"
+    "/assets/index-CUWmUEKc.js"
   ],
   "src/features/proportion-calculator/lib/calculations.ts": [
-    "/assets/index-D5Ukp38h.js"
+    "/assets/index-CUWmUEKc.js"
   ],
   "src/features/putty-calculator/components/PuttyCalculatorView.vue": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/putty-calculator/components/PuttyCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/putty-calculator/components/PuttyCalculatorView.vue?vue&type=style&index=0&scoped=f8e1e99e&lang.css": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/putty-calculator/composables/usePuttyCalculator.ts": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/putty-calculator/index.ts": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/putty-calculator/lib/calculations.ts": [
-    "/assets/index-CuE9Yxrx.js",
+    "/assets/index-Bz7DrZ4D.js",
     "/assets/index-BVqCZMzc.css"
   ],
   "src/features/race-split-calculator/components/RaceSplitCalculatorView.vue": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/race-split-calculator/components/RaceSplitCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/race-split-calculator/components/RaceSplitCalculatorView.vue?vue&type=style&index=0&scoped=7cac2cac&lang.css": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/race-split-calculator/composables/useRaceSplitCalculator.ts": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/race-split-calculator/index.ts": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/race-split-calculator/lib/calculations.ts": [
-    "/assets/index-BJ0BWtYC.js",
+    "/assets/index-Bre-JLZW.js",
     "/assets/index-B93RO1Qd.css"
   ],
   "src/features/rebar-calculator/components/RebarCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BFDZpB59.js"
+    "/assets/index-BnfcuBt_.js"
   ],
   "src/features/rebar-calculator/composables/useRebarCalculator.ts": [
-    "/assets/index-BFDZpB59.js"
+    "/assets/index-BnfcuBt_.js"
   ],
   "src/features/rebar-calculator/index.ts": [
-    "/assets/index-BFDZpB59.js"
+    "/assets/index-BnfcuBt_.js"
   ],
   "src/features/rebar-calculator/lib/calculations.ts": [
-    "/assets/index-BFDZpB59.js"
+    "/assets/index-BnfcuBt_.js"
   ],
   "src/features/refinance-calculator/components/RefinanceCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-gRpFBfZy.js"
+    "/assets/index-CLZU9Bxo.js"
   ],
   "src/features/refinance-calculator/composables/useRefinanceCalculator.ts": [
-    "/assets/index-gRpFBfZy.js"
+    "/assets/index-CLZU9Bxo.js"
   ],
   "src/features/refinance-calculator/index.ts": [
-    "/assets/index-gRpFBfZy.js"
+    "/assets/index-CLZU9Bxo.js"
   ],
   "src/features/refinance-calculator/lib/calculations.ts": [
-    "/assets/index-gRpFBfZy.js"
+    "/assets/index-CLZU9Bxo.js"
   ],
   "src/features/roof-calculator/components/RoofCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C6HD-OA8.js"
+    "/assets/index-C_wOBE7-.js"
   ],
   "src/features/roof-calculator/composables/useRoofCalculator.ts": [
-    "/assets/index-C6HD-OA8.js"
+    "/assets/index-C_wOBE7-.js"
   ],
   "src/features/roof-calculator/index.ts": [
-    "/assets/index-C6HD-OA8.js"
+    "/assets/index-C_wOBE7-.js"
   ],
   "src/features/roof-calculator/lib/calculations.ts": [
-    "/assets/index-C6HD-OA8.js"
+    "/assets/index-C_wOBE7-.js"
   ],
   "src/features/room-area-calculator/components/RoomAreaCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-qMJcbIIf.js"
+    "/assets/index-CSlYN7Sp.js"
   ],
   "src/features/room-area-calculator/composables/useRoomAreaCalculator.ts": [
-    "/assets/index-qMJcbIIf.js"
+    "/assets/index-CSlYN7Sp.js"
   ],
   "src/features/room-area-calculator/index.ts": [
-    "/assets/index-qMJcbIIf.js"
+    "/assets/index-CSlYN7Sp.js"
   ],
   "src/features/room-area-calculator/lib/calculations.ts": [
-    "/assets/index-qMJcbIIf.js"
+    "/assets/index-CSlYN7Sp.js"
   ],
   "src/features/salary-calculator/components/SalaryCalculatorView.vue": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/salary-calculator/components/SalaryCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/salary-calculator/components/SalaryCalculatorView.vue?vue&type=style&index=0&scoped=34da20e7&lang.css": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/salary-calculator/composables/useSalaryCalculator.ts": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/salary-calculator/index.ts": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/salary-calculator/lib/calculations.ts": [
-    "/assets/index-CI0mTPVb.js",
+    "/assets/index-B1mulxaD.js",
     "/assets/index-WM_k5sCK.css"
   ],
   "src/features/self-employed-tax-calculator/components/SelfEmployedTaxCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-B9Seo7cz.js"
+    "/assets/index-D8esEy8E.js"
   ],
   "src/features/self-employed-tax-calculator/composables/useSelfEmployedTaxCalculator.ts": [
-    "/assets/index-B9Seo7cz.js"
+    "/assets/index-D8esEy8E.js"
   ],
   "src/features/self-employed-tax-calculator/index.ts": [
-    "/assets/index-B9Seo7cz.js"
+    "/assets/index-D8esEy8E.js"
   ],
   "src/features/self-employed-tax-calculator/lib/calculations.ts": [
-    "/assets/index-B9Seo7cz.js"
+    "/assets/index-D8esEy8E.js"
   ],
   "src/features/shoe-size-converter/components/ShoeSizeConverterView.vue": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/shoe-size-converter/components/ShoeSizeConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/shoe-size-converter/components/ShoeSizeConverterView.vue?vue&type=style&index=0&scoped=a276a38d&lang.css": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/shoe-size-converter/composables/useShoeSizeConverter.ts": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/shoe-size-converter/index.ts": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/shoe-size-converter/lib/calculations.ts": [
-    "/assets/index-DZ5MeVXx.js",
+    "/assets/index-DRo9l1GY.js",
     "/assets/index-C7Nb0Kei.css"
   ],
   "src/features/sick-leave-calculator/components/SickLeaveCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-7vCDXyWP.js"
+    "/assets/index-B8FUCJLQ.js"
   ],
   "src/features/sick-leave-calculator/composables/useSickLeaveCalculator.ts": [
-    "/assets/index-7vCDXyWP.js"
+    "/assets/index-B8FUCJLQ.js"
   ],
   "src/features/sick-leave-calculator/index.ts": [
-    "/assets/index-7vCDXyWP.js"
+    "/assets/index-B8FUCJLQ.js"
   ],
   "src/features/sick-leave-calculator/lib/calculations.ts": [
-    "/assets/index-7vCDXyWP.js"
+    "/assets/index-B8FUCJLQ.js"
   ],
   "src/features/slab-foundation-calculator/components/SlabFoundationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DjfY9vD7.js"
+    "/assets/index-Bpb79u4e.js"
   ],
   "src/features/slab-foundation-calculator/composables/useSlabFoundationCalculator.ts": [
-    "/assets/index-DjfY9vD7.js"
+    "/assets/index-Bpb79u4e.js"
   ],
   "src/features/slab-foundation-calculator/index.ts": [
-    "/assets/index-DjfY9vD7.js"
+    "/assets/index-Bpb79u4e.js"
   ],
   "src/features/slab-foundation-calculator/lib/calculations.ts": [
-    "/assets/index-DjfY9vD7.js"
+    "/assets/index-Bpb79u4e.js"
   ],
   "src/features/speed-converter/components/SpeedConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BPo5klOv.js"
+    "/assets/index-Dbecl5FI.js"
   ],
   "src/features/speed-converter/composables/useSpeedConverter.ts": [
-    "/assets/index-BPo5klOv.js"
+    "/assets/index-Dbecl5FI.js"
   ],
   "src/features/speed-converter/index.ts": [
-    "/assets/index-BPo5klOv.js"
+    "/assets/index-Dbecl5FI.js"
   ],
   "src/features/speed-converter/lib/calculations.ts": [
-    "/assets/index-BPo5klOv.js"
+    "/assets/index-Dbecl5FI.js"
   ],
   "src/features/stairs-calculator/components/StairsCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DKMHAv1v.js"
+    "/assets/index-C60PgQuW.js"
   ],
   "src/features/stairs-calculator/composables/useStairsCalculator.ts": [
-    "/assets/index-DKMHAv1v.js"
+    "/assets/index-C60PgQuW.js"
   ],
   "src/features/stairs-calculator/index.ts": [
-    "/assets/index-DKMHAv1v.js"
+    "/assets/index-C60PgQuW.js"
   ],
   "src/features/stairs-calculator/lib/calculations.ts": [
-    "/assets/index-DKMHAv1v.js"
+    "/assets/index-C60PgQuW.js"
   ],
   "src/features/strip-foundation-calculator/components/StripFoundationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CT2h_eE4.js"
+    "/assets/index-DWn71OUT.js"
   ],
   "src/features/strip-foundation-calculator/composables/useStripFoundationCalculator.ts": [
-    "/assets/index-CT2h_eE4.js"
+    "/assets/index-DWn71OUT.js"
   ],
   "src/features/strip-foundation-calculator/index.ts": [
-    "/assets/index-CT2h_eE4.js"
+    "/assets/index-DWn71OUT.js"
   ],
   "src/features/strip-foundation-calculator/lib/calculations.ts": [
-    "/assets/index-CT2h_eE4.js"
+    "/assets/index-DWn71OUT.js"
   ],
   "src/features/temperature-converter/components/TemperatureConverterView.vue": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
   "src/features/temperature-converter/components/TemperatureConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
   "src/features/temperature-converter/components/TemperatureConverterView.vue?vue&type=style&index=0&scoped=1a15537c&lang.css": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
   "src/features/temperature-converter/composables/useTemperatureConverter.ts": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
   "src/features/temperature-converter/index.ts": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
   "src/features/temperature-converter/lib/calculations.ts": [
-    "/assets/index-BExgmH63.js",
+    "/assets/index-CAAsNGtq.js",
     "/assets/index-Dt2Y2gIl.css"
   ],
+  "src/features/text-dev-tools/components/TextDevToolsView.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/index-C7lEzJ-o.js"
+  ],
+  "src/features/text-dev-tools/index.ts": [
+    "/assets/index-C7lEzJ-o.js"
+  ],
+  "src/features/text-dev-tools/lib/calculations.ts": [
+    "/assets/index-C7lEzJ-o.js"
+  ],
   "src/features/tile-calculator/components/TileCalculatorView.vue": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/tile-calculator/components/TileCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/tile-calculator/components/TileCalculatorView.vue?vue&type=style&index=0&scoped=3ad9dfd7&lang.css": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/tile-calculator/composables/useTileCalculator.ts": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/tile-calculator/index.ts": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/tile-calculator/lib/calculations.ts": [
-    "/assets/index-BSGmSAVc.js",
+    "/assets/index-BYaNRIfk.js",
     "/assets/index-Tfd3CKtX.css"
   ],
   "src/features/time-duration-calculator/components/TimeDurationCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DgtvFFse.js"
+    "/assets/index-D26e57__.js"
   ],
   "src/features/time-duration-calculator/composables/useTimeDurationCalculator.ts": [
-    "/assets/index-DgtvFFse.js"
+    "/assets/index-D26e57__.js"
   ],
   "src/features/time-duration-calculator/index.ts": [
-    "/assets/index-DgtvFFse.js"
+    "/assets/index-D26e57__.js"
   ],
   "src/features/time-duration-calculator/lib/calculations.ts": [
-    "/assets/index-DgtvFFse.js"
+    "/assets/index-D26e57__.js"
   ],
   "src/features/tips-calculator/components/TipsCalculatorView.vue": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/tips-calculator/components/TipsCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/tips-calculator/components/TipsCalculatorView.vue?vue&type=style&index=0&scoped=3165296c&lang.css": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/tips-calculator/composables/useTipsCalculator.ts": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/tips-calculator/index.ts": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/tips-calculator/lib/calculations.ts": [
-    "/assets/index-tKBh742m.js",
+    "/assets/index-BfT8nK8j.js",
     "/assets/index-DDI7OAzA.css"
   ],
   "src/features/trip-cost-calculator/components/TripCostCalculatorView.vue": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/trip-cost-calculator/components/TripCostCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/trip-cost-calculator/components/TripCostCalculatorView.vue?vue&type=style&index=0&scoped=a33c8b05&lang.css": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/trip-cost-calculator/composables/useTripCostCalculator.ts": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/trip-cost-calculator/index.ts": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/trip-cost-calculator/lib/calculations.ts": [
-    "/assets/index-CKDBUIh9.js",
+    "/assets/index-DJo9R5_t.js",
     "/assets/index-FFqqjmpN.css"
   ],
   "src/features/unit-price-calculator/components/UnitPriceCalculatorView.vue": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/unit-price-calculator/components/UnitPriceCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/unit-price-calculator/components/UnitPriceCalculatorView.vue?vue&type=style&index=0&scoped=8ab45a6a&lang.css": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/unit-price-calculator/composables/useUnitPriceCalculator.ts": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/unit-price-calculator/index.ts": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/unit-price-calculator/lib/calculations.ts": [
-    "/assets/index-DAI6Mz-l.js",
+    "/assets/index-BWc5oRZP.js",
     "/assets/index-DpjANi7l.css"
   ],
   "src/features/vacation-pay-calculator/components/VacationPayCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DXPs759i.js"
+    "/assets/index-DiVALr5z.js"
   ],
   "src/features/vacation-pay-calculator/composables/useVacationPayCalculator.ts": [
-    "/assets/index-DXPs759i.js"
+    "/assets/index-DiVALr5z.js"
   ],
   "src/features/vacation-pay-calculator/index.ts": [
-    "/assets/index-DXPs759i.js"
+    "/assets/index-DiVALr5z.js"
   ],
   "src/features/vacation-pay-calculator/lib/calculations.ts": [
-    "/assets/index-DXPs759i.js"
+    "/assets/index-DiVALr5z.js"
   ],
   "src/features/vat-calculator/components/VatCalculatorView.vue": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/vat-calculator/components/VatCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/vat-calculator/components/VatCalculatorView.vue?vue&type=style&index=0&scoped=a5a911d7&lang.css": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/vat-calculator/composables/useVatCalculator.ts": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/vat-calculator/index.ts": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/vat-calculator/lib/calculations.ts": [
-    "/assets/index-DFj8G7Ay.js",
+    "/assets/index-D3pscFJC.js",
     "/assets/index-BUkUWX7I.css"
   ],
   "src/features/volume-converter/components/VolumeConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DdzNK4xQ.js"
+    "/assets/index-DNOcAFRY.js"
   ],
   "src/features/volume-converter/composables/useVolumeConverter.ts": [
-    "/assets/index-DdzNK4xQ.js"
+    "/assets/index-DNOcAFRY.js"
   ],
   "src/features/volume-converter/index.ts": [
-    "/assets/index-DdzNK4xQ.js"
+    "/assets/index-DNOcAFRY.js"
   ],
   "src/features/volume-converter/lib/calculations.ts": [
-    "/assets/index-DdzNK4xQ.js"
+    "/assets/index-DNOcAFRY.js"
   ],
   "src/features/wallpaper-calculator/components/WallpaperCalculatorView.vue": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/wallpaper-calculator/components/WallpaperCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/wallpaper-calculator/components/WallpaperCalculatorView.vue?vue&type=style&index=0&scoped=e1623aa8&lang.css": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/wallpaper-calculator/composables/useWallpaperCalculator.ts": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/wallpaper-calculator/index.ts": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/wallpaper-calculator/lib/calculations.ts": [
-    "/assets/index-BN1idGG1.js",
+    "/assets/index-DwDgxH8-.js",
     "/assets/index-Ch6klEtJ.css"
   ],
   "src/features/weight-converter/components/WeightConverterView.vue": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/weight-converter/components/WeightConverterView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/weight-converter/components/WeightConverterView.vue?vue&type=style&index=0&scoped=8f77b155&lang.css": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/weight-converter/composables/useWeightConverter.ts": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/weight-converter/index.ts": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/weight-converter/lib/calculations.ts": [
-    "/assets/index-C4pQ8JF3.js",
+    "/assets/index-1FCWBw6H.js",
     "/assets/index-DpLdRXoD.css"
   ],
   "src/features/work-mvp-calculators/components/WorkMvpCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-B7NouaPt.js"
+    "/assets/index-DarBuYgk.js"
   ],
   "src/features/work-mvp-calculators/index.ts": [
-    "/assets/index-B7NouaPt.js"
+    "/assets/index-DarBuYgk.js"
   ],
   "src/features/work-mvp-calculators/lib/calculations.ts": [
-    "/assets/index-B7NouaPt.js"
+    "/assets/index-DarBuYgk.js"
   ],
   "src/features/workdays-calculator/components/WorkdaysCalculatorView.vue": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/features/workdays-calculator/components/WorkdaysCalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/features/workdays-calculator/components/WorkdaysCalculatorView.vue?vue&type=style&index=0&scoped=b76752f7&lang.css": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/features/workdays-calculator/composables/useWorkdaysCalculator.ts": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/features/workdays-calculator/index.ts": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/features/workdays-calculator/lib/calculations.ts": [
-    "/assets/index-DnjVeIg9.js",
+    "/assets/index-Bx-0OiE_.js",
     "/assets/index-BrH2P6AD.css"
   ],
   "src/i18n.ts": [],
@@ -1808,43 +1976,43 @@
   "src/router/index.ts": [],
   "src/style.css": [],
   "src/views/CalculatorView.vue": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/views/CalculatorView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/views/CalculatorView.vue?vue&type=style&index=0&scoped=98a43a7c&lang.css": [
-    "/assets/CalculatorView-Ch6MkKFM.js",
+    "/assets/CalculatorView-DsCqgH5e.js",
     "/assets/CalculatorView-C3_sVHiv.css"
   ],
   "src/views/CategoryView.vue": [
-    "/assets/CategoryView-DEzUD_FP.js"
+    "/assets/CategoryView-BpIzKkTM.js"
   ],
   "src/views/CategoryView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/CategoryView-DEzUD_FP.js"
+    "/assets/CategoryView-BpIzKkTM.js"
   ],
   "src/views/HomeView.vue": [
-    "/assets/HomeView-B7fjaO2y.js"
+    "/assets/HomeView-C85jJKwn.js"
   ],
   "src/views/HomeView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/HomeView-B7fjaO2y.js"
+    "/assets/HomeView-C85jJKwn.js"
   ],
   "src/views/NotFoundView.vue": [
-    "/assets/NotFoundView-d9RbdbHX.js",
+    "/assets/NotFoundView-9RJCZNr-.js",
     "/assets/NotFoundView-DQLqm3XL.css"
   ],
   "src/views/NotFoundView.vue?vue&type=style&index=0&scoped=97b31805&lang.css": [
-    "/assets/NotFoundView-d9RbdbHX.js",
+    "/assets/NotFoundView-9RJCZNr-.js",
     "/assets/NotFoundView-DQLqm3XL.css"
   ],
   "src/views/WorkspaceView.vue": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ],
   "src/views/WorkspaceView.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WorkspaceView-DzHp_QM5.js",
+    "/assets/WorkspaceView-DpAareTe.js",
     "/assets/WorkspaceView-D6zrquzl.css"
   ]
 }
