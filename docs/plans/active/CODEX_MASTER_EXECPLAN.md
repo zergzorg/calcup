@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 47.
-- Soon: 27.
+- Ready: 48.
+- Soon: 26.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`.
-- Низкорисковые next candidates: `/everyday/electricity`, `/everyday/cooking-units`.
+- Низкорисковые next candidates: `/everyday/cooking-units`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `electricity`
+- slug: `cooking-units`
 - category: `everyday`
-- goal: перевести `/everyday/electricity` из `soon` в `ready` и добавить расчёт кВт⋅ч и стоимости работы прибора.
-- reason: P1 everyday milestone из актуального `soon`; расчёт полезный и не требует внешних данных.
+- goal: перевести `/everyday/cooking-units` из `soon` в `ready` и добавить бытовой конвертер кухонных мер для рецептов.
+- reason: оставшийся низкорисковый everyday milestone; scope должен быть ограничен объёмными мерами без density-конверсии граммов для разных продуктов.
 - acceptance criteria:
-  - registry-запись `electricity` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/electricity-calculator/`;
-  - чистые функции считают кВт⋅ч, стоимость за день/месяц, стоимость за цикл и нагрузку по мощности/времени;
-  - есть unit-тесты на формулы, округление и invalid input;
+  - registry-запись `cooking-units` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/cooking-units-calculator/`;
+  - чистые функции конвертируют мл, л, чайные/столовые ложки, cups и fluid ounces через миллилитры;
+  - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - `/everyday/electricity/` добавлен в sitemap;
+  - `/everyday/cooking-units/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/electricity-calculator/index.ts`
-  - `src/features/electricity-calculator/components/ElectricityCalculatorView.vue`
-  - `src/features/electricity-calculator/composables/useElectricityCalculator.ts`
-  - `src/features/electricity-calculator/lib/calculations.ts`
-  - `src/features/electricity-calculator/lib/calculations.test.ts`
-  - `src/features/electricity-calculator/types/electricity.ts`
+  - `src/features/cooking-units-calculator/index.ts`
+  - `src/features/cooking-units-calculator/components/CookingUnitsCalculatorView.vue`
+  - `src/features/cooking-units-calculator/composables/useCookingUnitsCalculator.ts`
+  - `src/features/cooking-units-calculator/lib/calculations.ts`
+  - `src/features/cooking-units-calculator/lib/calculations.test.ts`
+  - `src/features/cooking-units-calculator/types/cooking-units.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,10 +97,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор электроэнергии|Electricity Calculator|canonical|robots|everyday/electricity" dist/everyday/electricity.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор мер для кухни|Cooking Units Calculator|canonical|robots|everyday/cooking-units" dist/everyday/cooking-units.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/cooking-units/ /tmp/calcup-cooking-units-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/cooking-units/ /tmp/calcup-cooking-units-mobile-full.png`
 - risk level: low
 - status: planned
 
@@ -142,6 +142,7 @@ Owner: Codex
 - slug: `strip-foundation`; category: `construction`; сделано: бетон, песчаная подушка, опалубка и ориентир арматуры для ленточного фундамента; проверки: test/type-check/build/mobile/static smoke; commit hash: `4755799`.
 - slug: `data-size`; category: `convert`; сделано: decimal/binary конвертер bytes, KB/MB/GB/TB и KiB/MiB/GiB/TiB; проверки: test/type-check/build/mobile/static smoke; commit hash: `f1e8bda`.
 - slug: `room-area`; category: `everyday`; сделано: площадь пола, потолка, стен, проёмов и периметр комнаты; проверки: test/type-check/build/mobile/static smoke; commit hash: `3c38f5a`.
+- slug: `electricity`; category: `everyday`; сделано: расход кВт⋅ч и стоимость прибора по мощности, времени и тарифу; проверки: test/type-check/build/mobile/static smoke; commit hash: `432bbab`.
 
 ## Deferred
 
@@ -169,6 +170,7 @@ Owner: Codex
 - 2026-04-26: После `strip-foundation` следующим выбран `data-size`, потому что это низкорисковый converter milestone без внешних данных и нормативных источников.
 - 2026-04-26: После `data-size` следующим выбран `room-area`, потому что это низкорисковый everyday-сценарий с простыми геометрическими формулами.
 - 2026-04-26: После `room-area` следующим выбран `electricity`, потому что это P1 everyday-сценарий с простыми расчётами мощности, времени и тарифа.
+- 2026-04-26: После `electricity` следующим выбран `cooking-units`; scope ограничить объёмными kitchen units, чтобы не обещать точную конверсию граммов без плотности продукта.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -190,6 +192,7 @@ Owner: Codex
 - `data-size`: decimal mode использует 1000 bytes per step, binary mode использует 1024 bytes per step; `KB/MB/GB/TB` и `KiB/MiB/GiB/TiB` показываются явно.
 - `room-area`: комната считается прямоугольной; проёмы вычитаются из площади стен и clamp-ятся так, чтобы отделочная площадь не уходила ниже 0.
 - `electricity`: пользователь сам вводит тариф; расчёт не пытается учитывать зоны тарифа, льготы, сетевые надбавки или реальные измерения счётчика.
+- `cooking-units`: граммы не конвертировать в объём без выбора продукта/плотности; первая версия работает с объёмом.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -255,12 +258,18 @@ Owner: Codex
 - 2026-04-26: Для `/everyday/room-area` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/everyday/room-area.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/everyday/room-area/` — поля, height chips, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/everyday/electricity` `npm run test` — OK, 48 files / 431 tests.
+- 2026-04-26: Для `/everyday/electricity` `npm run type-check` — OK.
+- 2026-04-26: Для `/everyday/electricity` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/everyday/electricity.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/everyday/electricity/` — power/time chips, tariff suffix, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
 - `4755799` — `feat(construction): add strip foundation calculator`.
 - `f1e8bda` — `feat(convert): add data size converter`.
 - `3c38f5a` — `feat(everyday): add room area calculator`.
+- `432bbab` — `feat(everyday): add electricity calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -279,4 +288,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/everyday/electricity`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/everyday/cooking-units`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

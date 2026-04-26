@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.33 расширение бытовых калькуляторов
+## Текущая фаза: 5.34 расширение бытовых калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 47 ready-калькуляторов.
-- 27 soon-карточек.
+- 48 ready-калькуляторов.
+- 26 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -62,6 +62,7 @@
 | 5.31 | Ленточный фундамент | /construction/strip-foundation | ✅ ready |
 | 5.32 | Конвертер данных | /convert/data-size | ✅ ready |
 | 5.33 | Калькулятор площади комнаты | /everyday/room-area | ✅ ready |
+| 5.34 | Калькулятор электроэнергии | /everyday/electricity | ✅ ready |
 
 ## Sitemap
 
@@ -76,10 +77,40 @@
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
-- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/
+- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.34) — 2026-04-26
+
+Реализован калькулятор `/everyday/electricity`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/electricity-calculator/`.
+- Добавлен расчёт:
+  - мощности в кВт с учётом количества приборов;
+  - расхода кВт⋅ч в день, месяц и год;
+  - стоимости в день, месяц и год по введённому тарифу.
+- Добавлены быстрые пресеты мощности 60 / 1000 / 2000 Вт и времени 1 / 4 / 8 ч.
+- Добавлены RU/EN локали `electricity.*`.
+- Registry-запись `electricity` переведена в `ready`.
+- В sitemap добавлен `/everyday/electricity/`.
+
+### Проверки
+
+- `npm run test` — OK, `431/431`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/everyday/electricity/` title, canonical со slash, `index,follow`;
+  - `/everyday/electricity/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/everyday/electricity/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

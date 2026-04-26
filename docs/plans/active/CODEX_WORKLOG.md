@@ -1588,3 +1588,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/everyday/electricity`.
+
+### Итерация 35: `/everyday/electricity`
+
+Выбранный milestone:
+
+- `/everyday/electricity`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- P1 бытовой сценарий с простыми формулами мощности, времени и тарифа.
+- Закрывает ещё одну карточку `/everyday` без внешних данных.
+
+Что изменено:
+
+- Создан `src/features/electricity-calculator/`.
+- Добавлены чистые функции расчёта кВт⋅ч и стоимости в день, месяц и год.
+- Добавлены быстрые пресеты мощности 60 / 1000 / 2000 Вт и времени 1 / 4 / 8 ч.
+- Registry-запись `electricity` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/everyday/cooking-units`.
+
+Затронутые файлы:
+
+- `src/features/electricity-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор электроэнергии|Electricity Calculator|canonical|robots|everyday/electricity" dist/everyday/electricity.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 48 files / 431 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/everyday/electricity/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: power/time chips, tariff suffix, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 432bbab
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/everyday/cooking-units`.
