@@ -351,6 +351,59 @@
       }
     }
   },
+  "volume": {
+    "eyebrow": "Converters",
+    "title": "Volume Converter",
+    "intro": "Convert liters, milliliters, cubic meters, gallons, quarts, cups and spoons.",
+    "form": {
+      "value": "Volume",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "units": {
+      "milliliter": "Milliliter",
+      "liter": "Liter",
+      "cubicMeter": "Cubic meter",
+      "cubicCentimeter": "Cubic centimeter",
+      "gallon": "US gallon",
+      "quart": "US quart",
+      "pint": "US pint",
+      "cup": "US cup",
+      "tablespoon": "US tablespoon",
+      "teaspoon": "US teaspoon"
+    },
+    "unitShort": {
+      "milliliter": "ml",
+      "liter": "L",
+      "cubicMeter": "m³",
+      "cubicCentimeter": "cm³",
+      "gallon": "gal",
+      "quart": "qt",
+      "pint": "pt",
+      "cup": "cup",
+      "tablespoon": "tbsp",
+      "teaspoon": "tsp"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a volume value.",
+      "converted": "Converted volume",
+      "source": "Source value",
+      "liters": "In liters"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "formula": "All values are converted through liters. Gallons, quarts, pints, cups and spoons use US liquid units.",
+    "validation": {
+      "value": {
+        "required": "Enter a volume value.",
+        "nonNegative": "Volume cannot be negative."
+      }
+    }
+  },
   "fuel": {
     "eyebrow": "Transport",
     "title": "Fuel Consumption",
