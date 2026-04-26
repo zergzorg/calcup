@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 11.
 - Всего карточек: 80.
-- Ready: 68.
-- Soon: 12.
+- Ready: 69.
+- Soon: 11.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
+- Next candidates: `/construction/roof`, `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `slab-foundation`
+- slug: `roof`
 - category: `construction`
-- goal: добавить `/construction/slab-foundation` как следующий construction ready-калькулятор.
-- reason: это P0/P1 construction-карточка из существующего каталога; после animal pregnancy пары логично вернуться к крупному строительному backlog.
+- goal: добавить `/construction/roof` как следующий construction ready-калькулятор.
+- reason: это следующая P0/P1 construction-карточка после фундамента; она расширяет ремонтно-строительный кластер в сторону кровли.
 - acceptance criteria:
-  - registry-запись `slab-foundation` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
-  - создан `src/features/slab-foundation-calculator/`;
-  - чистые функции считают объём бетона, площадь плиты, песчаную/щебёночную подушку, арматурную сетку, запас и стоимость;
+  - registry-запись `roof` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
+  - создан `src/features/roof-calculator/`;
+  - чистые функции считают площадь скатов, запас, листовые/штучные материалы и ориентировочную стоимость;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть construction warning-note: расчёт ориентировочный и не заменяет проект/конструктора;
-  - `/construction/slab-foundation/` добавлен в sitemap;
+  - есть construction warning-note: расчёт ориентировочный и не заменяет проект/замеры кровельщика;
+  - `/construction/roof/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/slab-foundation-calculator/index.ts`
-  - `src/features/slab-foundation-calculator/components/SlabFoundationCalculatorView.vue`
-  - `src/features/slab-foundation-calculator/composables/useSlabFoundationCalculator.ts`
-  - `src/features/slab-foundation-calculator/lib/calculations.ts`
-  - `src/features/slab-foundation-calculator/lib/calculations.test.ts`
-  - `src/features/slab-foundation-calculator/types/slab-foundation.ts`
+  - `src/features/roof-calculator/index.ts`
+  - `src/features/roof-calculator/components/RoofCalculatorView.vue`
+  - `src/features/roof-calculator/composables/useRoofCalculator.ts`
+  - `src/features/roof-calculator/lib/calculations.ts`
+  - `src/features/roof-calculator/lib/calculations.test.ts`
+  - `src/features/roof-calculator/types/roof.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор плитного фундамента|Slab Foundation Calculator|canonical|robots|construction/slab-foundation" dist/construction/slab-foundation.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор крыши|Roof Calculator|canonical|robots|construction/roof" dist/construction/roof.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/roof/ /tmp/calcup-roof-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/roof/ /tmp/calcup-roof-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -164,6 +164,7 @@ Owner: Codex
 - slug: `cat-calorie`; category: `animals`; сделано: RER, дневные калории и граммы корма для кошки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `60b715f`.
 - slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
 - slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `475f787`.
+- slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
 
 ## Deferred
 
@@ -206,6 +207,7 @@ Owner: Codex
 - 2026-04-26: После `body-fat` следующим выбран `pregnancy-due-date`, чтобы закрыть health `soon` перед возвратом к construction.
 - 2026-04-26: После `pregnancy-due-date` следующим выбран `rebar`, потому что health `soon` закрыт и construction остаётся самым крупным backlog-кластером.
 - 2026-04-26: После `rebar` следующим выбран `slab-foundation`, потому что это соседний construction-сценарий и может переиспользовать подходы concrete/rebar.
+- 2026-04-26: После `slab-foundation` следующим выбран `roof`, чтобы продолжить закрывать крупный construction backlog.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -244,7 +246,8 @@ Owner: Codex
 - `pregnancy-due-date`: триместры делятся как 0-13w6d, 14-27w6d, 28w+; расчёты date-only идут через UTC.
 - `rebar`: первая версия будет ориентировочной; защитный слой бетона, анкеровки, нахлёсты, выпуски, класс стали и расчёт несущей способности не входят в scope.
 - `rebar`: масса считается через площадь круга и плотность стали 7850 кг/м³; закупочные прутки округляются вверх по стандартной длине, стоимость считается от закупочной длины.
-- `slab-foundation`: первая версия будет ориентировочной; грунты, нагрузки, морозное пучение, гидроизоляция, класс бетона и инженерный расчёт армирования не входят в scope.
+- `slab-foundation`: первая версия ориентировочная; грунты, нагрузки, морозное пучение, гидроизоляция, класс бетона и инженерный расчёт армирования не входят в scope.
+- `roof`: первая версия ориентировочная; снеговые/ветровые нагрузки, стропильная система, водосток и инженерный проект кровли не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -415,6 +418,13 @@ Owner: Codex
 - 2026-04-26: После `/animals/cat-pregnancy` `npm run build` — OK, Vite SSG rendered 94 pages.
 - 2026-04-26: Static smoke по `dist/animals/cat-pregnancy.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/cat-pregnancy/` — date fields, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/slab-foundation` точечный `npm run test -- slab-foundation registry` — OK, 2 files / 8 tests.
+- 2026-04-26: После `/construction/slab-foundation` полный `npm run test` — OK, 69 files / 546 tests.
+- 2026-04-26: После `/construction/slab-foundation` `npm run type-check` — OK.
+- 2026-04-26: После `/construction/slab-foundation` `npm run build` — OK, Vite SSG rendered 94 pages.
+- 2026-04-26: Locale key parity после `/construction/slab-foundation` — OK, 2730 keys.
+- 2026-04-26: Static smoke по `dist/construction/slab-foundation.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/slab-foundation/` — warning note, fields, vertical chips, price fields, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -456,7 +466,8 @@ Owner: Codex
 - `60b715f` — `feat(animals): add cat calorie calculator`.
 - `713a201` — `feat(animals): add dog pregnancy calculator`.
 - `475f787` — `feat(animals): add cat pregnancy calculator`.
+- `this commit` — `feat(construction): add slab foundation calculator`.
 
 ## Next Action
 
-Закоммитить `/animals/cat-pregnancy` и приступить к Current Milestone `/construction/slab-foundation`.
+Закоммитить `/construction/slab-foundation` и приступить к Current Milestone `/construction/roof`.

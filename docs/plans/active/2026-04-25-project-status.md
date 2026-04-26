@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.49 запуск animals-категории
+## Текущая фаза: 5.54 плитный фундамент
 
 Фактическое состояние на 2026-04-26:
 
 - 11 категорий в реестре.
-- 68 ready-калькуляторов.
-- 12 soon-карточек.
+- 69 ready-калькуляторов.
+- 11 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food`, `/animals/cat-calorie`, `/animals/dog-pregnancy` и `/animals/cat-pregnancy`.
@@ -84,6 +84,7 @@
 | 5.51 | Калькулятор калорий для кошки | /animals/cat-calorie | ✅ ready |
 | 5.52 | Калькулятор беременности собаки | /animals/dog-pregnancy | ✅ ready |
 | 5.53 | Калькулятор беременности кошки | /animals/cat-pregnancy | ✅ ready |
+| 5.54 | Калькулятор плитного фундамента | /construction/slab-foundation | ✅ ready |
 
 ## Sitemap
 
@@ -93,7 +94,7 @@
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/rebar/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/slab-foundation/ · /construction/rebar/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/ · /animals/dog-pregnancy/ · /animals/cat-pregnancy/
@@ -103,6 +104,39 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.54) — 2026-04-26
+
+Реализован калькулятор `/construction/slab-foundation`.
+
+### Реализовано
+
+- Создан feature-модуль `src/features/slab-foundation-calculator/`.
+- Добавлен расчёт:
+  - площади плиты и объёма бетона с запасом;
+  - песчаной и щебёночной подушки;
+  - арматурной сетки по шагу, диаметру и числу слоёв;
+  - веса арматуры по формуле `d² / 162` и ориентировочной стоимости материалов.
+- Добавлен construction warning-note: расчёт ориентировочный и не заменяет проект конструктора.
+- Добавлены RU/EN локали `slabFoundation.*`.
+- Registry-запись `slab-foundation` переведена в `ready`.
+- В sitemap добавлен `/construction/slab-foundation/`.
+- README обновлён до 69 ready / 11 soon.
+
+### Проверки
+
+- `npm run test -- slab-foundation registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 69 files / 546 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+- Locale key parity — OK, 2730 keys.
+- Static smoke:
+  - `/construction/slab-foundation/` title, canonical со slash, `index,follow`;
+  - `/construction/slab-foundation/` есть в sitemap.
+- Mobile smoke:
+  - `/construction/slab-foundation/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

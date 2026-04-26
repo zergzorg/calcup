@@ -2977,3 +2977,72 @@ Commit hash:
 Следующий шаг:
 
 - После зелёных проверок закоммитить `/animals/cat-pregnancy` и перейти к `/construction/slab-foundation`.
+
+### Итерация 55: `/construction/slab-foundation`
+
+Выбранный milestone:
+
+- `/construction/slab-foundation`.
+
+Почему выбран именно он:
+
+- Это соседний construction-сценарий после `/construction/concrete`, `/construction/strip-foundation` и `/construction/rebar`.
+- Калькулятор закрывает одну из крупных `soon`-карточек строительного backlog.
+
+Что изменено:
+
+- Создан `src/features/slab-foundation-calculator/`.
+- Добавлены расчёты площади плиты, объёма бетона, песчаной и щебёночной подушки.
+- Добавлена оценка арматурной сетки по шагу, диаметру и числу слоёв.
+- Добавлен расчёт веса арматуры по формуле `d² / 162` и ориентировочной стоимости материалов.
+- Добавлен construction warning-note: расчёт ориентировочный и не заменяет проект конструктора.
+- Registry-запись `slab-foundation` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий milestone `/construction/roof`.
+
+Затронутые файлы:
+
+- `src/features/slab-foundation-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- slab-foundation registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- Locale key parity script
+- `rg -n "Калькулятор плитного фундамента|Slab Foundation Calculator|canonical|robots|construction/slab-foundation" dist/construction/slab-foundation.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4174/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile-full.png`
+
+Результат тестов:
+
+- Точечный `npm run test -- slab-foundation registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 69 files / 546 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+
+Результат smoke-проверок:
+
+- Locale key parity — OK, 2730 keys.
+- Static smoke — OK: `/construction/slab-foundation/` title, canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: warning note, fields, vertical chips, price fields, result rows и related cards без overflow и наложений.
+
+Следующий шаг:
+
+- Закоммитить `/construction/slab-foundation` и перейти к `/construction/roof`.

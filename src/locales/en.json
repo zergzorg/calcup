@@ -3555,6 +3555,81 @@
       }
     }
   },
+  "slabFoundation": {
+    "eyebrow": "Construction",
+    "title": "Slab Foundation Calculator",
+    "intro": "Estimate concrete, sand and gravel base, reinforcement mesh, waste and material cost for a slab foundation.",
+    "warning": {
+      "title": "Approximate estimate",
+      "body": "This calculator estimates materials from the entered geometry. It does not verify soil, loads, slab thickness, concrete grade, waterproofing or structural reinforcement. Use an engineered design before construction."
+    },
+    "form": {
+      "geometryTitle": "Slab size",
+      "geometryHelp": "Enter slab dimensions and concrete thickness.",
+      "lengthM": "Length",
+      "widthM": "Width",
+      "thicknessMm": "Slab thickness",
+      "thicknessPresets": "Quick thickness choice",
+      "baseTitle": "Base and waste",
+      "sandDepthMm": "Sand",
+      "gravelDepthMm": "Gravel",
+      "wastePercent": "Waste",
+      "wastePresets": "Quick waste choice",
+      "rebarTitle": "Reinforcement mesh",
+      "rebarSpacingMm": "Mesh spacing",
+      "rebarDiameterMm": "Diameter",
+      "rebarLayers": "Mesh layers",
+      "spacingPresets": "Quick spacing choice",
+      "priceTitle": "Prices",
+      "concretePricePerM3": "Concrete price",
+      "rebarPricePerKg": "Rebar price"
+    },
+    "units": {
+      "m": "m",
+      "mm": "mm",
+      "pcs": "pcs",
+      "percent": "%",
+      "rubM3": "₽/m³",
+      "rubKg": "₽/kg",
+      "mmValue": "{value} mm",
+      "percentValue": "{value}%",
+      "m3Value": "{value} m³",
+      "m2Value": "{value} m²",
+      "mValue": "{value} m",
+      "kgValue": "{value} kg",
+      "pcsValue": "{value} pcs",
+      "moneyValue": "{value} ₽"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive slab and rebar dimensions. Base, waste and prices cannot be negative.",
+      "concreteWithWaste": "Concrete with waste",
+      "area": "Slab area",
+      "baseConcrete": "Concrete before waste",
+      "sand": "Sand base",
+      "gravel": "Gravel base",
+      "rebarGrid": "Bars in mesh",
+      "rebarLength": "Rebar length",
+      "rebarWeight": "Rebar weight",
+      "concreteCost": "Concrete cost",
+      "rebarCost": "Rebar cost",
+      "totalCost": "Material total"
+    },
+    "formula": "Concrete = length × width × thickness × (1 + waste / 100). Base layers use slab area. Rebar = longitudinal and transverse bars by mesh spacing × layer count.",
+    "validation": {
+      "lengthM": "Length must be greater than 0.",
+      "widthM": "Width must be greater than 0.",
+      "thicknessMm": "Slab thickness must be greater than 0.",
+      "sandDepthMm": "Sand depth cannot be negative.",
+      "gravelDepthMm": "Gravel depth cannot be negative.",
+      "rebarSpacingMm": "Mesh spacing must be greater than 0.",
+      "rebarDiameterMm": "Rebar diameter must be greater than 0.",
+      "rebarLayers": "Layer count must be a whole number greater than 0.",
+      "wastePercent": "Waste cannot be negative.",
+      "concretePricePerM3": "Concrete price cannot be negative.",
+      "rebarPricePerKg": "Rebar price cannot be negative."
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",
