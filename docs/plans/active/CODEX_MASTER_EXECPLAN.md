@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 38.
-- Soon: 36.
+- Ready: 39.
+- Soon: 35.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`.
-- Низкорисковые next candidates: `/datetime/time-duration`, `/datetime/countdown`, `/everyday/bill-split`, `/convert/volume`, `/convert/speed`.
+- Низкорисковые next candidates: `/everyday/bill-split`, `/convert/volume`, `/convert/speed`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `countdown`
-- category: `datetime`
-- goal: перевести `/datetime/countdown` из `soon` в `ready` и добавить калькулятор дней до события или дедлайна.
-- reason: низкорисковая date-only арифметика, логичное продолжение datetime-линейки после `date-diff`, `age`, `workdays` и `time-duration`.
+- slug: `bill-split`
+- category: `everyday`
+- goal: перевести `/everyday/bill-split` из `soon` в `ready` и добавить калькулятор разделения счёта между участниками.
+- reason: низкорисковый бытовой high-value сценарий; усиливает `/everyday` после `tips`, `discount` и `unit-price`.
 - acceptance criteria:
-  - registry-запись `countdown` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/countdown-calculator/`;
-  - чистые функции считают календарные дни до события, прошедшие дни после события и статус направления;
-  - есть unit-тесты на будущую дату, прошедшую дату, текущую дату, включение текущего дня и invalid date;
+  - registry-запись `bill-split` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/bill-split-calculator/`;
+  - чистые функции считают общий счёт, сервисный сбор/чаевые, сумму на человека и остаток округления;
+  - есть unit-тесты на равное деление, чаевые/сбор, округление и invalid input;
   - RU/EN локали заполнены;
-  - `/datetime/countdown/` добавлен в sitemap;
+  - `/everyday/bill-split/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, тематические roadmaps и README синхронизированы.
 - expected files:
-  - `src/features/countdown-calculator/index.ts`
-  - `src/features/countdown-calculator/components/CountdownCalculatorView.vue`
-  - `src/features/countdown-calculator/composables/useCountdownCalculator.ts`
-  - `src/features/countdown-calculator/lib/calculations.ts`
-  - `src/features/countdown-calculator/lib/calculations.test.ts`
-  - `src/features/countdown-calculator/types/countdown.ts`
+  - `src/features/bill-split-calculator/index.ts`
+  - `src/features/bill-split-calculator/components/BillSplitCalculatorView.vue`
+  - `src/features/bill-split-calculator/composables/useBillSplitCalculator.ts`
+  - `src/features/bill-split-calculator/lib/calculations.ts`
+  - `src/features/bill-split-calculator/lib/calculations.test.ts`
+  - `src/features/bill-split-calculator/types/bill-split.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,16 +97,15 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор дней до даты|Countdown Calculator|canonical|robots|datetime/countdown" dist/datetime/countdown.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор разделения счёта|Bill Split Calculator|canonical|robots|everyday/bill-split" dist/everyday/bill-split.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/bill-split/ /tmp/calcup-bill-split-mobile-full.png`
 - risk level: low
 - status: planned
 
 ## Pending
 
-- slug: `bill-split`; category: `everyday`; цель: разделить счёт между людьми с доплатами; причина приоритета: бытовой high-value сценарий; expected scope: сумма, люди, сервисный сбор/чаевые optional; риск: low.
 - slug: `volume`; category: `convert`; цель: конвертер объёма; причина приоритета: базовая конвертерная категория; expected scope: liters, ml, m3, gallons, cups; риск: low.
 - slug: `speed`; category: `convert`; цель: конвертер скорости; причина приоритета: простой справочный инструмент; expected scope: km/h, mph, m/s, min/km optional; риск: low.
 - slug: `clothing-size`; category: `clothing`; цель: базовый конвертер размеров одежды; причина приоритета: категория `clothing` пока с одним ready; expected scope: generic RU/EU/US/UK/XS-XXL with disclaimer; риск: high.
@@ -138,6 +137,7 @@ Owner: Codex
 - slug: `age`; category: `datetime`; сделано: возраст, прожитые дни, день рождения; проверки: test/type-check/build/mobile/static smoke; commit hash: `0bbdcfc`.
 - slug: `workdays`; category: `datetime`; сделано: рабочие/выходные дни; проверки: test/type-check/build/mobile/static smoke; commit hash: `b05e876`.
 - slug: `time-duration`; category: `datetime`; сделано: сложение и вычитание длительностей в часах, минутах и секундах; проверки: test/type-check/build/mobile/static smoke; commit hash: `22935a2`.
+- slug: `countdown`; category: `datetime`; сделано: дни до события, прошедшие дни, опциональное включение даты отсчёта; проверки: test/type-check/build/mobile/static smoke; commit hash: `a057264`.
 
 ## Deferred
 
@@ -152,6 +152,8 @@ Owner: Codex
 - 2026-04-26: `time-duration` выбран следующим milestone, потому что это низкорисковый datetime-калькулятор на общеизвестной арифметике длительностей.
 - 2026-04-26: Для `time-duration` первая версия использует две длительности и операцию add/subtract; результат может быть отрицательным и показывается с явным знаком.
 - 2026-04-26: `countdown` выбран следующим milestone, потому что это низкорисковый date-only сценарий без нормативных источников.
+- 2026-04-26: Для `countdown` расчёт выполняется по date-only значениям через UTC; опция включения даты отсчёта добавляет 1 день только к ненулевой разнице.
+- 2026-04-26: `bill-split` выбран следующим milestone, потому что это низкорисковый бытовой сценарий и расширяет категорию `/everyday`.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -163,6 +165,8 @@ Owner: Codex
 - `time-duration`: отрицательный результат допустим только для вычитания и отображается как `−HH:MM:SS`.
 - `time-duration`: расчёт не зависит от часовых поясов, календарных дат и DST.
 - `countdown`: date-only расчёт выполняется через UTC; пользовательская временная зона не влияет на количество календарных дней.
+- `countdown`: для одинаковых дат опция включения даты отсчёта не превращает результат в 1 день, чтобы не ломать статус `today`.
+- `bill-split`: первая версия будет считать равное деление счёта; индивидуальные позиции участников не входят в initial scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -183,9 +187,15 @@ Owner: Codex
 - 2026-04-26: Для `/datetime/time-duration` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/datetime/time-duration.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/datetime/time-duration/` — поля, operation chips, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/datetime/countdown` `npm run test` — OK, 39 files / 391 tests.
+- 2026-04-26: Для `/datetime/countdown` `npm run type-check` — OK.
+- 2026-04-26: Для `/datetime/countdown` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/datetime/countdown.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/datetime/countdown/` — date inputs, toggle, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
+- `a057264` — `feat(datetime): add countdown calculator`.
 - `22935a2` — `feat(datetime): add time duration calculator`.
 - `ff6df26` — `docs(plans): record workdays milestone`.
 - `b05e876` — `feat(datetime): add workdays calculator`.
@@ -198,4 +208,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/datetime/countdown`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/everyday/bill-split`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

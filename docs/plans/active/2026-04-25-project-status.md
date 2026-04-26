@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.24 расширение раздела даты и времени
+## Текущая фаза: 5.25 расширение раздела даты и времени
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 38 ready-калькуляторов.
-- 36 soon-карточек.
+- 39 ready-калькуляторов.
+- 35 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -53,6 +53,7 @@
 | 5.22 | Калькулятор возраста | /datetime/age | ✅ ready |
 | 5.23 | Калькулятор рабочих дней | /datetime/workdays | ✅ ready |
 | 5.24 | Калькулятор времени | /datetime/time-duration | ✅ ready |
+| 5.25 | Калькулятор дней до даты | /datetime/countdown | ✅ ready |
 
 ## Sitemap
 
@@ -66,11 +67,42 @@
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
-- /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/
+- /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.25) — 2026-04-26
+
+Реализован калькулятор даты и времени `/datetime/countdown`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/countdown-calculator/`.
+- Добавлен расчёт:
+  - календарных дней до будущего события;
+  - прошедших дней после даты;
+  - статуса направления `future` / `past` / `today`;
+  - опционального включения даты отсчёта для ненулевой разницы;
+  - полных недель и остатка дней.
+- Добавлены RU/EN локали `countdown.*`.
+- Registry-запись `countdown` переведена в `ready`.
+- В sitemap добавлен `/datetime/countdown/`.
+
+### Проверки
+
+- `npm run test` — OK, `391/391`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/datetime/countdown/` title, canonical со slash, `index,follow`;
+  - `/datetime/countdown/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/datetime/countdown/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

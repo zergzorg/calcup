@@ -964,3 +964,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему low-risk milestone: `/datetime/countdown`.
+
+### Итерация 26: `/datetime/countdown`
+
+Выбранный milestone:
+
+- `/datetime/countdown`.
+
+Почему выбран именно он:
+
+- Низкорисковая date-only арифметика без внешних источников.
+- Закрывает оставшуюся `soon`-карточку в категории `/datetime`.
+- Продолжает линейку дат после `date-diff`, `age`, `workdays` и `time-duration`.
+
+Что изменено:
+
+- Создан `src/features/countdown-calculator/`.
+- Добавлены чистые функции расчёта дней до события, прошедших дней и статуса направления.
+- Добавлена опция включения даты отсчёта для ненулевой разницы.
+- Registry-запись `countdown` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/everyday/bill-split`.
+
+Затронутые файлы:
+
+- `src/features/countdown-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор дней до даты|Countdown Calculator|canonical|robots|datetime/countdown" dist/datetime/countdown.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/countdown/ /tmp/calcup-countdown-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 39 files / 391 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/datetime/countdown/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: date inputs, toggle, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- a057264
+
+Следующий шаг:
+
+- Перейти к следующему low-risk milestone: `/everyday/bill-split`.
