@@ -2484,3 +2484,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/health/pregnancy-due-date`.
+
+### Итерация 48: `/health/pregnancy-due-date`
+
+Выбранный milestone:
+
+- `/health/pregnancy-due-date`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Закрывает оставшуюся health `soon`-карточку.
+- Health-сценарий полезный, но требует осторожного warning-note и ограниченного scope.
+
+Что изменено:
+
+- Создан `src/features/pregnancy-due-date-calculator/`.
+- Добавлены чистые date-only функции для расчёта ориентировочной даты родов по LMP и дате зачатия.
+- Добавлены расчёт срока беременности, триместра, дней до ПДР и статуса timeline.
+- Добавлен health warning-note: расчёт ориентировочный и не заменяет УЗИ, врача и индивидуальное ведение беременности.
+- Registry-запись `pregnancy-due-date` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/construction/rebar`.
+
+Затронутые файлы:
+
+- `src/features/pregnancy-due-date-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор срока беременности|Pregnancy Due Date Calculator|canonical|robots|health/pregnancy-due-date" dist/health/pregnancy-due-date.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/pregnancy-due-date/ /tmp/calcup-pregnancy-due-date-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 61 files / 503 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/health/pregnancy-due-date/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: method chips, date fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- f2d4795
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/construction/rebar`.

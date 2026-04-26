@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.46 расширение health-категории
+## Текущая фаза: 5.47 закрытие health soon-кластера
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 60 ready-калькуляторов.
-- 14 soon-карточек.
+- 61 ready-калькулятор.
+- 13 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -75,6 +75,7 @@
 | 5.44 | Калькулятор сложного процента | /finance/compound-interest | ✅ ready |
 | 5.45 | Калькулятор рефинансирования | /finance/refinance | ✅ ready |
 | 5.46 | Калькулятор процента жира | /health/body-fat | ✅ ready |
+| 5.47 | Калькулятор срока беременности | /health/pregnancy-due-date | ✅ ready |
 
 ## Sitemap
 
@@ -82,7 +83,7 @@
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/ · /finance/refinance/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
-- /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/
+- /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
@@ -95,6 +96,41 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.47) — 2026-04-26
+
+Реализован калькулятор `/health/pregnancy-due-date`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/pregnancy-due-date-calculator/`.
+- Добавлен расчёт:
+  - ориентировочной даты родов по первому дню последней менструации;
+  - ориентировочной даты родов по дате зачатия;
+  - срока беременности в неделях и днях;
+  - триместра, дней до даты родов и статуса timeline.
+- Date-only расчёты выполняются через UTC.
+- Добавлен health warning-note: расчёт не заменяет УЗИ, врача и индивидуальное ведение беременности.
+- Добавлены RU/EN локали `pregnancyDueDate.*`.
+- Registry-запись `pregnancy-due-date` переведена в `ready`.
+- В sitemap добавлен `/health/pregnancy-due-date/`.
+- README обновлён до 61 ready / 13 soon.
+
+### Проверки
+
+- `npm run test` — OK, 61 files / 503 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/health/pregnancy-due-date/` title, canonical со slash, `index,follow`;
+  - `/health/pregnancy-due-date/` есть в sitemap.
+- Mobile smoke:
+  - `/health/pregnancy-due-date/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `f2d4795 feat(health): add pregnancy due date calculator`
 
 ## Сделано (Фаза 5.46) — 2026-04-26
 
