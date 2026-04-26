@@ -2347,3 +2347,71 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/finance/refinance`.
+
+### Итерация 46: `/finance/refinance`
+
+Выбранный milestone:
+
+- `/finance/refinance`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Закрывает последний finance `soon`.
+- Полезен после кредитного, ипотечного и накопительных сценариев.
+
+Что изменено:
+
+- Создан `src/features/refinance-calculator/`.
+- Добавлены чистые функции для аннуитетного платежа, старой/новой общей выплаты, экономии, месячной разницы и окупаемости расходов.
+- Добавлен finance warning-note про штрафы, страховки, изменение графика, досрочные погашения и условия банка.
+- Registry-запись `refinance` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/health/body-fat`.
+
+Затронутые файлы:
+
+- `src/features/refinance-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор рефинансирования|Refinance Calculator|canonical|robots|finance/refinance" dist/finance/refinance.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/refinance/ /tmp/calcup-refinance-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/refinance/ /tmp/calcup-refinance-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 59 files / 491 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/finance/refinance/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: loan fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- d2f9d4a
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/health/body-fat`.

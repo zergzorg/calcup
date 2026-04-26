@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.44 расширение finance-категории
+## Текущая фаза: 5.45 расширение finance-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 58 ready-калькуляторов.
-- 16 soon-карточек.
+- 59 ready-калькуляторов.
+- 15 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -73,12 +73,13 @@
 | 5.42 | Ипотечный калькулятор | /finance/mortgage | ✅ ready |
 | 5.43 | Калькулятор вклада | /finance/deposit | ✅ ready |
 | 5.44 | Калькулятор сложного процента | /finance/compound-interest | ✅ ready |
+| 5.45 | Калькулятор рефинансирования | /finance/refinance | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
-- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/
+- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/ · /finance/refinance/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
@@ -93,6 +94,41 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.45) — 2026-04-26
+
+Реализован калькулятор `/finance/refinance`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/refinance-calculator/`.
+- Добавлен расчёт:
+  - старого и нового аннуитетного платежа;
+  - общей выплаты по текущему кредиту;
+  - общей выплаты по новому кредиту с разовыми расходами;
+  - общей экономии или удорожания;
+  - месячной разницы и окупаемости расходов.
+- Добавлен finance warning-note: расчёт не учитывает штрафы, страховки, изменение графика, досрочные погашения и условия банка.
+- Добавлены RU/EN локали `refinance.*`.
+- Registry-запись `refinance` переведена в `ready`.
+- В sitemap добавлен `/finance/refinance/`.
+- README обновлён до 59 ready / 15 soon.
+
+### Проверки
+
+- `npm run test` — OK, 59 files / 491 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/finance/refinance/` title, canonical со slash, `index,follow`;
+  - `/finance/refinance/` есть в sitemap.
+- Mobile smoke:
+  - `/finance/refinance/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `d2f9d4a feat(finance): add refinance calculator`
 
 ## Сделано (Фаза 5.44) — 2026-04-26
 
