@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.55 кровля
+## Текущая фаза: 5.56 лестница
 
 Фактическое состояние на 2026-04-26:
 
 - 11 категорий в реестре.
-- 70 ready-калькуляторов.
-- 10 soon-карточек.
+- 71 ready-калькулятор.
+- 9 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food`, `/animals/cat-calorie`, `/animals/dog-pregnancy` и `/animals/cat-pregnancy`.
@@ -86,6 +86,7 @@
 | 5.53 | Калькулятор беременности кошки | /animals/cat-pregnancy | ✅ ready |
 | 5.54 | Калькулятор плитного фундамента | /construction/slab-foundation | ✅ ready |
 | 5.55 | Калькулятор кровли | /construction/roof | ✅ ready |
+| 5.56 | Калькулятор лестницы | /construction/stairs | ✅ ready |
 
 ## Sitemap
 
@@ -95,7 +96,7 @@
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/slab-foundation/ · /construction/rebar/ · /construction/roof/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/slab-foundation/ · /construction/rebar/ · /construction/roof/ · /construction/stairs/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/ · /animals/dog-pregnancy/ · /animals/cat-pregnancy/
@@ -105,6 +106,39 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.56) — 2026-04-26
+
+Реализован калькулятор `/construction/stairs`.
+
+### Реализовано
+
+- Создан feature-модуль `src/features/stairs-calculator/`.
+- Добавлен расчёт:
+  - количества подъёмов и проступей;
+  - фактической высоты подступёнка, длины марша, угла и длины косоура;
+  - площади ступеней с запасом, закупочного количества и стоимости;
+  - формулы шага `2 × подступёнок + проступь` с комфортной классификацией.
+- Добавлен construction warning-note: расчёт ориентировочный и не заменяет проект лестницы.
+- Добавлены RU/EN локали `stairs.*`.
+- Registry-запись `stairs` переведена в `ready`.
+- В sitemap добавлен `/construction/stairs/`.
+- README обновлён до 71 ready / 9 soon.
+
+### Проверки
+
+- `npm run test -- stairs registry` — OK, 2 files / 7 tests.
+- `npm run test` — OK, 71 files / 555 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+- Locale key parity — OK, 2842 keys.
+- Static smoke:
+  - `/construction/stairs/` title, canonical со slash, `index,follow`;
+  - `/construction/stairs/` есть в sitemap.
+- Mobile smoke:
+  - `/construction/stairs/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

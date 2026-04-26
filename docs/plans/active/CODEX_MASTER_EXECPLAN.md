@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 11.
 - Всего карточек: 80.
-- Ready: 70.
-- Soon: 10.
+- Ready: 71.
+- Soon: 9.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
+- Next candidates: `/animals/dog-size`, `/animals/cat-growth`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `stairs`
-- category: `construction`
-- goal: добавить `/construction/stairs` как следующий construction ready-калькулятор.
-- reason: это следующая construction-карточка после кровли; сценарий полезен для быстрой проверки количества ступеней, угла и эргономики лестницы.
+- slug: `dog-size`
+- category: `animals`
+- goal: добавить `/animals/dog-size` как следующий animal ready-калькулятор.
+- reason: после закрытия трёх construction-карточек логично вернуться к animal backlog; прогноз размера щенка был P1 в Omni expansion registry.
 - acceptance criteria:
-  - registry-запись `stairs` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
-  - создан `src/features/stairs-calculator/`;
-  - чистые функции считают число ступеней, высоту подступёнка, проступь, длину марша, угол и комфортный шаг;
+  - registry-запись `dog-size` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
+  - создан `src/features/dog-size-calculator/`;
+  - чистые функции считают ориентир взрослого веса щенка и размерную категорию;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть construction warning-note: расчёт ориентировочный и не заменяет проект лестницы и проверку норм;
-  - `/construction/stairs/` добавлен в sitemap;
+  - есть animal-care warning-note: прогноз ориентировочный и не заменяет ветеринара/данные породы;
+  - `/animals/dog-size/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/stairs-calculator/index.ts`
-  - `src/features/stairs-calculator/components/StairsCalculatorView.vue`
-  - `src/features/stairs-calculator/composables/useStairsCalculator.ts`
-  - `src/features/stairs-calculator/lib/calculations.ts`
-  - `src/features/stairs-calculator/lib/calculations.test.ts`
-  - `src/features/stairs-calculator/types/stairs.ts`
+  - `src/features/dog-size-calculator/index.ts`
+  - `src/features/dog-size-calculator/components/DogSizeCalculatorView.vue`
+  - `src/features/dog-size-calculator/composables/useDogSizeCalculator.ts`
+  - `src/features/dog-size-calculator/lib/calculations.ts`
+  - `src/features/dog-size-calculator/lib/calculations.test.ts`
+  - `src/features/dog-size-calculator/types/dog-size.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор лестницы|Stair Calculator|canonical|robots|construction/stairs" dist/construction/stairs.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Прогноз размера собаки|Dog Size Calculator|canonical|robots|animals/dog-size" dist/animals/dog-size.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/stairs/ /tmp/calcup-stairs-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/stairs/ /tmp/calcup-stairs-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/dog-size/ /tmp/calcup-dog-size-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/dog-size/ /tmp/calcup-dog-size-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -166,6 +166,7 @@ Owner: Codex
 - slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `475f787`.
 - slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `d71c549`.
 - slug: `roof`; category: `construction`; сделано: площадь скатов, листы, нахлёсты, запас, стоимость и общий segmented toggle CSS; проверки: test/type-check/build/mobile/static smoke; commit hash: `15aaf75`.
+- slug: `stairs`; category: `construction`; сделано: ступени, подступёнок, проступь, угол, косоур и закупка; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
 
 ## Deferred
 
@@ -210,6 +211,7 @@ Owner: Codex
 - 2026-04-26: После `rebar` следующим выбран `slab-foundation`, потому что это соседний construction-сценарий и может переиспользовать подходы concrete/rebar.
 - 2026-04-26: После `slab-foundation` следующим выбран `roof`, чтобы продолжить закрывать крупный construction backlog.
 - 2026-04-26: После `roof` следующим выбран `stairs`, потому что это оставшийся construction `soon` с практичной геометрией и умеренным риском.
+- 2026-04-26: После `stairs` следующим выбран `dog-size`, чтобы вернуться к развитию нового раздела `animals`.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -251,6 +253,7 @@ Owner: Codex
 - `slab-foundation`: первая версия ориентировочная; грунты, нагрузки, морозное пучение, гидроизоляция, класс бетона и инженерный расчёт армирования не входят в scope.
 - `roof`: первая версия ориентировочная; снеговые/ветровые нагрузки, стропильная система, водосток и инженерный проект кровли не входят в scope.
 - `stairs`: первая версия ориентировочная; нормы эвакуации, несущая способность, ограждения, проёмы и конструктивный проект не входят в scope.
+- `dog-size`: первая версия ориентировочная; порода, родители, пол, здоровье и питание могут сильнее влиять на взрослый вес.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -435,6 +438,13 @@ Owner: Codex
 - 2026-04-26: Locale key parity после `/construction/roof` — OK, 2793 keys.
 - 2026-04-26: Static smoke по `dist/construction/roof.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/roof/` — segmented roof-type toggle, fields, chips, price field, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/stairs` точечный `npm run test -- stairs registry` — OK, 2 files / 7 tests.
+- 2026-04-26: После `/construction/stairs` полный `npm run test` — OK, 71 files / 555 tests.
+- 2026-04-26: После `/construction/stairs` `npm run type-check` — OK.
+- 2026-04-26: После `/construction/stairs` `npm run build` — OK, Vite SSG rendered 94 pages.
+- 2026-04-26: Locale key parity после `/construction/stairs` — OK, 2842 keys.
+- 2026-04-26: Static smoke по `dist/construction/stairs.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/stairs/` — fields, chips, price field, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -478,7 +488,8 @@ Owner: Codex
 - `475f787` — `feat(animals): add cat pregnancy calculator`.
 - `d71c549` — `feat(construction): add slab foundation calculator`.
 - `15aaf75` — `feat(construction): add roof calculator`.
+- `this commit` — `feat(construction): add stairs calculator`.
 
 ## Next Action
 
-Закоммитить `/construction/roof` и приступить к Current Milestone `/construction/stairs`.
+Закоммитить `/construction/stairs` и приступить к Current Milestone `/animals/dog-size`.

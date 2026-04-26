@@ -3117,3 +3117,73 @@ Commit hash:
 Следующий шаг:
 
 - Закоммитить `/construction/roof` и перейти к `/construction/stairs`.
+
+### Итерация 57: `/construction/stairs`
+
+Выбранный milestone:
+
+- `/construction/stairs`.
+
+Почему выбран именно он:
+
+- Это последний явно выбранный construction milestone в текущем мастер-плане.
+- Сценарий умеренного риска: полезная геометрия марша без обещания нормативного проекта.
+
+Что изменено:
+
+- Создан `src/features/stairs-calculator/`.
+- Добавлен расчёт количества подъёмов и проступей.
+- Добавлены фактический подступёнок, длина марша, угол лестницы и длина косоура.
+- Добавлена формула шага `2 × подступёнок + проступь` с классификацией low/comfortable/steep.
+- Добавлена оценка площади ступеней с запасом, закупочного количества и стоимости.
+- Добавлен construction warning-note: расчёт не заменяет проект, нормы и замеры.
+- Registry-запись `stairs` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий milestone `/animals/dog-size`.
+
+Затронутые файлы:
+
+- `src/features/stairs-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- stairs registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- Locale key parity script
+- `rg -n "Калькулятор лестницы|Stair Calculator|canonical|robots|construction/stairs" dist/construction/stairs.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4174/construction/stairs/ /tmp/calcup-stairs-mobile-full.png`
+
+Результат тестов:
+
+- Точечный `npm run test -- stairs registry` — OK, 2 files / 7 tests.
+- `npm run test` — OK, 71 files / 555 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+
+Результат smoke-проверок:
+
+- Locale key parity — OK, 2842 keys.
+- Static smoke — OK: `/construction/stairs/` title, canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: fields, chips, price field, result rows и related cards без overflow и наложений.
+
+Следующий шаг:
+
+- Закоммитить `/construction/stairs` и перейти к `/animals/dog-size`.

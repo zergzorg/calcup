@@ -4305,5 +4305,68 @@
       "wastePercent": "Waste cannot be negative.",
       "pricePerSheet": "Price cannot be negative."
     }
+  },
+  "stairs": {
+    "eyebrow": "Construction",
+    "title": "Stair Calculator",
+    "intro": "Calculate step count, actual riser height, tread depth, run length, stair angle and a purchase estimate.",
+    "form": {
+      "geometryTitle": "Stair geometry",
+      "geometryHelp": "Rise is measured from finished lower floor to finished upper floor.",
+      "totalRiseCm": "Total rise",
+      "targetRiserCm": "Target riser",
+      "treadDepthCm": "Tread depth",
+      "risePresets": "Rise presets",
+      "purchaseTitle": "Purchase",
+      "stairWidthM": "Stair width",
+      "pricePerTread": "Tread price",
+      "wastePercent": "Waste",
+      "wastePresets": "Waste presets"
+    },
+    "units": {
+      "cm": "cm",
+      "m": "m",
+      "percent": "%",
+      "rubTread": "₽/tread",
+      "cmValue": "{value} cm",
+      "mValue": "{value} m",
+      "m2Value": "{value} m²",
+      "pcsValue": "{value} pcs",
+      "degreesValue": "{value}°",
+      "moneyValue": "{value} ₽",
+      "percentValue": "{value}%"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Fill in stair parameters to see the result.",
+      "risers": "Risers",
+      "treads": "Treads",
+      "actualRiser": "Actual riser",
+      "totalRun": "Floor run",
+      "angle": "Stair angle",
+      "stringer": "Stringer length",
+      "treadArea": "Tread area with waste",
+      "purchaseTreads": "Treads to buy",
+      "comfort": "Step formula",
+      "totalCost": "Cost"
+    },
+    "comfort": {
+      "low": "{value} cm, low",
+      "comfortable": "{value} cm, comfortable",
+      "steep": "{value} cm, steep"
+    },
+    "warning": {
+      "title": "Approximate geometry",
+      "body": "This calculator helps estimate a stair run and tread purchase. It does not verify code compliance, structural capacity, openings, railings, fixings or egress requirements. Use a measured design before construction."
+    },
+    "formula": "Risers = total rise / target riser, rounded up. Actual riser = total rise / risers. Step formula = 2 × riser + tread, with a common comfort target around 60-64 cm.",
+    "validation": {
+      "totalRiseCm": "Enter a total rise greater than 0.",
+      "targetRiserCm": "Enter a target riser greater than 0.",
+      "treadDepthCm": "Enter a tread depth greater than 0.",
+      "stairWidthM": "Enter a stair width greater than 0.",
+      "wastePercent": "Waste cannot be negative.",
+      "pricePerTread": "Price cannot be negative."
+    }
   }
 }
