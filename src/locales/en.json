@@ -745,6 +745,43 @@
       }
     }
   },
+  "timeDuration": {
+    "eyebrow": "Date & Time",
+    "title": "Time Duration Calculator",
+    "intro": "Add and subtract durations in hours, minutes and seconds.",
+    "form": {
+      "firstTitle": "First duration",
+      "secondTitle": "Second duration",
+      "operation": "Operation",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "operations": {
+        "add": "Add",
+        "subtract": "Subtract"
+      }
+    },
+    "units": {
+      "h": "h",
+      "min": "min",
+      "sec": "sec"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter whole non-negative values for hours, minutes and seconds.",
+      "duration": "Total duration",
+      "hours": "Total hours",
+      "minutes": "Total minutes",
+      "seconds": "Total seconds",
+      "sign": "Sign",
+      "positive": "positive",
+      "negative": "negative"
+    },
+    "formula": "Each duration is converted to seconds. The selected operation is applied, then the result is normalized back to HH:MM:SS.",
+    "validation": {
+      "nonNegativeInteger": "Enter a whole number from 0."
+    }
+  },
   "tips": {
     "eyebrow": "Everyday life",
     "title": "Tip Calculator",
