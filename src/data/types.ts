@@ -15,6 +15,7 @@ export type CategorySlug =
   | 'clothing'
   | 'convert'
   | 'everyday'
+  | 'tools'
 
 export interface CalculatorMeta {
   id: string

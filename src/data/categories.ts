@@ -112,6 +112,17 @@ export const CATEGORIES: CategoryMeta[] = [
     color: '#84cc16',
     path: '/everyday',
   },
+  {
+    slug: 'tools',
+    title: { ru: 'Инструменты', en: 'Tools' },
+    description: {
+      ru: 'Текстовые, developer и маркетинговые утилиты',
+      en: 'Text, developer and marketing utilities',
+    },
+    icon: '🛠️',
+    color: '#0ea5e9',
+    path: '/tools',
+  },
 ]
 
 export const getCategoryBySlug = (slug: string) =>
