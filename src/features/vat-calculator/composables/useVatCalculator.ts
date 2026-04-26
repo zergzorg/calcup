@@ -2,13 +2,13 @@ import { computed, ref } from 'vue'
 import { addVat, extractVat, isValidAmount, isValidRate } from '../lib/calculations'
 import type { VatMode, VatValidationIssue } from '../types/vat'
 
-export const PRESET_RATES = [20, 10, 0] as const
+export const PRESET_RATES = [22, 10, 7, 5, 0] as const
 
 export function useVatCalculator() {
   const mode = ref<VatMode>('add')
   const amount = ref<number>(1000)
-  const presetRate = ref<number | 'custom'>(20)
-  const customRate = ref<number>(15)
+  const presetRate = ref<number | 'custom'>(22)
+  const customRate = ref<number>(20)
 
   const touched = ref(new Set<VatValidationIssue['field']>())
 

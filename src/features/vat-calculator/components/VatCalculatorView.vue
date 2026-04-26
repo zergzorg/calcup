@@ -86,6 +86,11 @@
           </div>
         </div>
 
+        <aside class="vat-warning-note">
+          <strong>{{ t('vat.form.actualityTitle') }}</strong>
+          <span>{{ t('vat.form.actualityBody') }}</span>
+        </aside>
+
         <div v-if="presetRate === 'custom'" class="vat-field">
           <label for="vat-custom-rate">{{ t('vat.form.customRateLabel') }}</label>
           <div class="vat-input-wrap">

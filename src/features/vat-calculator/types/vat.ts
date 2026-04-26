@@ -1,6 +1,6 @@
 export type VatMode = 'add' | 'extract'
 
-export type VatPresetRate = 20 | 10 | 0
+export type VatPresetRate = 22 | 10 | 7 | 5 | 0
 
 export interface VatAddResult {
   vatAmount: number

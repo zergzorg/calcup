@@ -1426,7 +1426,7 @@
   "vat": {
     "eyebrow": "Finance",
     "title": "VAT Calculator",
-    "intro": "Add VAT on top of a net amount, or extract VAT from a gross amount. Supports 20%, 10%, 0%, or a custom rate.",
+    "intro": "Add VAT on top of a net amount, or extract VAT from a gross amount. Supports 22%, 10%, 7%, 5%, 0%, or a custom rate.",
     "modes": {
       "label": "Calculation mode",
       "add": "Add VAT",
@@ -1437,7 +1437,9 @@
       "amountWith": "Amount with VAT",
       "rate": "VAT rate",
       "customRate": "Custom",
-      "customRateLabel": "VAT rate"
+      "customRateLabel": "VAT rate",
+      "actualityTitle": "2026 rates",
+      "actualityBody": "The main Russian VAT rate is 22%. Simplified-tax businesses may use special 5% or 7% rates when eligible; check the rate for your transaction."
     },
     "result": {
       "label": "Result",
@@ -1447,7 +1449,7 @@
       "vatAmount": "VAT {rate}%",
       "formula": {
         "add": "VAT = amount × rate / 100",
-        "extract": "net = gross / (1 + rate / 100)"
+        "extract": "VAT = gross × rate / (100 + rate)"
       }
     },
     "validation": {
