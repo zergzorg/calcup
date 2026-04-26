@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.31 расширение строительства
+## Текущая фаза: 5.32 расширение конвертеров
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 45 ready-калькуляторов.
-- 29 soon-карточек.
+- 46 ready-калькуляторов.
+- 28 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -60,6 +60,7 @@
 | 5.29 | Конвертер размеров одежды | /clothing/clothing-size | ✅ ready |
 | 5.30 | Метроном | /sport/metronome | ✅ ready |
 | 5.31 | Ленточный фундамент | /construction/strip-foundation | ✅ ready |
+| 5.32 | Конвертер данных | /convert/data-size | ✅ ready |
 
 ## Sitemap
 
@@ -68,7 +69,7 @@
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
 - /math/percentage/
 - /health/bmi/
-- /convert/length/ · /convert/temperature/ · /convert/weight/
+- /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
@@ -78,6 +79,36 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.32) — 2026-04-26
+
+Реализован калькулятор `/convert/data-size`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/data-size-converter/`.
+- Добавлен decimal/binary расчёт:
+  - bytes, KB, MB, GB, TB;
+  - bytes, KiB, MiB, GiB, TiB;
+  - пересчёт между decimal и binary единицами.
+- Добавлены переключатели Decimal/Binary на shared chip-control без локального CSS.
+- Добавлены RU/EN локали `dataSize.*`.
+- Registry-запись `data-size` переведена в `ready`.
+- В sitemap добавлен `/convert/data-size/`.
+
+### Проверки
+
+- `npm run test` — OK, `423/423`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/convert/data-size/` title, canonical со slash, `index,follow`;
+  - `/convert/data-size/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/convert/data-size/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

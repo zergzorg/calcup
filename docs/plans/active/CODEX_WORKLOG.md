@@ -1450,3 +1450,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/convert/data-size`.
+
+### Итерация 33: `/convert/data-size`
+
+Выбранный milestone:
+
+- `/convert/data-size`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый конвертер без внешних API и нормативных источников.
+- Закрывает ещё одну базовую карточку в категории `/convert`.
+
+Что изменено:
+
+- Создан `src/features/data-size-converter/`.
+- Добавлены чистые функции конвертации через байты.
+- Добавлены decimal-единицы KB/MB/GB/TB и binary-единицы KiB/MiB/GiB/TiB.
+- Добавлен переключатель Decimal/Binary на shared chip-control без локального CSS.
+- Registry-запись `data-size` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/everyday/room-area`.
+
+Затронутые файлы:
+
+- `src/features/data-size-converter/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Конвертер данных|Data Size Converter|canonical|robots|convert/data-size" dist/convert/data-size.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/data-size/ /tmp/calcup-data-size-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/data-size/ /tmp/calcup-data-size-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 46 files / 423 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/convert/data-size/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: Decimal/Binary chips, selects, result rows и popular conversions без overflow и наложений.
+
+Commit hash:
+
+- f1e8bda
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/everyday/room-area`.
