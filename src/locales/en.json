@@ -4228,5 +4228,82 @@
         "required": "Enter today's date."
       }
     }
+  },
+  "roof": {
+    "eyebrow": "Construction",
+    "title": "Roof Calculator",
+    "intro": "Estimate roof slope area, effective sheet coverage with overlaps, waste, sheet count and material cost.",
+    "types": {
+      "gable": "Gable",
+      "hip": "Hip",
+      "shed": "Shed"
+    },
+    "form": {
+      "roofTypeTitle": "Roof type",
+      "geometryTitle": "Geometry",
+      "geometryHelp": "Enter building dimensions by plan. Overhang is added on each side.",
+      "lengthM": "Building length",
+      "widthM": "Building width",
+      "overhangMm": "Overhang",
+      "pitchDegrees": "Roof pitch",
+      "pitchPresets": "Pitch presets",
+      "sheetTitle": "Sheet material",
+      "sheetHelp": "Overlaps reduce the effective coverage of each sheet.",
+      "sheetLengthM": "Sheet length",
+      "sheetWidthM": "Sheet width",
+      "sheetPresets": "Sheet presets",
+      "sideOverlapMm": "Side overlap",
+      "endOverlapMm": "End overlap",
+      "purchaseTitle": "Waste and price",
+      "wastePercent": "Waste",
+      "pricePerSheet": "Sheet price",
+      "wastePresets": "Waste presets"
+    },
+    "units": {
+      "m": "m",
+      "mm": "mm",
+      "degrees": "°",
+      "percent": "%",
+      "rubSheet": "₽/sheet",
+      "mValue": "{value} m",
+      "m2Value": "{value} m²",
+      "pcsValue": "{value} pcs",
+      "moneyValue": "{value} ₽",
+      "degreesValue": "{value}°",
+      "percentValue": "{value}%"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Fill in roof and sheet parameters to see the result.",
+      "sheets": "Sheets needed",
+      "roofArea": "Slope area",
+      "materialArea": "Material with waste",
+      "projectedArea": "Projected area",
+      "slopeLength": "Slope length",
+      "effectiveSheetArea": "Effective sheet area",
+      "purchaseArea": "Purchased area",
+      "leftoverArea": "Leftover area",
+      "ridgeLength": "Approx. ridge length",
+      "totalCost": "Cost"
+    },
+    "warning": {
+      "title": "Approximate purchase estimate",
+      "body": "This calculator estimates area and sheets from simple geometry. It does not verify snow or wind loads, rafters, battens, flashing, trim pieces or drainage. Use measurements and an engineered design before construction."
+    },
+    "formula": "Slope area = projected roof area × 1 / cos(pitch). Material = slope area × (1 + waste / 100). Sheets = material / effective sheet area after overlaps, rounded up.",
+    "validation": {
+      "lengthM": "Enter a length greater than 0.",
+      "widthM": "Enter a width greater than 0.",
+      "overhangMm": "Overhang cannot be negative.",
+      "pitchDegrees": "Pitch must be from 0 to 79°.",
+      "sheetLengthM": "Enter a sheet length greater than 0.",
+      "sheetWidthM": "Enter a sheet width greater than 0.",
+      "sideOverlapMm": "Side overlap cannot be negative.",
+      "endOverlapMm": "End overlap cannot be negative.",
+      "overlapWidth": "Side overlap must be smaller than sheet width.",
+      "overlapLength": "End overlap must be smaller than sheet length.",
+      "wastePercent": "Waste cannot be negative.",
+      "pricePerSheet": "Price cannot be negative."
+    }
   }
 }

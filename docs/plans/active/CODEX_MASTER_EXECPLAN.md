@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 11.
 - Всего карточек: 80.
-- Ready: 69.
-- Soon: 11.
+- Ready: 70.
+- Soon: 10.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/construction/roof`, `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
+- Next candidates: `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `roof`
+- slug: `stairs`
 - category: `construction`
-- goal: добавить `/construction/roof` как следующий construction ready-калькулятор.
-- reason: это следующая P0/P1 construction-карточка после фундамента; она расширяет ремонтно-строительный кластер в сторону кровли.
+- goal: добавить `/construction/stairs` как следующий construction ready-калькулятор.
+- reason: это следующая construction-карточка после кровли; сценарий полезен для быстрой проверки количества ступеней, угла и эргономики лестницы.
 - acceptance criteria:
-  - registry-запись `roof` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
-  - создан `src/features/roof-calculator/`;
-  - чистые функции считают площадь скатов, запас, листовые/штучные материалы и ориентировочную стоимость;
+  - registry-запись `stairs` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
+  - создан `src/features/stairs-calculator/`;
+  - чистые функции считают число ступеней, высоту подступёнка, проступь, длину марша, угол и комфортный шаг;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть construction warning-note: расчёт ориентировочный и не заменяет проект/замеры кровельщика;
-  - `/construction/roof/` добавлен в sitemap;
+  - есть construction warning-note: расчёт ориентировочный и не заменяет проект лестницы и проверку норм;
+  - `/construction/stairs/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/roof-calculator/index.ts`
-  - `src/features/roof-calculator/components/RoofCalculatorView.vue`
-  - `src/features/roof-calculator/composables/useRoofCalculator.ts`
-  - `src/features/roof-calculator/lib/calculations.ts`
-  - `src/features/roof-calculator/lib/calculations.test.ts`
-  - `src/features/roof-calculator/types/roof.ts`
+  - `src/features/stairs-calculator/index.ts`
+  - `src/features/stairs-calculator/components/StairsCalculatorView.vue`
+  - `src/features/stairs-calculator/composables/useStairsCalculator.ts`
+  - `src/features/stairs-calculator/lib/calculations.ts`
+  - `src/features/stairs-calculator/lib/calculations.test.ts`
+  - `src/features/stairs-calculator/types/stairs.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор крыши|Roof Calculator|canonical|robots|construction/roof" dist/construction/roof.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор лестницы|Stair Calculator|canonical|robots|construction/stairs" dist/construction/stairs.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/roof/ /tmp/calcup-roof-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/roof/ /tmp/calcup-roof-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/stairs/ /tmp/calcup-stairs-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/stairs/ /tmp/calcup-stairs-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -165,6 +165,7 @@ Owner: Codex
 - slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
 - slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `475f787`.
 - slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `d71c549`.
+- slug: `roof`; category: `construction`; сделано: площадь скатов, листы, нахлёсты, запас, стоимость и общий segmented toggle CSS; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
 
 ## Deferred
 
@@ -208,6 +209,7 @@ Owner: Codex
 - 2026-04-26: После `pregnancy-due-date` следующим выбран `rebar`, потому что health `soon` закрыт и construction остаётся самым крупным backlog-кластером.
 - 2026-04-26: После `rebar` следующим выбран `slab-foundation`, потому что это соседний construction-сценарий и может переиспользовать подходы concrete/rebar.
 - 2026-04-26: После `slab-foundation` следующим выбран `roof`, чтобы продолжить закрывать крупный construction backlog.
+- 2026-04-26: После `roof` следующим выбран `stairs`, потому что это оставшийся construction `soon` с практичной геометрией и умеренным риском.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -248,6 +250,7 @@ Owner: Codex
 - `rebar`: масса считается через площадь круга и плотность стали 7850 кг/м³; закупочные прутки округляются вверх по стандартной длине, стоимость считается от закупочной длины.
 - `slab-foundation`: первая версия ориентировочная; грунты, нагрузки, морозное пучение, гидроизоляция, класс бетона и инженерный расчёт армирования не входят в scope.
 - `roof`: первая версия ориентировочная; снеговые/ветровые нагрузки, стропильная система, водосток и инженерный проект кровли не входят в scope.
+- `stairs`: первая версия ориентировочная; нормы эвакуации, несущая способность, ограждения, проёмы и конструктивный проект не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -425,6 +428,13 @@ Owner: Codex
 - 2026-04-26: Locale key parity после `/construction/slab-foundation` — OK, 2730 keys.
 - 2026-04-26: Static smoke по `dist/construction/slab-foundation.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/slab-foundation/` — warning note, fields, vertical chips, price fields, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/construction/roof` точечный `npm run test -- roof registry` — OK, 2 files / 8 tests.
+- 2026-04-26: После `/construction/roof` полный `npm run test` — OK, 70 files / 551 tests.
+- 2026-04-26: После `/construction/roof` `npm run type-check` — OK.
+- 2026-04-26: После `/construction/roof` `npm run build` — OK, Vite SSG rendered 94 pages.
+- 2026-04-26: Locale key parity после `/construction/roof` — OK, 2793 keys.
+- 2026-04-26: Static smoke по `dist/construction/roof.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/roof/` — segmented roof-type toggle, fields, chips, price field, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -467,7 +477,8 @@ Owner: Codex
 - `713a201` — `feat(animals): add dog pregnancy calculator`.
 - `475f787` — `feat(animals): add cat pregnancy calculator`.
 - `d71c549` — `feat(construction): add slab foundation calculator`.
+- `this commit` — `feat(construction): add roof calculator`.
 
 ## Next Action
 
-Закоммитить `/construction/slab-foundation` и приступить к Current Milestone `/construction/roof`.
+Закоммитить `/construction/roof` и приступить к Current Milestone `/construction/stairs`.

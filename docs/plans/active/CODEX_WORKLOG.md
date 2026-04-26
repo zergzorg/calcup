@@ -3046,3 +3046,74 @@ Commit hash:
 Следующий шаг:
 
 - Закоммитить `/construction/slab-foundation` и перейти к `/construction/roof`.
+
+### Итерация 56: `/construction/roof`
+
+Выбранный milestone:
+
+- `/construction/roof`.
+
+Почему выбран именно он:
+
+- Это следующая construction-карточка из текущего мастер-плана.
+- Сценарий продолжает кластер закупки материалов после фундамента, бетона и арматуры.
+
+Что изменено:
+
+- Создан `src/features/roof-calculator/`.
+- Добавлены режимы крыши: двускатная, вальмовая и односкатная.
+- Добавлен расчёт площади скатов по проекции, свесам и углу.
+- Добавлен расчёт полезной площади листа с боковым и продольным нахлёстом.
+- Добавлен расчёт площади с запасом, количества листов, покупаемой площади, остатка, ориентира конька и стоимости.
+- Добавлен construction warning-note: расчёт не заменяет проект и замеры кровельщика.
+- В `calculator-design-system.css` добавлен общий стиль для segmented toggle-кнопок, чтобы выбранный пункт не выглядел как текстовая подсветка на мобильном.
+- Registry-запись `roof` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий milestone `/construction/stairs`.
+
+Затронутые файлы:
+
+- `src/features/roof-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- roof registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- Locale key parity script
+- `rg -n "Калькулятор кровли|Roof Calculator|canonical|robots|construction/roof" dist/construction/roof.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4174/construction/roof/ /tmp/calcup-roof-mobile-full.png`
+
+Результат тестов:
+
+- Точечный `npm run test -- roof registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 70 files / 551 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+
+Результат smoke-проверок:
+
+- Locale key parity — OK, 2793 keys.
+- Static smoke — OK: `/construction/roof/` title, canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: segmented roof-type toggle, fields, chips, price field, result rows и related cards без overflow и наложений.
+
+Следующий шаг:
+
+- Закоммитить `/construction/roof` и перейти к `/construction/stairs`.

@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.54 плитный фундамент
+## Текущая фаза: 5.55 кровля
 
 Фактическое состояние на 2026-04-26:
 
 - 11 категорий в реестре.
-- 69 ready-калькуляторов.
-- 11 soon-карточек.
+- 70 ready-калькуляторов.
+- 10 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - `/animals` открыт ready-калькуляторами `/animals/dog-age`, `/animals/cat-age`, `/animals/dog-food`, `/animals/cat-calorie`, `/animals/dog-pregnancy` и `/animals/cat-pregnancy`.
@@ -85,6 +85,7 @@
 | 5.52 | Калькулятор беременности собаки | /animals/dog-pregnancy | ✅ ready |
 | 5.53 | Калькулятор беременности кошки | /animals/cat-pregnancy | ✅ ready |
 | 5.54 | Калькулятор плитного фундамента | /construction/slab-foundation | ✅ ready |
+| 5.55 | Калькулятор кровли | /construction/roof | ✅ ready |
 
 ## Sitemap
 
@@ -94,7 +95,7 @@
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/ · /health/pregnancy-due-date/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
-- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/slab-foundation/ · /construction/rebar/
+- /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/ · /construction/slab-foundation/ · /construction/rebar/ · /construction/roof/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /animals/dog-age/ · /animals/cat-age/ · /animals/dog-food/ · /animals/cat-calorie/ · /animals/dog-pregnancy/ · /animals/cat-pregnancy/
@@ -104,6 +105,41 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/`, `/animals/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.55) — 2026-04-26
+
+Реализован калькулятор `/construction/roof`.
+
+### Реализовано
+
+- Создан feature-модуль `src/features/roof-calculator/`.
+- Добавлен расчёт:
+  - площади крыши по проекции, свесам и углу ската;
+  - полезной площади листа с боковым и продольным нахлёстом;
+  - площади материала с запасом, количества листов и покупаемой площади;
+  - ориентировочной длины конька и стоимости листов.
+- Добавлены режимы: двускатная, вальмовая и односкатная крыша.
+- Добавлен construction warning-note: расчёт ориентировочный и не заменяет проект кровли.
+- В общем `calculator-design-system.css` улучшено отображение сегментированных toggle-кнопок на мобильном.
+- Добавлены RU/EN локали `roof.*`.
+- Registry-запись `roof` переведена в `ready`.
+- В sitemap добавлен `/construction/roof/`.
+- README обновлён до 70 ready / 10 soon.
+
+### Проверки
+
+- `npm run test -- roof registry` — OK, 2 files / 8 tests.
+- `npm run test` — OK, 70 files / 551 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+- Locale key parity — OK, 2793 keys.
+- Static smoke:
+  - `/construction/roof/` title, canonical со slash, `index,follow`;
+  - `/construction/roof/` есть в sitemap.
+- Mobile smoke:
+  - `/construction/roof/` 430px full-page screenshot без overflow и наложений, segmented toggle выглядит как набор кнопок.
 
 ---
 
