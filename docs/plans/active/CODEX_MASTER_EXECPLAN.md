@@ -164,7 +164,7 @@ Owner: Codex
 - slug: `cat-calorie`; category: `animals`; сделано: RER, дневные калории и граммы корма для кошки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `60b715f`.
 - slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
 - slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `475f787`.
-- slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
+- slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `d71c549`.
 
 ## Deferred
 
@@ -466,7 +466,7 @@ Owner: Codex
 - `60b715f` — `feat(animals): add cat calorie calculator`.
 - `713a201` — `feat(animals): add dog pregnancy calculator`.
 - `475f787` — `feat(animals): add cat pregnancy calculator`.
-- `this commit` — `feat(construction): add slab foundation calculator`.
+- `d71c549` — `feat(construction): add slab foundation calculator`.
 
 ## Next Action
 
