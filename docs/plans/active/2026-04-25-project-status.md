@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.21 расширение строительного раздела
+## Текущая фаза: 5.22 расширение раздела даты и времени
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 35 ready-калькуляторов.
-- 39 soon-карточек.
+- 36 ready-калькуляторов.
+- 38 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -50,6 +50,7 @@
 | 5.19 | Калькулятор утеплителя | /construction/insulation | ✅ ready |
 | 5.20 | Калькулятор запаса хода EV | /transport/ev-range | ✅ ready |
 | 5.21 | Калькулятор бетона | /construction/concrete | ✅ ready |
+| 5.22 | Калькулятор возраста | /datetime/age | ✅ ready |
 
 ## Sitemap
 
@@ -63,11 +64,43 @@
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
 - /clothing/shoe-size/
-- /datetime/date-diff/
+- /datetime/date-diff/ · /datetime/age/
 - /everyday/tips/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.22) — 2026-04-26
+
+Реализован калькулятор даты и времени `/datetime/age`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/age-calculator/`.
+- Добавлен расчёт:
+  - календарного возраста в годах, месяцах и днях;
+  - прожитых дней, полных недель и полных месяцев;
+  - следующего дня рождения;
+  - дней до дня рождения;
+  - возраста на следующий день рождения.
+- Для дней рождения 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
+- Добавлены RU/EN локали `age.*`.
+- Registry-запись `age` переведена в `ready`.
+- В sitemap добавлен `/datetime/age/`.
+
+### Проверки
+
+- `npm run test` — OK, `376/376`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/datetime/age/` title, canonical со slash, `index,follow`;
+  - `/datetime/age/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/datetime/age/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

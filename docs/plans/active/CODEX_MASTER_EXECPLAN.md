@@ -34,10 +34,10 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Всего карточек: 74.
-- Ready после текущего milestone: 35.
-- Soon после текущего milestone: 39.
+- Ready после текущего milestone: 36.
+- Soon после текущего milestone: 38.
 - Пустые ready-категории до текущего milestone были `sport`, `clothing`; обе категории теперь имеют ready-инструменты.
-- Категории с одним ready-калькулятором: `math`, `health`, `clothing`, `datetime`.
+- Категории с одним ready-калькулятором: `math`, `health`, `clothing`.
 - Категории с малым покрытием, но высоким потенциалом: `construction` (11 ready / 10 soon), `sport` (4 ready / 1 soon), `clothing` (1 ready / 4 soon).
 - Архитектурно критичных блокеров для расширения каталога не найдено.
 - Главный SEO gap: `public/sitemap.xml` обновляется вручную и может расходиться с реестром при росте каталога.
@@ -62,27 +62,27 @@ Owner: Codex
 
 ## Текущий Milestone
 
-Milestone: `construction/concrete`.
+Milestone: `datetime/age`.
 Status: completed.
 
 Критерии готовности:
 
-- `concrete` переведён из `soon` в `ready`.
-- Создан `src/features/concrete-calculator/`.
+- `age` переведён из `soon` в `ready`.
+- Создан `src/features/age-calculator/`.
 - Добавлены чистые формулы и unit-тесты.
 - Добавлены RU/EN локали.
-- `/construction/concrete/` добавлен в sitemap.
+- `/datetime/age/` добавлен в sitemap.
 - Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
 - Изменения закоммичены отдельным commit.
 
 Ожидаемые файлы:
 
-- `src/features/concrete-calculator/index.ts`
-- `src/features/concrete-calculator/components/ConcreteCalculatorView.vue`
-- `src/features/concrete-calculator/composables/useConcreteCalculator.ts`
-- `src/features/concrete-calculator/lib/calculations.ts`
-- `src/features/concrete-calculator/lib/calculations.test.ts`
-- `src/features/concrete-calculator/types/concrete.ts`
+- `src/features/age-calculator/index.ts`
+- `src/features/age-calculator/components/AgeCalculatorView.vue`
+- `src/features/age-calculator/composables/useAgeCalculator.ts`
+- `src/features/age-calculator/lib/calculations.ts`
+- `src/features/age-calculator/lib/calculations.test.ts`
+- `src/features/age-calculator/types/age.ts`
 - `src/data/calculators.ts`
 - `src/locales/ru.json`
 - `src/locales/en.json`
@@ -112,6 +112,7 @@ Status: completed.
 - 2026-04-26: Реализован `/construction/insulation`; каталог стал 33 ready / 41 soon, строительный раздел получил десятый ready-инструмент.
 - 2026-04-26: Реализован `/transport/ev-range`; каталог стал 34 ready / 40 soon, транспортный раздел закрыл все текущие ready-кандидаты.
 - 2026-04-26: Реализован `/construction/concrete`; каталог стал 35 ready / 39 soon, строительный раздел получил одиннадцатый ready-инструмент.
+- 2026-04-26: Реализован `/datetime/age`; каталог стал 36 ready / 38 soon, раздел дат получил второй ready-инструмент.
 
 ## Decisions Log
 
@@ -133,6 +134,7 @@ Status: completed.
 - 2026-04-26: Для `insulation` расчёт использует площадь плиты и целые упаковки: `boards = ceil(netArea * (1 + waste / 100) / boardArea)`, `packs = ceil(boards / boardsPerPack)`. Объём считается по толщине утеплителя.
 - 2026-04-26: Для `ev-range` запас хода считается от текущей энергии батареи минус резерв: `rangeKm = (batteryKwh * (currentCharge - reserve) / 100) / consumptionKwhPer100Km * 100`. Дозарядка до цели не уходит ниже нуля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`. Литры переводятся из м³, мешки округляются вверх по выходу смеси в литрах.
+- 2026-04-26: Для `age` возраст считается календарно: полные годы, затем полные месяцы и оставшиеся дни; для дней рождения 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 
 ## Risks / Blockers
 
@@ -241,6 +243,11 @@ Status: completed.
 - 2026-04-26: Для `/construction/concrete` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/construction/concrete/index.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/construction/concrete/` — поля, пресеты, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/datetime/age` `npm run test` — OK, 36 files / 376 tests.
+- 2026-04-26: Для `/datetime/age` `npm run type-check` — OK.
+- 2026-04-26: Для `/datetime/age` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/datetime/age.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/datetime/age/` — поля, result rows и related card без overflow и наложений.
 
 ## Commit Log
 
@@ -264,10 +271,21 @@ Status: completed.
 - d880d93 — `feat(construction): add insulation calculator`.
 - f665b29 — `feat(transport): add ev range calculator`.
 - 45c9836 — `feat(construction): add concrete calculator`.
+- 0bbdcfc — `feat(datetime): add age calculator`.
 
 ## Next Action
 
-Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/datetime/age`, `/construction/strip-foundation`.
+Перейти к следующему backlog item: выбрать следующий high-value ready-калькулятор из roadmap. Кандидаты: `/clothing/clothing-size`, `/construction/strip-foundation`, `/datetime/workdays`.
+
+Завершённый milestone `datetime/age`:
+
+- `age` переведён из `soon` в `ready`.
+- Создан `src/features/age-calculator/`.
+- Добавлены формулы и unit-тесты для календарного возраста, прожитых дней, недель, месяцев и следующего дня рождения.
+- Добавлены RU/EN локали.
+- `/datetime/age/` добавлен в sitemap.
+- Проверки `npm run test`, `npm run type-check`, `npm run build` зелёные.
+- Решение: для 29 февраля в невисокосный год следующий день рождения считается 28 февраля.
 
 Завершённый milestone `construction/concrete`:
 

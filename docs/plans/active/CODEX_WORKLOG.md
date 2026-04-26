@@ -774,3 +774,42 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/datetime/age` или `/construction/strip-foundation`.
+
+### Итерация 22: `/datetime/age`
+
+Что выбрано:
+
+- Усилить категорию `/datetime` вторым ready-инструментом: `/datetime/age`.
+
+Что изменено:
+
+- Создан `src/features/age-calculator/`.
+- Добавлен расчёт календарного возраста, прожитых дней, полных недель, полных месяцев и следующего дня рождения.
+- Для 29 февраля в невисокосный год следующий день рождения считается 28 февраля.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/age/ /tmp/calcup-age-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/age/ /tmp/calcup-age-mobile-full.png`
+- Static smoke через `rg` по `dist/datetime/age.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 36 files / 376 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/datetime/age/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, result rows и related card без overflow и наложений.
+
+Commit hash:
+
+- 0bbdcfc
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/strip-foundation` или `/datetime/workdays`.
