@@ -158,6 +158,7 @@ Sneaker, shoe, clothing and brand size converters.
 - [x] Реализовать `/sport/pace-speed`.
 - [x] Реализовать `/sport/distance-pace-time`.
 - [x] Реализовать `/sport/heart-rate-zones`.
+- [x] Реализовать `/sport/metronome`.
 - [x] Реализовать `/clothing/shoe-size`.
 - [x] Реализовать `/clothing/clothing-size`.
 - [ ] Реализовать `/clothing/sneaker-size`.
@@ -180,4 +181,4 @@ Sneaker, shoe, clothing and brand size converters.
 
 ## Completion Notes
 
-План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. На 2026-04-26 `/sport/pace-speed`, `/sport/distance-pace-time`, `/sport/heart-rate-zones`, `/clothing/shoe-size` и `/clothing/clothing-size` переведены в ready, поэтому соответствующие страницы добавлены в sitemap.
+План активный: категории `/sport` и `/clothing` добавлены в `src/data/categories.ts`, заглушки `soon` добавлены в `src/data/calculators.ts`, SEO application category расширен в `src/composables/useSeo.ts`. На 2026-04-26 `/sport/pace-speed`, `/sport/distance-pace-time`, `/sport/heart-rate-zones`, `/sport/race-split`, `/sport/metronome`, `/clothing/shoe-size` и `/clothing/clothing-size` переведены в ready, поэтому соответствующие страницы добавлены в sitemap.

@@ -1309,3 +1309,74 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/sport/metronome`.
+
+### Итерация 31: `/sport/metronome`
+
+Выбранный milestone:
+
+- `/sport/metronome`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Закрывает последний `soon` в категории `/sport`.
+- Medium-risk из-за аудио: звук запускается только пользовательским действием, без autoplay.
+
+Что изменено:
+
+- Создан `src/features/metronome-calculator/`.
+- Добавлены чистые функции расчёта BPM, интервала удара, длины такта, общего количества ударов и целевого каденса.
+- Добавлен Web Audio click: высокий звук на первый удар такта, обычный звук на остальные.
+- Добавлен старт/стоп, который работает только после клика пользователя.
+- Registry-запись `metronome` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/construction/strip-foundation`.
+
+Затронутые файлы:
+
+- `src/features/metronome-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-25-sport-clothing-roadmap.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Метроном|Metronome|canonical|robots|sport/metronome" dist/sport/metronome.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/sport/metronome/ /tmp/calcup-metronome-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/sport/metronome/ /tmp/calcup-metronome-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 44 files / 413 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/sport/metronome/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: inputs, cadence chips, start button и result rows без overflow и наложений.
+- Дополнительный click-smoke через Node `require('playwright')` не выполнен: в локальном окружении доступен CLI `npx playwright screenshot`, но пакет не резолвится как Node-модуль.
+
+Commit hash:
+
+- 8741b2d
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/construction/strip-foundation`.

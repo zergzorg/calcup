@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.29 расширение раздела одежды
+## Текущая фаза: 5.30 расширение спорта
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 43 ready-калькулятора.
-- 31 soon-карточка.
+- 44 ready-калькулятора.
+- 30 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -58,6 +58,7 @@
 | 5.27 | Конвертер объёма | /convert/volume | ✅ ready |
 | 5.28 | Конвертер скорости | /convert/speed | ✅ ready |
 | 5.29 | Конвертер размеров одежды | /clothing/clothing-size | ✅ ready |
+| 5.30 | Метроном | /sport/metronome | ✅ ready |
 
 ## Sitemap
 
@@ -69,13 +70,44 @@
 - /convert/length/ · /convert/temperature/ · /convert/weight/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
-- /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/
+- /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.30) — 2026-04-26
+
+Реализован калькулятор `/sport/metronome`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/metronome-calculator/`.
+- Добавлен расчёт:
+  - интервала удара по BPM;
+  - длины такта;
+  - количества ударов за тренировочный блок;
+  - ориентира каденса для удара на каждый шаг или на каждый второй шаг.
+- Добавлен Web Audio click, который запускается только после пользовательского действия.
+- Добавлены RU/EN локали `metronome.*`.
+- Registry-запись `metronome` переведена в `ready`.
+- В sitemap добавлен `/sport/metronome/`.
+
+### Проверки
+
+- `npm run test` — OK, `413/413`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/sport/metronome/` title, canonical со slash, `index,follow`;
+  - `/sport/metronome/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/sport/metronome/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
