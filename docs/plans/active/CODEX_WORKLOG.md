@@ -813,3 +813,43 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/strip-foundation` или `/datetime/workdays`.
+
+### Итерация 23: `/datetime/workdays`
+
+Что выбрано:
+
+- Продолжить усиление категории `/datetime` и реализовать `/datetime/workdays`.
+
+Что изменено:
+
+- Создан `src/features/workdays-calculator/`.
+- Добавлен расчёт рабочих дней Пн-Пт, выходных, календарных дней, полных недель и направления диапазона.
+- Добавлен переключатель включения конечной даты.
+- Праздники и переносы выходных не учитываются в первой версии и явно описаны в UI.
+- Обновлены `src/data/calculators.ts`, `src/locales/ru.json`, `src/locales/en.json`.
+- Обновлены `public/sitemap.xml`, `README.md` и active-планы.
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/datetime/workdays/ /tmp/calcup-workdays-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/datetime/workdays/ /tmp/calcup-workdays-mobile-full.png`
+- Static smoke через `rg` по `dist/datetime/workdays.html` и sitemap.
+
+Результат проверок:
+
+- `npm run test` — OK, 37 files / 381 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke — OK: `/datetime/workdays/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, toggle, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- b05e876
+
+Следующий шаг:
+
+- Перейти к следующему high-value калькулятору: `/clothing/clothing-size`, `/construction/strip-foundation` или `/datetime/time-duration`.
