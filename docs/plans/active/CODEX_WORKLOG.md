@@ -2907,3 +2907,73 @@ Commit hash:
 Следующий шаг:
 
 - После зелёных проверок закоммитить `/animals/dog-pregnancy` и перейти к `/animals/cat-pregnancy`.
+
+### Итерация 54: `/animals/cat-pregnancy`
+
+Выбранный milestone:
+
+- `/animals/cat-pregnancy`.
+
+Почему выбран именно он:
+
+- Это парный P0 к `/animals/dog-pregnancy`.
+- Закрывает базовый animal pregnancy cluster после age/food-калькуляторов.
+- Источники по срокам сверены перед реализацией: Merck Veterinary Manual указывает 60-65 дней, VCA — 60-67 дней и чаще 63-65 дней.
+
+Что изменено:
+
+- Создан `src/features/cat-pregnancy-calculator/`.
+- Добавлены date-only функции для ISO-дат, прибавления дней и расчёта разницы в UTC.
+- Добавлен расчёт средней даты родов, окна окота, дня от вязки, дней до средней даты и этапа timeline.
+- Используется средняя дата 64 дня и окно 60-67 дней от даты вязки.
+- Добавлен animal-care warning-note с признаками срочного обращения к ветеринару.
+- Registry-запись `cat-pregnancy` добавлена в `ready`.
+- Обновлены RU/EN локали, sitemap, README и active-планы.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий milestone `/construction/slab-foundation`.
+
+Затронутые файлы:
+
+- `src/features/cat-pregnancy-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+- `docs/plans/active/2026-04-26-omnicalculator-expansion-registry.md`
+
+Команды:
+
+- `npm run test -- cat-pregnancy registry`
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+
+Результат тестов:
+
+- Точечный `npm run test -- cat-pregnancy registry` — OK, 2 files / 11 tests.
+- `npm run test` — OK, 68 files / 541 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 94 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/animals/cat-pregnancy/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: date fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- this commit
+
+Следующий шаг:
+
+- После зелёных проверок закоммитить `/animals/cat-pregnancy` и перейти к `/construction/slab-foundation`.

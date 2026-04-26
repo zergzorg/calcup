@@ -4106,5 +4106,52 @@
         "required": "Enter today's date."
       }
     }
+  },
+  "catPregnancy": {
+    "eyebrow": "Animals",
+    "title": "Cat Pregnancy Calculator",
+    "intro": "Estimate a cat's due date and queening window from the mating date.",
+    "form": {
+      "title": "Calculation date",
+      "help": "Cat gestation is usually counted from the mating date. The real birth date depends on health, age, breed and litter size.",
+      "matingDate": "Mating date",
+      "todayDate": "Today"
+    },
+    "units": {
+      "dayValue": "day {value}",
+      "today": "today",
+      "daysLeft": "in {count} days",
+      "daysPast": "{count} days ago"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Choose a mating date to see the estimate.",
+      "dueDate": "Average due date",
+      "window": "Queening window",
+      "dayOfPregnancy": "Day from mating",
+      "daysUntilDue": "Until average date",
+      "phase": "Stage"
+    },
+    "phase": {
+      "beforeStart": "Date is in the future",
+      "early": "Early pregnancy",
+      "mid": "Mid pregnancy",
+      "late": "Late pregnancy",
+      "queeningWindow": "Queening window",
+      "pastWindow": "Past usual window"
+    },
+    "warning": {
+      "title": "Estimate, not a diagnosis",
+      "body": "Pregnancy, kitten count and readiness for queening should be confirmed by a veterinarian. Seek urgent care for weakness, bleeding, foul-smelling discharge, severe pain or prolonged contractions without a kitten."
+    },
+    "formula": "Average date = mating date + 64 days. Usual birth window: about 60-67 days from mating.",
+    "validation": {
+      "matingDate": {
+        "required": "Enter mating date."
+      },
+      "todayDate": {
+        "required": "Enter today's date."
+      }
+    }
   }
 }

@@ -50,41 +50,41 @@ Owner: Codex
 Дата аудита: 2026-04-26.
 
 - Категорий: 11.
-- Всего карточек: 79.
-- Ready: 67.
+- Всего карточек: 80.
+- Ready: 68.
 - Soon: 12.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/animals/cat-pregnancy`, `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`, `/animals/dog-size`.
+- Next candidates: `/construction/slab-foundation`, `/construction/roof`, `/construction/stairs`, `/animals/dog-size`, `/animals/cat-growth`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `cat-pregnancy`
-- category: `animals`
-- goal: добавить `/animals/cat-pregnancy` как парный pregnancy-калькулятор animal-кластера.
-- reason: после `/animals/dog-pregnancy` логично закрыть кошачий аналог и усилить новый раздел симметричной pet-care парой.
+- slug: `slab-foundation`
+- category: `construction`
+- goal: добавить `/construction/slab-foundation` как следующий construction ready-калькулятор.
+- reason: это P0/P1 construction-карточка из существующего каталога; после animal pregnancy пары логично вернуться к крупному строительному backlog.
 - acceptance criteria:
-  - registry-запись `cat-pregnancy` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/cat-pregnancy-calculator/`;
-  - чистые функции считают предполагаемую дату родов, диапазон и текущий день беременности;
-  - есть unit-тесты на date-only формулы и invalid input;
+  - registry-запись `slab-foundation` переведена в `status: 'ready'`, имеет `componentLoader`, `popularity`, tags;
+  - создан `src/features/slab-foundation-calculator/`;
+  - чистые функции считают объём бетона, площадь плиты, песчаную/щебёночную подушку, арматурную сетку, запас и стоимость;
+  - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть animal-care warning-note: расчёт ориентировочный и не заменяет ветеринара;
-  - `/animals/cat-pregnancy/` добавлен в sitemap;
+  - есть construction warning-note: расчёт ориентировочный и не заменяет проект/конструктора;
+  - `/construction/slab-foundation/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/cat-pregnancy-calculator/index.ts`
-  - `src/features/cat-pregnancy-calculator/components/CatPregnancyCalculatorView.vue`
-  - `src/features/cat-pregnancy-calculator/composables/useCatPregnancyCalculator.ts`
-  - `src/features/cat-pregnancy-calculator/lib/calculations.ts`
-  - `src/features/cat-pregnancy-calculator/lib/calculations.test.ts`
-  - `src/features/cat-pregnancy-calculator/types/cat-pregnancy.ts`
+  - `src/features/slab-foundation-calculator/index.ts`
+  - `src/features/slab-foundation-calculator/components/SlabFoundationCalculatorView.vue`
+  - `src/features/slab-foundation-calculator/composables/useSlabFoundationCalculator.ts`
+  - `src/features/slab-foundation-calculator/lib/calculations.ts`
+  - `src/features/slab-foundation-calculator/lib/calculations.test.ts`
+  - `src/features/slab-foundation-calculator/types/slab-foundation.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор беременности кошки|Cat Pregnancy Calculator|canonical|robots|animals/cat-pregnancy" dist/animals/cat-pregnancy.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор плитного фундамента|Slab Foundation Calculator|canonical|robots|construction/slab-foundation" dist/construction/slab-foundation.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/animals/cat-pregnancy/ /tmp/calcup-cat-pregnancy-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/animals/cat-pregnancy/ /tmp/calcup-cat-pregnancy-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/construction/slab-foundation/ /tmp/calcup-slab-foundation-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -163,6 +163,7 @@ Owner: Codex
 - slug: `dog-food`; category: `animals`; сделано: RER, дневные калории и граммы корма для собаки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `69192b5`.
 - slug: `cat-calorie`; category: `animals`; сделано: RER, дневные калории и граммы корма для кошки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `60b715f`.
 - slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
+- slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
 
 ## Deferred
 
@@ -408,6 +409,12 @@ Owner: Codex
 - 2026-04-26: После `/animals/dog-pregnancy` `npm run build` — OK, Vite SSG rendered 93 pages.
 - 2026-04-26: Static smoke по `dist/animals/dog-pregnancy.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/dog-pregnancy/` — mode chips, date fields, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/animals/cat-pregnancy` точечный `npm run test -- cat-pregnancy registry` — OK, 2 files / 11 tests.
+- 2026-04-26: После `/animals/cat-pregnancy` полный `npm run test` — OK, 68 files / 541 tests.
+- 2026-04-26: После `/animals/cat-pregnancy` `npm run type-check` — OK.
+- 2026-04-26: После `/animals/cat-pregnancy` `npm run build` — OK, Vite SSG rendered 94 pages.
+- 2026-04-26: Static smoke по `dist/animals/cat-pregnancy.html`, `public/sitemap.xml`, `dist/sitemap.xml` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/animals/cat-pregnancy/` — date fields, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -448,7 +455,8 @@ Owner: Codex
 - `69192b5` — `feat(animals): add dog food calculator`.
 - `60b715f` — `feat(animals): add cat calorie calculator`.
 - `713a201` — `feat(animals): add dog pregnancy calculator`.
+- `this commit` — `feat(animals): add cat pregnancy calculator`.
 
 ## Next Action
 
-Закоммитить `/animals/dog-pregnancy` и приступить к Current Milestone `/animals/cat-pregnancy`.
+Закоммитить `/animals/cat-pregnancy` и приступить к Current Milestone `/construction/slab-foundation`.
