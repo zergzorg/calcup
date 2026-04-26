@@ -162,7 +162,7 @@ Owner: Codex
 - slug: `cat-age`; category: `animals`; сделано: возраст кошки в человеческих годах и life stage; проверки: test/type-check/build/mobile/static smoke; commit hash: `0c435fa`.
 - slug: `dog-food`; category: `animals`; сделано: RER, дневные калории и граммы корма для собаки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `69192b5`.
 - slug: `cat-calorie`; category: `animals`; сделано: RER, дневные калории и граммы корма для кошки с профилями и долей лакомств; проверки: test/type-check/build/mobile/static smoke; commit hash: `60b715f`.
-- slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
+- slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
 
 ## Deferred
 
@@ -447,7 +447,7 @@ Owner: Codex
 - `0c435fa` — `feat(animals): add pet age calculators`.
 - `69192b5` — `feat(animals): add dog food calculator`.
 - `60b715f` — `feat(animals): add cat calorie calculator`.
-- `this commit` — `feat(animals): add dog pregnancy calculator`.
+- `713a201` — `feat(animals): add dog pregnancy calculator`.
 
 ## Next Action
 
