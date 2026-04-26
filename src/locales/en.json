@@ -394,6 +394,49 @@
       "tooMany": "Too many numbers. Maximum: {max}."
     }
   },
+  "proportion": {
+    "eyebrow": "Math",
+    "title": "Proportion Calculator",
+    "intro": "Solve proportions and the rule of three: if A maps to B, find the value for C.",
+    "form": {
+      "knownTitle": "Known pair",
+      "knownHelp": "Example: 5 units cost 20.",
+      "knownLeft": "A",
+      "knownRight": "B",
+      "targetTitle": "New amount",
+      "targetHelp": "Enter C to find X in A : B = C : X.",
+      "targetLeft": "C"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the numbers. A cannot be 0.",
+      "targetRight": "Unknown X",
+      "expression": "Proportion",
+      "coefficient": "Coefficient B / A",
+      "ratio": "Ratio A:B",
+      "percent": "C of A"
+    },
+    "examples": {
+      "title": "Examples",
+      "item": "{knownA}:{knownB} = {targetA}:{targetB}"
+    },
+    "formula": "Rule of three: X = B × C / A. The coefficient shows how much B maps to one unit of A.",
+    "validation": {
+      "knownLeft": {
+        "required": "Enter A as a number.",
+        "range": "The value is too large to calculate.",
+        "nonZero": "A cannot be 0."
+      },
+      "knownRight": {
+        "required": "Enter B as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "targetLeft": {
+        "required": "Enter C as a number.",
+        "range": "The value is too large to calculate."
+      }
+    }
+  },
   "length": {
     "eyebrow": "Converters",
     "title": "Length Converter",
