@@ -1,14 +1,14 @@
 {
-  "name": "Calcup - Retro Productivity Desk",
+  "name": "Calcup - Online Calculators",
   "short_name": "Calcup",
-  "description": "Retro productivity desk with Pomodoro timer, task planner, ambient focus sounds, and countdown.",
+  "description": "Free online calculators for finance, health, renovation, sport, pets, clothing and unit conversion.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#263542",
   "theme_color": "#263542",
   "lang": "ru",
-  "categories": ["productivity", "utilities"],
+  "categories": ["utilities", "finance", "health", "education"],
   "icons": [
     {
       "src": "/calcup.svg",
