@@ -1794,3 +1794,73 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/math/average`.
+
+### Итерация 38: `/math/average`
+
+Выбранный milestone:
+
+- `/math/average`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый P1 math-инструмент на базовой статистике.
+- Продолжает расширение категории `/math` после дробей.
+
+Что изменено:
+
+- Создан `src/features/average-calculator/`.
+- Добавлены чистые функции парсинга списка чисел и расчёта count, sum, mean, median, min, max и range.
+- Добавлена поддержка пробелов, строк, `;`, запятой с пробелом и десятичной запятой.
+- Общий `calculator-design-system.css` расширен поддержкой textarea для калькуляторов со списками.
+- Registry-запись `average` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/math/proportion`.
+
+Затронутые файлы:
+
+- `src/features/average-calculator/**`
+- `src/features/calculator-design-system.css`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор среднего|Average Calculator|canonical|robots|math/average" dist/math/average.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/math/average/ /tmp/calcup-average-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/math/average/ /tmp/calcup-average-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 51 files / 449 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/math/average/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: textarea, example chips, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- eba45a8
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/math/proportion`.

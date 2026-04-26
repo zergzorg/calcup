@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.36 расширение математических калькуляторов
+## Текущая фаза: 5.37 расширение математических калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 50 ready-калькуляторов.
-- 24 soon-карточки.
+- 51 ready-калькулятор.
+- 23 soon-карточки.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -65,13 +65,14 @@
 | 5.34 | Калькулятор электроэнергии | /everyday/electricity | ✅ ready |
 | 5.35 | Калькулятор мер для кухни | /everyday/cooking-units | ✅ ready |
 | 5.36 | Калькулятор дробей | /math/fraction | ✅ ready |
+| 5.37 | Калькулятор среднего | /math/average | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/
-- /math/percentage/ · /math/fraction/
+- /math/percentage/ · /math/fraction/ · /math/average/
 - /health/bmi/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
@@ -83,6 +84,40 @@
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.37) — 2026-04-26
+
+Реализован калькулятор `/math/average`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/average-calculator/`.
+- Добавлен расчёт по списку чисел:
+  - количество;
+  - сумма;
+  - среднее арифметическое;
+  - медиана;
+  - минимум и максимум;
+  - размах.
+- Добавлен парсинг чисел, разделённых пробелами, строками, `;`, запятой с пробелом и десятичной запятой.
+- Общий `calculator-design-system.css` расширен поддержкой textarea.
+- Добавлены RU/EN локали `average.*`.
+- Registry-запись `average` переведена в `ready`.
+- В sitemap добавлен `/math/average/`.
+
+### Проверки
+
+- `npm run test` — OK, `449/449`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/math/average/` title, canonical со slash, `index,follow`;
+  - `/math/average/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/math/average/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
