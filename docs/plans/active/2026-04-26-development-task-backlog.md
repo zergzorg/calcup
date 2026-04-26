@@ -147,7 +147,7 @@ Goal: создать отдельный смысловой кластер для
 Tasks:
 
 - `vacation-pay`: отпускные — completed 2026-04-26;
-- `sick-leave`: больничный;
+- `sick-leave`: больничный — completed 2026-04-26;
 - `self-employed-tax`: налог самозанятого — completed 2026-04-26;
 - `usn-tax`: УСН доходы / доходы минус расходы;
 - `ip-insurance`: страховые взносы ИП;

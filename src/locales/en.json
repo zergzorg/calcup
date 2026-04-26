@@ -2405,6 +2405,63 @@
       }
     }
   },
+  "sickLeave": {
+    "eyebrow": "Taxes & Work",
+    "title": "Sick Leave Calculator",
+    "intro": "Estimate Russian temporary disability benefit from 2024–2025 earnings, insurance record and 2026 limits.",
+    "form": {
+      "incomeTitle": "Earnings in the calculation period",
+      "income2024": "Income for 2024",
+      "income2025": "Income for 2025",
+      "caseTitle": "Sick leave",
+      "experience": "Insurance record",
+      "sickDays": "Sick leave days",
+      "taxPercent": "Personal income tax"
+    },
+    "experience": {
+      "under5": "Under 5 years — 60%",
+      "from5to8": "5 to 8 years — 80%",
+      "over8": "8 years or more — 100%"
+    },
+    "units": {
+      "currency": "₽",
+      "currencyValue": "₽{value}",
+      "days": "days"
+    },
+    "warning": {
+      "title": "Actuality and assumptions",
+      "body": "Current as of 2026-04-26 based on Russian Social Fund materials for temporary disability benefits. The MVP estimates the employee's own illness: two-year earnings are divided by 730, the 60/80/100% insurance-record rate is applied, with the 2026 minimum daily benefit of ₽890.73 and maximum average daily earnings of ₽6,827.40. The first 3 days are shown as employer-paid, the rest as Social Fund-paid. Child care sick leave, regional coefficients, part-time work and records under 6 months are not included. The calculation is informational and is not accounting or tax advice."
+    },
+    "result": {
+      "label": "Calculation",
+      "empty": "Fill earnings and days with valid values.",
+      "net": "Net after tax",
+      "gross": "Gross benefit",
+      "daily": "Daily benefit",
+      "tax": "Personal income tax",
+      "employer": "Employer, first 3 days",
+      "fund": "Social Fund, remaining days"
+    },
+    "formula": "Daily benefit = 2024–2025 earnings / 730 × insurance-record rate, with 2026 minimum and maximum daily limits.",
+    "validation": {
+      "income2024": {
+        "required": "Enter 2024 income as a number.",
+        "nonNegative": "Income cannot be negative."
+      },
+      "income2025": {
+        "required": "Enter 2025 income as a number.",
+        "nonNegative": "Income cannot be negative."
+      },
+      "sickDays": {
+        "required": "Enter day count as a number.",
+        "positive": "Day count must be greater than zero."
+      },
+      "taxPercent": {
+        "required": "Enter tax as a number.",
+        "percent": "Tax must be from 0 to 100%."
+      }
+    }
+  },
   "projectPrice": {
     "eyebrow": "Finance",
     "title": "Project Price Calculator",
