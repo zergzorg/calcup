@@ -1,4 +1,12 @@
-import type { AgeBreakdown, AgeResult, DateOnly } from '../types/age'
+import type {
+  AgeBreakdown,
+  AgeMilestoneInput,
+  AgeMilestoneResult,
+  AgeMilestoneUnit,
+  AgeResult,
+  AgeUpcomingMilestone,
+  DateOnly,
+} from '../types/age'
 
 const DAY_MS = 86_400_000
 
@@ -28,6 +36,15 @@ function toUtcMs(date: DateOnly): number {
   return Date.UTC(date.year, date.month - 1, date.day)
 }
 
+function fromUtcMs(ms: number): DateOnly {
+  const date = new Date(ms)
+  return {
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate(),
+  }
+}
+
 function daysInMonth(year: number, month: number): number {
   return new Date(Date.UTC(year, month, 0)).getUTCDate()
 }
@@ -36,7 +53,11 @@ function isLeapYear(year: number): boolean {
   return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
 }
 
-function addMonths(date: DateOnly, months: number): DateOnly {
+function addDays(date: DateOnly, days: number): DateOnly {
+  return fromUtcMs(toUtcMs(date) + days * DAY_MS)
+}
+
+export function addMonths(date: DateOnly, months: number): DateOnly {
   const monthIndex = date.month - 1 + months
   const year = date.year + Math.floor(monthIndex / 12)
   const month = (monthIndex % 12) + 1
@@ -68,7 +89,75 @@ function birthdayInYear(birth: DateOnly, year: number): DateOnly {
   return { year, month: birth.month, day: birth.day }
 }
 
-export function calculateAge(birthDate: string, targetDate: string): AgeResult | null {
+function ageMilestoneDate(birth: DateOnly, value: number, unit: AgeMilestoneUnit): DateOnly {
+  switch (unit) {
+    case 'days':
+      return addDays(birth, value)
+    case 'weeks':
+      return addDays(birth, value * 7)
+    case 'months':
+      return addMonths(birth, value)
+    case 'years':
+      return addMonths(birth, value * 12)
+  }
+}
+
+export function isValidAgeMilestone(input: AgeMilestoneInput | null | undefined): input is AgeMilestoneInput {
+  if (!input) return false
+  if (!Number.isFinite(input.value) || !Number.isInteger(input.value)) return false
+  return input.value > 0 && input.value <= 200_000
+}
+
+function calculateMilestone(
+  birth: DateOnly,
+  target: DateOnly,
+  input: AgeMilestoneInput | null | undefined,
+): AgeMilestoneResult | null {
+  if (!isValidAgeMilestone(input)) return null
+
+  const date = ageMilestoneDate(birth, input.value, input.unit)
+  const daysFromTarget = Math.round((toUtcMs(date) - toUtcMs(target)) / DAY_MS)
+
+  return {
+    value: input.value,
+    unit: input.unit,
+    date,
+    age: calculateBreakdown(birth, date),
+    daysFromTarget,
+    isPast: daysFromTarget < 0,
+  }
+}
+
+function nextRounded(value: number, step: number): number {
+  const next = Math.ceil(value / step) * step
+  return next <= value ? next + step : next
+}
+
+function calculateUpcomingMilestones(birth: DateOnly, target: DateOnly, totalDays: number, age: AgeBreakdown): AgeUpcomingMilestone[] {
+  const candidates: Array<{ value: number, unit: AgeMilestoneUnit }> = [
+    { value: nextRounded(totalDays, 1_000), unit: 'days' },
+    { value: nextRounded(Math.floor(totalDays / 7), 500), unit: 'weeks' },
+    { value: nextRounded(age.years * 12 + age.months, 100), unit: 'months' },
+    { value: nextRounded(age.years, 5), unit: 'years' },
+  ]
+
+  return candidates
+    .map((candidate) => {
+      const date = ageMilestoneDate(birth, candidate.value, candidate.unit)
+      return {
+        ...candidate,
+        date,
+        daysUntil: Math.max(0, Math.round((toUtcMs(date) - toUtcMs(target)) / DAY_MS)),
+      }
+    })
+    .sort((a, b) => a.daysUntil - b.daysUntil)
+}
+
+export function calculateAge(
+  birthDate: string,
+  targetDate: string,
+  milestoneInput?: AgeMilestoneInput | null,
+): AgeResult | null {
   const birth = parseDateOnly(birthDate)
   const target = parseDateOnly(targetDate)
   if (!birth || !target || compareDateOnly(target, birth) < 0) return null
@@ -89,6 +178,8 @@ export function calculateAge(birthDate: string, targetDate: string): AgeResult |
     nextBirthday,
     daysUntilBirthday: Math.round((toUtcMs(nextBirthday) - toUtcMs(target)) / DAY_MS),
     nextBirthdayAge: nextBirthday.year - birth.year,
+    milestone: calculateMilestone(birth, target, milestoneInput),
+    upcomingMilestones: calculateUpcomingMilestones(birth, target, totalDays, age),
   }
 }
 

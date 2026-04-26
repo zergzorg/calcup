@@ -1517,6 +1517,29 @@
       "daysValue": "{count} days",
       "yearsValue": "{count} years"
     },
+    "milestone": {
+      "title": "When will it be?",
+      "description": "Find the date when a round milestone in days, weeks, months or years arrives.",
+      "value": "Milestone",
+      "unit": "Unit",
+      "quick": "Quick choices",
+      "resultTitle": "Milestone date",
+      "today": "{value} {unit} is today. Calendar age: {years} yr {months} mo {days} d.",
+      "future": "{value} {unit} is in {count} days. Calendar age: {years} yr {months} mo {days} d.",
+      "past": "{value} {unit} was {count} days ago. Calendar age: {years} yr {months} mo {days} d."
+    },
+    "units": {
+      "days": "days",
+      "weeks": "weeks",
+      "months": "months",
+      "years": "years"
+    },
+    "unitsShort": {
+      "days": "d",
+      "weeks": "wk",
+      "months": "mo",
+      "years": "yr"
+    },
     "formula": "Age is calculated as full calendar years, then full months and remaining days. For February 29 birthdays, the next birthday is treated as February 28 in non-leap years.",
     "validation": {
       "birthDate": {
@@ -1525,6 +1548,9 @@
       "targetDate": {
         "invalid": "Enter a valid calculation date.",
         "beforeBirth": "Calculation date cannot be earlier than birth date."
+      },
+      "milestoneValue": {
+        "invalid": "Enter a whole number from 1 to 200000."
       }
     }
   },

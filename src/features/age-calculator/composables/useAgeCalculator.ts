@@ -1,5 +1,5 @@
 import { computed, onMounted, reactive, ref } from 'vue'
-import { calculateAge, parseDateOnly } from '../lib/calculations'
+import { calculateAge, isValidAgeMilestone, parseDateOnly } from '../lib/calculations'
 import type { AgeInput, AgeInputField, AgeValidationIssue } from '../types/age'
 
 function toDateString(date: Date): string {
@@ -10,6 +10,8 @@ export function useAgeCalculator() {
   const input = reactive<AgeInput>({
     birthDate: '',
     targetDate: '',
+    milestoneValue: 10_000,
+    milestoneUnit: 'days',
   })
 
   onMounted(() => {
@@ -37,6 +39,9 @@ export function useAgeCalculator() {
     if (birth && target && calculateAge(input.birthDate, input.targetDate) === null) {
       issues.push({ field: 'targetDate', messageKey: 'age.validation.targetDate.beforeBirth' })
     }
+    if (!isValidAgeMilestone({ value: input.milestoneValue, unit: input.milestoneUnit })) {
+      issues.push({ field: 'milestoneValue', messageKey: 'age.validation.milestoneValue.invalid' })
+    }
 
     return issues
   })
@@ -47,8 +52,14 @@ export function useAgeCalculator() {
   }
 
   const result = computed(() => {
-    if (allIssues.value.length > 0) return null
-    return calculateAge(input.birthDate, input.targetDate)
+    const blockingIssues = allIssues.value.filter(issue => issue.field === 'birthDate' || issue.field === 'targetDate')
+    if (blockingIssues.length > 0) return null
+
+    const milestone = isValidAgeMilestone({ value: input.milestoneValue, unit: input.milestoneUnit })
+      ? { value: input.milestoneValue, unit: input.milestoneUnit }
+      : null
+
+    return calculateAge(input.birthDate, input.targetDate, milestone)
   })
 
   return {

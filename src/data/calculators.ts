@@ -583,7 +583,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'quart',
       'cup',
     ],
-    aliases: ['л', 'мл', 'м³', 'литры в миллилитры', 'галлоны в литры', 'volume converter'],
+    aliases: ['л', 'мл', 'м³', 'м3', 'куб', 'кубический метр', 'литры в миллилитры', 'галлоны в литры', 'volume converter'],
     componentLoader: () => import('../features/volume-converter'),
   },
   {
@@ -916,7 +916,8 @@ export const CALCULATORS: CalculatorMeta[] = [
     popularity: 69,
     isPopular: false,
     path: '/construction/concrete',
-    tags: ['бетон', 'объем бетона', 'объём бетона', 'мешки бетона', 'сколько бетона', 'concrete', 'concrete volume', 'concrete bags'],
+    tags: ['бетон', 'объем бетона', 'объём бетона', 'м3 бетона', 'куб бетона', 'мешки бетона', 'сколько бетона', 'concrete', 'concrete volume', 'concrete bags'],
+    aliases: ['сколько кубов бетона', 'кубометры бетона', 'concrete calculator'],
     componentLoader: () => import('../features/concrete-calculator'),
   },
   {
@@ -1375,7 +1376,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'pet age',
       'human years',
     ],
-    aliases: ['сколько собаке лет', 'возраст собаки в человеческих годах', 'dog years calculator'],
+    aliases: ['сколько собаке лет', 'возраст собаки в человеческих годах', 'пёс', 'пес', 'щенок', 'щенки', 'сколько лет собаке', 'dog years calculator'],
     componentLoader: () => import('../features/dog-age-calculator'),
   },
   {
@@ -1403,7 +1404,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'pet age',
       'human years',
     ],
-    aliases: ['сколько кошке лет', 'возраст кошки в человеческих годах', 'cat years calculator'],
+    aliases: ['сколько кошке лет', 'сколько лет коту', 'возраст кошки в человеческих годах', 'кот', 'котик', 'котенок', 'котёнок', 'котята', 'cat years calculator'],
     componentLoader: () => import('../features/cat-age-calculator'),
   },
   {
@@ -1431,7 +1432,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'dog feeding',
       'pet food',
     ],
-    aliases: ['норма корма для собаки', 'сколько грамм корма собаке', 'dog food amount', 'dog feeding calculator'],
+    aliases: ['норма корма для собаки', 'сколько грамм корма собаке', 'пёс', 'пес', 'щенок', 'щенки', 'корм щенка', 'питание щенка', 'dog food amount', 'dog feeding calculator'],
     componentLoader: () => import('../features/dog-food-calculator'),
   },
   {
@@ -1459,7 +1460,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'cat feeding',
       'pet food',
     ],
-    aliases: ['норма корма для кошки', 'сколько грамм корма кошке', 'cat food amount', 'cat calorie calculator'],
+    aliases: ['норма корма для кошки', 'сколько грамм корма кошке', 'кот', 'котик', 'котенок', 'котёнок', 'котята', 'корм коту', 'корм котенка', 'cat food amount', 'cat calorie calculator'],
     componentLoader: () => import('../features/cat-calorie-calculator'),
   },
   {
@@ -1487,7 +1488,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'whelping',
       'canine gestation',
     ],
-    aliases: ['когда родит собака', 'срок беременности собаки', 'dog gestation calculator', 'whelping calculator'],
+    aliases: ['когда родит собака', 'срок беременности собаки', 'собака родит', 'роды собаки', 'пёс', 'пес', 'щенок', 'щенки', 'dog gestation calculator', 'whelping calculator'],
     componentLoader: () => import('../features/dog-pregnancy-calculator'),
   },
   {
@@ -1515,7 +1516,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'queening',
       'feline gestation',
     ],
-    aliases: ['когда родит кошка', 'срок беременности кошки', 'cat gestation calculator', 'queening calculator'],
+    aliases: ['когда родит кошка', 'срок беременности кошки', 'кошка родит', 'роды кошки', 'кот', 'котик', 'котенок', 'котёнок', 'котята', 'cat gestation calculator', 'queening calculator'],
     componentLoader: () => import('../features/cat-pregnancy-calculator'),
   },
   // ===== CLOTHING =====
@@ -1666,8 +1667,8 @@ export const CALCULATORS: CalculatorMeta[] = [
     categorySlug: 'datetime',
     title: { ru: 'Калькулятор возраста', en: 'Age Calculator' },
     description: {
-      ru: 'Возраст в годах, месяцах, днях и до следующего дня рождения',
-      en: 'Age in years, months, days and until next birthday',
+      ru: 'Возраст, прожитые дни, ближайшие вехи и дата, когда исполнится нужное число дней, недель или месяцев',
+      en: 'Age, days lived, upcoming milestones and the date when a chosen number of days, weeks or months arrives',
     },
     icon: '🎂',
     status: 'ready',
@@ -1675,7 +1676,23 @@ export const CALCULATORS: CalculatorMeta[] = [
     popularity: 74,
     isPopular: false,
     path: '/datetime/age',
-    tags: ['возраст', 'день рождения', 'сколько лет', 'дней до дня рождения', 'age', 'birthday', 'age calculator'],
+    tags: [
+      'возраст',
+      'день рождения',
+      'сколько лет',
+      'дней до дня рождения',
+      'когда будет 10000 дней',
+      'сколько дней прожил',
+      'возраст в неделях',
+      'возраст в месяцах',
+      'age',
+      'birthday',
+      'age calculator',
+      'days old',
+      'weeks old',
+      'months old',
+    ],
+    aliases: ['когда мне будет', 'когда исполнится дней', 'круглая дата возраста', 'age milestone calculator'],
     componentLoader: () => import('../features/age-calculator'),
   },
   {
@@ -1910,7 +1927,7 @@ export const CALCULATORS: CalculatorMeta[] = [
       'kilowatt hour',
       'appliance cost',
     ],
-    aliases: ['квтч', 'квт ч', 'расход электричества', 'electricity cost', 'kwh calculator'],
+    aliases: ['квтч', 'квт ч', 'кВт·ч', 'киловатт-час', 'счет за свет', 'счёт за свет', 'расход электричества', 'electricity cost', 'kwh calculator'],
     componentLoader: () => import('../features/electricity-calculator'),
   },
   {

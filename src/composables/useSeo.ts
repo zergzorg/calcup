@@ -6,6 +6,8 @@ import { CALCULATORS } from '../data/calculators'
 import { CATEGORIES } from '../data/categories'
 
 const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://calcup.ru').replace(/\/+$/, '')
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`
+const DATE_MODIFIED = '2026-04-26'
 
 const APP_CATEGORY_BY_CATEGORY: Record<string, string> = {
   finance: 'FinanceApplication',
@@ -15,19 +17,25 @@ const APP_CATEGORY_BY_CATEGORY: Record<string, string> = {
   datetime: 'UtilityApplication',
   transport: 'UtilityApplication',
   sport: 'HealthApplication',
+  animals: 'UtilityApplication',
   clothing: 'UtilityApplication',
   convert: 'UtilityApplication',
   everyday: 'UtilityApplication',
 }
 
 const DEFAULT_TITLE = {
-  ru: 'Calcup — Онлайн калькуляторы: кредит, ИМТ, проценты',
-  en: 'Calcup — Online Calculators: Loan, BMI, Percentage',
+  ru: 'Calcup — онлайн калькуляторы для финансов, здоровья, ремонта и спорта',
+  en: 'Calcup — online calculators for finance, health, renovation and sport',
 }
 
 const DEFAULT_DESCRIPTION = {
-  ru: 'Бесплатные онлайн калькуляторы: кредитный, ипотечный, ИМТ, процентов и другие.',
-  en: 'Free online calculators: loan, mortgage, BMI, percentage and more.',
+  ru: 'Бесплатные онлайн калькуляторы без регистрации: кредиты, ипотека, НДС, ИМТ, калории, ремонт, спорт, животные, одежда и конвертеры.',
+  en: 'Free online calculators without sign-up: loans, mortgage, VAT, BMI, calories, renovation, sport, pets, clothing and converters.',
+}
+
+const DEFAULT_KEYWORDS = {
+  ru: 'онлайн калькулятор, калькуляторы, кредитный калькулятор, ипотечный калькулятор, калькулятор НДС, ИМТ, калории, ремонт, спорт, животные, конвертер величин',
+  en: 'online calculator, calculators, loan calculator, mortgage calculator, VAT calculator, BMI, calories, renovation, sport, pets, unit converter',
 }
 
 export function useSeo() {
@@ -64,6 +72,24 @@ export function useSeo() {
     return DEFAULT_DESCRIPTION[l]
   })
 
+  const keywords = computed(() => {
+    const l = lang.value
+    if (calc.value) {
+      const terms = [
+        calc.value.title[l],
+        calc.value.title.ru,
+        calc.value.title.en,
+        ...calc.value.tags,
+        ...(calc.value.aliases ?? []),
+      ]
+      return [...new Set(terms.map(term => term.trim()).filter(Boolean))].join(', ')
+    }
+    if (category.value) {
+      return `${category.value.title[l]}, ${category.value.description[l]}, онлайн калькуляторы, Calcup`
+    }
+    return DEFAULT_KEYWORDS[l]
+  })
+
   const canonical = computed(() => {
     const path = route.path.replace(/\/+$/, '')
     return `${SITE_URL}${path}/`
@@ -78,43 +104,115 @@ export function useSeo() {
   )
 
   const ogLocale = computed(() => (lang.value === 'ru' ? 'ru_RU' : 'en_US'))
-  const ogLocaleAlt = computed(() => (lang.value === 'ru' ? 'en_US' : 'ru_RU'))
+  const imageAlt = computed(() => `${title.value}: онлайн калькулятор Calcup`)
 
   const jsonLd = computed(() => {
+    const l = lang.value
+    const organization = {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Calcup',
+      url: `${SITE_URL}/`,
+      logo: `${SITE_URL}/calcup.svg`,
+    }
+    const website = {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'Calcup',
+      url: `${SITE_URL}/`,
+      inLanguage: ['ru', 'en'],
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE_URL}/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    }
+    const webpage = {
+      '@type': category.value ? 'CollectionPage' : 'WebPage',
+      '@id': `${canonical.value}#webpage`,
+      url: canonical.value,
+      name: title.value,
+      description: description.value,
+      inLanguage: l,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      dateModified: DATE_MODIFIED,
+    }
+
+    if (route.meta.noindex) {
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [organization, website, webpage],
+      }
+    }
+
+    const breadcrumbItems = [
+      { '@type': 'ListItem', position: 1, name: 'Calcup', item: `${SITE_URL}/` },
+    ]
+    if (category.value) {
+      breadcrumbItems.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: category.value.title[l],
+        item: canonical.value,
+      })
+    }
+    if (calc.value) {
+      const calcCategory = CATEGORIES.find(c => c.slug === calc.value?.categorySlug)
+      if (calcCategory) {
+        breadcrumbItems.push({
+          '@type': 'ListItem',
+          position: 2,
+          name: calcCategory.title[l],
+          item: `${SITE_URL}${calcCategory.path}/`,
+        })
+      }
+      breadcrumbItems.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: calc.value.title[l],
+        item: canonical.value,
+      })
+    }
+    const breadcrumb = {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical.value}#breadcrumb`,
+      itemListElement: breadcrumbItems,
+    }
+
     if (!calc.value) {
       return {
         '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'Calcup',
-        url: `${SITE_URL}/`,
+        '@graph': category.value
+          ? [organization, website, webpage, breadcrumb]
+          : [organization, website, webpage],
       }
     }
-    const l = lang.value
-    const breadcrumb = {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Calcup', item: `${SITE_URL}/` },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: calc.value.title[l],
-          item: canonical.value,
-        },
-      ],
-    }
+
     const app = {
-      '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
+      '@id': `${canonical.value}#calculator`,
       name: calc.value.title[l],
+      alternateName: calc.value.title[l === 'ru' ? 'en' : 'ru'],
       url: canonical.value,
       applicationCategory: applicationCategory.value,
       operatingSystem: 'Web',
       inLanguage: ['ru', 'en'],
       description: description.value,
-      image: `${SITE_URL}/og-image.jpg`,
+      image: DEFAULT_IMAGE,
+      isAccessibleForFree: true,
+      publisher: { '@id': `${SITE_URL}/#organization` },
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: [
+        calc.value.title.ru,
+        calc.value.title.en,
+        ...calc.value.tags.slice(0, 8),
+      ],
     }
-    return { '@context': 'https://schema.org', '@graph': [app, breadcrumb] }
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [organization, website, webpage, app, breadcrumb],
+    }
   })
 
   useHead(
@@ -123,6 +221,7 @@ export function useSeo() {
       htmlAttrs: { lang: lang.value },
       meta: [
         { name: 'description', content: description.value },
+        { name: 'keywords', content: keywords.value },
         { name: 'robots', content: robots.value },
         { name: 'application-name', content: 'Calcup' },
         { name: 'theme-color', content: '#263542' },
@@ -131,22 +230,22 @@ export function useSeo() {
         { property: 'og:title', content: title.value },
         { property: 'og:description', content: description.value },
         { property: 'og:url', content: canonical.value },
-        { property: 'og:image', content: `${SITE_URL}/og-image.jpg` },
+        { property: 'og:image', content: DEFAULT_IMAGE },
         { property: 'og:image:type', content: 'image/jpeg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: imageAlt.value },
         { property: 'og:locale', content: ogLocale.value },
-        { property: 'og:locale:alternate', content: ogLocaleAlt.value },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title.value },
         { name: 'twitter:description', content: description.value },
-        { name: 'twitter:image', content: `${SITE_URL}/og-image.jpg` },
+        { name: 'twitter:image', content: DEFAULT_IMAGE },
+        { name: 'twitter:image:alt', content: imageAlt.value },
         { name: 'twitter:url', content: canonical.value },
       ],
       link: [
         { rel: 'canonical', href: canonical.value },
-        { rel: 'alternate', hreflang: 'ru', href: canonical.value },
-        { rel: 'alternate', hreflang: 'en', href: canonical.value },
+        { rel: 'alternate', hreflang: lang.value, href: canonical.value },
         { rel: 'alternate', hreflang: 'x-default', href: canonical.value },
         { rel: 'manifest', href: `${SITE_URL}/manifest.webmanifest` },
       ],

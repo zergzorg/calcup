@@ -19,6 +19,7 @@
         </svg>
         <input
           v-model="query"
+          name="q"
           type="search"
           placeholder="Найти калькулятор..."
           class="flex-1 bg-transparent text-gray-900 placeholder-gray-400 outline-none text-base"
@@ -100,7 +101,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { CATEGORIES } from '../data/categories'
 import { CALCULATORS } from '../data/calculators'
 import CategoryCard from '../components/ui/CategoryCard.vue'
@@ -109,6 +110,13 @@ import { useSearch } from '../composables/useSearch'
 
 const { query, results, isActive, clear } = useSearch()
 const searchOpen = ref(false)
+const route = useRoute()
+
+const initialSearchQuery = route.query.q
+if (typeof initialSearchQuery === 'string' && initialSearchQuery.trim().length >= 2) {
+  query.value = initialSearchQuery.trim()
+  searchOpen.value = true
+}
 
 function closeSearch() {
   clear()
