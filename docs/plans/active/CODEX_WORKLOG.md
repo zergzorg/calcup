@@ -2831,7 +2831,7 @@ Commit hash:
 
 Commit hash:
 
-- `8deaae0`
+- `60b715f`
 
 Следующий шаг:
 
