@@ -71,7 +71,7 @@ Risk: medium, из-за налоговой актуальности.
 Implementation notes:
 
 - preset rates updated to 22%, 10%, 7%, 5%, 0% plus custom;
-- added “Ставки 2026” note for the main 22% rate and special USN 5%/7% rates;
+- added “УСН 2026 и актуальность” note with exact actuality date, tax disclaimer, the main 22% rate and special USN 5%/7% rates;
 - updated VAT search/SEO tags for `НДС 2026`, `НДС 22`, `УСН НДС`, `5/105`, `7/107`, `22/122`;
 - checked against ФНС “Налоги 2026” and “НДС при УСН” pages.
 

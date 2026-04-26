@@ -1490,8 +1490,8 @@
       "rate": "VAT rate",
       "customRate": "Custom",
       "customRateLabel": "VAT rate",
-      "actualityTitle": "2026 rates",
-      "actualityBody": "The main Russian VAT rate is 22%. Simplified-tax businesses may use special 5% or 7% rates when eligible; check the rate for your transaction."
+      "actualityTitle": "2026 simplified-tax rules and actuality",
+      "actualityBody": "Current as of 2026-04-26 based on Russian Federal Tax Service materials for 2026 taxes. The main Russian VAT rate is 22%. Simplified-tax businesses may use special 5% or 7% rates when eligible; check the rate for your transaction. The calculation is informational and is not tax advice."
     },
     "result": {
       "label": "Result",
