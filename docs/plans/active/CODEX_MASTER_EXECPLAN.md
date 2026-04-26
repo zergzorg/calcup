@@ -165,7 +165,7 @@ Owner: Codex
 - slug: `dog-pregnancy`; category: `animals`; сделано: средняя дата родов, окно щенения, день от выбранной даты и этап по дате вязки/овуляции; проверки: test/type-check/build/mobile/static smoke; commit hash: `713a201`.
 - slug: `cat-pregnancy`; category: `animals`; сделано: средняя дата родов, окно окота, день от вязки и этап timeline; проверки: test/type-check/build/mobile/static smoke; commit hash: `475f787`.
 - slug: `slab-foundation`; category: `construction`; сделано: плита, бетон, подушка, арматура и стоимость; проверки: test/type-check/build/mobile/static smoke; commit hash: `d71c549`.
-- slug: `roof`; category: `construction`; сделано: площадь скатов, листы, нахлёсты, запас, стоимость и общий segmented toggle CSS; проверки: test/type-check/build/mobile/static smoke; commit hash: `this commit`.
+- slug: `roof`; category: `construction`; сделано: площадь скатов, листы, нахлёсты, запас, стоимость и общий segmented toggle CSS; проверки: test/type-check/build/mobile/static smoke; commit hash: `15aaf75`.
 
 ## Deferred
 
@@ -477,7 +477,7 @@ Owner: Codex
 - `713a201` — `feat(animals): add dog pregnancy calculator`.
 - `475f787` — `feat(animals): add cat pregnancy calculator`.
 - `d71c549` — `feat(construction): add slab foundation calculator`.
-- `this commit` — `feat(construction): add roof calculator`.
+- `15aaf75` — `feat(construction): add roof calculator`.
 
 ## Next Action
 
