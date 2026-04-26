@@ -709,6 +709,42 @@
       }
     }
   },
+  "workdays": {
+    "eyebrow": "Date & Time",
+    "title": "Business Days Calculator",
+    "intro": "Count business days and weekend days between two dates, excluding public holidays.",
+    "form": {
+      "title": "Date range",
+      "description": "Business days are Monday through Friday.",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "includeEndDate": "Include end date"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter valid dates.",
+      "workdays": "Business days",
+      "calendarDays": "Calendar days",
+      "weekendDays": "Weekend days",
+      "fullWeeks": "Full weeks",
+      "direction": "Direction",
+      "daysValue": "{count} days",
+      "directionValue": {
+        "future": "forward",
+        "past": "backward",
+        "same": "same date"
+      }
+    },
+    "formula": "Only weekdays Monday-Friday are counted. Public holidays and shifted days off are not included.",
+    "validation": {
+      "startDate": {
+        "invalid": "Enter a valid start date."
+      },
+      "endDate": {
+        "invalid": "Enter a valid end date."
+      }
+    }
+  },
   "tips": {
     "eyebrow": "Everyday life",
     "title": "Tip Calculator",
