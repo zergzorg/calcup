@@ -3395,6 +3395,82 @@
       }
     }
   },
+  "rebar": {
+    "eyebrow": "Construction",
+    "title": "Rebar Calculator",
+    "intro": "Estimate bars, total length, weight and cost for rectangular rebar mesh.",
+    "warning": {
+      "title": "Approximate estimate",
+      "body": "This calculator helps estimate purchase quantity for the entered mesh. It does not design structural capacity, cover, anchorage, laps, dowels or compliance with drawings and codes."
+    },
+    "form": {
+      "geometryTitle": "Mesh size",
+      "geometryHint": "Straight rebar lines are counted in two directions, including edge lines.",
+      "length": "Area length",
+      "width": "Area width",
+      "spacing": "Mesh spacing",
+      "layers": "Mesh layers",
+      "spacingPresets": "Quick spacing choice",
+      "materialsTitle": "Rebar and purchase",
+      "diameter": "Diameter",
+      "barLength": "Bar length",
+      "diameterPresets": "Quick diameter choice",
+      "waste": "Waste",
+      "price": "Price per kg",
+      "wastePresets": "Quick waste choice"
+    },
+    "units": {
+      "m": "m",
+      "mm": "mm",
+      "pcs": "pcs",
+      "mValue": "{value} m",
+      "mmValue": "{value} mm",
+      "pcsValue": "{value} pcs",
+      "percentValue": "{value}%",
+      "kgValue": "{value} kg",
+      "kgPerMValue": "{value} kg/m",
+      "moneyValue": "{value} ₽"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive dimensions, spacing, diameter, bar length and a whole layer count. Waste and price cannot be negative.",
+      "purchaseBars": "Bars to buy",
+      "gridBars": "Mesh lines",
+      "baseLength": "Length without waste",
+      "lengthWithWaste": "Length with waste",
+      "purchaseLength": "Purchased length",
+      "weightPerMeter": "Weight per meter",
+      "totalWeight": "Total weight",
+      "totalCost": "Rebar cost"
+    },
+    "formula": "Line count = floor(span / spacing) + 1. Weight per meter uses circular area and steel density 7850 kg/m³. Purchase bars are rounded up by stock bar length.",
+    "validation": {
+      "lengthM": {
+        "positive": "Length must be greater than 0."
+      },
+      "widthM": {
+        "positive": "Width must be greater than 0."
+      },
+      "spacingMm": {
+        "positive": "Spacing must be greater than 0."
+      },
+      "layers": {
+        "integer": "Layers must be a whole number from 1."
+      },
+      "diameterMm": {
+        "positive": "Diameter must be greater than 0."
+      },
+      "barLengthM": {
+        "positive": "Bar length must be greater than 0."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "pricePerKg": {
+        "nonNegative": "Price cannot be negative."
+      }
+    }
+  },
   "stripFoundation": {
     "eyebrow": "Construction",
     "title": "Strip Foundation Calculator",
