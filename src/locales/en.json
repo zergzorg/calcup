@@ -362,6 +362,38 @@
       "divisionByZero": "Cannot divide by a zero fraction."
     }
   },
+  "average": {
+    "eyebrow": "Math",
+    "title": "Average Calculator",
+    "intro": "Calculate arithmetic mean, median, sum, minimum and maximum for a list of numbers.",
+    "form": {
+      "values": "Numbers",
+      "placeholder": "10 12 9 15 14",
+      "help": "Separate numbers with spaces, lines, semicolons, or comma plus space. Decimal commas such as 1,5 are supported."
+    },
+    "examples": {
+      "title": "Quick examples",
+      "grades": "Grades",
+      "prices": "Prices",
+      "decimal": "Decimals"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter at least one number.",
+      "mean": "Arithmetic mean",
+      "count": "Count",
+      "sum": "Sum",
+      "median": "Median",
+      "minMax": "Min / max",
+      "range": "Range"
+    },
+    "formula": "Mean = sum of all numbers / count. Median is taken from the sorted list; for an even count it is the average of the two center numbers.",
+    "validation": {
+      "required": "Enter at least one number.",
+      "invalidTokens": "Could not read: {tokens}.",
+      "tooMany": "Too many numbers. Maximum: {max}."
+    }
+  },
   "length": {
     "eyebrow": "Converters",
     "title": "Length Converter",

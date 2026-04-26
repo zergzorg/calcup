@@ -219,6 +219,7 @@
 
 .calculator-view :is(
   [class$="-field"] input:not([type="radio"]):not([type="checkbox"]),
+  [class$="-field"] textarea,
   [class$="-field"] select,
   [class*="-input-wrap"],
   .credit-field input,
@@ -240,7 +241,7 @@
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s !important;
 }
 
-.calculator-view :is([class$="-field"] input:not([type="radio"]):not([type="checkbox"]), [class$="-field"] select, .credit-field input, .credit-field select, .credit-early-item input, .credit-early-item select) {
+.calculator-view :is([class$="-field"] input:not([type="radio"]):not([type="checkbox"]), [class$="-field"] textarea, [class$="-field"] select, .credit-field input, .credit-field select, .credit-early-item input, .credit-early-item select) {
   padding: 0 14px !important;
   outline: none !important;
 }
@@ -253,7 +254,8 @@
   padding: 0 !important;
 }
 
-.calculator-view [class*="-input-wrap"] input {
+.calculator-view [class*="-input-wrap"] input,
+.calculator-view [class*="-input-wrap"] textarea {
   width: 100% !important;
   min-height: calc(var(--calc-control-height) - 2px) !important;
   border: 0 !important;
@@ -272,6 +274,15 @@
   box-shadow: none !important;
 }
 
+.calculator-view [class$="-field"] [class*="-input-wrap"] textarea {
+  min-height: 118px !important;
+  resize: vertical !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  line-height: 1.45 !important;
+  box-shadow: none !important;
+}
+
 .calculator-view [class*="-input-wrap"] span,
 .calculator-view :is([class$="-unit"], [class$="-currency"]) {
   padding: 0 14px !important;
@@ -284,6 +295,7 @@
 
 .calculator-view :is(
   [class$="-field"] input:not([type="radio"]):not([type="checkbox"]):focus,
+  [class$="-field"] textarea:focus,
   [class$="-field"] select:focus,
   [class*="-input-wrap"]:focus-within,
   .credit-field input:focus,
