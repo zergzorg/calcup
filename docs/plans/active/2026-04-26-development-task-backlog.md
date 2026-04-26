@@ -108,6 +108,8 @@ Implementation notes:
 
 ### Task P0-3: Workspace / legacy product cleanup
 
+Status: completed 2026-04-26
+
 Category: `platform`
 Type: развитие старого функционала
 Goal: убрать продуктовую неопределённость вокруг `/workspace` и старых Pomodoro-страниц.
@@ -126,6 +128,13 @@ Acceptance:
 - regression-тест на sitemap/noindex сохраняется.
 
 Risk: low.
+
+Implementation notes:
+
+- `/workspace` remains accessible but `noindex` and disallowed in robots;
+- removed public `/workspace` links from header and footer navigation;
+- extended registry guard to prevent noindex workspace from returning to public navigation;
+- legacy productivity pages remain `noindex,follow` and out of sitemap.
 
 ## P1 Tasks: Финансы, Налоги И Работа
 

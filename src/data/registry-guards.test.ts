@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import indexHtml from '../../index.html?raw'
 import focusSoundsHtml from '../../public/focus-sounds/index.html?raw'
+import appFooterVue from '../components/layout/AppFooter.vue?raw'
+import appHeaderVue from '../components/layout/AppHeader.vue?raw'
 import manifestWebmanifest from '../../public/manifest.webmanifest?raw'
 import pomodoroTimerHtml from '../../public/pomodoro-timer/index.html?raw'
 import sitemapXml from '../../public/sitemap.xml?raw'
@@ -100,5 +102,10 @@ describe('calculator registry guards', () => {
     expect(locs.has(`${SITE_URL}/task-planner/`)).toBe(false)
     expect(locs.has(`${SITE_URL}/focus-sounds/`)).toBe(false)
     expect(locs.has(`${SITE_URL}/workspace/`)).toBe(false)
+  })
+
+  it('does not expose the noindex workspace in public navigation', () => {
+    expect(appHeaderVue).not.toContain('to="/workspace"')
+    expect(appFooterVue).not.toContain('to="/workspace"')
   })
 })

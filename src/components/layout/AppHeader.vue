@@ -44,10 +44,6 @@
           </div>
         </div>
 
-        <RouterLink
-          to="/workspace"
-          class="px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-        >Рабочий стол</RouterLink>
       </nav>
 
       <!-- Actions -->
@@ -98,8 +94,6 @@
         <span class="text-lg leading-none w-5 text-center">{{ cat.icon }}</span>
         {{ cat.title.ru }}
       </RouterLink>
-      <div class="my-2 border-t border-gray-100" />
-      <RouterLink to="/workspace" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900">Рабочий стол</RouterLink>
     </div>
   </header>
 </template>

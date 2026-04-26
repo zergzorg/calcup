@@ -45,11 +45,6 @@
                 Все калькуляторы
               </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/workspace" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-                Рабочий стол
-              </RouterLink>
-            </li>
           </ul>
         </div>
 
@@ -85,9 +80,6 @@
           <div class="flex flex-wrap gap-x-4 gap-y-2 border-t border-gray-200 pt-3">
             <RouterLink to="/" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
               Все калькуляторы
-            </RouterLink>
-            <RouterLink to="/workspace" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-              Рабочий стол
             </RouterLink>
           </div>
         </div>
