@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.27 расширение конвертеров
+## Текущая фаза: 5.28 расширение конвертеров
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 41 ready-калькуляторов.
-- 33 soon-карточек.
+- 42 ready-калькуляторов.
+- 32 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт первым ready-конвертером `/clothing/shoe-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -56,6 +56,7 @@
 | 5.25 | Калькулятор дней до даты | /datetime/countdown | ✅ ready |
 | 5.26 | Калькулятор разделения счёта | /everyday/bill-split | ✅ ready |
 | 5.27 | Конвертер объёма | /convert/volume | ✅ ready |
+| 5.28 | Конвертер скорости | /convert/speed | ✅ ready |
 
 ## Sitemap
 
@@ -71,9 +72,41 @@
 - /clothing/shoe-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
 - /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/
-- /convert/area/ · /convert/volume/
+- /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.28) — 2026-04-26
+
+Реализован конвертер `/convert/speed`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/speed-converter/`.
+- Добавлен расчёт:
+  - километров в час;
+  - метров в секунду;
+  - миль в час;
+  - узлов;
+  - футов в секунду;
+  - бегового темпа `мин/км` как обратной скорости.
+- Добавлены RU/EN локали `speed.*`.
+- Registry-запись `speed` переведена в `ready`.
+- В sitemap добавлен `/convert/speed/`.
+
+### Проверки
+
+- `npm run test` — OK, `406/406`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/convert/speed/` title, canonical со slash, `index,follow`;
+  - `/convert/speed/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/convert/speed/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

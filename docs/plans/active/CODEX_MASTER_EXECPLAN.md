@@ -51,39 +51,40 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 41.
-- Soon: 33.
+- Ready: 42.
+- Soon: 32.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`, `clothing`.
-- Низкорисковые next candidates: `/convert/speed`.
+- Низкорисковые next candidates: нет; следующий pending содержит medium/high risk задачи.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `speed`
-- category: `convert`
-- goal: перевести `/convert/speed` из `soon` в `ready` и добавить конвертер скорости.
-- reason: низкорисковый справочный конвертер; продолжает закрывать базовые `soon`-карточки `/convert`.
+- slug: `clothing-size`
+- category: `clothing`
+- goal: перевести `/clothing/clothing-size` из `soon` в `ready` и добавить базовый generic-конвертер размеров одежды.
+- reason: категория `/clothing` пока слабее остальных и имеет один ready-инструмент; задача high risk из-за различий брендов, поэтому scope должен быть ограничен и явно дисклеймирован.
 - acceptance criteria:
-  - registry-запись `speed` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/speed-converter/`;
-  - чистые функции переводят км/ч, м/с, mph, knots и pace min/km через базовую единицу;
-  - есть unit-тесты на metric/imperial/pace-конверсии, округление и invalid input;
+  - registry-запись `clothing-size` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/clothing-size-converter/`;
+  - чистые функции дают ориентировочное соответствие RU/EU/INT/US/UK для базовых adult sizes;
+  - есть unit-тесты на несколько размеров, границы таблиц и invalid input;
   - RU/EN локали заполнены;
-  - `/convert/speed/` добавлен в sitemap;
+  - `/clothing/clothing-size/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
+  - UI содержит заметный дисклеймер про ориентировочность и различия брендов;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, тематические roadmaps и README синхронизированы.
 - expected files:
-  - `src/features/speed-converter/index.ts`
-  - `src/features/speed-converter/components/SpeedConverterView.vue`
-  - `src/features/speed-converter/composables/useSpeedConverter.ts`
-  - `src/features/speed-converter/lib/calculations.ts`
-  - `src/features/speed-converter/lib/calculations.test.ts`
-  - `src/features/speed-converter/types/speed.ts`
+  - `src/features/clothing-size-converter/index.ts`
+  - `src/features/clothing-size-converter/components/ClothingSizeConverterView.vue`
+  - `src/features/clothing-size-converter/composables/useClothingSizeConverter.ts`
+  - `src/features/clothing-size-converter/lib/calculations.ts`
+  - `src/features/clothing-size-converter/lib/calculations.test.ts`
+  - `src/features/clothing-size-converter/types/clothing-size.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,16 +98,15 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Конвертер скорости|Speed Converter|canonical|robots|convert/speed" dist/convert/speed.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Конвертер размеров одежды|Clothing Size Converter|canonical|robots|clothing/clothing-size" dist/clothing/clothing-size.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/speed/ /tmp/calcup-speed-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/speed/ /tmp/calcup-speed-mobile-full.png`
-- risk level: low
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/clothing/clothing-size/ /tmp/calcup-clothing-size-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/clothing/clothing-size/ /tmp/calcup-clothing-size-mobile-full.png`
+- risk level: high
 - status: planned
 
 ## Pending
 
-- slug: `clothing-size`; category: `clothing`; цель: базовый конвертер размеров одежды; причина приоритета: категория `clothing` пока с одним ready; expected scope: generic RU/EU/US/UK/XS-XXL with disclaimer; риск: high.
 - slug: `strip-foundation`; category: `construction`; цель: ориентировочный расчёт ленточного фундамента; причина приоритета: roadmap construction P2; expected scope: concrete volume, sand cushion, formwork, disclaimer; риск: high.
 - slug: `metronome`; category: `sport`; цель: тренировочный BPM/cadence helper; причина приоритета: последний sport soon; expected scope: BPM, cadence, no autoplay assumptions; риск: medium.
 
@@ -138,6 +138,7 @@ Owner: Codex
 - slug: `countdown`; category: `datetime`; сделано: дни до события, прошедшие дни, опциональное включение даты отсчёта; проверки: test/type-check/build/mobile/static smoke; commit hash: `a057264`.
 - slug: `bill-split`; category: `everyday`; сделано: разделение счёта с чаевыми, сервисным сбором и округлением на человека; проверки: test/type-check/build/mobile/static smoke; commit hash: `80c4117`.
 - slug: `volume`; category: `convert`; сделано: конвертер объёма через литры с metric и US liquid единицами; проверки: test/type-check/build/mobile/static smoke; commit hash: `4d9567d`.
+- slug: `speed`; category: `convert`; сделано: конвертер скорости через м/с, включая mph, knots и pace min/km; проверки: test/type-check/build/mobile/static smoke; commit hash: `decfac2`.
 
 ## Deferred
 
@@ -158,6 +159,8 @@ Owner: Codex
 - 2026-04-26: `volume` выбран следующим milestone, потому что это низкорисковый unit-converter и закрывает базовую `soon`-карточку `/convert/volume`.
 - 2026-04-26: Для `volume` все конверсии идут через литры; imperial-единицы ограничены US liquid.
 - 2026-04-26: `speed` выбран следующим milestone, потому что это низкорисковый unit-converter и логичное продолжение `/convert/volume`.
+- 2026-04-26: Для `speed` все прямые скорости переводятся через м/с; pace `мин/км` трактуется как обратная скорость и требует значения больше 0.
+- 2026-04-26: `clothing-size` выбран следующим milestone по порядку pending; scope будет generic adult sizes с дисклеймером, без обещания брендовой точности.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -173,6 +176,7 @@ Owner: Codex
 - `bill-split`: первая версия будет считать равное деление счёта; индивидуальные позиции участников не входят в initial scope.
 - `volume`: конверсия будет идти через литры как базовую единицу; US liquid gallon = 3.785411784 л, US cup = 0.2365882365 л.
 - `speed`: конверсия будет идти через м/с как базовую единицу; pace min/km трактуется как обратная скорость.
+- `clothing-size`: размеры одежды будут ориентировочными; бренды, посадка, gender-specific и country-specific таблицы могут отличаться.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -208,9 +212,15 @@ Owner: Codex
 - 2026-04-26: Для `/convert/volume` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/convert/volume.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/convert/volume/` — unit-grid, result rows и popular conversions без overflow и наложений.
+- 2026-04-26: Для `/convert/speed` `npm run test` — OK, 42 files / 406 tests.
+- 2026-04-26: Для `/convert/speed` `npm run type-check` — OK.
+- 2026-04-26: Для `/convert/speed` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/convert/speed.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/convert/speed/` — unit-grid, result rows и popular conversions без overflow и наложений.
 
 ## Commit Log
 
+- `decfac2` — `feat(convert): add speed converter`.
 - `4d9567d` — `feat(convert): add volume converter`.
 - `80c4117` — `feat(everyday): add bill split calculator`.
 - `a057264` — `feat(datetime): add countdown calculator`.
@@ -226,4 +236,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/convert/speed`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/clothing/clothing-size`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

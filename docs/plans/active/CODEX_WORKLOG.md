@@ -1168,3 +1168,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему low-risk milestone: `/convert/speed`.
+
+### Итерация 29: `/convert/speed`
+
+Выбранный milestone:
+
+- `/convert/speed`.
+
+Почему выбран именно он:
+
+- Низкорисковый справочный конвертер.
+- Продолжает закрывать базовые `soon`-карточки в категории `/convert`.
+- Не требует внешнего API или актуальных данных.
+
+Что изменено:
+
+- Создан `src/features/speed-converter/`.
+- Добавлены чистые функции перевода скоростей через м/с.
+- Поддержаны `km/h`, `m/s`, `mph`, `knots`, `ft/s` и `min/km`.
+- Для pace `min/km` добавлена защита от нулевого значения.
+- Registry-запись `speed` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/clothing/clothing-size`.
+
+Затронутые файлы:
+
+- `src/features/speed-converter/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Конвертер скорости|Speed Converter|canonical|robots|convert/speed" dist/convert/speed.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/convert/speed/ /tmp/calcup-speed-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/convert/speed/ /tmp/calcup-speed-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 42 files / 406 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/convert/speed/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: unit-grid, result rows и popular conversions без overflow и наложений.
+
+Commit hash:
+
+- decfac2
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/clothing/clothing-size`.
