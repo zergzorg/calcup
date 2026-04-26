@@ -588,6 +588,71 @@
       }
     }
   },
+  "bodyFat": {
+    "eyebrow": "Health",
+    "title": "Body Fat Calculator",
+    "intro": "Estimate body fat percentage from body circumferences with the US Navy method and get an informational category.",
+    "sex": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "form": {
+      "measurementsTitle": "Body measurements",
+      "measurementsHelp": "Measure height, neck, and waist. For women, hip circumference is also used.",
+      "sex": "Sex",
+      "heightCm": "Height",
+      "neckCm": "Neck",
+      "waistCm": "Waist",
+      "hipCm": "Hips",
+      "weightKg": "Weight"
+    },
+    "units": {
+      "cm": "cm",
+      "kg": "kg",
+      "percentValue": "{value}%",
+      "kgValue": "{value} kg"
+    },
+    "result": {
+      "label": "Estimate",
+      "bodyFatPercent": "Body fat",
+      "category": "Category",
+      "fatMass": "Fat mass",
+      "leanMass": "Lean mass",
+      "noMass": "—",
+      "empty": "Fill measurements with valid values."
+    },
+    "categories": {
+      "belowEssential": "Below essential level",
+      "essential": "Essential fat",
+      "athletes": "Athlete range",
+      "fitness": "Fitness",
+      "average": "Average range",
+      "obese": "High percentage"
+    },
+    "warning": {
+      "title": "Informational estimate",
+      "body": "The calculator uses a circumference formula and does not replace DEXA, bioimpedance, calipers, medical diagnosis, or professional advice."
+    },
+    "formula": "The US Navy formula uses logarithms of circumferences and height. Categories are based on common fitness ranges and are informational.",
+    "validation": {
+      "heightCm": {
+        "required": "Enter height as a number.",
+        "range": "Height must be from 120 to 230 cm."
+      },
+      "neckCm": {
+        "required": "Enter neck circumference as a number.",
+        "range": "Neck must be from 20 to 80 cm."
+      },
+      "waistCm": {
+        "required": "Enter waist circumference as a number.",
+        "range": "Waist must be from 40 to 220 cm."
+      },
+      "hipCm": {
+        "required": "Enter hip circumference as a number.",
+        "range": "Hips must be from 40 to 220 cm."
+      }
+    }
+  },
   "percentage": {
     "eyebrow": "Math",
     "title": "Percentage Calculator",
