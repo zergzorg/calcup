@@ -149,12 +149,12 @@ Tasks:
 - `vacation-pay`: отпускные — completed 2026-04-26;
 - `sick-leave`: больничный — completed 2026-04-26;
 - `self-employed-tax`: налог самозанятого — completed 2026-04-26;
-- `usn-tax`: УСН доходы / доходы минус расходы;
-- `ip-insurance`: страховые взносы ИП;
-- `penalty-interest`: пени по ключевой ставке;
-- `dismissal-pay`: расчёт при увольнении;
-- `work-hours-month`: рабочие часы по месяцу;
-- `work-experience`: стаж работы.
+- `usn-tax`: УСН доходы / доходы минус расходы — completed 2026-04-26;
+- `ip-insurance`: страховые взносы ИП — completed 2026-04-26;
+- `penalty-interest`: пени по ключевой ставке — completed 2026-04-26;
+- `dismissal-pay`: расчёт при увольнении — completed 2026-04-26;
+- `work-hours-month`: рабочие часы по месяцу — completed 2026-04-26;
+- `work-experience`: стаж работы — completed 2026-04-26.
 
 Shared requirements:
 
