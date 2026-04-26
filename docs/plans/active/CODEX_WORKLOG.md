@@ -1656,3 +1656,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/everyday/cooking-units`.
+
+### Итерация 36: `/everyday/cooking-units`
+
+Выбранный milestone:
+
+- `/everyday/cooking-units`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый бытовой конвертер без внешних данных.
+- Закрывает последнюю `soon`-карточку в категории `/everyday`.
+
+Что изменено:
+
+- Создан `src/features/cooking-units-calculator/`.
+- Добавлены чистые функции конвертации объёмных кухонных мер через миллилитры.
+- Добавлены мл, л, чайные/столовые ложки, cup, US fl oz, pint и quart.
+- Добавлено предупреждение, что граммы не переводятся без продукта и плотности.
+- Registry-запись `cooking-units` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/math/fraction`.
+
+Затронутые файлы:
+
+- `src/features/cooking-units-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор мер для кухни|Cooking Units Calculator|canonical|robots|everyday/cooking-units" dist/everyday/cooking-units.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/cooking-units/ /tmp/calcup-cooking-units-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/cooking-units/ /tmp/calcup-cooking-units-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 49 files / 436 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/everyday/cooking-units/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: selects, swap button, result rows и popular conversions без overflow и наложений.
+
+Commit hash:
+
+- 15328d1
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/math/fraction`.

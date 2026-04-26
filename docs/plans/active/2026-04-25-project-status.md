@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.34 расширение бытовых калькуляторов
+## Текущая фаза: 5.35 расширение бытовых калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 48 ready-калькуляторов.
-- 26 soon-карточек.
+- 49 ready-калькуляторов.
+- 25 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -63,6 +63,7 @@
 | 5.32 | Конвертер данных | /convert/data-size | ✅ ready |
 | 5.33 | Калькулятор площади комнаты | /everyday/room-area | ✅ ready |
 | 5.34 | Калькулятор электроэнергии | /everyday/electricity | ✅ ready |
+| 5.35 | Калькулятор мер для кухни | /everyday/cooking-units | ✅ ready |
 
 ## Sitemap
 
@@ -77,10 +78,40 @@
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
-- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/
+- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/ · /everyday/electricity/ · /everyday/cooking-units/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.35) — 2026-04-26
+
+Реализован калькулятор `/everyday/cooking-units`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/cooking-units-calculator/`.
+- Добавлен перевод объёмных кухонных мер:
+  - мл, л, чайные ложки, столовые ложки;
+  - cup, US fluid ounce, pint и quart;
+  - все значения переводятся через миллилитры.
+- Добавлен warning-note: граммы не переводятся без продукта и плотности.
+- Добавлены RU/EN локали `cookingUnits.*`.
+- Registry-запись `cooking-units` переведена в `ready`.
+- В sitemap добавлен `/everyday/cooking-units/`.
+
+### Проверки
+
+- `npm run test` — OK, `436/436`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/everyday/cooking-units/` title, canonical со slash, `index,follow`;
+  - `/everyday/cooking-units/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/everyday/cooking-units/` 430px full-page screenshot без overflow и наложений.
 
 ---
 
