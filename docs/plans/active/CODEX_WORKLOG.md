@@ -1519,3 +1519,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/everyday/room-area`.
+
+### Итерация 34: `/everyday/room-area`
+
+Выбранный milestone:
+
+- `/everyday/room-area`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Низкорисковый бытовой сценарий с простыми геометрическими формулами.
+- Усиливает категорию `/everyday` после `bill-split`.
+
+Что изменено:
+
+- Создан `src/features/room-area-calculator/`.
+- Добавлены чистые функции расчёта площади пола, потолка, стен, проёмов и периметра.
+- Добавлен clamp площади стен под отделку к 0, если проёмы больше площади стен.
+- Добавлены быстрые высоты 2,5 / 2,7 / 3 м.
+- Registry-запись `room-area` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/everyday/electricity`.
+
+Затронутые файлы:
+
+- `src/features/room-area-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор площади комнаты|Room Area Calculator|canonical|robots|everyday/room-area" dist/everyday/room-area.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/room-area/ /tmp/calcup-room-area-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/room-area/ /tmp/calcup-room-area-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 47 files / 427 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/everyday/room-area/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: поля, height chips, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 3c38f5a
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/everyday/electricity`.

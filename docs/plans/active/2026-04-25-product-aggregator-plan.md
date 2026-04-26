@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 46 ready-калькуляторов в `src/data/calculators.ts`;
-- 28 `soon`-карточек для будущего наполнения;
+- 47 ready-калькуляторов в `src/data/calculators.ts`;
+- 27 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -75,7 +75,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | Спорт | `/sport` | pace-speed, distance-pace-time, heart-rate-zones, race-split, metronome | — |
 | Одежда и обувь | `/clothing` | shoe-size, clothing-size | sneaker-size, jeans-size, brand-size-compare |
 | Дата и время | `/datetime` | date-diff, age, workdays, time-duration, countdown | — |
-| Быт | `/everyday` | discount, tips, unit-price, bill-split | electricity, cooking-units, room-area |
+| Быт | `/everyday` | discount, tips, unit-price, bill-split, room-area | electricity, cooking-units |
 
 ## Ready Calculators
 
@@ -127,6 +127,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/everyday/bill-split` | Калькулятор разделения счёта |
 | `/everyday/discount` | Калькулятор скидки |
 | `/everyday/unit-price` | Калькулятор выгодной покупки |
+| `/everyday/room-area` | Калькулятор площади комнаты |
 
 ## Source Of Truth Rules
 
@@ -142,7 +143,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
-   - `/everyday/room-area`.
+   - `/everyday/electricity`.
    - `/construction/rebar`.
 
 ## Non-Goals

@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.32 расширение конвертеров
+## Текущая фаза: 5.33 расширение бытовых калькуляторов
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 46 ready-калькуляторов.
-- 28 soon-карточек.
+- 47 ready-калькуляторов.
+- 27 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -61,6 +61,7 @@
 | 5.30 | Метроном | /sport/metronome | ✅ ready |
 | 5.31 | Ленточный фундамент | /construction/strip-foundation | ✅ ready |
 | 5.32 | Конвертер данных | /convert/data-size | ✅ ready |
+| 5.33 | Калькулятор площади комнаты | /everyday/room-area | ✅ ready |
 
 ## Sitemap
 
@@ -75,10 +76,43 @@
 - /sport/pace-speed/ · /sport/distance-pace-time/ · /sport/heart-rate-zones/ · /sport/race-split/ · /sport/metronome/
 - /clothing/shoe-size/ · /clothing/clothing-size/
 - /datetime/date-diff/ · /datetime/age/ · /datetime/workdays/ · /datetime/time-duration/ · /datetime/countdown/
-- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/
+- /everyday/tips/ · /everyday/bill-split/ · /everyday/discount/ · /everyday/unit-price/ · /everyday/room-area/
 - /convert/area/ · /convert/volume/ · /convert/speed/
 
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
+
+---
+
+## Сделано (Фаза 5.33) — 2026-04-26
+
+Реализован калькулятор `/everyday/room-area`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/room-area-calculator/`.
+- Добавлен расчёт:
+  - площади пола и потолка;
+  - периметра;
+  - площади стен до вычета проёмов;
+  - площади окон, дверей и дополнительных проёмов;
+  - площади стен под отделку;
+  - длины плинтуса по периметру.
+- Добавлены быстрые высоты 2,5 / 2,7 / 3 м.
+- Добавлены RU/EN локали `roomArea.*`.
+- Registry-запись `room-area` переведена в `ready`.
+- В sitemap добавлен `/everyday/room-area/`.
+
+### Проверки
+
+- `npm run test` — OK, `427/427`.
+- `npm run type-check` — OK.
+- `npm run build` — OK, `vite-ssg` отрендерил 87 страниц.
+- Static smoke — OK:
+  - `/everyday/room-area/` title, canonical со slash, `index,follow`;
+  - `/everyday/room-area/` есть в sitemap.
+- Mobile smoke — OK:
+  - `/everyday/room-area/` 430px full-page screenshot без overflow и наложений.
 
 ---
 

@@ -51,39 +51,39 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 46.
-- Soon: 28.
+- Ready: 47.
+- Soon: 27.
 - Planned: 0.
 - Категории с одним ready-калькулятором: `math`, `health`.
-- Низкорисковые next candidates: `/everyday/room-area`, `/everyday/cooking-units`.
+- Низкорисковые next candidates: `/everyday/electricity`, `/everyday/cooking-units`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `room-area`
+- slug: `electricity`
 - category: `everyday`
-- goal: перевести `/everyday/room-area` из `soon` в `ready` и добавить бытовой расчёт площади пола и стен комнаты.
-- reason: низкорисковый everyday milestone из актуального `soon`; формулы простые и полезны для ремонта без инженерных допущений.
+- goal: перевести `/everyday/electricity` из `soon` в `ready` и добавить расчёт кВт⋅ч и стоимости работы прибора.
+- reason: P1 everyday milestone из актуального `soon`; расчёт полезный и не требует внешних данных.
 - acceptance criteria:
-  - registry-запись `room-area` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/room-area-calculator/`;
-  - чистые функции считают площадь пола, периметр, площадь стен, площадь проёмов и площадь под отделку по явным вводам;
-  - есть unit-тесты на формулы, clamp проёмов и invalid input;
+  - registry-запись `electricity` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/electricity-calculator/`;
+  - чистые функции считают кВт⋅ч, стоимость за день/месяц, стоимость за цикл и нагрузку по мощности/времени;
+  - есть unit-тесты на формулы, округление и invalid input;
   - RU/EN локали заполнены;
-  - `/everyday/room-area/` добавлен в sitemap;
+  - `/everyday/electricity/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/room-area-calculator/index.ts`
-  - `src/features/room-area-calculator/components/RoomAreaCalculatorView.vue`
-  - `src/features/room-area-calculator/composables/useRoomAreaCalculator.ts`
-  - `src/features/room-area-calculator/lib/calculations.ts`
-  - `src/features/room-area-calculator/lib/calculations.test.ts`
-  - `src/features/room-area-calculator/types/room-area.ts`
+  - `src/features/electricity-calculator/index.ts`
+  - `src/features/electricity-calculator/components/ElectricityCalculatorView.vue`
+  - `src/features/electricity-calculator/composables/useElectricityCalculator.ts`
+  - `src/features/electricity-calculator/lib/calculations.ts`
+  - `src/features/electricity-calculator/lib/calculations.test.ts`
+  - `src/features/electricity-calculator/types/electricity.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -97,10 +97,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор площади комнаты|Room Area Calculator|canonical|robots|everyday/room-area" dist/everyday/room-area.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор электроэнергии|Electricity Calculator|canonical|robots|everyday/electricity" dist/everyday/electricity.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/room-area/ /tmp/calcup-room-area-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/room-area/ /tmp/calcup-room-area-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/everyday/electricity/ /tmp/calcup-electricity-mobile-full.png`
 - risk level: low
 - status: planned
 
@@ -141,6 +141,7 @@ Owner: Codex
 - slug: `metronome`; category: `sport`; сделано: BPM, интервал удара, каденс и Web Audio click по действию пользователя; проверки: test/type-check/build/mobile/static smoke; commit hash: `8741b2d`.
 - slug: `strip-foundation`; category: `construction`; сделано: бетон, песчаная подушка, опалубка и ориентир арматуры для ленточного фундамента; проверки: test/type-check/build/mobile/static smoke; commit hash: `4755799`.
 - slug: `data-size`; category: `convert`; сделано: decimal/binary конвертер bytes, KB/MB/GB/TB и KiB/MiB/GiB/TiB; проверки: test/type-check/build/mobile/static smoke; commit hash: `f1e8bda`.
+- slug: `room-area`; category: `everyday`; сделано: площадь пола, потолка, стен, проёмов и периметр комнаты; проверки: test/type-check/build/mobile/static smoke; commit hash: `3c38f5a`.
 
 ## Deferred
 
@@ -167,6 +168,7 @@ Owner: Codex
 - 2026-04-26: После `metronome` следующим выбран `strip-foundation`; task high-risk, поэтому первая версия будет только ориентировочной и с явным строительным дисклеймером.
 - 2026-04-26: После `strip-foundation` следующим выбран `data-size`, потому что это низкорисковый converter milestone без внешних данных и нормативных источников.
 - 2026-04-26: После `data-size` следующим выбран `room-area`, потому что это низкорисковый everyday-сценарий с простыми геометрическими формулами.
+- 2026-04-26: После `room-area` следующим выбран `electricity`, потому что это P1 everyday-сценарий с простыми расчётами мощности, времени и тарифа.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -187,6 +189,7 @@ Owner: Codex
 - `strip-foundation`: расчёт будет ориентировочным; грунты, несущая способность, промерзание, нагрузки, армирование и бетон должны проверяться по проекту и нормам.
 - `data-size`: decimal mode использует 1000 bytes per step, binary mode использует 1024 bytes per step; `KB/MB/GB/TB` и `KiB/MiB/GiB/TiB` показываются явно.
 - `room-area`: комната считается прямоугольной; проёмы вычитаются из площади стен и clamp-ятся так, чтобы отделочная площадь не уходила ниже 0.
+- `electricity`: пользователь сам вводит тариф; расчёт не пытается учитывать зоны тарифа, льготы, сетевые надбавки или реальные измерения счётчика.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -247,11 +250,17 @@ Owner: Codex
 - 2026-04-26: Для `/convert/data-size` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/convert/data-size.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/convert/data-size/` — Decimal/Binary chips, selects, result rows и popular conversions без overflow и наложений.
+- 2026-04-26: Для `/everyday/room-area` `npm run test` — OK, 47 files / 427 tests.
+- 2026-04-26: Для `/everyday/room-area` `npm run type-check` — OK.
+- 2026-04-26: Для `/everyday/room-area` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/everyday/room-area.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/everyday/room-area/` — поля, height chips, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
 - `4755799` — `feat(construction): add strip foundation calculator`.
 - `f1e8bda` — `feat(convert): add data size converter`.
+- `3c38f5a` — `feat(everyday): add room area calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -270,4 +279,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/everyday/room-area`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/everyday/electricity`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
