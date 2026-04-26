@@ -10,8 +10,8 @@ Scope: продуктовая модель Calcup как каталога онл
 Calcup уже перешёл от концепции одного рабочего стола к каталогу калькуляторов:
 
 - 10 категорий в `src/data/categories.ts`;
-- 59 ready-калькуляторов в `src/data/calculators.ts`;
-- 15 `soon`-карточек для будущего наполнения;
+- 60 ready-калькуляторов в `src/data/calculators.ts`;
+- 14 `soon`-карточек для будущего наполнения;
 - `/workspace` сохранён как отдельный productivity-раздел;
 - `src/data/calculators.ts` и `src/data/categories.ts` — источник правды для роутов, поиска, карточек, хлебных крошек и sitemap.
 
@@ -68,7 +68,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 |-----------|------|-------|----------------|
 | Финансы | `/finance` | credit, vat, salary, project-price, mortgage, deposit, compound-interest, refinance | — |
 | Математика | `/math` | percentage, fraction, average, proportion, equation | — |
-| Здоровье | `/health` | bmi, calorie, ideal-weight | body-fat, pregnancy-due-date |
+| Здоровье | `/health` | bmi, calorie, ideal-weight, body-fat | pregnancy-due-date |
 | Конвертеры | `/convert` | length, temperature, weight, area, volume, speed, data-size | currency |
 | Строительство | `/construction` | wallpaper, paint, tile, laminate, floor-screed, brick, blocks, drywall, putty, insulation, concrete, strip-foundation | slab-foundation, rebar, roof, stairs, excavation, lighting, ventilation, snow-load, wind-load |
 | Транспорт | `/transport` | fuel, trip-cost, fuel-price, average-speed, ev-range | — |
@@ -97,6 +97,7 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 | `/health/bmi` | Калькулятор ИМТ |
 | `/health/calorie` | Калькулятор калорий |
 | `/health/ideal-weight` | Калькулятор идеального веса |
+| `/health/body-fat` | Калькулятор процента жира |
 | `/convert/length` | Конвертер длины |
 | `/convert/temperature` | Конвертер температуры |
 | `/convert/weight` | Конвертер веса |
@@ -155,7 +156,6 @@ Calcup is a free online calculator catalog for everyday math, money, renovation,
 2. Пройти build/test перед push.
 3. После деплоя проверить production для ready-страниц и категорий.
 4. Следующий ready-калькулятор выбрать из:
-   - `/health/body-fat`.
    - `/health/pregnancy-due-date`.
    - `/construction/rebar`.
 

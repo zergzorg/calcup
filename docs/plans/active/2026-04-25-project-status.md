@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.45 расширение finance-категории
+## Текущая фаза: 5.46 расширение health-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 59 ready-калькуляторов.
-- 15 soon-карточек.
+- 60 ready-калькуляторов.
+- 14 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -74,6 +74,7 @@
 | 5.43 | Калькулятор вклада | /finance/deposit | ✅ ready |
 | 5.44 | Калькулятор сложного процента | /finance/compound-interest | ✅ ready |
 | 5.45 | Калькулятор рефинансирования | /finance/refinance | ✅ ready |
+| 5.46 | Калькулятор процента жира | /health/body-fat | ✅ ready |
 
 ## Sitemap
 
@@ -81,7 +82,7 @@
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
 - /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/ · /finance/compound-interest/ · /finance/refinance/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
-- /health/bmi/ · /health/calorie/ · /health/ideal-weight/
+- /health/bmi/ · /health/calorie/ · /health/ideal-weight/ · /health/body-fat/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
 - /construction/wallpaper/ · /construction/paint/ · /construction/tile/ · /construction/laminate/ · /construction/floor-screed/ · /construction/brick/ · /construction/blocks/ · /construction/drywall/ · /construction/putty/ · /construction/insulation/ · /construction/concrete/ · /construction/strip-foundation/
 - /transport/fuel/ · /transport/trip-cost/ · /transport/fuel-price/ · /transport/average-speed/ · /transport/ev-range/
@@ -94,6 +95,40 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.46) — 2026-04-26
+
+Реализован калькулятор `/health/body-fat`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/body-fat-calculator/`.
+- Добавлен расчёт:
+  - процента жира по US Navy circumference method;
+  - категории результата;
+  - жировой и безжировой массы при указанном весе.
+- Добавлен выбор пола и условное поле окружности бёдер для женской формулы.
+- Добавлен health warning-note: расчёт справочный и не заменяет DEXA, биоимпеданс, калиперометрию, диагностику или консультацию специалиста.
+- Добавлены RU/EN локали `bodyFat.*`.
+- Registry-запись `body-fat` переведена в `ready`.
+- В sitemap добавлен `/health/body-fat/`.
+- README обновлён до 60 ready / 14 soon.
+
+### Проверки
+
+- `npm run test` — OK, 60 files / 496 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/health/body-fat/` title, canonical со slash, `index,follow`;
+  - `/health/body-fat/` есть в sitemap.
+- Mobile smoke:
+  - `/health/body-fat/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `6107642 feat(health): add body fat calculator`
 
 ## Сделано (Фаза 5.45) — 2026-04-26
 

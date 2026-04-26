@@ -2415,3 +2415,72 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/health/body-fat`.
+
+### Итерация 47: `/health/body-fat`
+
+Выбранный milestone:
+
+- `/health/body-fat`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Finance-кластер закрыт, а в health оставались `soon`-карточки.
+- Сценарий полезный, но требует осторожного health warning-note.
+
+Что изменено:
+
+- Создан `src/features/body-fat-calculator/`.
+- Добавлены чистые функции для оценки процента жира по US Navy circumference method.
+- Добавлена категория результата, а также жировая и безжировая масса при указанном весе.
+- Добавлен health warning-note про справочный характер расчёта и ограничения метода.
+- Registry-запись `body-fat` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/health/pregnancy-due-date`.
+
+Затронутые файлы:
+
+- `src/features/body-fat-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор процента жира|Body Fat Calculator|canonical|robots|health/body-fat" dist/health/body-fat.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/body-fat/ /tmp/calcup-body-fat-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/body-fat/ /tmp/calcup-body-fat-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 60 files / 496 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/health/body-fat/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: sex chips, measurement fields, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 6107642
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/health/pregnancy-due-date`.

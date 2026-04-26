@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 59.
-- Soon: 15.
+- Ready: 60.
+- Soon: 14.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/health/body-fat`, `/construction/rebar`, `/health/pregnancy-due-date`.
+- Next candidates: `/health/pregnancy-due-date`, `/construction/rebar`, `/construction/slab-foundation`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `body-fat`
+- slug: `pregnancy-due-date`
 - category: `health`
-- goal: перевести `/health/body-fat` из `soon` в `ready` и добавить ориентировочный расчёт процента жира.
-- reason: после закрытия finance-кластера логично вернуться к health; P1-сценарий расширяет категорию и требует явного medical warning-note.
+- goal: перевести `/health/pregnancy-due-date` из `soon` в `ready` и добавить ориентировочный расчёт даты родов.
+- reason: продолжает health-кластер после body-fat; P2-сценарий полезный, но требует явного medical warning-note.
 - acceptance criteria:
-  - registry-запись `body-fat` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/body-fat-calculator/`;
-  - чистые функции считают body fat по выбранной формуле и показывают категорию/интерпретацию;
+  - registry-запись `pregnancy-due-date` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/pregnancy-due-date-calculator/`;
+  - чистые функции считают ориентировочную дату родов, срок беременности и триместр;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть health warning-note: расчёт ориентировочный и не заменяет диагностику;
-  - `/health/body-fat/` добавлен в sitemap;
+  - есть health warning-note: расчёт ориентировочный и не заменяет врача;
+  - `/health/pregnancy-due-date/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/body-fat-calculator/index.ts`
-  - `src/features/body-fat-calculator/components/BodyFatCalculatorView.vue`
-  - `src/features/body-fat-calculator/composables/useBodyFatCalculator.ts`
-  - `src/features/body-fat-calculator/lib/calculations.ts`
-  - `src/features/body-fat-calculator/lib/calculations.test.ts`
-  - `src/features/body-fat-calculator/types/bodyFat.ts`
+  - `src/features/pregnancy-due-date-calculator/index.ts`
+  - `src/features/pregnancy-due-date-calculator/components/PregnancyDueDateCalculatorView.vue`
+  - `src/features/pregnancy-due-date-calculator/composables/usePregnancyDueDateCalculator.ts`
+  - `src/features/pregnancy-due-date-calculator/lib/calculations.ts`
+  - `src/features/pregnancy-due-date-calculator/lib/calculations.test.ts`
+  - `src/features/pregnancy-due-date-calculator/types/pregnancyDueDate.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор процента жира|Body Fat Calculator|canonical|robots|health/body-fat" dist/health/body-fat.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор срока беременности|Pregnancy Due Date Calculator|canonical|robots|health/pregnancy-due-date" dist/health/pregnancy-due-date.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/body-fat/ /tmp/calcup-body-fat-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/body-fat/ /tmp/calcup-body-fat-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/health/pregnancy-due-date/ /tmp/calcup-pregnancy-due-date-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/health/pregnancy-due-date/ /tmp/calcup-pregnancy-due-date-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -155,6 +155,7 @@ Owner: Codex
 - slug: `deposit`; category: `finance`; сделано: доход по вкладу без капитализации и с ежемесячной капитализацией, итоговая сумма, рост за срок и finance warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `7c68b46`.
 - slug: `compound-interest`; category: `finance`; сделано: рост капитала с ежемесячной капитализацией, регулярными пополнениями, доходом от процентов и warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `c314a72`.
 - slug: `refinance`; category: `finance`; сделано: сравнение старого и нового аннуитетного кредита, экономия, месячная разница и окупаемость расходов; проверки: test/type-check/build/mobile/static smoke; commit hash: `d2f9d4a`.
+- slug: `body-fat`; category: `health`; сделано: оценка процента жира по US Navy circumference method, категория, жировая/безжировая масса и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `6107642`.
 
 ## Deferred
 
@@ -194,6 +195,7 @@ Owner: Codex
 - 2026-04-26: После `deposit` следующим выбран `compound-interest`, потому что это последняя P1 finance-карточка и полезное продолжение накопительных сценариев.
 - 2026-04-26: После `compound-interest` следующим выбран `refinance`, чтобы закрыть оставшийся finance `soon` перед возвратом к construction/health.
 - 2026-04-26: После `refinance` следующим выбран `body-fat`, потому что finance-кластер закрыт, а health всё ещё имеет `soon`-карточки.
+- 2026-04-26: После `body-fat` следующим выбран `pregnancy-due-date`, чтобы закрыть health `soon` перед возвратом к construction.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -227,6 +229,7 @@ Owner: Codex
 - `compound-interest`: первая версия будет считать накопления по регулярному пополнению и ручной ставке; налоги, инфляция, риск, комиссии и прогноз доходности не входят в scope.
 - `refinance`: первая версия сравнит старый и новый аннуитетный кредит по текущему остатку; штрафы, страховки, изменение графика и требования банка не входят в scope.
 - `body-fat`: первая версия будет справочной оценкой по антропометрическим формулам; медицинская диагностика, калиперы, биоимпеданс и спортивные нормы не входят в scope.
+- `pregnancy-due-date`: первая версия будет считать ориентир по LMP/дате зачатия; УЗИ, индивидуальные медицинские факторы и врачебное ведение беременности не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -352,6 +355,11 @@ Owner: Codex
 - 2026-04-26: Для `/finance/refinance` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/finance/refinance.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/finance/refinance/` — fields, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/health/body-fat` `npm run test` — OK, 60 files / 496 tests.
+- 2026-04-26: Для `/health/body-fat` `npm run type-check` — OK.
+- 2026-04-26: Для `/health/body-fat` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/health/body-fat.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/health/body-fat/` — sex chips, measurement fields, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -370,6 +378,7 @@ Owner: Codex
 - `7c68b46` — `feat(finance): add deposit calculator`.
 - `c314a72` — `feat(finance): add compound interest calculator`.
 - `d2f9d4a` — `feat(finance): add refinance calculator`.
+- `6107642` — `feat(health): add body fat calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -388,4 +397,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/health/body-fat`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/health/pregnancy-due-date`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
