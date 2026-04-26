@@ -674,6 +674,41 @@
       }
     }
   },
+  "age": {
+    "eyebrow": "Date & Time",
+    "title": "Age Calculator",
+    "intro": "Calculate age on a selected date, total days lived and time until the next birthday.",
+    "form": {
+      "title": "Dates",
+      "description": "Enter the birth date and the date to calculate age for.",
+      "birthDate": "Birth date",
+      "targetDate": "Calculation date"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter a valid birth date and calculation date.",
+      "age": "Age",
+      "ageValue": "{years} yr {months} mo {days} d",
+      "monthsTotal": "Full months",
+      "weeksTotal": "Full weeks",
+      "daysTotal": "Days lived",
+      "nextBirthday": "Next birthday",
+      "daysUntilBirthday": "Until birthday",
+      "nextBirthdayAge": "Turning",
+      "daysValue": "{count} days",
+      "yearsValue": "{count} years"
+    },
+    "formula": "Age is calculated as full calendar years, then full months and remaining days. For February 29 birthdays, the next birthday is treated as February 28 in non-leap years.",
+    "validation": {
+      "birthDate": {
+        "invalid": "Enter a valid birth date."
+      },
+      "targetDate": {
+        "invalid": "Enter a valid calculation date.",
+        "beforeBirth": "Calculation date cannot be earlier than birth date."
+      }
+    }
+  },
   "tips": {
     "eyebrow": "Everyday life",
     "title": "Tip Calculator",
