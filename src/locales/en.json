@@ -314,6 +314,49 @@
       }
     }
   },
+  "idealWeight": {
+    "eyebrow": "Health",
+    "title": "Ideal Weight Calculator",
+    "intro": "Compare several classic weight formulas by height and sex and see an informational BMI range.",
+    "sex": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "form": {
+      "profileTitle": "Parameters",
+      "profileHelp": "The formulas use height and sex. They do not account for age, body composition, or athletic build.",
+      "sex": "Sex",
+      "height": "Height"
+    },
+    "units": {
+      "cm": "cm",
+      "kgValue": "{value} kg"
+    },
+    "result": {
+      "label": "Estimate",
+      "average": "Formula average",
+      "formulaRange": "Formula range",
+      "bmiRange": "BMI 18.5-24.9",
+      "empty": "Enter height from 120 to 230 cm."
+    },
+    "formulas": {
+      "devine": "Devine",
+      "robinson": "Robinson",
+      "miller": "Miller",
+      "hamwi": "Hamwi"
+    },
+    "warning": {
+      "title": "Not a medical target",
+      "body": "Ideal weight formulas are informational estimates only. Body composition, muscle mass, pregnancy, age, and medical context can meaningfully change a healthy range."
+    },
+    "formula": "Devine, Robinson, Miller, and Hamwi estimate weight from a 5 ft baseline plus a per-inch increment. The BMI range uses 18.5-24.9.",
+    "validation": {
+      "heightCm": {
+        "required": "Enter height as a number.",
+        "range": "Height must be from 120 to 230 cm."
+      }
+    }
+  },
   "percentage": {
     "eyebrow": "Math",
     "title": "Percentage Calculator",
