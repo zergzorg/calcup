@@ -1283,6 +1283,59 @@
       }
     }
   },
+  "cookingUnits": {
+    "eyebrow": "Everyday life",
+    "title": "Cooking Units Calculator",
+    "intro": "Convert milliliters, liters, spoons, cups and fluid ounces for recipes.",
+    "note": {
+      "title": "No grams",
+      "text": "Grams depend on the ingredient and density. This calculator converts volume-based kitchen units only."
+    },
+    "form": {
+      "value": "Amount",
+      "from": "From unit",
+      "to": "To unit",
+      "swap": "Swap units"
+    },
+    "units": {
+      "milliliter": "Milliliter",
+      "liter": "Liter",
+      "teaspoon": "Teaspoon",
+      "tablespoon": "Tablespoon",
+      "cup": "Cup",
+      "fluidOunce": "US fluid ounce",
+      "pint": "US pint",
+      "quart": "US quart"
+    },
+    "unitShort": {
+      "milliliter": "ml",
+      "liter": "L",
+      "teaspoon": "tsp",
+      "tablespoon": "tbsp",
+      "cup": "cup",
+      "fluidOunce": "fl oz",
+      "pint": "pt",
+      "quart": "qt"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter an amount.",
+      "converted": "Converted measure",
+      "source": "Source value",
+      "milliliters": "In milliliters"
+    },
+    "popular": {
+      "title": "Popular conversions",
+      "item": "{value} {from} = {result} {to}"
+    },
+    "formula": "All units are converted through milliliters. Household values: 1 tsp = 5 ml, 1 tbsp = 15 ml, 1 cup = 240 ml.",
+    "validation": {
+      "value": {
+        "required": "Enter amount as a number.",
+        "nonNegative": "Amount cannot be negative."
+      }
+    }
+  },
   "discount": {
     "eyebrow": "Everyday life",
     "title": "Discount Calculator",
