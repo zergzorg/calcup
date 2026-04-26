@@ -940,6 +940,44 @@
       "stone": "st"
     }
   },
+  "billSplit": {
+    "eyebrow": "Everyday life",
+    "title": "Bill Split Calculator",
+    "intro": "Split a shared bill between people including tips, a service fee and per-person rounding.",
+    "form": {
+      "title": "Bill",
+      "description": "Enter the receipt amount and the number of people.",
+      "billAmount": "Bill amount",
+      "peopleCount": "Number of people",
+      "extras": "Extras",
+      "tipPercent": "Tip",
+      "serviceFee": "Service fee",
+      "roundTo": "Round per person",
+      "rounding": {
+        "kopeck": "to cents",
+        "ruble": "to 1",
+        "ten": "to 10"
+      }
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid values.",
+      "perPerson": "Each person pays",
+      "totalAmount": "Total with extras",
+      "tipAmount": "Tip",
+      "serviceFee": "Service fee",
+      "exactPerPerson": "Exact per person",
+      "roundingReserve": "Rounding reserve"
+    },
+    "formula": "Total = bill + tip + service fee. Per-person amount is rounded up to the selected step so the collected total is not below the bill.",
+    "validation": {
+      "billAmount": "Enter bill amount from 0.",
+      "peopleCount": "Enter a whole number of people from 1.",
+      "tipPercent": "Enter tip percent from 0.",
+      "serviceFee": "Enter service fee from 0.",
+      "roundTo": "Choose a rounding step above 0."
+    }
+  },
   "discount": {
     "eyebrow": "Everyday life",
     "title": "Discount Calculator",
