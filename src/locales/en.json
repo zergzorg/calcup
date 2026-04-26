@@ -2480,6 +2480,90 @@
       }
     }
   },
+  "stripFoundation": {
+    "eyebrow": "Construction",
+    "title": "Strip Foundation Calculator",
+    "intro": "Estimate concrete volume, sand base, formwork and longitudinal rebar for a strip foundation.",
+    "warning": {
+      "title": "Approximate estimate",
+      "body": "This calculator only estimates materials from the entered geometry. It does not verify soil bearing, frost depth, loads, concrete grade or reinforcement design.",
+      "norms": "Use an engineered design, local codes and professional review before construction."
+    },
+    "form": {
+      "geometryTitle": "Strip geometry",
+      "geometryHint": "Enter the total length of all external and internal strip sections.",
+      "totalLength": "Total length",
+      "width": "Strip width",
+      "height": "Strip height",
+      "widthPresets": "Quick width choice",
+      "materialsTitle": "Materials",
+      "sandDepth": "Base depth",
+      "waste": "Waste",
+      "rebarRuns": "Longitudinal bars",
+      "rebarDiameter": "Rebar diameter",
+      "concretePrice": "Concrete price",
+      "rebarPrice": "Rebar price",
+      "wastePresets": "Quick waste choice",
+      "mmValue": "{value} mm",
+      "percentValue": "{value}%"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "m3": "m³",
+      "mm": "mm",
+      "kg": "kg",
+      "pcs": "pcs"
+    },
+    "result": {
+      "label": "Estimate",
+      "empty": "Enter positive strip and rebar dimensions. Base, waste and prices cannot be negative.",
+      "concreteWithWaste": "Concrete with waste",
+      "baseConcrete": "Concrete without waste",
+      "sand": "Sand base",
+      "formwork": "Formwork area",
+      "rebarLength": "Rebar length",
+      "rebarWeight": "Rebar weight",
+      "concreteCost": "Concrete cost",
+      "rebarCost": "Rebar cost",
+      "totalCost": "Material total",
+      "m3Value": "{value} m³",
+      "m2Value": "{value} m²",
+      "mValue": "{value} m",
+      "kgValue": "{value} kg",
+      "moneyValue": "{value} ₽"
+    },
+    "formula": "Concrete = length × width × height × (1 + waste / 100). Formwork = length × height × 2. Rebar mass ≈ length × d² / 162.",
+    "validation": {
+      "totalLengthM": {
+        "positive": "Total length must be greater than 0."
+      },
+      "widthMm": {
+        "positive": "Width must be greater than 0."
+      },
+      "heightMm": {
+        "positive": "Height must be greater than 0."
+      },
+      "sandDepthMm": {
+        "nonNegative": "Base depth cannot be negative."
+      },
+      "wastePercent": {
+        "nonNegative": "Waste cannot be negative."
+      },
+      "rebarRuns": {
+        "integer": "Bar count must be a whole number greater than 0."
+      },
+      "rebarDiameterMm": {
+        "positive": "Rebar diameter must be greater than 0."
+      },
+      "concretePricePerM3": {
+        "nonNegative": "Concrete price cannot be negative."
+      },
+      "rebarPricePerKg": {
+        "nonNegative": "Rebar price cannot be negative."
+      }
+    }
+  },
   "tile": {
     "eyebrow": "Construction",
     "title": "Tile Calculator",
