@@ -51,40 +51,40 @@ Owner: Codex
 
 - Категорий: 10.
 - Всего карточек: 74.
-- Ready: 56.
-- Soon: 18.
+- Ready: 57.
+- Soon: 17.
 - Planned: 0.
 - Категории с одним ready-калькулятором: нет.
-- Next candidates: `/finance/deposit`, `/construction/rebar`, `/health/body-fat`.
+- Next candidates: `/finance/compound-interest`, `/construction/rebar`, `/health/body-fat`.
 - Средне/высокорисковые candidates требуют дисклеймеров или источников: construction P2/P3, clothing sizes, health, finance/tax.
 - UI-risk: старые калькуляторы местами имеют локальные стили; новые milestones должны держаться shared design-system.
 - Process-risk: `MAIN_PLAN.MD` untracked и используется как входной план, его нельзя случайно добавить в commit.
 
 ## Current Milestone
 
-- slug: `deposit`
+- slug: `compound-interest`
 - category: `finance`
-- goal: перевести `/finance/deposit` из `soon` в `ready` и добавить калькулятор дохода по вкладу.
-- reason: продолжает finance-кластер после ипотеки; P1-сценарий с простой формулой процентов и капитализации без внешних ставок.
+- goal: перевести `/finance/compound-interest` из `soon` в `ready` и добавить калькулятор роста капитала со сложным процентом.
+- reason: логичное продолжение finance-кластера после вклада; P1-сценарий с понятной формулой накоплений и ручными параметрами.
 - acceptance criteria:
-  - registry-запись `deposit` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
-  - создан `src/features/deposit-calculator/`;
-  - чистые функции считают доход, итоговую сумму и эффективный рост для simple/compound сценария;
+  - registry-запись `compound-interest` имеет `status: 'ready'`, `componentLoader`, `popularity`, tags;
+  - создан `src/features/compound-interest-calculator/`;
+  - чистые функции считают итоговый капитал, собственные взносы, процентный доход и эффективный рост;
   - есть unit-тесты на формулы и invalid input;
   - RU/EN локали заполнены;
-  - есть finance warning-note: расчёт ориентировочный и не учитывает налоги, комиссии и условия банка;
-  - `/finance/deposit/` добавлен в sitemap;
+  - есть finance warning-note: расчёт ориентировочный и не является инвестиционной рекомендацией;
+  - `/finance/compound-interest/` добавлен в sitemap;
   - canonical со slash и `index,follow` проверены через build output;
   - mobile smoke 430px без horizontal overflow;
   - `npm run test`, `npm run type-check`, `npm run build` зелёные;
   - active-планы, product aggregator plan и README синхронизированы.
 - expected files:
-  - `src/features/deposit-calculator/index.ts`
-  - `src/features/deposit-calculator/components/DepositCalculatorView.vue`
-  - `src/features/deposit-calculator/composables/useDepositCalculator.ts`
-  - `src/features/deposit-calculator/lib/calculations.ts`
-  - `src/features/deposit-calculator/lib/calculations.test.ts`
-  - `src/features/deposit-calculator/types/deposit.ts`
+  - `src/features/compound-interest-calculator/index.ts`
+  - `src/features/compound-interest-calculator/components/CompoundInterestCalculatorView.vue`
+  - `src/features/compound-interest-calculator/composables/useCompoundInterestCalculator.ts`
+  - `src/features/compound-interest-calculator/lib/calculations.ts`
+  - `src/features/compound-interest-calculator/lib/calculations.test.ts`
+  - `src/features/compound-interest-calculator/types/compoundInterest.ts`
   - `src/data/calculators.ts`
   - `src/locales/ru.json`
   - `src/locales/en.json`
@@ -98,10 +98,10 @@ Owner: Codex
   - `npm run test`
   - `npm run type-check`
   - `npm run build`
-  - `rg -n "Калькулятор вклада|Deposit Calculator|canonical|robots|finance/deposit" dist/finance/deposit.html public/sitemap.xml dist/sitemap.xml`
+  - `rg -n "Калькулятор сложного процента|Compound Interest Calculator|canonical|robots|finance/compound-interest" dist/finance/compound-interest.html public/sitemap.xml dist/sitemap.xml`
   - `npm run preview -- --host 127.0.0.1 --port 4173`
-  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/deposit/ /tmp/calcup-deposit-mobile.png`
-  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/deposit/ /tmp/calcup-deposit-mobile-full.png`
+  - `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/compound-interest/ /tmp/calcup-compound-interest-mobile.png`
+  - `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/compound-interest/ /tmp/calcup-compound-interest-mobile-full.png`
 - risk level: medium
 - status: planned
 
@@ -152,6 +152,7 @@ Owner: Codex
 - slug: `calorie`; category: `health`; сделано: BMR по Mifflin-St Jeor, TDEE, цель по дневному delta и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `38748f4`.
 - slug: `ideal-weight`; category: `health`; сделано: Devine/Robinson/Miller/Hamwi, среднее по формулам, BMI-диапазон и health warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `fce19d8`.
 - slug: `mortgage`; category: `finance`; сделано: первоначальный взнос, сумма кредита, аннуитетный платёж, общая выплата, переплата и finance warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `a5cd618`.
+- slug: `deposit`; category: `finance`; сделано: доход по вкладу без капитализации и с ежемесячной капитализацией, итоговая сумма, рост за срок и finance warning-note; проверки: test/type-check/build/mobile/static smoke; commit hash: `7c68b46`.
 
 ## Deferred
 
@@ -188,6 +189,7 @@ Owner: Codex
 - 2026-04-26: После `calorie` следующим выбран `ideal-weight`, потому что это P1 health-карточка и логичное продолжение health-кластера.
 - 2026-04-26: После `ideal-weight` следующим выбран `mortgage`, потому что это high-value finance-карточка с низким формульным риском при ручном вводе ставки.
 - 2026-04-26: После `mortgage` следующим выбран `deposit`, потому что это P1 finance-карточка без внешних данных и с низким формульным риском.
+- 2026-04-26: После `deposit` следующим выбран `compound-interest`, потому что это последняя P1 finance-карточка и полезное продолжение накопительных сценариев.
 - 2026-04-26: Для `workdays` считаются только будни Пн-Пт без государственных праздников и переносов; конечная дата включается опциональным переключателем.
 - 2026-04-26: Для `age` возраст считается календарно; для 29 февраля в невисокосный год ближайший день рождения считается 28 февраля.
 - 2026-04-26: Для `concrete` расчёт прямоугольной заливки использует `volume = length * width * thicknessM * (1 + waste / 100)`.
@@ -218,6 +220,7 @@ Owner: Codex
 - `ideal-weight`: первая версия должна показывать диапазон/несколько формул как справочный ориентир, не как медицинскую норму.
 - `mortgage`: первая версия будет считать аннуитетный платёж по ручной ставке, цене недвижимости, первоначальному взносу и сроку; комиссии, страховки, субсидии и требования банка не входят в scope.
 - `deposit`: первая версия будет считать simple/compound начисление по ручной ставке; налоги, досрочное снятие, бонусные ставки и капитализация по сложным банковским правилам не входят в scope.
+- `compound-interest`: первая версия будет считать накопления по регулярному пополнению и ручной ставке; налоги, инфляция, риск, комиссии и прогноз доходности не входят в scope.
 - `workdays`: праздники и переносы выходных не учитываются.
 - `age`: date-only расчёты выполняются через UTC, чтобы избежать DST-сдвигов.
 - `MAIN_PLAN.MD`: входной untracked план, не добавлять в commit без отдельного решения.
@@ -328,6 +331,11 @@ Owner: Codex
 - 2026-04-26: Для `/finance/mortgage` `npm run build` — OK, Vite SSG rendered 87 pages.
 - 2026-04-26: Static smoke по `dist/finance/mortgage.html` — title, `index,follow` robots, canonical и sitemap entry OK.
 - 2026-04-26: Mobile Playwright full-page screenshot 430px по `/finance/mortgage/` — fields, down-payment chips, warning note, result rows и related cards без overflow и наложений.
+- 2026-04-26: Для `/finance/deposit` `npm run test` — OK, 57 files / 482 tests.
+- 2026-04-26: Для `/finance/deposit` `npm run type-check` — OK.
+- 2026-04-26: Для `/finance/deposit` `npm run build` — OK, Vite SSG rendered 87 pages.
+- 2026-04-26: Static smoke по `dist/finance/deposit.html` — title, `index,follow` robots, canonical и sitemap entry OK.
+- 2026-04-26: Mobile Playwright full-page screenshot 430px по `/finance/deposit/` — amount/rate/term fields, term/mode chips, warning note, result rows и related cards без overflow и наложений.
 
 ## Commit Log
 
@@ -343,6 +351,7 @@ Owner: Codex
 - `38748f4` — `feat(health): add calorie calculator`.
 - `fce19d8` — `feat(health): add ideal weight calculator`.
 - `a5cd618` — `feat(finance): add mortgage calculator`.
+- `7c68b46` — `feat(finance): add deposit calculator`.
 - `507bfe4` — `feat(clothing): add clothing size converter`.
 - `8741b2d` — `feat(sport): add metronome calculator`.
 - `decfac2` — `feat(convert): add speed converter`.
@@ -361,4 +370,4 @@ Owner: Codex
 
 ## Next Action
 
-Реализовать Current Milestone `/finance/deposit`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.
+Реализовать Current Milestone `/finance/compound-interest`, затем перенести его в `Completed`, записать commit hash, удалить или обновить соответствующий `Pending`, выбрать следующий milestone и оставить `Current Milestone` не в `completed`, а в `planned`/`in_progress` для следующей задачи.

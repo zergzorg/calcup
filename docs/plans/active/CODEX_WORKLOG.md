@@ -2207,3 +2207,73 @@ Commit hash:
 Следующий шаг:
 
 - Перейти к следующему milestone: `/finance/deposit`.
+
+### Итерация 44: `/finance/deposit`
+
+Выбранный milestone:
+
+- `/finance/deposit`.
+
+Почему выбран именно он:
+
+- Текущий milestone из `CODEX_MASTER_EXECPLAN.md`.
+- Продолжает finance-кластер после ипотеки.
+- Формулы простого процента и ежемесячной капитализации не требуют внешних ставок.
+
+Что изменено:
+
+- Создан `src/features/deposit-calculator/`.
+- Добавлены чистые функции для дохода без капитализации, суммы с ежемесячной капитализацией, итоговой суммы и роста за срок.
+- Добавлены быстрые пресеты срока 3 / 6 / 12 / 24 месяца.
+- Добавлен выбор режима начисления: без капитализации или ежемесячная капитализация.
+- Добавлен finance warning-note про налоги, комиссии, пополнения, снятия, бонусные ставки и условия банка.
+- Registry-запись `deposit` переведена в `ready`.
+- Обновлены RU/EN локали, sitemap и README.
+- `CODEX_MASTER_EXECPLAN.md` переведён на следующий Current Milestone `/finance/compound-interest`.
+
+Затронутые файлы:
+
+- `src/features/deposit-calculator/**`
+- `src/data/calculators.ts`
+- `src/locales/ru.json`
+- `src/locales/en.json`
+- `public/sitemap.xml`
+- `README.md`
+- `docs/plans/active/CODEX_MASTER_EXECPLAN.md`
+- `docs/plans/active/CODEX_WORKLOG.md`
+- `docs/plans/active/2026-04-25-project-status.md`
+- `docs/plans/active/2026-04-25-product-aggregator-plan.md`
+
+Команды:
+
+- `npm run test`
+- `npm run type-check`
+- `npm run build`
+- `rg -n "Калькулятор вклада|Deposit Calculator|canonical|robots|finance/deposit" dist/finance/deposit.html public/sitemap.xml dist/sitemap.xml`
+- `npx playwright screenshot --viewport-size=430,932 http://127.0.0.1:4173/finance/deposit/ /tmp/calcup-deposit-mobile.png`
+- `npx playwright screenshot --viewport-size=430,932 --full-page http://127.0.0.1:4173/finance/deposit/ /tmp/calcup-deposit-mobile-full.png`
+
+Результат тестов:
+
+- `npm run test` — OK, 57 files / 482 tests.
+
+Результат type-check:
+
+- `npm run type-check` — OK.
+
+Результат build:
+
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+
+Результат smoke-проверок:
+
+- Static smoke — OK: `/finance/deposit/` canonical, robots и sitemap entry checked.
+- Mobile full-page screenshot — OK: amount/rate/term fields, term/mode chips, warning note, result rows и related cards без overflow и наложений.
+
+Commit hash:
+
+- 7c68b46
+
+Следующий шаг:
+
+- Перейти к следующему milestone: `/finance/compound-interest`.

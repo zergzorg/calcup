@@ -1,12 +1,12 @@
 # PROJECT_STATUS
 
-## Текущая фаза: 5.42 расширение finance-категории
+## Текущая фаза: 5.43 расширение finance-категории
 
 Фактическое состояние на 2026-04-26:
 
 - 10 категорий в реестре.
-- 56 ready-калькуляторов.
-- 18 soon-карточек.
+- 57 ready-калькуляторов.
+- 17 soon-карточек.
 - `/sport` открыт первым ready-калькулятором `/sport/pace-speed`.
 - `/clothing` открыт ready-конвертерами `/clothing/shoe-size` и `/clothing/clothing-size`.
 - Главный `README.md` переписан под новую концепцию сайта: Calcup как каталог онлайн-калькуляторов, а не только productivity desktop.
@@ -71,12 +71,13 @@
 | 5.40 | Калькулятор калорий | /health/calorie | ✅ ready |
 | 5.41 | Калькулятор идеального веса | /health/ideal-weight | ✅ ready |
 | 5.42 | Ипотечный калькулятор | /finance/mortgage | ✅ ready |
+| 5.43 | Калькулятор вклада | /finance/deposit | ✅ ready |
 
 ## Sitemap
 
 - / (главная)
 - /finance/ · /math/ · /health/ · /convert/ · /construction/ · /transport/ · /sport/ · /clothing/ · /datetime/ · /everyday/
-- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/
+- /finance/credit/ · /finance/vat/ · /finance/salary/ · /finance/project-price/ · /finance/mortgage/ · /finance/deposit/
 - /math/percentage/ · /math/fraction/ · /math/average/ · /math/proportion/ · /math/equation/
 - /health/bmi/ · /health/calorie/ · /health/ideal-weight/
 - /convert/length/ · /convert/temperature/ · /convert/weight/ · /convert/data-size/
@@ -91,6 +92,42 @@
 Примечание: `/sport/` и `/clothing/` добавлены в sitemap после появления первых ready-инструментов.
 
 ---
+
+## Сделано (Фаза 5.43) — 2026-04-26
+
+Реализован калькулятор `/finance/deposit`.
+
+### Реализовано
+
+- Создан feature-модуль:
+  - `src/features/deposit-calculator/`.
+- Добавлен расчёт:
+  - дохода без капитализации;
+  - итоговой суммы с ежемесячной капитализацией;
+  - процентного дохода;
+  - роста за выбранный срок.
+- Добавлены быстрые пресеты срока 3 / 6 / 12 / 24 месяца.
+- Добавлен выбор режима начисления без локальных CSS-override, через общий calculator design system.
+- Добавлен finance warning-note: расчёт не учитывает налоги, комиссии, пополнения, снятия, бонусные ставки и условия банка.
+- Добавлены RU/EN локали `deposit.*`.
+- Registry-запись `deposit` переведена в `ready`.
+- В sitemap добавлен `/finance/deposit/`.
+- README обновлён до 57 ready / 17 soon.
+
+### Проверки
+
+- `npm run test` — OK, 57 files / 482 tests.
+- `npm run type-check` — OK.
+- `npm run build` — OK, Vite SSG rendered 87 pages.
+- Static smoke:
+  - `/finance/deposit/` title, canonical со slash, `index,follow`;
+  - `/finance/deposit/` есть в sitemap.
+- Mobile smoke:
+  - `/finance/deposit/` 430px full-page screenshot без overflow и наложений.
+
+Commit:
+
+- `7c68b46 feat(finance): add deposit calculator`
 
 ## Сделано (Фаза 5.42) — 2026-04-26
 
