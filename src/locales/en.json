@@ -1222,6 +1222,67 @@
       }
     }
   },
+  "electricity": {
+    "eyebrow": "Everyday life",
+    "title": "Electricity Calculator",
+    "intro": "Calculate kWh usage and appliance cost from power, time and your electricity tariff.",
+    "form": {
+      "applianceTitle": "Appliance",
+      "applianceHint": "Enter the power of one appliance and the number of matching appliances.",
+      "power": "Power",
+      "devicesCount": "Number of appliances",
+      "powerPresets": "Power presets",
+      "usageTitle": "Usage and tariff",
+      "usageHint": "The tariff is entered manually: time zones, subsidies and add-ons are not included.",
+      "hoursPerDay": "Hours per day",
+      "daysPerMonth": "Days per month",
+      "tariff": "Tariff",
+      "hoursPresets": "Time presets"
+    },
+    "units": {
+      "w": "W",
+      "h": "h",
+      "days": "days",
+      "kwh": "kWh",
+      "currencyPerKwh": "₽/kWh",
+      "wattsValue": "{value} W",
+      "hoursValue": "{value} h"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Fill in the fields with valid values.",
+      "monthlyCost": "Monthly cost",
+      "monthlyKwh": "Monthly usage",
+      "dailyKwh": "Daily usage",
+      "dailyCost": "Daily cost",
+      "yearlyKwh": "Yearly usage",
+      "yearlyCost": "Yearly cost"
+    },
+    "formula": "Daily kWh = power W / 1000 × appliance count × hours per day. Cost = kWh × tariff.",
+    "validation": {
+      "power": {
+        "required": "Enter power as a number.",
+        "nonNegative": "Power cannot be negative."
+      },
+      "devicesCount": {
+        "integer": "Appliance count must be an integer.",
+        "positive": "Appliance count must be greater than 0."
+      },
+      "hoursPerDay": {
+        "required": "Enter hours as a number.",
+        "range": "Hours per day must be from 0 to 24."
+      },
+      "daysPerMonth": {
+        "required": "Enter days as a number.",
+        "integer": "Day count must be an integer.",
+        "range": "Days per month must be from 1 to 31."
+      },
+      "tariff": {
+        "required": "Enter tariff as a number.",
+        "nonNegative": "Tariff cannot be negative."
+      }
+    }
+  },
   "discount": {
     "eyebrow": "Everyday life",
     "title": "Discount Calculator",
