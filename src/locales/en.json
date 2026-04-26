@@ -437,6 +437,64 @@
       }
     }
   },
+  "equation": {
+    "eyebrow": "Math",
+    "title": "Equation Calculator",
+    "intro": "Solve linear and quadratic equations with real roots.",
+    "modes": {
+      "linear": "Linear",
+      "quadratic": "Quadratic"
+    },
+    "form": {
+      "mode": "Equation type",
+      "linearTitle": "ax + b = 0",
+      "linearHelp": "Enter coefficients a and b.",
+      "quadraticTitle": "ax² + bx + c = 0",
+      "quadraticHelp": "Enter coefficients a, b and c.",
+      "a": "a",
+      "b": "b",
+      "c": "c"
+    },
+    "result": {
+      "label": "Result",
+      "empty": "Enter coefficients as numbers.",
+      "summary": "Solution type",
+      "equation": "Equation",
+      "discriminant": "Discriminant",
+      "roots": "Roots",
+      "oneRoot": "One root",
+      "twoRoots": "Two roots",
+      "noRealRoots": "No real roots",
+      "infinite": "Infinitely many solutions",
+      "linearFallback": "Linear equation"
+    },
+    "formula": {
+      "linear": "Linear equation: x = −b / a. If a = 0, the solution depends on b.",
+      "quadratic": "Quadratic equation: D = b² − 4ac. D > 0 gives two real roots, D = 0 gives one, D < 0 gives no real roots."
+    },
+    "validation": {
+      "linearA": {
+        "required": "Enter a as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "linearB": {
+        "required": "Enter b as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "quadraticA": {
+        "required": "Enter a as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "quadraticB": {
+        "required": "Enter b as a number.",
+        "range": "The value is too large to calculate."
+      },
+      "quadraticC": {
+        "required": "Enter c as a number.",
+        "range": "The value is too large to calculate."
+      }
+    }
+  },
   "length": {
     "eyebrow": "Converters",
     "title": "Length Converter",

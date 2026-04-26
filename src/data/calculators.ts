@@ -304,11 +304,14 @@ export const CALCULATORS: CalculatorMeta[] = [
       en: 'Linear and quadratic equations with step-by-step solution',
     },
     icon: '𝑥',
-    status: 'soon',
+    status: 'ready',
     priority: 'P2',
     isPopular: false,
+    popularity: 72,
     path: '/math/equation',
-    tags: ['уравнение', 'квадратное уравнение', 'equation', 'quadratic'],
+    tags: ['уравнение', 'линейное уравнение', 'квадратное уравнение', 'дискриминант', 'корни уравнения', 'equation', 'linear equation', 'quadratic'],
+    aliases: ['решить уравнение', 'найти корни', 'discriminant', 'quadratic equation'],
+    componentLoader: () => import('../features/equation-calculator'),
   },
   // ===== HEALTH =====
   {
