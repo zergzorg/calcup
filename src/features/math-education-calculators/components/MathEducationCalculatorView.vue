@@ -106,6 +106,7 @@ import type { CalculationResult, MissingPythagoreanSide, Shape2D, Solid3D } from
 
 type Lang = 'ru' | 'en'
 type Text = Record<Lang, string>
+type NumericInputValue = number | ''
 
 interface FieldConfig {
   key: string
@@ -274,7 +275,7 @@ const configs: Record<string, CalculatorConfig> = {
 
 const route = useRoute()
 const { locale } = useI18n()
-const values = reactive<Record<string, number>>({})
+const values = reactive<Record<string, NumericInputValue>>({})
 const textValues = reactive<Record<string, string>>({})
 const mode = ref('')
 
@@ -293,13 +294,21 @@ watchEffect(() => {
   for (const field of current.fields) {
     if (field.type === 'text' || field.type === 'textarea') {
       if (textValues[field.key] === undefined) textValues[field.key] = field.defaultText ?? ''
-    } else if (!Number.isFinite(values[field.key])) {
+    } else if (values[field.key] === undefined) {
       values[field.key] = field.defaultValue ?? 0
     }
   }
 })
 
-const result = computed(() => config.value?.calculate(mode.value, values, textValues) ?? null)
+const numericValues = computed<Record<string, number>>(() => {
+  const normalized: Record<string, number> = {}
+  for (const [key, value] of Object.entries(values)) {
+    normalized[key] = value === '' ? Number.NaN : Number(value)
+  }
+  return normalized
+})
+
+const result = computed(() => config.value?.calculate(mode.value, numericValues.value, textValues) ?? null)
 
 function text(value: Text): string {
   return value[lang.value]
